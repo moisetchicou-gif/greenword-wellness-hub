@@ -14,7 +14,7 @@ const CtaSection = () => {
             href="#"
             className="inline-block bg-card text-primary px-10 py-4 rounded-full font-bold text-lg hover:scale-105 transition-transform shadow-lg"
           >
-            Commander maintenant — 39,90€
+            Commander maintenant — 24 900 FCFA
           </a>
         </div>
         <p className="text-xs opacity-70">Livraison gratuite • Paiement sécurisé • Sans engagement</p>
