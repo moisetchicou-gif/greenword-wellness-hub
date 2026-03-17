@@ -1,12 +1,5 @@
 import { Star } from "lucide-react";
 import { useState } from "react";
-import testimonial1 from "@/assets/testimonial-1.jpg";
-import testimonial2 from "@/assets/testimonial-2.jpg";
-import testimonial3 from "@/assets/testimonial-3.jpg";
-import testimonial4 from "@/assets/testimonial-4.jpg";
-import testimonial5 from "@/assets/testimonial-5.jpg";
-
-const photos = [testimonial1, testimonial2, testimonial3, testimonial4, testimonial5];
 
 const testimonials = [
   { name: "Adjoua Koné", city: "Abidjan", text: "Depuis que j'utilise Greenword, je me sens pleine d'énergie chaque matin. Un produit vraiment exceptionnel !", rating: 5 },
@@ -31,38 +24,6 @@ const testimonials = [
   { name: "Abdoulaye Sangaré", city: "Gagnoa", text: "Quatre étoiles car le produit est bon, mais la taille du flacon est petite.", rating: 4 },
   { name: "Pascale Ehui", city: "Abidjan", text: "Résultats corrects après un mois. Je m'attendais à mieux vu les promesses.", rating: 4 },
   { name: "Oumar Fofana", city: "Abidjan", text: "Produit pas mal. J'ai senti une légère amélioration de mon énergie.", rating: 4 },
-  { name: "Nadège Yapi", city: "Bouaké", text: "Ça fait le travail. Pas extraordinaire mais correct pour le prix.", rating: 3 },
-  { name: "Moussa Bakayoko", city: "Daloa", text: "Résultats moyens pour ma part. Peut-être que j'ai besoin de plus de temps.", rating: 3 },
-  { name: "Assétou Diomandé", city: "Korhogo", text: "C'est correct. J'ai essayé d'autres produits qui marchaient mieux pour moi.", rating: 3 },
-  { name: "François Achi", city: "Yamoussoukro", text: "Le produit est bien mais je n'ai pas vu de changement majeur après 3 semaines.", rating: 3 },
-  { name: "Kadiatou Touré", city: "San-Pédro", text: "Goût acceptable, effets modérés. Je vais continuer pour voir.", rating: 3 },
-  { name: "Stéphane Konan", city: "Abidjan", text: "Ni bon ni mauvais. Les résultats sont très subtils pour l'instant.", rating: 3 },
-  { name: "Bintou Camara", city: "Man", text: "Produit moyen. L'emballage est joli mais les effets sont lents à venir.", rating: 3 },
-  { name: "Hervé Koffi", city: "Gagnoa", text: "Trois étoiles car c'est un produit honnête mais sans plus.", rating: 3 },
-  { name: "Aïcha Sylla", city: "Bouaké", text: "J'utilise depuis un mois. Quelques améliorations mais rien de spectaculaire.", rating: 3 },
-  { name: "Thierry Aké", city: "Daloa", text: "Correct sans être exceptionnel. Le service client est réactif par contre.", rating: 3 },
-  { name: "Djénéba Kouyaté", city: "Abidjan", text: "Pas vraiment convaincu. Les effets sont minimes sur ma fatigue.", rating: 3 },
-  { name: "Patrick Assi", city: "Korhogo", text: "Moyen. Je m'attendais à plus d'efficacité vu les témoignages.", rating: 3 },
-  { name: "Sita Doumbia", city: "Abidjan", text: "Je n'ai pas vraiment senti de différence après deux semaines d'utilisation.", rating: 2 },
-  { name: "Germain Kouamé", city: "Yamoussoukro", text: "Le goût n'est pas terrible et les résultats tardent à venir.", rating: 2 },
-  { name: "Fanta Coulibaly", city: "Bouaké", text: "Déçue par rapport à mes attentes. Peut-être pas adapté à mon cas.", rating: 2 },
-  { name: "Alain Gnagbo", city: "San-Pédro", text: "Pas convaincu. J'ai arrêté après 10 jours sans résultat visible.", rating: 2 },
-  { name: "Mariame Bah", city: "Daloa", text: "Le produit est cher pour ce que c'est. Résultats très faibles.", rating: 2 },
-  { name: "César Tano", city: "Abidjan", text: "Deux étoiles pour l'effort sur les ingrédients naturels, mais peu d'effets.", rating: 2 },
-  { name: "Hawa Keita", city: "Man", text: "Je n'ai pas vu les résultats promis. Un peu déçue.", rating: 2 },
-  { name: "Olivier Yao", city: "Gagnoa", text: "Bof. Le produit ne m'a pas convaincu malgré un mois d'essai.", rating: 2 },
-  { name: "Kady Ouédraogo", city: "Korhogo", text: "Pas adapté à moi visiblement. Aucun changement notable.", rating: 2 },
-  { name: "Roland Dje", city: "Abidjan", text: "Résultats décevants. Je ne rachèterai probablement pas.", rating: 2 },
-  { name: "Ange Bléou", city: "Abidjan", text: "Malheureusement aucun effet ressenti. Produit pas efficace pour moi.", rating: 1 },
-  { name: "Daouda Konaté", city: "Bouaké", text: "Très déçu. Je ne recommande pas, aucun résultat après un mois.", rating: 1 },
-  { name: "Viviane Lago", city: "Daloa", text: "Le goût est vraiment désagréable et je n'ai vu aucune amélioration.", rating: 1 },
-  { name: "Souleymane Bamba", city: "Yamoussoukro", text: "Produit inefficace dans mon cas. Argent gaspillé malheureusement.", rating: 1 },
-  { name: "Christelle Aka", city: "San-Pédro", text: "Je ne suis pas du tout satisfaite. Aucun des bienfaits annoncés.", rating: 1 },
-  { name: "Mohamed Cissoko", city: "Abidjan", text: "Ça n'a pas du tout marché pour moi. Très déçu du produit.", rating: 1 },
-  { name: "Lucie Gnépa", city: "Man", text: "Une étoile car la livraison était rapide, mais le produit est inefficace.", rating: 1 },
-  { name: "Bakary Sissoko", city: "Gagnoa", text: "Pas du tout à la hauteur des promesses. Je déconseille.", rating: 1 },
-  { name: "Estelle Kra", city: "Korhogo", text: "Malheureusement ce produit ne m'a apporté aucun bénéfice.", rating: 1 },
-  { name: "Tidiane Méité", city: "Bouaké", text: "Aucun effet. Je regrette mon achat.", rating: 1 },
 ];
 
 const ITEMS_PER_PAGE = 9;
@@ -105,7 +66,6 @@ const TestimonialsSection = () => {
           </p>
         </div>
 
-        {/* Filters */}
         <div className="flex flex-wrap justify-center gap-2 mb-10">
           <button
             onClick={() => handleFilter(null)}
@@ -115,7 +75,7 @@ const TestimonialsSection = () => {
           >
             Tous ({testimonials.length})
           </button>
-          {[5, 4, 3, 2, 1].map((r) => (
+          {[5, 4].map((r) => (
             <button
               key={r}
               onClick={() => handleFilter(r)}
@@ -128,20 +88,12 @@ const TestimonialsSection = () => {
           ))}
         </div>
 
-        {/* Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {displayed.map((t, idx) => (
+          {displayed.map((t) => (
             <div key={t.name} className="bg-card rounded-2xl p-6 border border-border">
-              <div className="flex items-center gap-3 mb-4">
-                <img
-                  src={photos[(page * ITEMS_PER_PAGE + idx) % photos.length]}
-                  alt={t.name}
-                  className="w-12 h-12 rounded-full object-cover border-2 border-primary/30"
-                />
-                <div>
-                  <p className="font-semibold text-sm text-foreground">{t.name}</p>
-                  <p className="text-xs text-muted-foreground">{t.city}, Côte d'Ivoire</p>
-                </div>
+              <div className="mb-4">
+                <p className="font-semibold text-sm text-foreground">{t.name}</p>
+                <p className="text-xs text-muted-foreground">{t.city}, Côte d'Ivoire</p>
               </div>
               <StarRating rating={t.rating} />
               <p className="text-foreground text-sm leading-relaxed mt-3 italic">"{t.text}"</p>
@@ -149,7 +101,6 @@ const TestimonialsSection = () => {
           ))}
         </div>
 
-        {/* Pagination */}
         {totalPages > 1 && (
           <div className="flex justify-center items-center gap-2 mt-10">
             <button
