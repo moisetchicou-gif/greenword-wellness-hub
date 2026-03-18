@@ -37,7 +37,7 @@ const HeroSection = () => {
         <div className="flex justify-center animate-float">
           <img
             src={heroProduct}
-            alt="Produit Greenword - Complément alimentaire naturel"
+            alt="Produit Green World - Complément alimentaire naturel"
             className="w-72 sm:w-96 drop-shadow-2xl"
           />
         </div>

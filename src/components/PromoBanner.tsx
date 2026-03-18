@@ -10,7 +10,7 @@ const PromoBanner = () => {
             -20% sur votre première commande !
           </h3>
           <p className="text-primary-foreground/80 max-w-lg mx-auto">
-            Rejoignez des milliers d'Ivoiriens qui font confiance à Greenword pour leur bien-être quotidien.
+            Rejoignez des milliers d'Ivoiriens qui font confiance à Green World pour leur bien-être quotidien.
           </p>
           <a
             href="#commander"

@@ -1,12 +1,12 @@
-import { Leaf } from "lucide-react";
+import logo from "@/assets/logo-greenworld.jpg";
 
 const Navbar = () => {
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border">
       <div className="container mx-auto flex items-center justify-between h-16 px-6">
         <a href="/" className="flex items-center gap-2">
-          <Leaf className="w-7 h-7 text-primary" />
-          <span className="font-display text-xl text-foreground">Greenword</span>
+          <img src={logo} alt="Green World" className="w-10 h-10 object-contain" />
+          <span className="font-display text-xl text-foreground">Green World</span>
         </a>
         <div className="hidden md:flex items-center gap-8 text-sm font-medium text-muted-foreground">
           <a href="#produits" className="hover:text-primary transition-colors">Produits</a>
