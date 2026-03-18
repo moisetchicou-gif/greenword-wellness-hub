@@ -2,11 +2,11 @@ import { Star } from "lucide-react";
 import { useState } from "react";
 
 const testimonials = [
-  { name: "Adjoua Koné", city: "Abidjan", text: "Depuis que j'utilise Greenword, je me sens pleine d'énergie chaque matin. Un produit vraiment exceptionnel !", rating: 5 },
+  { name: "Adjoua Koné", city: "Abidjan", text: "Depuis que j'utilise Green World, je me sens pleine d'énergie chaque matin. Un produit vraiment exceptionnel !", rating: 5 },
   { name: "Kouassi Yao", city: "Bouaké", text: "La qualité des ingrédients se ressent immédiatement. Toute ma famille l'utilise.", rating: 5 },
-  { name: "Sékou Ouattara", city: "Yamoussoukro", text: "En tant que sportif, Greenword a dépassé toutes mes attentes !", rating: 5 },
+  { name: "Sékou Ouattara", city: "Yamoussoukro", text: "En tant que sportif, Green World a dépassé toutes mes attentes !", rating: 5 },
   { name: "Awa Touré", city: "San-Pédro", text: "Mon bien-être général s'est nettement amélioré en quelques semaines.", rating: 5 },
-  { name: "Marie-Jeanne Brou", city: "Korhogo", text: "Greenword m'aide à rester en forme et active. Merci infiniment !", rating: 5 },
+  { name: "Marie-Jeanne Brou", city: "Korhogo", text: "Green World m'aide à rester en forme et active. Merci infiniment !", rating: 5 },
   { name: "Drissa Coulibaly", city: "Abidjan", text: "Très bon produit, je le recommande vivement à tous mes proches.", rating: 5 },
   { name: "Fatou Diabaté", city: "Daloa", text: "Je suis agréablement surprise par les résultats. Mon sommeil s'est amélioré.", rating: 5 },
   { name: "Issouf Traoré", city: "Man", text: "Produit naturel et efficace. Je me sens beaucoup mieux depuis que je l'utilise.", rating: 5 },
@@ -90,7 +90,7 @@ const TestimonialsSection = () => {
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {displayed.map((t) => (
-            <div key={t.name} className="bg-card rounded-2xl p-6 border border-border">
+            <div key={t.name} className="bg-card rounded-2xl p-6 border border-border hover:shadow-lg transition-shadow duration-300">
               <div className="mb-4">
                 <p className="font-semibold text-sm text-foreground">{t.name}</p>
                 <p className="text-xs text-muted-foreground">{t.city}, Côte d'Ivoire</p>

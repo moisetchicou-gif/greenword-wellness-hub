@@ -29,7 +29,7 @@ const FeaturesSection = () => {
       <div className="container mx-auto px-6">
         <div className="text-center mb-16 space-y-3">
           <h2 className="text-3xl sm:text-4xl text-foreground">
-            Pourquoi choisir <span className="text-primary">Greenword</span> ?
+            Pourquoi choisir <span className="text-primary">Green World</span> ?
           </h2>
           <p className="text-muted-foreground max-w-xl mx-auto">
             Une approche holistique de la santé, alliant tradition botanique et innovation scientifique.
