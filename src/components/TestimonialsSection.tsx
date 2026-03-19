@@ -1,30 +1,188 @@
 import { Star } from "lucide-react";
 import { useState } from "react";
 
-const testimonials = [
-  { name: "Adjoua Koné", city: "Abidjan", text: "Depuis que j'utilise Green World, je me sens pleine d'énergie chaque matin. Un produit vraiment exceptionnel !", rating: 5 },
-  { name: "Kouassi Yao", city: "Bouaké", text: "La qualité des ingrédients se ressent immédiatement. Toute ma famille l'utilise.", rating: 5 },
-  { name: "Sékou Ouattara", city: "Yamoussoukro", text: "En tant que sportif, Green World a dépassé toutes mes attentes !", rating: 5 },
-  { name: "Awa Touré", city: "San-Pédro", text: "Mon bien-être général s'est nettement amélioré en quelques semaines.", rating: 5 },
-  { name: "Marie-Jeanne Brou", city: "Korhogo", text: "Green World m'aide à rester en forme et active. Merci infiniment !", rating: 5 },
-  { name: "Drissa Coulibaly", city: "Abidjan", text: "Très bon produit, je le recommande vivement à tous mes proches.", rating: 5 },
-  { name: "Fatou Diabaté", city: "Daloa", text: "Je suis agréablement surprise par les résultats. Mon sommeil s'est amélioré.", rating: 5 },
-  { name: "Issouf Traoré", city: "Man", text: "Produit naturel et efficace. Je me sens beaucoup mieux depuis que je l'utilise.", rating: 5 },
-  { name: "Aminata Konaté", city: "Gagnoa", text: "Excellent complément alimentaire ! Je ne peux plus m'en passer.", rating: 5 },
-  { name: "Jean-Baptiste Aka", city: "Abidjan", text: "La meilleure décision santé que j'ai prise cette année.", rating: 5 },
-  { name: "Mariam Cissé", city: "Bouaké", text: "Bon produit dans l'ensemble. J'ai remarqué une amélioration de mon énergie.", rating: 4 },
-  { name: "Lacina Dembélé", city: "Abidjan", text: "Très satisfait, même si le goût pourrait être amélioré. Les effets sont réels.", rating: 4 },
-  { name: "Rokia Sanogo", city: "Korhogo", text: "Je l'utilise depuis 2 mois. Résultats positifs mais j'aurais aimé plus de rapidité.", rating: 4 },
-  { name: "Mamadou Diallo", city: "San-Pédro", text: "Bon rapport qualité-prix. Mon médecin m'a confirmé une amélioration de mes analyses.", rating: 4 },
-  { name: "Clarisse N'Guessan", city: "Yamoussoukro", text: "Produit de qualité. J'enlève une étoile pour le délai de livraison.", rating: 4 },
-  { name: "Ibrahim Koné", city: "Daloa", text: "Bons résultats sur ma digestion. Je recommande avec une petite réserve sur le prix.", rating: 4 },
-  { name: "Salimata Bamba", city: "Abidjan", text: "Mes articulations me font moins mal. Produit efficace, emballage à revoir.", rating: 4 },
-  { name: "Yves Kouadio", city: "Bouaké", text: "Bon complément, j'ai plus d'énergie au travail. Manque juste un guide d'utilisation clair.", rating: 4 },
-  { name: "Fatoumata Soro", city: "Man", text: "Je suis contente des résultats. Le produit est bon mais un peu cher.", rating: 4 },
-  { name: "Abdoulaye Sangaré", city: "Gagnoa", text: "Quatre étoiles car le produit est bon, mais la taille du flacon est petite.", rating: 4 },
-  { name: "Pascale Ehui", city: "Abidjan", text: "Résultats corrects après un mois. Je m'attendais à mieux vu les promesses.", rating: 4 },
-  { name: "Oumar Fofana", city: "Abidjan", text: "Produit pas mal. J'ai senti une légère amélioration de mon énergie.", rating: 4 },
+const ivorianFirstNames = ["Adjoua","Kouassi","Sékou","Awa","Marie-Jeanne","Drissa","Fatou","Issouf","Aminata","Jean-Baptiste","Mariam","Lacina","Rokia","Mamadou","Clarisse","Ibrahim","Salimata","Yves","Fatoumata","Abdoulaye","Pascale","Oumar","Aïcha","Noël","Bintou","Lassina","Rachelle","Koffi","Naminata","Serge","Djénéba","Moussa","Hortense","Bakary","Sandrine","Adama","Colette","Souleymane","Pélagie","Yacouba","Estelle","Tiemoko","Léontine","Karim","Véronique","Sidiki","Élodie","Daouda","Thérèse","Youssouf","Béatrice","Ali","Chantal","Lamine","Joséphine","Ousmane","Carine","Ladji","Rosalie","Madou","Louise","Fofana","Germaine","Diomandé","Sylvie","Konaté","Monique","Diakité","Patricia","Sanogo","Bernadette","Bamba","Jacqueline","Traoré","Suzanne","Camara","Delphine","Diabaté","Nadège","Keita","Charlène","Touré","Brigitte","Soro","Murielle","Coulibaly","Catherine","Dagnogo","Marie-Claire","Ouédraogo","Anne-Marie","Konan","Madeleine","Meïté","Hélène","Silué","Marguerite","Doumbia","Élisabeth","Sylla","Eugénie"];
+const ivorianLastNames = ["Koné","Yao","Ouattara","Touré","Brou","Coulibaly","Diabaté","Traoré","Konaté","Aka","Cissé","Dembélé","Sanogo","Diallo","N'Guessan","Bamba","Kouadio","Soro","Sangaré","Ehui","Fofana","Koffi","Adou","Achi","Tanoh","Gnahoré","Assi","Aké","Kra","Dié","Gbagbo","Goba","Guédé","Tape","Zadi","Blé","Doué","Guéi","Djè","Loba","Dago","Boa","Gnéba","Kakou","Séry","Gnangnan","Yéo","Méité","Silué","Dagnogo"];
+const cities = ["Abidjan","Bouaké","Yamoussoukro","San-Pédro","Korhogo","Daloa","Man","Gagnoa","Divo","Soubré","Grand-Bassam","Abengourou","Séguéla","Bondoukou","Odienné","Ferkessédougou"];
+
+const fiveStarTexts = [
+  "Depuis que j'utilise Green World, je me sens pleine d'énergie chaque matin. Un produit vraiment exceptionnel !",
+  "La qualité des ingrédients se ressent immédiatement. Toute ma famille l'utilise.",
+  "En tant que sportif, Green World a dépassé toutes mes attentes !",
+  "Mon bien-être général s'est nettement amélioré en quelques semaines.",
+  "Green World m'aide à rester en forme et active. Merci infiniment !",
+  "Très bon produit, je le recommande vivement à tous mes proches.",
+  "Je suis agréablement surprise par les résultats. Mon sommeil s'est amélioré.",
+  "Produit naturel et efficace. Je me sens beaucoup mieux depuis que je l'utilise.",
+  "Excellent complément alimentaire ! Je ne peux plus m'en passer.",
+  "La meilleure décision santé que j'ai prise cette année.",
+  "Mon médecin a constaté une nette amélioration de mes analyses sanguines.",
+  "Je recommande Green World à 100%. Résultats visibles en 2 semaines.",
+  "Mes douleurs articulaires ont considérablement diminué. Merci Green World !",
+  "Produit de qualité supérieure. Je suis client fidèle depuis 1 an.",
+  "Ma famille entière utilise Green World. Nous sommes tous satisfaits.",
+  "J'ai retrouvé une énergie que je n'avais plus depuis des années.",
+  "Le meilleur investissement pour ma santé. Qualité irréprochable.",
+  "Après 3 mois d'utilisation, les résultats sont spectaculaires.",
+  "Green World a transformé ma routine santé. Je ne reviendrai jamais en arrière.",
+  "Service client excellent et produits de qualité. Parfait !",
+  "Ma tension artérielle s'est stabilisée grâce à Green World.",
+  "Produit miracle pour ma digestion. Fini les ballonnements !",
+  "Je suis impressionné par la rapidité des résultats. Bravo !",
+  "Mon immunité s'est renforcée, je tombe moins souvent malade.",
+  "Excellente qualité, livraison rapide. Tout est parfait.",
+  "Green World m'a aidé à perdre du poids naturellement.",
+  "Ma peau est plus belle et plus lumineuse depuis que j'utilise ce produit.",
+  "Je dors mieux, j'ai plus d'énergie. Green World change la vie !",
+  "Produit fiable et efficace. Je suis un ambassadeur convaincu.",
+  "Les bienfaits sont réels et durables. Excellent produit naturel.",
+  "Ma glycémie est mieux contrôlée. Merci Green World !",
+  "Produit formidable pour la santé masculine. Je recommande à tous les hommes.",
+  "Mon cholestérol a baissé significativement. Les résultats parlent d'eux-mêmes.",
+  "Je suis reconnaissant d'avoir découvert Green World. Un vrai trésor de santé.",
+  "Qualité premium à un prix accessible. Rare de trouver ça.",
+  "Ma femme et moi utilisons Green World quotidiennement. Nous sommes en pleine forme.",
+  "Les compléments Green World sont les meilleurs que j'ai jamais essayés.",
+  "Service impeccable et produits authentiques. Je suis totalement satisfait.",
+  "Grâce à Green World, j'ai pu reprendre le sport après des mois d'arrêt.",
+  "Produit exceptionnel qui tient ses promesses. Rare de nos jours.",
+  "Mon système immunitaire n'a jamais été aussi fort. Merci Green World.",
+  "Après des années de problèmes digestifs, Green World m'a soulagé.",
+  "La qualité est constante à chaque commande. Très professionnel.",
+  "Je prends Green World depuis 6 mois. Ma santé s'est transformée.",
+  "Produit naturel sans effets secondaires. C'est exactement ce que je cherchais.",
+  "Ma mère de 70 ans utilise Green World et se sent rajeunie.",
+  "Livraison rapide et produit conforme. Service 5 étoiles.",
+  "Les analyses de mon père se sont améliorées grâce à Green World.",
+  "Un produit qui vaut chaque franc CFA dépensé. Investissement santé.",
+  "Je suis kinésithérapeute et je recommande Green World à mes patients.",
+  "Ma fatigue chronique a disparu. Green World est un miracle.",
+  "Produit testé et approuvé par toute ma communauté.",
+  "Les résultats sont au-delà de mes espérances. Incroyable !",
+  "Green World est devenu indispensable dans mon quotidien.",
+  "Je n'ai plus besoin de certains médicaments grâce à Green World.",
+  "Mes reins fonctionnent mieux depuis que je prends ce complément.",
+  "Produit de confiance que je recommande les yeux fermés.",
+  "Ma vitalité est revenue. Green World est mon secret santé.",
+  "Excellent rapport qualité-prix pour un produit aussi efficace.",
+  "Je suis médecin et je valide la qualité des ingrédients Green World.",
 ];
+
+const fourStarTexts = [
+  "Bon produit dans l'ensemble. J'ai remarqué une amélioration de mon énergie.",
+  "Très satisfait, même si le goût pourrait être amélioré. Les effets sont réels.",
+  "Je l'utilise depuis 2 mois. Résultats positifs mais j'aurais aimé plus de rapidité.",
+  "Bon rapport qualité-prix. Mon médecin m'a confirmé une amélioration de mes analyses.",
+  "Produit de qualité. J'enlève une étoile pour le délai de livraison.",
+  "Bons résultats sur ma digestion. Je recommande avec une petite réserve sur le prix.",
+  "Mes articulations me font moins mal. Produit efficace, emballage à revoir.",
+  "Bon complément, j'ai plus d'énergie au travail. Manque juste un guide d'utilisation clair.",
+  "Je suis contente des résultats. Le produit est bon mais un peu cher.",
+  "Quatre étoiles car le produit est bon, mais la taille du flacon est petite.",
+  "Résultats corrects après un mois. Je m'attendais à mieux vu les promesses.",
+  "Produit pas mal. J'ai senti une légère amélioration de mon énergie.",
+  "Bon produit, je continue de l'utiliser. La livraison a pris un peu de temps.",
+  "Résultats satisfaisants sur ma santé. Le prix reste un peu élevé.",
+  "Je suis globalement satisfait. Les effets sont progressifs mais réels.",
+  "Produit efficace, j'aurais aimé des sachets individuels pour voyager.",
+  "Ma santé s'améliore doucement. Bon produit, packaging basique.",
+  "Les bienfaits sont là, mais il faut être patient. Bon produit quand même.",
+  "Quatre étoiles méritées. Le produit est bon, manque juste plus de saveur.",
+  "Résultats positifs sur ma tension. Je recommande malgré un prix un peu élevé.",
+  "Bon produit naturel. Seul bémol : le temps pour voir les premiers résultats.",
+  "Je suis satisfait dans l'ensemble. La notice en français serait un plus.",
+  "Efficace pour ma digestion. J'enlève une étoile car le goût est amer.",
+  "Produit correct qui fait le travail. Livraison un peu longue à Bouaké.",
+  "Bonne qualité d'ingrédients. Manque une version pour enfants.",
+  "Je recommande ce produit. Mon seul regret est de ne pas l'avoir découvert plus tôt.",
+  "Bon complément alimentaire. Quatre étoiles pour le rapport qualité/efficacité.",
+  "Mon énergie a augmenté notablement. Petit bémol sur la taille des gélules.",
+  "Satisfait du produit, la livraison était rapide cette fois-ci.",
+  "Green World est un bon produit, mais j'aimerais plus de variétés de thé.",
+  "Résultats encourageants après 6 semaines. Je vais continuer.",
+  "Bon produit, je le prends tous les jours. L'emballage pourrait être plus pratique.",
+  "Ma femme adore ce produit. Seul point négatif : rupture de stock fréquente.",
+  "Je suis content des résultats. Service client réactif.",
+  "Produit bien pour la santé. J'aurais aimé plus d'informations sur l'emballage.",
+  "Quatre étoiles bien méritées. Produit sérieux et efficace.",
+  "Bons résultats sur mon cholestérol. Le goût est acceptable.",
+  "Produit recommandé par un ami. Je confirme son efficacité.",
+  "Bon achat, je vais renouveler ma commande le mois prochain.",
+  "Satisfaisant dans l'ensemble. La posologie pourrait être plus claire.",
+];
+
+const threeStarTexts = [
+  "Produit correct mais sans plus. Les effets sont légers pour le moment.",
+  "Trois étoiles pour l'instant. J'attends de voir les résultats à long terme.",
+  "Le produit fait son travail mais le goût est vraiment amer.",
+  "Résultats mitigés pour moi. Peut-être que j'ai besoin de plus de temps.",
+  "Correct pour le prix. Pas spectaculaire mais pas mauvais non plus.",
+  "Je mets trois étoiles car la livraison a été trop longue.",
+  "Produit moyen. Certains de mes proches ont eu de meilleurs résultats.",
+  "Pas encore convaincu à 100%. Je vais continuer encore un mois.",
+  "Le produit est bien mais l'emballage était un peu abîmé à la réception.",
+  "Résultats corrects sur ma fatigue. Rien d'exceptionnel cependant.",
+  "Trois étoiles car le prix est un peu élevé par rapport aux résultats.",
+  "Je suis neutre pour l'instant. Il me faut plus de temps pour juger.",
+  "Produit décent mais la concurrence propose mieux au même prix.",
+  "Mon expérience est correcte. Les résultats ne sont pas encore flagrants.",
+  "Bon concept, mais les effets sont plus lents que prévu.",
+  "Je continue de l'utiliser en espérant de meilleurs résultats.",
+  "Le goût est difficile mais je persévère. Résultats à confirmer.",
+  "Produit passable. J'espère que la prochaine commande sera mieux.",
+  "Trois étoiles : bon produit mais livraison et communication à améliorer.",
+  "Résultats légers pour le moment. Je reste optimiste.",
+  "Le produit est correct, mais j'ai du mal avec les gélules trop grosses.",
+  "Pas mal dans l'ensemble. Mon ami a eu de meilleurs résultats que moi.",
+  "Je donne trois étoiles en attendant de voir l'évolution.",
+  "Produit honnête. Sans plus, sans moins. Il fait le minimum.",
+  "Correct pour débuter. J'espère une amélioration avec le temps.",
+  "Le service est bien mais le produit met du temps à agir.",
+  "Trois étoiles pour le moment. Je mettrai à jour mon avis plus tard.",
+  "Produit ordinaire. Les bienfaits annoncés ne sont pas tous au rendez-vous.",
+  "Correct. La texture et le goût pourraient être améliorés.",
+  "Je suis un peu déçu mais je reste ouvert à continuer.",
+];
+
+function generateTestimonials() {
+  const result: { name: string; city: string; text: string; rating: number }[] = [];
+  const usedNames = new Set<string>();
+
+  const addTestimonials = (texts: string[], rating: number) => {
+    texts.forEach((text) => {
+      let name: string;
+      do {
+        const firstName = ivorianFirstNames[Math.floor(Math.random() * ivorianFirstNames.length)];
+        const lastName = ivorianLastNames[Math.floor(Math.random() * ivorianLastNames.length)];
+        name = `${firstName} ${lastName}`;
+      } while (usedNames.has(name));
+      usedNames.add(name);
+      const city = cities[Math.floor(Math.random() * cities.length)];
+      result.push({ name, city, text, rating });
+    });
+  };
+
+  // Repeat texts to reach desired counts
+  const repeat = (arr: string[], count: number) => {
+    const out: string[] = [];
+    for (let i = 0; i < count; i++) out.push(arr[i % arr.length]);
+    return out;
+  };
+
+  addTestimonials(repeat(fiveStarTexts, 120), 5);
+  addTestimonials(repeat(fourStarTexts, 80), 4);
+  addTestimonials(repeat(threeStarTexts, 72), 3);
+
+  // Shuffle
+  for (let i = result.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [result[i], result[j]] = [result[j], result[i]];
+  }
+
+  return result;
+}
+
+const testimonials = generateTestimonials();
 
 const ITEMS_PER_PAGE = 9;
 
@@ -75,7 +233,7 @@ const TestimonialsSection = () => {
           >
             Tous ({testimonials.length})
           </button>
-          {[5, 4].map((r) => (
+          {[5, 4, 3].map((r) => (
             <button
               key={r}
               onClick={() => handleFilter(r)}
@@ -89,8 +247,8 @@ const TestimonialsSection = () => {
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {displayed.map((t) => (
-            <div key={t.name} className="bg-card rounded-2xl p-6 border border-border hover:shadow-lg transition-shadow duration-300">
+          {displayed.map((t, i) => (
+            <div key={`${t.name}-${i}`} className="bg-card rounded-2xl p-6 border border-border hover:shadow-lg transition-shadow duration-300">
               <div className="mb-4">
                 <p className="font-semibold text-sm text-foreground">{t.name}</p>
                 <p className="text-xs text-muted-foreground">{t.city}, Côte d'Ivoire</p>
