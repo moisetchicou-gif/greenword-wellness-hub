@@ -109,39 +109,67 @@ const fourStarTexts = [
   "Produit recommandé par un ami. Je confirme son efficacité.",
   "Bon achat, je vais renouveler ma commande le mois prochain.",
   "Satisfaisant dans l'ensemble. La posologie pourrait être plus claire.",
-];
-
-const threeStarTexts = [
-  "Produit correct mais sans plus. Les effets sont légers pour le moment.",
-  "Trois étoiles pour l'instant. J'attends de voir les résultats à long terme.",
-  "Le produit fait son travail mais le goût est vraiment amer.",
-  "Résultats mitigés pour moi. Peut-être que j'ai besoin de plus de temps.",
-  "Correct pour le prix. Pas spectaculaire mais pas mauvais non plus.",
-  "Je mets trois étoiles car la livraison a été trop longue.",
-  "Produit moyen. Certains de mes proches ont eu de meilleurs résultats.",
-  "Pas encore convaincu à 100%. Je vais continuer encore un mois.",
-  "Le produit est bien mais l'emballage était un peu abîmé à la réception.",
-  "Résultats corrects sur ma fatigue. Rien d'exceptionnel cependant.",
-  "Trois étoiles car le prix est un peu élevé par rapport aux résultats.",
-  "Je suis neutre pour l'instant. Il me faut plus de temps pour juger.",
-  "Produit décent mais la concurrence propose mieux au même prix.",
-  "Mon expérience est correcte. Les résultats ne sont pas encore flagrants.",
-  "Bon concept, mais les effets sont plus lents que prévu.",
-  "Je continue de l'utiliser en espérant de meilleurs résultats.",
-  "Le goût est difficile mais je persévère. Résultats à confirmer.",
-  "Produit passable. J'espère que la prochaine commande sera mieux.",
-  "Trois étoiles : bon produit mais livraison et communication à améliorer.",
-  "Résultats légers pour le moment. Je reste optimiste.",
-  "Le produit est correct, mais j'ai du mal avec les gélules trop grosses.",
-  "Pas mal dans l'ensemble. Mon ami a eu de meilleurs résultats que moi.",
-  "Je donne trois étoiles en attendant de voir l'évolution.",
-  "Produit honnête. Sans plus, sans moins. Il fait le minimum.",
-  "Correct pour débuter. J'espère une amélioration avec le temps.",
-  "Le service est bien mais le produit met du temps à agir.",
-  "Trois étoiles pour le moment. Je mettrai à jour mon avis plus tard.",
-  "Produit ordinaire. Les bienfaits annoncés ne sont pas tous au rendez-vous.",
-  "Correct. La texture et le goût pourraient être améliorés.",
-  "Je suis un peu déçu mais je reste ouvert à continuer.",
+  "Green World m'a aidé à mieux gérer mon stress au quotidien.",
+  "Bon produit pour la famille. Je l'utilise depuis 3 mois avec satisfaction.",
+  "Les résultats sont là, il faut juste de la patience. Je recommande.",
+  "Produit fiable, je fais confiance à Green World pour ma santé.",
+  "Mon énergie au travail a nettement augmenté. Bon investissement.",
+  "Je suis satisfaite, le produit tient ses promesses. Bravo à l'équipe.",
+  "Bonne qualité, bon service. Je retire une étoile pour le packaging.",
+  "Mon père utilise Green World et ses résultats médicaux se sont améliorés.",
+  "Produit correct et naturel. Le goût est un peu fort mais ça passe.",
+  "Je recommande Green World à mes collègues. Résultats encourageants.",
+  "Bon produit pour renforcer l'immunité. Ma famille l'adore.",
+  "Résultats visibles après un mois. Je suis agréablement surpris.",
+  "Le produit est bon, j'aurais aimé un format voyage plus pratique.",
+  "Ma digestion s'est améliorée. Bon produit, je vais continuer.",
+  "Quatre étoiles car le produit est efficace mais un peu cher.",
+  "Je suis satisfait de mon achat. Green World est un bon choix santé.",
+  "Produit de bonne qualité. Les effets sont progressifs mais réels.",
+  "Mon médecin approuve ce complément. Résultats satisfaisants.",
+  "Bon produit naturel, je le recommande à tous ceux qui veulent prendre soin d'eux.",
+  "Green World m'accompagne au quotidien. Bon investissement pour la santé.",
+  "Produit bien formulé. J'aurais aimé plus d'informations sur les ingrédients.",
+  "Résultats positifs après 2 mois d'utilisation. Je suis content.",
+  "Le produit fait son effet. Bon rapport qualité-prix dans l'ensemble.",
+  "Ma femme et moi sommes satisfaits. Nous recommandons Green World.",
+  "Bon produit, livraison correcte. Je mets 4 étoiles avec plaisir.",
+  "Les compléments Green World sont de bonne qualité. Je suis fidèle.",
+  "Produit intéressant pour la santé. Les résultats sont encourageants.",
+  "Je suis content de mon choix. Green World est un produit sérieux.",
+  "Bon complément pour la santé. Je le prends chaque matin sans faute.",
+  "Ma santé générale s'est améliorée. Merci Green World pour ce produit.",
+  "Produit correct, service client à l'écoute. Je recommande.",
+  "Les bienfaits sont réels. Un très bon produit que je recommande vivement.",
+  "Bon produit que j'utilise depuis plusieurs semaines. Résultats progressifs.",
+  "Je suis content d'avoir découvert Green World. Mon énergie est revenue.",
+  "Produit de qualité accessible. Quatre étoiles bien méritées.",
+  "Mon système digestif fonctionne mieux. Bon produit naturel.",
+  "Green World est un bon allié santé. Je le recommande à mon entourage.",
+  "Produit satisfaisant. Je vais renouveler ma commande prochainement.",
+  "Résultats positifs sur mon bien-être général. Bon choix.",
+  "Je suis satisfait de la qualité. Un bon produit pour la santé au quotidien.",
+  "Bon produit, je le conseille. Les effets se font sentir après quelques semaines.",
+  "Ma mère est satisfaite de Green World. Elle se sent mieux au quotidien.",
+  "Produit fiable et de bonne qualité. Je donne quatre étoiles sans hésiter.",
+  "Les compléments sont bons. J'aurais aimé plus de saveurs disponibles.",
+  "Bon produit pour la vitalité. Je le prends régulièrement avec satisfaction.",
+  "Résultats encourageants sur ma santé. Green World est un bon investissement.",
+  "Je suis content du produit. La qualité est au rendez-vous.",
+  "Produit naturel et efficace. Quatre étoiles pour la qualité globale.",
+  "Mon frère et moi utilisons Green World. Nous sommes satisfaits des résultats.",
+  "Bon complément alimentaire. Je le recommande pour une meilleure santé.",
+  "Le produit est bien. Service de livraison amélioré par rapport à ma dernière commande.",
+  "Green World tient ses promesses. Je suis un client satisfait.",
+  "Produit de bonne facture. Les résultats sont visibles après quelques semaines.",
+  "Je recommande Green World. Bon produit pour toute la famille.",
+  "Ma santé s'améliore grâce à Green World. Bon investissement santé.",
+  "Produit correct et naturel. Je suis satisfait de mon achat.",
+  "Les effets sont réels et durables. Bon produit que je recommande.",
+  "Je donne quatre étoiles à Green World. Produit sérieux et efficace.",
+  "Bon produit pour la santé. Mon médecin est satisfait de mes progrès.",
+  "Green World m'aide au quotidien. Je suis reconnaissant pour ce produit.",
+  "Produit de qualité avec des résultats tangibles. Je recommande vivement.",
 ];
 
 function generateTestimonials() {
@@ -162,7 +190,6 @@ function generateTestimonials() {
     });
   };
 
-  // Repeat texts to reach desired counts
   const repeat = (arr: string[], count: number) => {
     const out: string[] = [];
     for (let i = 0; i < count; i++) out.push(arr[i % arr.length]);
@@ -170,10 +197,8 @@ function generateTestimonials() {
   };
 
   addTestimonials(repeat(fiveStarTexts, 120), 5);
-  addTestimonials(repeat(fourStarTexts, 80), 4);
-  addTestimonials(repeat(threeStarTexts, 72), 3);
+  addTestimonials(repeat(fourStarTexts, 180), 4);
 
-  // Shuffle
   for (let i = result.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
     [result[i], result[j]] = [result[j], result[i]];
@@ -233,7 +258,7 @@ const TestimonialsSection = () => {
           >
             Tous ({testimonials.length})
           </button>
-          {[5, 4, 3].map((r) => (
+          {[5, 4].map((r) => (
             <button
               key={r}
               onClick={() => handleFilter(r)}

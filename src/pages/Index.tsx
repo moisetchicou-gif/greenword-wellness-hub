@@ -6,6 +6,7 @@ import PromoBanner2 from "@/components/PromoBanner2";
 import TestimonialsSection from "@/components/TestimonialsSection";
 import CtaSection from "@/components/CtaSection";
 import Footer from "@/components/Footer";
+import CartDrawer from "@/components/CartDrawer";
 
 const Index = () => {
   return (
@@ -18,6 +19,7 @@ const Index = () => {
       <TestimonialsSection />
       <CtaSection />
       <Footer />
+      <CartDrawer />
     </div>
   );
 };
