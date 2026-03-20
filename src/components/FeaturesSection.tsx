@@ -5,12 +5,13 @@ import productKidney from "@/assets/product-kidney-tonifying.jpg";
 import productProstacre from "@/assets/product-prostacre.jpg";
 import productAPower from "@/assets/product-a-power.jpg";
 import productAntiAging from "@/assets/product-anti-aging.jpg";
-import productProSlimTea from "@/assets/product-pro-slim-tea.jpg";
 import productGlucoblock from "@/assets/product-glucoblock.jpg";
 import productZincAdulte from "@/assets/product-zinc-adulte.png";
 import productCordyceps from "@/assets/product-cordyceps.jpg";
 import productKudingTea from "@/assets/product-kuding-tea.jpg";
 import productPinePollen from "@/assets/product-pine-pollen.jpg";
+import productVigeurCapsule from "@/assets/product-vigeur-capsule.webp";
+import productClear from "@/assets/product-clear.jpg";
 
 const productBenefits = [
   {
@@ -44,11 +45,6 @@ const productBenefits = [
     benefits: ["Combat le vieillissement cellulaire", "Riche en antioxydants naturels", "Soutient la santé de la peau", "Équilibre le système endocrinien"],
   },
   {
-    name: "Pro-Slim Tea",
-    image: productProSlimTea,
-    benefits: ["Accélère la dégradation des graisses", "Élimine les toxines du corps", "Réduit l'absorption des lipides", "Favorise un métabolisme sain"],
-  },
-  {
     name: "Glucoblock",
     image: productGlucoblock,
     benefits: ["Régule le taux de sucre dans le sang", "Soutient la fonction pancréatique", "Améliore la sensibilité à l'insuline", "Protège les vaisseaux sanguins"],
@@ -72,6 +68,16 @@ const productBenefits = [
     name: "Pine Pollen",
     image: productPinePollen,
     benefits: ["Stimule la vitalité masculine", "Riche en acides aminés et vitamines", "Renforce la santé hormonale", "Favorise la régénération cellulaire"],
+  },
+  {
+    name: "Vigeur Capsule",
+    image: productVigeurCapsule,
+    benefits: ["Renforce la vitalité et l'endurance masculine", "Améliore la santé reproductive", "Soutient l'équilibre hormonal", "Augmente le nombre et la motilité des spermatozoïdes"],
+  },
+  {
+    name: "Clear (Dentifrice)",
+    image: productClear,
+    benefits: ["Prévient les caries dentaires", "Blanchit les dents naturellement", "Élimine la mauvaise haleine durablement", "Soulage les gencives enflées et saignantes"],
   },
 ];
 

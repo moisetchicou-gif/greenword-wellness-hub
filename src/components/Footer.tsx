@@ -6,7 +6,6 @@ const Footer = () => {
     <footer id="contact" className="py-16 bg-foreground text-primary-foreground/70">
       <div className="container mx-auto px-6">
         <div className="grid md:grid-cols-3 gap-10">
-          {/* Logo & Marque */}
           <div className="space-y-4">
             <div className="flex items-center gap-3">
               <img src={logo} alt="Green World" className="w-12 h-12 object-contain rounded-lg" />
@@ -17,7 +16,6 @@ const Footer = () => {
             </p>
           </div>
 
-          {/* Contact */}
           <div className="space-y-4">
             <h4 className="font-display text-lg text-primary-foreground">Contact</h4>
             <div className="space-y-3 text-sm">
@@ -38,17 +36,16 @@ const Footer = () => {
             </div>
           </div>
 
-          {/* Localisation */}
           <div className="space-y-4">
             <h4 className="font-display text-lg text-primary-foreground">Localisation</h4>
-            <div className="flex items-start gap-3 text-sm">
+            <a href="https://share.google/tqV7vorkQ4N4yP3jb" target="_blank" rel="noopener noreferrer" className="flex items-start gap-3 text-sm hover:text-primary-foreground transition-colors">
               <MapPin className="w-4 h-4 text-primary shrink-0 mt-0.5" />
               <p>
                 Koumassi Remblais, Rue de la Mosquée Ramata,<br />
                 à côté de Choco Bar<br />
                 Immeuble Résidence 2000, Bureau 2
               </p>
-            </div>
+            </a>
             <a href="tel:+2250715736370" className="flex items-center gap-3 text-sm hover:text-primary-foreground transition-colors">
               <Phone className="w-4 h-4 text-primary shrink-0" />
               +225 0715736370

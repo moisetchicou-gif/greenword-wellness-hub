@@ -121,7 +121,7 @@ ${itemsList}
                 <div className="text-center py-16 space-y-3">
                   <ShoppingCart className="w-12 h-12 text-muted-foreground/40 mx-auto" />
                   <p className="text-muted-foreground">Votre panier est vide</p>
-                  <button onClick={handleClose} className="text-primary text-sm font-medium hover:underline">Voir les produits</button>
+                  <a href="#produits" onClick={handleClose} className="text-primary text-sm font-medium hover:underline">Voir les produits</a>
                 </div>
               ) : (
                 <>
