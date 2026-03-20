@@ -17,6 +17,12 @@ const CtaSection = () => {
           Satisfait ou remboursé pendant 30 jours.
         </p>
 
+        <div className="pt-2">
+          <a href="#produits" className="inline-block bg-card text-primary px-8 py-3 rounded-full font-semibold hover:opacity-90 active:scale-95 transition-all shadow-lg">
+            Commander maintenant
+          </a>
+        </div>
+
         {/* Contact direct */}
         <div id="contact" className="grid sm:grid-cols-2 gap-4 max-w-2xl mx-auto pt-4">
           <a href="tel:+2250715736370" className="flex items-center gap-3 bg-card/10 backdrop-blur-sm rounded-xl p-4 hover:bg-card/20 transition-colors">
@@ -42,13 +48,13 @@ const CtaSection = () => {
               <p className="font-medium text-sm">greenworldkr25@gmail.com</p>
             </div>
           </a>
-          <div className="flex items-center gap-3 bg-card/10 backdrop-blur-sm rounded-xl p-4">
+          <a href="https://share.google/tqV7vorkQ4N4yP3jb" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 bg-card/10 backdrop-blur-sm rounded-xl p-4 hover:bg-card/20 transition-colors">
             <MapPin className="w-5 h-5 shrink-0" />
             <div className="text-left">
-              <p className="text-xs opacity-70">Adresse</p>
+              <p className="text-xs opacity-70">Localisation</p>
               <p className="font-medium text-sm">Koumassi Remblais, Imm. Résidence 2000</p>
             </div>
-          </div>
+          </a>
         </div>
 
         {/* Méthodes de paiement */}
