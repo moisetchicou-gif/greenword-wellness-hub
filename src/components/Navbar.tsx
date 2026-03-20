@@ -1,9 +1,12 @@
 import { useState } from "react";
-import { Menu, X, Phone } from "lucide-react";
+import { Menu, X, ShoppingCart } from "lucide-react";
 import logo from "@/assets/logo-greenworld.jpg";
+import { useCart } from "@/hooks/useCart";
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
+  const { items, toggleCartOpen } = useCart();
+  const totalItems = items.reduce((s, i) => s + i.quantity, 0);
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border">
@@ -21,23 +24,20 @@ const Navbar = () => {
         </div>
 
         <div className="flex items-center gap-3">
-          <a href="tel:+2250715736370" className="hidden sm:flex items-center gap-1.5 text-sm text-muted-foreground hover:text-primary transition-colors">
-            <Phone className="w-4 h-4" />
-            <span className="hidden lg:inline">+225 0715736370</span>
-          </a>
-          <a
-            href="#commander"
-            className="bg-primary text-primary-foreground px-5 py-2 rounded-full text-sm font-semibold hover:opacity-90 transition-opacity"
-          >
-            Commander
-          </a>
+          <button onClick={toggleCartOpen} className="relative text-foreground hover:text-primary transition-colors p-2">
+            <ShoppingCart className="w-5 h-5" />
+            {totalItems > 0 && (
+              <span className="absolute -top-0.5 -right-0.5 bg-primary text-primary-foreground text-[10px] font-bold w-5 h-5 rounded-full flex items-center justify-center">
+                {totalItems}
+              </span>
+            )}
+          </button>
           <button className="md:hidden text-foreground" onClick={() => setOpen(!open)}>
             {open ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
         </div>
       </div>
 
-      {/* Mobile menu */}
       {open && (
         <div className="md:hidden bg-background border-b border-border animate-fade-in">
           <div className="container mx-auto px-6 py-4 flex flex-col gap-3 text-sm font-medium text-muted-foreground">
@@ -45,9 +45,6 @@ const Navbar = () => {
             <a href="#bienfaits" onClick={() => setOpen(false)} className="hover:text-primary py-2">Bienfaits</a>
             <a href="#avis" onClick={() => setOpen(false)} className="hover:text-primary py-2">Avis</a>
             <a href="#contact" onClick={() => setOpen(false)} className="hover:text-primary py-2">Contact</a>
-            <a href="tel:+2250715736370" className="flex items-center gap-2 text-primary py-2">
-              <Phone className="w-4 h-4" /> +225 0715736370
-            </a>
           </div>
         </div>
       )}
