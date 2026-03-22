@@ -84,6 +84,11 @@ ${itemsList}
 🔖 *Réf. paiement :* ${refId}
 ✅ *Statut :* Payé`;
 
+    // Si Wave, rediriger IMMÉDIATEMENT vers le lien de paiement
+    if (selectedPayment === "Wave") {
+      window.open(WAVE_PAYMENT_LINK, "_blank");
+    }
+
     // Envoyer le message WhatsApp client
     const whatsappUrl = `https://wa.me/2250715736370?text=${encodeURIComponent(clientMsg)}`;
     window.open(whatsappUrl, "_blank");
@@ -93,13 +98,6 @@ ${itemsList}
       const bizUrl = `https://wa.me/2250715736370?text=${encodeURIComponent(bizMsg)}`;
       window.open(bizUrl, "_blank");
     }, 1500);
-
-    // Si Wave est sélectionné, rediriger vers le lien de paiement Wave
-    if (selectedPayment === "Wave") {
-      setTimeout(() => {
-        window.open(WAVE_PAYMENT_LINK, "_blank");
-      }, 3000);
-    }
 
     clearCart();
     setStep("done");
