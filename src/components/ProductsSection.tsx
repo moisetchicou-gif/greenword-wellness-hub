@@ -85,10 +85,13 @@ const ProductCard = ({ product, index }: { product: typeof products[0]; index: n
 };
 
 const ProductsSection = () => {
+  const [activeCategory, setActiveCategory] = useState<Category>("Produits de santé");
+  const filtered = products.filter((p) => p.category === activeCategory);
+
   return (
     <section id="produits" className="py-24 bg-background">
       <div className="container mx-auto px-6">
-        <div className="text-center mb-16 space-y-3">
+        <div className="text-center mb-10 space-y-3">
           <p className="text-primary text-sm font-medium uppercase tracking-widest">Notre gamme</p>
           <h2 className="text-3xl sm:text-4xl text-foreground">
             Nos <span className="text-primary">Produits</span>
@@ -97,10 +100,32 @@ const ProductsSection = () => {
             Découvrez notre gamme complète de compléments alimentaires naturels Green World.
           </p>
         </div>
+
+        <div className="flex flex-wrap justify-center gap-3 mb-12">
+          {categories.map((cat) => (
+            <button
+              key={cat}
+              onClick={() => setActiveCategory(cat)}
+              className={`px-6 py-2.5 rounded-full text-sm font-semibold transition-all duration-300 ${
+                activeCategory === cat
+                  ? "bg-primary text-primary-foreground shadow-lg"
+                  : "bg-secondary text-secondary-foreground hover:bg-primary/10"
+              }`}
+            >
+              {cat}
+            </button>
+          ))}
+        </div>
+
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-          {products.map((product, i) => (
+          {filtered.map((product, i) => (
             <ProductCard key={product.id} product={product} index={i} />
           ))}
+          {filtered.length === 0 && (
+            <p className="col-span-full text-center text-muted-foreground py-12">
+              Produits bientôt disponibles dans cette catégorie.
+            </p>
+          )}
         </div>
       </div>
     </section>
