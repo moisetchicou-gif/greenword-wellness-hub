@@ -46,9 +46,9 @@ const Footer = () => {
                 Immeuble Résidence 2000, Bureau 2
               </p>
             </a>
-            <a href="tel:+2250715736370" className="flex items-center gap-3 text-sm hover:text-primary-foreground transition-colors">
+            <a href="tel:+2252733747334" className="flex items-center gap-3 text-sm hover:text-primary-foreground transition-colors">
               <Phone className="w-4 h-4 text-primary shrink-0" />
-              +225 0715736370
+              +225 27 33 74 73 34
             </a>
           </div>
         </div>

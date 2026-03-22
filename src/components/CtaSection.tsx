@@ -29,7 +29,7 @@ const CtaSection = () => {
             <Phone className="w-5 h-5" />
             <div className="text-left">
               <p className="text-xs opacity-70">Téléphone</p>
-              <p className="font-medium">+225 0715736370</p>
+              <p className="font-medium">+225 27 33 74 73 34</p>
             </div>
           </a>
           <a href="https://wa.me/2250715736370" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 bg-card/10 backdrop-blur-sm rounded-xl p-4 hover:bg-card/20 transition-colors">
