@@ -41,7 +41,7 @@ const CartDrawer = () => {
 
   const WAVE_PAYMENT_LINK = "https://pay.wave.com/m/M_ci_tXW_B6Tybbrb/c/ci/";
 
-  const handlePay = () => {
+  const sendWhatsAppConfirmation = () => {
     const hour = new Date().getHours();
     const greeting = hour < 18 ? "Bonjour" : "Bonsoir";
     const civ = form.civilite;
@@ -84,16 +84,9 @@ ${itemsList}
 🔖 *Réf. paiement :* ${refId}
 ✅ *Statut :* Payé`;
 
-    // Si Wave, rediriger IMMÉDIATEMENT vers le lien de paiement
-    if (selectedPayment === "Wave") {
-      window.open(WAVE_PAYMENT_LINK, "_blank");
-    }
-
-    // Envoyer le message WhatsApp client
     const whatsappUrl = `https://wa.me/2250715736370?text=${encodeURIComponent(clientMsg)}`;
     window.open(whatsappUrl, "_blank");
 
-    // Envoyer le message WhatsApp entreprise
     setTimeout(() => {
       const bizUrl = `https://wa.me/2250715736370?text=${encodeURIComponent(bizMsg)}`;
       window.open(bizUrl, "_blank");
@@ -101,6 +94,22 @@ ${itemsList}
 
     clearCart();
     setStep("done");
+  };
+
+  const handlePay = () => {
+    if (selectedPayment === "Wave") {
+      // Ouvrir Wave pour le paiement, puis attendre confirmation
+      window.open(WAVE_PAYMENT_LINK, "_blank");
+      setStep("wave-pending");
+      return;
+    }
+
+    // Pour les autres moyens de paiement, envoyer directement
+    sendWhatsAppConfirmation();
+  };
+
+  const handleWaveConfirm = () => {
+    sendWhatsAppConfirmation();
   };
 
   if (!isOpen) return null;
