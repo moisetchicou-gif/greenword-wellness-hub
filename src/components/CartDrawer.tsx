@@ -15,7 +15,7 @@ const paymentMethods = [
   { name: "PayPal", logo: logoPaypal },
 ];
 
-type Step = "cart" | "info" | "payment" | "done";
+type Step = "cart" | "info" | "payment" | "wave-pending" | "done";
 
 const CartDrawer = () => {
   const { items, removeItem, updateQuantity, clearCart, isOpen, setIsOpen, total } = useCart();
@@ -41,7 +41,7 @@ const CartDrawer = () => {
 
   const WAVE_PAYMENT_LINK = "https://pay.wave.com/m/M_ci_tXW_B6Tybbrb/c/ci/";
 
-  const handlePay = () => {
+  const sendWhatsAppConfirmation = () => {
     const hour = new Date().getHours();
     const greeting = hour < 18 ? "Bonjour" : "Bonsoir";
     const civ = form.civilite;
@@ -84,16 +84,9 @@ ${itemsList}
 🔖 *Réf. paiement :* ${refId}
 ✅ *Statut :* Payé`;
 
-    // Si Wave, rediriger IMMÉDIATEMENT vers le lien de paiement
-    if (selectedPayment === "Wave") {
-      window.open(WAVE_PAYMENT_LINK, "_blank");
-    }
-
-    // Envoyer le message WhatsApp client
     const whatsappUrl = `https://wa.me/2250715736370?text=${encodeURIComponent(clientMsg)}`;
     window.open(whatsappUrl, "_blank");
 
-    // Envoyer le message WhatsApp entreprise
     setTimeout(() => {
       const bizUrl = `https://wa.me/2250715736370?text=${encodeURIComponent(bizMsg)}`;
       window.open(bizUrl, "_blank");
@@ -101,6 +94,22 @@ ${itemsList}
 
     clearCart();
     setStep("done");
+  };
+
+  const handlePay = () => {
+    if (selectedPayment === "Wave") {
+      // Ouvrir Wave pour le paiement, puis attendre confirmation
+      window.open(WAVE_PAYMENT_LINK, "_blank");
+      setStep("wave-pending");
+      return;
+    }
+
+    // Pour les autres moyens de paiement, envoyer directement
+    sendWhatsAppConfirmation();
+  };
+
+  const handleWaveConfirm = () => {
+    sendWhatsAppConfirmation();
   };
 
   if (!isOpen) return null;
@@ -239,6 +248,24 @@ ${itemsList}
                   </button>
                 </div>
               </div>
+            </div>
+          )}
+
+          {step === "wave-pending" && (
+            <div className="text-center py-12 space-y-5">
+              <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto animate-pulse">
+                <span className="text-3xl">💳</span>
+              </div>
+              <h3 className="text-xl font-display text-foreground">Paiement Wave en cours...</h3>
+              <p className="text-muted-foreground text-sm max-w-xs mx-auto">
+                Une fois votre paiement effectué sur Wave, cliquez sur le bouton ci-dessous pour confirmer votre commande.
+              </p>
+              <button onClick={handleWaveConfirm} className="w-full bg-primary text-primary-foreground py-3 rounded-full font-semibold hover:opacity-90 active:scale-[0.97] transition-all">
+                ✅ J'ai payé sur Wave
+              </button>
+              <button onClick={() => setStep("payment")} className="text-muted-foreground text-sm hover:underline">
+                Retour aux moyens de paiement
+              </button>
             </div>
           )}
 
