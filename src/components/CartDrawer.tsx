@@ -269,6 +269,7 @@ ${itemsList}
             </div>
           )}
 
+          {step === "done" && (
             <div className="text-center py-12 space-y-4">
               <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto">
                 <span className="text-3xl">✅</span>
