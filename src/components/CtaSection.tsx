@@ -25,7 +25,7 @@ const CtaSection = () => {
 
         {/* Contact direct */}
         <div id="contact" className="grid sm:grid-cols-2 gap-4 max-w-2xl mx-auto pt-4">
-          <a href="tel:+2250715736370" className="flex items-center gap-3 bg-card/10 backdrop-blur-sm rounded-xl p-4 hover:bg-card/20 transition-colors">
+          <a href="tel:+2252733747334" className="flex items-center gap-3 bg-card/10 backdrop-blur-sm rounded-xl p-4 hover:bg-card/20 transition-colors">
             <Phone className="w-5 h-5" />
             <div className="text-left">
               <p className="text-xs opacity-70">Téléphone</p>
