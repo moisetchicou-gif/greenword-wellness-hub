@@ -19,9 +19,9 @@ const Footer = () => {
           <div className="space-y-4">
             <h4 className="font-display text-lg text-primary-foreground">Contact</h4>
             <div className="space-y-3 text-sm">
-              <a href="tel:+2250715736370" className="flex items-center gap-3 hover:text-primary-foreground transition-colors">
+              <a href="tel:+2252733747334" className="flex items-center gap-3 hover:text-primary-foreground transition-colors">
                 <Phone className="w-4 h-4 text-primary shrink-0" />
-                +225 0715736370
+                +225 27 33 74 73 34
               </a>
               <a href="https://wa.me/2250715736370" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 hover:text-primary-foreground transition-colors">
                 <svg className="w-4 h-4 text-primary shrink-0" viewBox="0 0 24 24" fill="currentColor">
@@ -46,9 +46,9 @@ const Footer = () => {
                 Immeuble Résidence 2000, Bureau 2
               </p>
             </a>
-            <a href="tel:+2250715736370" className="flex items-center gap-3 text-sm hover:text-primary-foreground transition-colors">
+            <a href="tel:+2252733747334" className="flex items-center gap-3 text-sm hover:text-primary-foreground transition-colors">
               <Phone className="w-4 h-4 text-primary shrink-0" />
-              +225 0715736370
+              +225 27 33 74 73 34
             </a>
           </div>
         </div>
