@@ -15,7 +15,7 @@ const paymentMethods = [
   { name: "PayPal", logo: logoPaypal },
 ];
 
-type Step = "cart" | "info" | "payment" | "done";
+type Step = "cart" | "info" | "payment" | "wave-pending" | "done";
 
 const CartDrawer = () => {
   const { items, removeItem, updateQuantity, clearCart, isOpen, setIsOpen, total } = useCart();
