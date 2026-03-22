@@ -251,7 +251,24 @@ ${itemsList}
             </div>
           )}
 
-          {step === "done" && (
+          {step === "wave-pending" && (
+            <div className="text-center py-12 space-y-5">
+              <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto animate-pulse">
+                <span className="text-3xl">💳</span>
+              </div>
+              <h3 className="text-xl font-display text-foreground">Paiement Wave en cours...</h3>
+              <p className="text-muted-foreground text-sm max-w-xs mx-auto">
+                Une fois votre paiement effectué sur Wave, cliquez sur le bouton ci-dessous pour confirmer votre commande.
+              </p>
+              <button onClick={handleWaveConfirm} className="w-full bg-primary text-primary-foreground py-3 rounded-full font-semibold hover:opacity-90 active:scale-[0.97] transition-all">
+                ✅ J'ai payé sur Wave
+              </button>
+              <button onClick={() => setStep("payment")} className="text-muted-foreground text-sm hover:underline">
+                Retour aux moyens de paiement
+              </button>
+            </div>
+          )}
+
             <div className="text-center py-12 space-y-4">
               <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto">
                 <span className="text-3xl">✅</span>
