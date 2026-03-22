@@ -39,12 +39,14 @@ const CartDrawer = () => {
     setStep("payment");
   };
 
+  const WAVE_PAYMENT_LINK = "https://pay.wave.com/m/M_ci_tXW_B6Tybbrb/c/ci/";
+
   const handlePay = () => {
     const hour = new Date().getHours();
     const greeting = hour < 18 ? "Bonjour" : "Bonsoir";
     const civ = form.civilite;
+    const refId = `GW-${Date.now().toString(36).toUpperCase()}`;
 
-    // Message client
     const itemsList = items.map((i) => `• ${i.name} x${i.quantity} — ${(i.priceNum * i.quantity).toLocaleString("fr-FR")} FCFA`).join("\n");
 
     const clientMsg = `${greeting} ${civ} ${form.prenom} ${form.nom} 👋,
@@ -56,6 +58,8 @@ ${itemsList}
 
 💰 *Total :* ${total.toLocaleString("fr-FR")} FCFA
 💳 *Paiement :* ${selectedPayment}
+🔖 *Réf :* ${refId}
+✅ *Statut :* Payé
 
 📍 *Adresse :* ${form.adresse}
 📱 *Téléphone :* ${form.telephone}
@@ -66,8 +70,6 @@ Merci pour votre confiance et bienvenue dans la famille Green World ! 🌿
 
 _Pour toute question, n'hésitez pas à nous écrire ici._`;
 
-    // Message pour le numéro WhatsApp de l'entreprise avec les infos client + référence paiement
-    const refId = `GW-${Date.now().toString(36).toUpperCase()}`;
     const bizMsg = `📋 *Nouvelle commande - Réf : ${refId}*
 
 👤 *Client :* ${civ} ${form.prenom} ${form.nom}
@@ -79,17 +81,25 @@ ${itemsList}
 
 💰 *Total :* ${total.toLocaleString("fr-FR")} FCFA
 💳 *Moyen de paiement :* ${selectedPayment}
-🔖 *Réf. paiement :* ${refId}`;
+🔖 *Réf. paiement :* ${refId}
+✅ *Statut :* Payé`;
 
-    // Envoyer le message client via WhatsApp
+    // Envoyer le message WhatsApp client
     const whatsappUrl = `https://wa.me/2250715736370?text=${encodeURIComponent(clientMsg)}`;
     window.open(whatsappUrl, "_blank");
 
-    // Ouvrir un second message pour l'entreprise (info)
+    // Envoyer le message WhatsApp entreprise
     setTimeout(() => {
       const bizUrl = `https://wa.me/2250715736370?text=${encodeURIComponent(bizMsg)}`;
       window.open(bizUrl, "_blank");
     }, 1500);
+
+    // Si Wave est sélectionné, rediriger vers le lien de paiement Wave
+    if (selectedPayment === "Wave") {
+      setTimeout(() => {
+        window.open(WAVE_PAYMENT_LINK, "_blank");
+      }, 3000);
+    }
 
     clearCart();
     setStep("done");
