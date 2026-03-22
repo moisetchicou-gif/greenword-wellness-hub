@@ -20,7 +20,7 @@ const HeroSection = () => {
           </p>
           <div className="flex gap-4 pt-2">
             <a
-              href="#biographie"
+              href="#produits"
               className="bg-primary text-primary-foreground px-8 py-3 rounded-full font-semibold hover:opacity-90 transition-opacity shadow-lg"
               style={{ boxShadow: "0 8px 32px -8px hsl(145 63% 32% / 0.25)" }}
             >
