@@ -14,71 +14,19 @@ import productVigeurCapsule from "@/assets/product-vigeur-capsule.webp";
 import productClear from "@/assets/product-clear.jpg";
 
 const productBenefits = [
-  {
-    name: "Beta-Carotene",
-    image: productBetaCarotene,
-    benefits: ["Source naturelle de vitamine A", "Prévient certains types de cancer", "Protège la peau contre le vieillissement", "Renforce la vision et la santé oculaire"],
-  },
-  {
-    name: "Lipid Care Tea",
-    image: productLipidCare,
-    benefits: ["Abaisse le taux de lipides dans le sang", "Améliore l'endurance physique", "Favorise la digestion naturelle", "Aide à maintenir un poids sain"],
-  },
-  {
-    name: "Kidney Tonifying",
-    image: productKidney,
-    benefits: ["Renforce la fonction rénale", "Optimise la détoxification rénale", "Soutient la santé urinaire", "Améliore la vitalité générale"],
-  },
-  {
-    name: "Prostacre",
-    image: productProstacre,
-    benefits: ["Prévient et soulage les problèmes de prostate", "Diminue les envies fréquentes d'uriner", "Améliore le confort urinaire masculin", "Soutient la santé reproductive"],
-  },
-  {
-    name: "A-Power Capsule",
-    image: productAPower,
-    benefits: ["Soutient le traitement du cancer", "Renforce le système immunitaire", "Augmente l'énergie cellulaire", "Protège contre le stress oxydatif"],
-  },
-  {
-    name: "Anti-Aging",
-    image: productAntiAging,
-    benefits: ["Combat le vieillissement cellulaire", "Riche en antioxydants naturels", "Soutient la santé de la peau", "Équilibre le système endocrinien"],
-  },
-  {
-    name: "Glucoblock",
-    image: productGlucoblock,
-    benefits: ["Régule le taux de sucre dans le sang", "Soutient la fonction pancréatique", "Améliore la sensibilité à l'insuline", "Protège les vaisseaux sanguins"],
-  },
-  {
-    name: "Zinc Adulte",
-    image: productZincAdulte,
-    benefits: ["Renforce le système immunitaire", "Favorise la santé de la peau et des cheveux", "Soutient la fertilité", "Source essentielle de zinc"],
-  },
-  {
-    name: "Cordyceps",
-    image: productCordyceps,
-    benefits: ["Augmente l'énergie et la vitalité", "Régule le système immunitaire", "Améliore l'endurance physique", "Soutient la santé respiratoire"],
-  },
-  {
-    name: "Kuding Tea",
-    image: productKudingTea,
-    benefits: ["Détoxifie l'organisme naturellement", "Réduit l'inflammation", "Protège le système cardiovasculaire", "Soulage maux de tête et gorge"],
-  },
-  {
-    name: "Pine Pollen",
-    image: productPinePollen,
-    benefits: ["Stimule la vitalité masculine", "Riche en acides aminés et vitamines", "Renforce la santé hormonale", "Favorise la régénération cellulaire"],
-  },
-  {
-    name: "Vigeur Capsule",
-    image: productVigeurCapsule,
-    benefits: ["Renforce la vitalité et l'endurance masculine", "Améliore la santé reproductive", "Soutient l'équilibre hormonal", "Augmente le nombre et la motilité des spermatozoïdes"],
-  },
-  {
-    name: "Clear (Dentifrice)",
-    image: productClear,
-    benefits: ["Prévient les caries dentaires", "Blanchit les dents naturellement", "Élimine la mauvaise haleine durablement", "Soulage les gencives enflées et saignantes"],
-  },
+  { name: "Beta-Carotene", image: productBetaCarotene, benefits: ["Source naturelle de vitamine A", "Prévient certains types de cancer", "Protège la peau", "Renforce la vision"] },
+  { name: "Lipid Care Tea", image: productLipidCare, benefits: ["Abaisse le taux de lipides", "Améliore l'endurance", "Favorise la digestion", "Maintient un poids sain"] },
+  { name: "Kidney Tonifying", image: productKidney, benefits: ["Renforce la fonction rénale", "Optimise la détox", "Santé urinaire", "Améliore la vitalité"] },
+  { name: "Prostacre", image: productProstacre, benefits: ["Soulage la prostate", "Diminue les envies d'uriner", "Confort urinaire", "Santé reproductive"] },
+  { name: "A-Power Capsule", image: productAPower, benefits: ["Soutient le traitement du cancer", "Renforce l'immunité", "Énergie cellulaire", "Anti-oxydant"] },
+  { name: "Anti-Aging", image: productAntiAging, benefits: ["Combat le vieillissement", "Riche en antioxydants", "Santé de la peau", "Équilibre endocrinien"] },
+  { name: "Glucoblock", image: productGlucoblock, benefits: ["Régule la glycémie", "Fonction pancréatique", "Sensibilité à l'insuline", "Protège les vaisseaux"] },
+  { name: "Zinc Adulte", image: productZincAdulte, benefits: ["Renforce l'immunité", "Santé peau et cheveux", "Soutient la fertilité", "Source de zinc"] },
+  { name: "Cordyceps", image: productCordyceps, benefits: ["Énergie et vitalité", "Régule l'immunité", "Endurance physique", "Santé respiratoire"] },
+  { name: "Kuding Tea", image: productKudingTea, benefits: ["Détoxifie l'organisme", "Réduit l'inflammation", "Santé cardiovasculaire", "Soulage maux de tête"] },
+  { name: "Pine Pollen", image: productPinePollen, benefits: ["Vitalité masculine", "Riche en acides aminés", "Santé hormonale", "Régénération cellulaire"] },
+  { name: "Vigeur Capsule", image: productVigeurCapsule, benefits: ["Vitalité masculine", "Santé reproductive", "Équilibre hormonal", "Endurance"] },
+  { name: "Clear (Dentifrice)", image: productClear, benefits: ["Prévient les caries", "Blanchit les dents", "Élimine la mauvaise haleine", "Soulage les gencives"] },
 ];
 
 const BenefitCard = ({ product, index }: { product: typeof productBenefits[0]; index: number }) => {
@@ -97,22 +45,18 @@ const BenefitCard = ({ product, index }: { product: typeof productBenefits[0]; i
   return (
     <div
       ref={ref}
-      className={`bg-card rounded-2xl border border-border overflow-hidden hover:shadow-lg transition-all duration-600 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
-      style={{ transitionDelay: `${index * 80}ms` }}
+      className={`bg-card rounded-2xl border border-border/50 overflow-hidden hover:shadow-lg transition-all duration-600 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
+      style={{ transitionDelay: `${index * 60}ms` }}
     >
       <div className="aspect-[4/3] bg-secondary/20 flex items-center justify-center p-6 overflow-hidden">
-        <img
-          src={product.image}
-          alt={product.name}
-          className="w-full h-full object-contain hover:scale-105 transition-transform duration-500"
-        />
+        <img src={product.image} alt={product.name} className="w-full h-full object-contain hover:scale-105 transition-transform duration-500" />
       </div>
-      <div className="p-6 space-y-3">
-        <h3 className="text-lg font-display text-primary">{product.name}</h3>
-        <ul className="space-y-2">
+      <div className="p-5 space-y-3">
+        <h3 className="text-base font-display text-accent">{product.name}</h3>
+        <ul className="space-y-1.5">
           {product.benefits.map((b) => (
-            <li key={b} className="text-muted-foreground text-sm flex items-start gap-2">
-              <span className="text-accent font-bold mt-0.5">•</span>
+            <li key={b} className="text-muted-foreground text-xs flex items-start gap-2">
+              <span className="text-primary font-bold mt-0.5">•</span>
               {b}
             </li>
           ))}
@@ -126,13 +70,13 @@ const FeaturesSection = () => {
   return (
     <section id="bienfaits" className="py-24 bg-secondary/30">
       <div className="container mx-auto px-6">
-        <div className="text-center mb-16 space-y-3">
-          <p className="text-primary text-sm font-medium uppercase tracking-widest">Bienfaits</p>
-          <h2 className="text-3xl sm:text-4xl text-foreground">
-            Les bienfaits de nos <span className="text-primary">produits</span>
+        <div className="text-center mb-16 space-y-4">
+          <p className="text-primary text-xs font-semibold uppercase tracking-[0.2em]">Bienfaits</p>
+          <h2 className="text-3xl sm:text-4xl text-accent">
+            Pourquoi <span className="italic text-primary">nous choisir</span> ?
           </h2>
-          <p className="text-muted-foreground max-w-xl mx-auto">
-            Chaque produit Green World est conçu pour cibler des besoins de santé spécifiques.
+          <p className="text-muted-foreground max-w-xl mx-auto text-sm leading-relaxed">
+            Chaque produit Green World est conçu pour cibler des besoins de santé spécifiques avec des ingrédients 100% naturels.
           </p>
         </div>
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">

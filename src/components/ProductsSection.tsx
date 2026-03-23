@@ -56,25 +56,28 @@ const ProductCard = ({ product, index }: { product: typeof products[0]; index: n
   return (
     <div
       ref={ref}
-      className={`bg-card rounded-2xl border border-border overflow-hidden hover:shadow-xl hover:-translate-y-2 transition-all duration-500 group ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
+      className={`bg-card rounded-2xl border border-border/60 overflow-hidden hover:shadow-xl hover:-translate-y-1 transition-all duration-500 group ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
       style={{ transitionDelay: `${index * 80}ms` }}
     >
-      <div className="aspect-square bg-secondary/30 flex items-center justify-center p-4 overflow-hidden">
-        <img src={product.image} alt={product.name} className="w-full h-full object-contain group-hover:scale-110 transition-transform duration-500" />
+      <div className="aspect-square bg-secondary/30 flex items-center justify-center p-6 overflow-hidden relative">
+        <img src={product.image} alt={product.name} className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-700" />
+        <div className="absolute top-3 left-3 flex gap-1.5">
+          <span className="bg-accent/90 text-accent-foreground text-[10px] font-semibold px-2.5 py-1 rounded-full">Naturel</span>
+        </div>
       </div>
       <div className="p-5 space-y-3">
-        <h3 className="text-lg font-display text-foreground group-hover:text-primary transition-colors">{product.name}</h3>
+        <h3 className="text-base font-display text-accent group-hover:text-primary transition-colors">{product.name}</h3>
         <ul className="space-y-1">
           {product.benefits.map((b) => (
-            <li key={b} className="text-muted-foreground text-sm flex items-start gap-2">
-              <span className="text-primary mt-0.5">✓</span>{b}
+            <li key={b} className="text-muted-foreground text-xs flex items-start gap-2">
+              <span className="text-primary mt-0.5 text-sm">✓</span>{b}
             </li>
           ))}
         </ul>
-        <p className="text-primary font-bold text-lg">{product.price}</p>
+        <p className="text-accent font-semibold text-lg font-display">{product.price}</p>
         <button
           onClick={handleAdd}
-          className="w-full bg-primary text-primary-foreground px-6 py-2.5 rounded-full text-sm font-semibold hover:opacity-90 active:scale-95 transition-all mt-1 flex items-center justify-center gap-2"
+          className="w-full bg-accent text-accent-foreground px-6 py-2.5 rounded-full text-sm font-medium hover:opacity-90 active:scale-[0.97] transition-all mt-1 flex items-center justify-center gap-2 tracking-wide"
         >
           <ShoppingCart className="w-4 h-4" />
           Ajouter au panier
@@ -91,25 +94,25 @@ const ProductsSection = () => {
   return (
     <section id="produits" className="py-24 bg-background">
       <div className="container mx-auto px-6">
-        <div className="text-center mb-10 space-y-3">
-          <p className="text-primary text-sm font-medium uppercase tracking-widest">Notre gamme</p>
-          <h2 className="text-3xl sm:text-4xl text-foreground">
-            Nos <span className="text-primary">Produits</span>
+        <div className="text-center mb-12 space-y-4">
+          <p className="text-primary text-xs font-semibold uppercase tracking-[0.2em]">Notre gamme</p>
+          <h2 className="text-3xl sm:text-4xl text-accent">
+            Nos <span className="italic text-primary">Best-sellers</span>
           </h2>
-          <p className="text-muted-foreground max-w-xl mx-auto">
-            Découvrez notre gamme complète de compléments alimentaires naturels Green World.
+          <p className="text-muted-foreground max-w-xl mx-auto text-sm leading-relaxed">
+            Découvrez notre gamme complète de compléments alimentaires naturels et produits de beauté Green World.
           </p>
         </div>
 
-        <div className="flex flex-wrap justify-center gap-3 mb-12">
+        <div className="flex flex-wrap justify-center gap-3 mb-14">
           {categories.map((cat) => (
             <button
               key={cat}
               onClick={() => setActiveCategory(cat)}
-              className={`px-6 py-2.5 rounded-full text-sm font-semibold transition-all duration-300 ${
+              className={`px-6 py-2.5 rounded-full text-sm font-medium transition-all duration-300 tracking-wide ${
                 activeCategory === cat
-                  ? "bg-primary text-primary-foreground shadow-lg"
-                  : "bg-secondary text-secondary-foreground hover:bg-primary/10"
+                  ? "bg-accent text-accent-foreground shadow-lg"
+                  : "bg-secondary text-secondary-foreground hover:bg-highlight/50 border border-border/50"
               }`}
             >
               {cat}
@@ -122,7 +125,7 @@ const ProductsSection = () => {
             <ProductCard key={product.id} product={product} index={i} />
           ))}
           {filtered.length === 0 && (
-            <p className="col-span-full text-center text-muted-foreground py-12">
+            <p className="col-span-full text-center text-muted-foreground py-16 text-sm">
               Produits bientôt disponibles dans cette catégorie.
             </p>
           )}
