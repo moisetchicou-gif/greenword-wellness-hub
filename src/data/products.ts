@@ -14,6 +14,16 @@ import productClear from "@/assets/product-clear.jpg";
 import productNutriplant from "@/assets/product-nutriplant.jpg";
 import productProSlimTea from "@/assets/product-pro-slim-tea.jpg";
 import productPlaceholder from "@/assets/product-placeholder.jpg";
+import productSpirulina from "@/assets/product-spirulina.jpg";
+import productMealCellulose from "@/assets/product-meal-cellulose.jpg";
+import productTourmalineFlask from "@/assets/product-tourmaline-flask.jpg";
+import productCompoundCalciumC from "@/assets/product-compound-calcium-c.jpg";
+import productCompoundCalciumA from "@/assets/product-compound-calcium-a.jpg";
+import productGoldenKnight from "@/assets/product-golden-knight.jpg";
+import productSilverEva from "@/assets/product-silver-eva.jpg";
+import productPantyLiner from "@/assets/product-panty-liner.jpg";
+import productNapkinDay from "@/assets/product-napkin-day.jpg";
+import productBloodCleanse from "@/assets/product-blood-cleanse.jpg";
 
 export type Category =
   | "Compléments de santé"
