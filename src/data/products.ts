@@ -132,11 +132,11 @@ export const products: Product[] = [
   { id: 21, name: "Pro-slim Tea", image: productProSlimTea, benefits: ["Favorise la perte de poids", "Accélère le métabolisme"], price: "8 580 FCFA", priceNum: 8580, category: "Thés & Boissons", bv: 12 },
   { id: 22, name: "Intestine Cleansing Tea", image: productIntestineCleansing, benefits: ["Nettoie les intestins", "Favorise un transit sain"], price: "9 295 FCFA", priceNum: 9295, category: "Thés & Boissons", bv: 13 },
   { id: 23, name: "Balsam Pear Tea", image: productBalsamPear, benefits: ["Régule la glycémie", "Améliore la circulation"], price: "9 295 FCFA", priceNum: 9295, category: "Thés & Boissons", bv: 13 },
-  { id: 27, name: "Ganoderma Coffee", image: productPlaceholder, benefits: ["Café enrichi en Ganoderma", "Booste l'énergie et l'immunité"], price: "12 870 FCFA", priceNum: 12870, category: "Thés & Boissons", bv: 18 },
-  { id: 28, name: "Blueberry Coffee", image: productPlaceholder, benefits: ["Café enrichi aux myrtilles", "Riche en antioxydants"], price: "12 870 FCFA", priceNum: 12870, category: "Thés & Boissons", bv: 18 },
-  { id: 39, name: "Clear Lung Tea", image: productPlaceholder, benefits: ["Nettoie les poumons", "Soulage les voies respiratoires"], price: "10 010 FCFA", priceNum: 10010, category: "Thés & Boissons", bv: 14 },
-  { id: 78, name: "Jinpure Tea", image: productPlaceholder, benefits: ["Détoxifie le foie et les reins", "Purifie le sang"], price: "9 295 FCFA", priceNum: 9295, category: "Thés & Boissons", bv: 13 },
-  { id: 79, name: "Jinpure Capsule", image: productPlaceholder, benefits: ["Détoxification profonde", "Protège le foie"], price: "15 730 FCFA", priceNum: 15730, category: "Thés & Boissons", bv: 22 },
+  { id: 27, name: "Ganoderma Coffee", image: productGanodermaCoffee, benefits: ["Café enrichi en Ganoderma", "Booste l'énergie et l'immunité"], price: "12 870 FCFA", priceNum: 12870, category: "Thés & Boissons", bv: 18 },
+  { id: 28, name: "Blueberry Coffee", image: productBlueberryCoffee, benefits: ["Café enrichi aux myrtilles", "Riche en antioxydants"], price: "12 870 FCFA", priceNum: 12870, category: "Thés & Boissons", bv: 18 },
+  { id: 39, name: "Clear Lung Tea", image: productClearLungTea, benefits: ["Nettoie les poumons", "Soulage les voies respiratoires"], price: "10 010 FCFA", priceNum: 10010, category: "Thés & Boissons", bv: 14 },
+  { id: 78, name: "Jinpure Tea", image: productJinpureTea, benefits: ["Détoxifie le foie et les reins", "Purifie le sang"], price: "9 295 FCFA", priceNum: 9295, category: "Thés & Boissons", bv: 13 },
+  { id: 79, name: "Jinpure Capsule", image: productJinpureCapsule, benefits: ["Détoxification profonde", "Protège le foie"], price: "15 730 FCFA", priceNum: 15730, category: "Thés & Boissons", bv: 22 },
 
   // ===== SOINS FÉMININS =====
   { id: 19, name: "Soy Power Capsule", image: productSoyPower, benefits: ["Équilibre hormonal féminin", "Soulage les symptômes de la ménopause"], price: "12 870 FCFA", priceNum: 12870, category: "Soins féminins", bv: 18 },
@@ -157,11 +157,11 @@ export const products: Product[] = [
 
   // ===== ENFANTS & FAMILLE =====
   { id: 8, name: "Zinc Adulte", image: productZincAdulte, benefits: ["Renforce le système immunitaire", "Favorise la santé de la peau"], price: "11 440 FCFA", priceNum: 11440, category: "Enfants & Famille", bv: 16 },
-  { id: 26, name: "Multi-vitamin Enfants", image: productPlaceholder, benefits: ["Apport complet en vitamines", "Favorise la croissance"], price: "6 078 FCFA", priceNum: 6078, category: "Enfants & Famille", bv: 8.5 },
-  { id: 84, name: "Multi-vitamin Adultes", image: productPlaceholder, benefits: ["Apport quotidien en vitamines", "Renforce la vitalité"], price: "16 445 FCFA", priceNum: 16445, category: "Enfants & Famille", bv: 23 },
-  { id: 85, name: "Calcium Enfants", image: productPlaceholder, benefits: ["Renforce les os en croissance", "Favorise le développement"], price: "8 608 FCFA", priceNum: 8608, category: "Enfants & Famille", bv: 12 },
-  { id: 86, name: "Calcium Adultes", image: productPlaceholder, benefits: ["Prévient l'ostéoporose", "Renforce les os et les dents"], price: "15 730 FCFA", priceNum: 15730, category: "Enfants & Famille", bv: 22 },
-  { id: 87, name: "Zinc Enfants", image: productPlaceholder, benefits: ["Renforce l'immunité de l'enfant", "Favorise la croissance"], price: "6 435 FCFA", priceNum: 6435, category: "Enfants & Famille", bv: 9 },
+  { id: 26, name: "Multi-vitamin Enfants", image: productMultivitaminEnfants, benefits: ["Apport complet en vitamines", "Favorise la croissance"], price: "6 078 FCFA", priceNum: 6078, category: "Enfants & Famille", bv: 8.5 },
+  { id: 84, name: "Multi-vitamin Adultes", image: productMultivitaminAdultes, benefits: ["Apport quotidien en vitamines", "Renforce la vitalité"], price: "16 445 FCFA", priceNum: 16445, category: "Enfants & Famille", bv: 23 },
+  { id: 85, name: "Calcium Enfants", image: productCalciumEnfants, benefits: ["Renforce les os en croissance", "Favorise le développement"], price: "8 608 FCFA", priceNum: 8608, category: "Enfants & Famille", bv: 12 },
+  { id: 86, name: "Calcium Adultes", image: productCalciumAdultes, benefits: ["Prévient l'ostéoporose", "Renforce les os et les dents"], price: "15 730 FCFA", priceNum: 15730, category: "Enfants & Famille", bv: 22 },
+  { id: 87, name: "Zinc Enfants", image: productZincEnfants, benefits: ["Renforce l'immunité de l'enfant", "Favorise la croissance"], price: "6 435 FCFA", priceNum: 6435, category: "Enfants & Famille", bv: 9 },
 
   // ===== BEAUTÉ & HYGIÈNE =====
   { id: 6, name: "Anti-Aging Capsule", image: productAntiAging, benefits: ["Combat le vieillissement cellulaire", "Protège contre les radicaux libres"], price: "22 880 FCFA", priceNum: 22880, category: "Beauté & Hygiène", bv: 32 },
