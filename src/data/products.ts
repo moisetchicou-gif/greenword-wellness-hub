@@ -42,6 +42,16 @@ import productMultivitaminAdultes from "@/assets/product-multivitamin-adultes.jp
 import productCalciumEnfants from "@/assets/product-calcium-enfants.jpg";
 import productCalciumAdultes from "@/assets/product-calcium-adultes.jpg";
 import productZincEnfants from "@/assets/product-zinc-enfants.jpg";
+import productOliveSoap from "@/assets/product-olive-soap.webp";
+import productPropolis from "@/assets/product-propolis.jpg";
+import productGanoderma from "@/assets/product-ganoderma.jpg";
+import productCardioPower from "@/assets/product-cardio-power.png";
+import productGinsengRhs from "@/assets/product-ginseng-rhs.jpg";
+import productProteinPowder from "@/assets/product-protein-powder.jpg";
+import productSoybeanLecithin from "@/assets/product-soybean-lecithin.jpg";
+import productDeepSeaFishOil from "@/assets/product-deep-sea-fish-oil.jpg";
+import productGarlicOil from "@/assets/product-garlic-oil.jpg";
+import productEyeCare from "@/assets/product-eye-care.jpg";
 
 export type Category =
   | "Compléments de santé"
