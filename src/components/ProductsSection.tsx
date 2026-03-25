@@ -1,43 +1,9 @@
 import { useEffect, useRef, useState } from "react";
 import { ShoppingCart } from "lucide-react";
 import { useCart } from "@/hooks/useCart";
-import productBetaCarotene from "@/assets/product-beta-carotene.jpg";
-import productLipidCare from "@/assets/product-lipid-care-tea.jpg";
-import productKidney from "@/assets/product-kidney-tonifying.jpg";
-import productProstacre from "@/assets/product-prostacre.jpg";
-import productAPower from "@/assets/product-a-power.jpg";
-import productAntiAging from "@/assets/product-anti-aging.jpg";
-import productGlucoblock from "@/assets/product-glucoblock.jpg";
-import productZincAdulte from "@/assets/product-zinc-adulte.png";
-import productCordyceps from "@/assets/product-cordyceps.jpg";
-import productKudingTea from "@/assets/product-kuding-tea.jpg";
-import productPinePollen from "@/assets/product-pine-pollen.jpg";
-import productVigeurCapsule from "@/assets/product-vigeur-capsule.webp";
-import productClear from "@/assets/product-clear.jpg";
-import productNutriplant from "@/assets/product-nutriplant.jpg";
+import { products, categories, type Product, type Category } from "@/data/products";
 
-type Category = "Produits de santé" | "Produits de beauté" | "Engrais Bio";
-
-const categories: Category[] = ["Produits de santé", "Produits de beauté", "Engrais Bio"];
-
-const products = [
-  { id: 1, name: "Beta-Carotene", image: productBetaCarotene, benefits: ["Apport en vitamine A", "Prévient le cancer"], price: "14 300 FCFA", priceNum: 14300, category: "Produits de santé" as Category },
-  { id: 2, name: "Lipid Care Tea", image: productLipidCare, benefits: ["Abaisse le taux de lipides", "Améliore l'endurance"], price: "10 000 FCFA", priceNum: 10000, category: "Produits de santé" as Category },
-  { id: 3, name: "Kidney Tonifying", image: productKidney, benefits: ["Renforce les reins", "Optimise la détox rénale"], price: "21 400 FCFA", priceNum: 21400, category: "Produits de santé" as Category },
-  { id: 4, name: "Prostacre", image: productProstacre, benefits: ["Prévient et soulage la prostate", "Diminue les envies fréquentes d'uriner"], price: "23 600 FCFA", priceNum: 23600, category: "Produits de santé" as Category },
-  { id: 5, name: "A-Power Capsule", image: productAPower, benefits: ["Soutient le traitement du cancer", "Renforce l'immunité"], price: "28 600 FCFA", priceNum: 28600, category: "Produits de santé" as Category },
-  { id: 6, name: "Anti-Aging", image: productAntiAging, benefits: ["Combat le vieillissement cellulaire", "Protège contre les radicaux libres"], price: "22 900 FCFA", priceNum: 22900, category: "Produits de beauté" as Category },
-  { id: 7, name: "Glucoblock", image: productGlucoblock, benefits: ["Régule la glycémie", "Soutient la fonction pancréatique"], price: "12 900 FCFA", priceNum: 12900, category: "Produits de santé" as Category },
-  { id: 8, name: "Zinc Adulte", image: productZincAdulte, benefits: ["Renforce le système immunitaire", "Favorise la santé de la peau"], price: "11 400 FCFA", priceNum: 11400, category: "Produits de santé" as Category },
-  { id: 9, name: "Cordyceps", image: productCordyceps, benefits: ["Augmente l'énergie et la vitalité", "Régule le système immunitaire"], price: "14 300 FCFA", priceNum: 14300, category: "Produits de santé" as Category },
-  { id: 10, name: "Kuding Tea", image: productKudingTea, benefits: ["Détoxifie l'organisme", "Réduit l'inflammation"], price: "8 600 FCFA", priceNum: 8600, category: "Produits de santé" as Category },
-  { id: 11, name: "Pine Pollen", image: productPinePollen, benefits: ["Stimule la vitalité masculine", "Riche en nutriments essentiels"], price: "10 000 FCFA", priceNum: 10000, category: "Produits de santé" as Category },
-  { id: 12, name: "Vigeur Capsule", image: productVigeurCapsule, benefits: ["Renforce la vitalité masculine", "Améliore l'endurance et la stamina"], price: "18 600 FCFA", priceNum: 18600, category: "Produits de santé" as Category },
-  { id: 13, name: "Clear (Dentifrice)", image: productClear, benefits: ["Prévient les caries et blanchit les dents", "Élimine la mauvaise haleine"], price: "7 500 FCFA", priceNum: 7500, category: "Produits de beauté" as Category },
-  { id: 14, name: "Nutriplant Organic", image: productNutriplant, benefits: ["Améliore la qualité et le rendement des récoltes", "Favorise une agriculture 100% biologique"], price: "21 450 FCFA", priceNum: 21450, category: "Engrais Bio" as Category },
-];
-
-const ProductCard = ({ product, index }: { product: typeof products[0]; index: number }) => {
+const ProductCard = ({ product, index }: { product: Product; index: number }) => {
   const ref = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(false);
   const { addItem } = useCart();
@@ -62,9 +28,9 @@ const ProductCard = ({ product, index }: { product: typeof products[0]; index: n
       style={{ transitionDelay: `${index * 80}ms` }}
     >
       <div className="aspect-square bg-secondary/30 flex items-center justify-center p-6 overflow-hidden relative">
-        <img src={product.image} alt={product.name} className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-700" />
+        <img src={product.image} alt={product.name} className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-700" loading="lazy" />
         <div className="absolute top-3 left-3 flex gap-1.5">
-          <span className="bg-accent/90 text-accent-foreground text-[10px] font-semibold px-2.5 py-1 rounded-full">Naturel</span>
+          <span className="bg-primary/90 text-primary-foreground text-[10px] font-semibold px-2.5 py-1 rounded-full">{product.bv} BV</span>
         </div>
       </div>
       <div className="p-5 space-y-3">
@@ -90,7 +56,7 @@ const ProductCard = ({ product, index }: { product: typeof products[0]; index: n
 };
 
 const ProductsSection = () => {
-  const [activeCategory, setActiveCategory] = useState<Category>("Produits de santé");
+  const [activeCategory, setActiveCategory] = useState<Category>("Compléments de santé");
   const filtered = products.filter((p) => p.category === activeCategory);
 
   return (
@@ -102,16 +68,16 @@ const ProductsSection = () => {
             Nos <span className="italic text-primary">Best-sellers</span>
           </h2>
           <p className="text-muted-foreground max-w-xl mx-auto text-sm leading-relaxed">
-            Découvrez notre gamme complète de compléments alimentaires naturels et produits de beauté Green World.
+            Découvrez notre gamme complète de compléments alimentaires naturels et produits Green World.
           </p>
         </div>
 
-        <div className="flex flex-wrap justify-center gap-3 mb-14">
+        <div className="flex flex-wrap justify-center gap-2 sm:gap-3 mb-14">
           {categories.map((cat) => (
             <button
               key={cat}
               onClick={() => setActiveCategory(cat)}
-              className={`px-6 py-2.5 rounded-full text-sm font-medium transition-all duration-300 tracking-wide ${
+              className={`px-4 sm:px-6 py-2 sm:py-2.5 rounded-full text-xs sm:text-sm font-medium transition-all duration-300 tracking-wide ${
                 activeCategory === cat
                   ? "bg-accent text-accent-foreground shadow-lg"
                   : "bg-secondary text-secondary-foreground hover:bg-highlight/50 border border-border/50"
