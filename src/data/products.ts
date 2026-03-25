@@ -42,6 +42,16 @@ import productMultivitaminAdultes from "@/assets/product-multivitamin-adultes.jp
 import productCalciumEnfants from "@/assets/product-calcium-enfants.jpg";
 import productCalciumAdultes from "@/assets/product-calcium-adultes.jpg";
 import productZincEnfants from "@/assets/product-zinc-enfants.jpg";
+import productOliveSoap from "@/assets/product-olive-soap.webp";
+import productPropolis from "@/assets/product-propolis.jpg";
+import productGanoderma from "@/assets/product-ganoderma.jpg";
+import productCardioPower from "@/assets/product-cardio-power.png";
+import productGinsengRhs from "@/assets/product-ginseng-rhs.jpg";
+import productProteinPowder from "@/assets/product-protein-powder.jpg";
+import productSoybeanLecithin from "@/assets/product-soybean-lecithin.jpg";
+import productDeepSeaFishOil from "@/assets/product-deep-sea-fish-oil.jpg";
+import productGarlicOil from "@/assets/product-garlic-oil.jpg";
+import productEyeCare from "@/assets/product-eye-care.jpg";
 
 export type Category =
   | "Compléments de santé"
@@ -80,15 +90,15 @@ export const products: Product[] = [
   { id: 7, name: "Glucoblock", image: productGlucoblock, benefits: ["Régule la glycémie", "Soutient la fonction pancréatique"], price: "12 900 FCFA", priceNum: 12900, category: "Compléments de santé", bv: 18 },
   { id: 9, name: "Cordyceps Plus Capsule", image: productCordyceps, benefits: ["Augmente l'énergie et la vitalité", "Régule le système immunitaire"], price: "14 300 FCFA", priceNum: 14300, category: "Compléments de santé", bv: 20 },
   { id: 15, name: "Spirulina Plus Capsule", image: productSpirulina, benefits: ["Riche en nutriments essentiels", "Favorise la digestion et la détox"], price: "15 015 FCFA", priceNum: 15015, category: "Compléments de santé", bv: 21 },
-  { id: 16, name: "Propolis Plus Capsule", image: productPlaceholder, benefits: ["Anti-inflammatoire naturel", "Renforce les défenses immunitaires"], price: "19 305 FCFA", priceNum: 19305, category: "Compléments de santé", bv: 27 },
-  { id: 17, name: "Ganoderma Plus Capsule", image: productPlaceholder, benefits: ["Renforce l'immunité", "Soutient la santé respiratoire"], price: "16 445 FCFA", priceNum: 16445, category: "Compléments de santé", bv: 23 },
-  { id: 18, name: "Cardio Power Capsule", image: productPlaceholder, benefits: ["Protège le système cardiovasculaire", "Régule la tension artérielle"], price: "13 585 FCFA", priceNum: 13585, category: "Compléments de santé", bv: 19 },
-  { id: 20, name: "Ginseng RHs Capsule", image: productPlaceholder, benefits: ["Puissant anti-cancer", "Stimule le système immunitaire"], price: "27 170 FCFA", priceNum: 27170, category: "Compléments de santé", bv: 38 },
-  { id: 25, name: "Protein Powder", image: productPlaceholder, benefits: ["Source de protéines végétales", "Favorise la croissance musculaire"], price: "25 025 FCFA", priceNum: 25025, category: "Compléments de santé", bv: 35 },
-  { id: 30, name: "Soybean Lecithin", image: productPlaceholder, benefits: ["Soutient la santé cérébrale", "Régule le cholestérol"], price: "14 300 FCFA", priceNum: 14300, category: "Compléments de santé", bv: 20 },
-  { id: 31, name: "Deep Sea Fish Oil", image: productPlaceholder, benefits: ["Riche en Oméga-3", "Protège le cœur et le cerveau"], price: "17 875 FCFA", priceNum: 17875, category: "Compléments de santé", bv: 25 },
-  { id: 32, name: "Garlic Oil Softgel", image: productPlaceholder, benefits: ["Antibactérien naturel", "Renforce l'immunité"], price: "16 088 FCFA", priceNum: 16088, category: "Compléments de santé", bv: 22.5 },
-  { id: 33, name: "Eye Care Softgel", image: productPlaceholder, benefits: ["Protège la vision", "Prévient la dégénérescence maculaire"], price: "20 020 FCFA", priceNum: 20020, category: "Compléments de santé", bv: 28 },
+  { id: 16, name: "Propolis Plus Capsule", image: productPropolis, benefits: ["Anti-inflammatoire naturel", "Renforce les défenses immunitaires"], price: "19 305 FCFA", priceNum: 19305, category: "Compléments de santé", bv: 27 },
+  { id: 17, name: "Ganoderma Plus Capsule", image: productGanoderma, benefits: ["Renforce l'immunité", "Soutient la santé respiratoire"], price: "16 445 FCFA", priceNum: 16445, category: "Compléments de santé", bv: 23 },
+  { id: 18, name: "Cardio Power Capsule", image: productCardioPower, benefits: ["Protège le système cardiovasculaire", "Régule la tension artérielle"], price: "13 585 FCFA", priceNum: 13585, category: "Compléments de santé", bv: 19 },
+  { id: 20, name: "Ginseng RHs Capsule", image: productGinsengRhs, benefits: ["Puissant anti-cancer", "Stimule le système immunitaire"], price: "27 170 FCFA", priceNum: 27170, category: "Compléments de santé", bv: 38 },
+  { id: 25, name: "Protein Powder", image: productProteinPowder, benefits: ["Source de protéines végétales", "Favorise la croissance musculaire"], price: "25 025 FCFA", priceNum: 25025, category: "Compléments de santé", bv: 35 },
+  { id: 30, name: "Soybean Lecithin", image: productSoybeanLecithin, benefits: ["Soutient la santé cérébrale", "Régule le cholestérol"], price: "14 300 FCFA", priceNum: 14300, category: "Compléments de santé", bv: 20 },
+  { id: 31, name: "Deep Sea Fish Oil", image: productDeepSeaFishOil, benefits: ["Riche en Oméga-3", "Protège le cœur et le cerveau"], price: "17 875 FCFA", priceNum: 17875, category: "Compléments de santé", bv: 25 },
+  { id: 32, name: "Garlic Oil Softgel", image: productGarlicOil, benefits: ["Antibactérien naturel", "Renforce l'immunité"], price: "16 088 FCFA", priceNum: 16088, category: "Compléments de santé", bv: 22.5 },
+  { id: 33, name: "Eye Care Softgel", image: productEyeCare, benefits: ["Protège la vision", "Prévient la dégénérescence maculaire"], price: "20 020 FCFA", priceNum: 20020, category: "Compléments de santé", bv: 28 },
   { id: 34, name: "Chitosan Capsule", image: productPlaceholder, benefits: ["Absorbe les graisses", "Favorise la perte de poids"], price: "17 160 FCFA", priceNum: 17160, category: "Compléments de santé", bv: 24 },
   { id: 35, name: "Aloe Vera Plus Capsule", image: productPlaceholder, benefits: ["Détoxifie l'organisme", "Soutient la digestion"], price: "15 015 FCFA", priceNum: 15015, category: "Compléments de santé", bv: 21 },
   { id: 36, name: "Compound Marrow Powder", image: productPlaceholder, benefits: ["Renforce les os et articulations", "Nourrit la moelle osseuse"], price: "18 590 FCFA", priceNum: 18590, category: "Compléments de santé", bv: 26 },
@@ -166,7 +176,7 @@ export const products: Product[] = [
   // ===== BEAUTÉ & HYGIÈNE =====
   { id: 6, name: "Anti-Aging Capsule", image: productAntiAging, benefits: ["Combat le vieillissement cellulaire", "Protège contre les radicaux libres"], price: "22 880 FCFA", priceNum: 22880, category: "Beauté & Hygiène", bv: 32 },
   { id: 13, name: "Clear (Dentifrice)", image: productClear, benefits: ["Prévient les caries et blanchit les dents", "Élimine la mauvaise haleine"], price: "5 363 FCFA", priceNum: 5363, category: "Beauté & Hygiène", bv: 7.5 },
-  { id: 55, name: "Olive Soap", image: productPlaceholder, benefits: ["Savon hydratant naturel", "Nourrit et protège la peau"], price: "1 560 FCFA", priceNum: 1560, category: "Beauté & Hygiène", bv: 2 },
+  { id: 55, name: "Olive Soap", image: productOliveSoap, benefits: ["Savon hydratant naturel", "Nourrit et protège la peau"], price: "1 560 FCFA", priceNum: 1560, category: "Beauté & Hygiène", bv: 2 },
   { id: 70, name: "Silver Eva", image: productSilverEva, benefits: ["Soin féminin premium", "Hydratation et protection"], price: "12 155 FCFA", priceNum: 12155, category: "Beauté & Hygiène", bv: 17 },
 
   // ===== ENGRAIS BIO =====
