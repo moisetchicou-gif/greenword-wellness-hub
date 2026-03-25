@@ -14,6 +14,7 @@ import productKudingTea from "@/assets/product-kuding-tea.jpg";
 import productPinePollen from "@/assets/product-pine-pollen.jpg";
 import productVigeurCapsule from "@/assets/product-vigeur-capsule.webp";
 import productClear from "@/assets/product-clear.jpg";
+import productNutriplant from "@/assets/product-nutriplant.jpg";
 
 type Category = "Produits de santé" | "Produits de beauté" | "Engrais Bio";
 
@@ -33,6 +34,7 @@ const products = [
   { id: 11, name: "Pine Pollen", image: productPinePollen, benefits: ["Stimule la vitalité masculine", "Riche en nutriments essentiels"], price: "10 000 FCFA", priceNum: 10000, category: "Produits de santé" as Category },
   { id: 12, name: "Vigeur Capsule", image: productVigeurCapsule, benefits: ["Renforce la vitalité masculine", "Améliore l'endurance et la stamina"], price: "18 600 FCFA", priceNum: 18600, category: "Produits de santé" as Category },
   { id: 13, name: "Clear (Dentifrice)", image: productClear, benefits: ["Prévient les caries et blanchit les dents", "Élimine la mauvaise haleine"], price: "7 500 FCFA", priceNum: 7500, category: "Produits de beauté" as Category },
+  { id: 14, name: "Nutriplant Organic", image: productNutriplant, benefits: ["Améliore la qualité et le rendement des récoltes", "Favorise une agriculture 100% biologique"], price: "21 450 FCFA", priceNum: 21450, category: "Engrais Bio" as Category },
 ];
 
 const ProductCard = ({ product, index }: { product: typeof products[0]; index: number }) => {
