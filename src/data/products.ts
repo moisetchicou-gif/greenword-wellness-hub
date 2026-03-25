@@ -32,6 +32,16 @@ import productSilverEva from "@/assets/product-silver-eva.jpg";
 import productPantyLiner from "@/assets/product-panty-liner.jpg";
 import productNapkinDay from "@/assets/product-napkin-day.jpg";
 import productBloodCleanse from "@/assets/product-blood-cleanse.jpg";
+import productGanodermaCoffee from "@/assets/product-ganoderma-coffee.jpg";
+import productBlueberryCoffee from "@/assets/product-blueberry-coffee.jpg";
+import productClearLungTea from "@/assets/product-clear-lung-tea.webp";
+import productJinpureTea from "@/assets/product-jinpure-tea.jpg";
+import productJinpureCapsule from "@/assets/product-jinpure-capsule.jpg";
+import productMultivitaminEnfants from "@/assets/product-multivitamin-enfants.jpg";
+import productMultivitaminAdultes from "@/assets/product-multivitamin-adultes.jpg";
+import productCalciumEnfants from "@/assets/product-calcium-enfants.jpg";
+import productCalciumAdultes from "@/assets/product-calcium-adultes.jpg";
+import productZincEnfants from "@/assets/product-zinc-enfants.jpg";
 
 export type Category =
   | "Compléments de santé"
