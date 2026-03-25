@@ -12,8 +12,16 @@ import productPinePollen from "@/assets/product-pine-pollen.jpg";
 import productVigeurCapsule from "@/assets/product-vigeur-capsule.webp";
 import productClear from "@/assets/product-clear.jpg";
 import productNutriplant from "@/assets/product-nutriplant.jpg";
-import productProSlimTea from "@/assets/product-pro-slim-tea.jpg";
+import productProSlimTea from "@/assets/product-pro-slim-tea-2.jpg";
 import productPlaceholder from "@/assets/product-placeholder.jpg";
+import productSoyPower from "@/assets/product-soy-power.jpg";
+import productBreastCareTea from "@/assets/product-breast-care-tea.jpg";
+import productUterusCleansing from "@/assets/product-uterus-cleansing.jpg";
+import productBreastCareCapsule from "@/assets/product-breast-care-capsule.webp";
+import productOvaryNutrition from "@/assets/product-ovary-nutrition.jpg";
+import productNapkinNight from "@/assets/product-napkin-night.jpg";
+import productIntestineCleansing from "@/assets/product-intestine-cleansing.png";
+import productBalsamPear from "@/assets/product-balsam-pear.jpg";
 import productSpirulina from "@/assets/product-spirulina.jpg";
 import productMealCellulose from "@/assets/product-meal-cellulose.jpg";
 import productTourmalineFlask from "@/assets/product-tourmaline-flask.jpg";
@@ -112,8 +120,8 @@ export const products: Product[] = [
   { id: 10, name: "Kuding Plus Tea", image: productKudingTea, benefits: ["Détoxifie l'organisme", "Réduit l'inflammation"], price: "8 580 FCFA", priceNum: 8580, category: "Thés & Boissons", bv: 12 },
   { id: 11, name: "Pine Pollen Tea", image: productPinePollen, benefits: ["Stimule la vitalité", "Riche en nutriments essentiels"], price: "10 010 FCFA", priceNum: 10010, category: "Thés & Boissons", bv: 14 },
   { id: 21, name: "Pro-slim Tea", image: productProSlimTea, benefits: ["Favorise la perte de poids", "Accélère le métabolisme"], price: "8 580 FCFA", priceNum: 8580, category: "Thés & Boissons", bv: 12 },
-  { id: 22, name: "Intestine Cleansing Tea", image: productPlaceholder, benefits: ["Nettoie les intestins", "Favorise un transit sain"], price: "9 295 FCFA", priceNum: 9295, category: "Thés & Boissons", bv: 13 },
-  { id: 23, name: "Balsam Pear Tea", image: productPlaceholder, benefits: ["Régule la glycémie", "Améliore la circulation"], price: "9 295 FCFA", priceNum: 9295, category: "Thés & Boissons", bv: 13 },
+  { id: 22, name: "Intestine Cleansing Tea", image: productIntestineCleansing, benefits: ["Nettoie les intestins", "Favorise un transit sain"], price: "9 295 FCFA", priceNum: 9295, category: "Thés & Boissons", bv: 13 },
+  { id: 23, name: "Balsam Pear Tea", image: productBalsamPear, benefits: ["Régule la glycémie", "Améliore la circulation"], price: "9 295 FCFA", priceNum: 9295, category: "Thés & Boissons", bv: 13 },
   { id: 27, name: "Ganoderma Coffee", image: productPlaceholder, benefits: ["Café enrichi en Ganoderma", "Booste l'énergie et l'immunité"], price: "12 870 FCFA", priceNum: 12870, category: "Thés & Boissons", bv: 18 },
   { id: 28, name: "Blueberry Coffee", image: productPlaceholder, benefits: ["Café enrichi aux myrtilles", "Riche en antioxydants"], price: "12 870 FCFA", priceNum: 12870, category: "Thés & Boissons", bv: 18 },
   { id: 39, name: "Clear Lung Tea", image: productPlaceholder, benefits: ["Nettoie les poumons", "Soulage les voies respiratoires"], price: "10 010 FCFA", priceNum: 10010, category: "Thés & Boissons", bv: 14 },
@@ -121,15 +129,15 @@ export const products: Product[] = [
   { id: 79, name: "Jinpure Capsule", image: productPlaceholder, benefits: ["Détoxification profonde", "Protège le foie"], price: "15 730 FCFA", priceNum: 15730, category: "Thés & Boissons", bv: 22 },
 
   // ===== SOINS FÉMININS =====
-  { id: 19, name: "Soy Power Capsule", image: productPlaceholder, benefits: ["Équilibre hormonal féminin", "Soulage les symptômes de la ménopause"], price: "12 870 FCFA", priceNum: 12870, category: "Soins féminins", bv: 18 },
-  { id: 24, name: "Breast Care Tea", image: productPlaceholder, benefits: ["Soutient la santé mammaire", "Équilibre hormonal naturel"], price: "10 725 FCFA", priceNum: 10725, category: "Soins féminins", bv: 15 },
+  { id: 19, name: "Soy Power Capsule", image: productSoyPower, benefits: ["Équilibre hormonal féminin", "Soulage les symptômes de la ménopause"], price: "12 870 FCFA", priceNum: 12870, category: "Soins féminins", bv: 18 },
+  { id: 24, name: "Breast Care Tea", image: productBreastCareTea, benefits: ["Soutient la santé mammaire", "Équilibre hormonal naturel"], price: "10 725 FCFA", priceNum: 10725, category: "Soins féminins", bv: 15 },
   { id: 29, name: "Kidney Tonifying Women", image: productKidney, benefits: ["Renforce la fonction rénale féminine", "Optimise la détox rénale"], price: "21 450 FCFA", priceNum: 21450, category: "Soins féminins", bv: 30 },
-  { id: 60, name: "Uterus Cleansing", image: productPlaceholder, benefits: ["Nettoie et protège l'utérus", "Prévient les infections gynécologiques"], price: "22 880 FCFA", priceNum: 22880, category: "Soins féminins", bv: 32 },
-  { id: 62, name: "Breast Care Capsule", image: productPlaceholder, benefits: ["Protège la santé mammaire", "Prévient les kystes mammaires"], price: "21 450 FCFA", priceNum: 21450, category: "Soins féminins", bv: 30 },
-  { id: 63, name: "Ovary Nutrition", image: productPlaceholder, benefits: ["Nourrit et protège les ovaires", "Régule le cycle menstruel"], price: "17 160 FCFA", priceNum: 17160, category: "Soins féminins", bv: 24 },
+  { id: 60, name: "Uterus Cleansing", image: productUterusCleansing, benefits: ["Nettoie et protège l'utérus", "Prévient les infections gynécologiques"], price: "22 880 FCFA", priceNum: 22880, category: "Soins féminins", bv: 32 },
+  { id: 62, name: "Breast Care Capsule", image: productBreastCareCapsule, benefits: ["Protège la santé mammaire", "Prévient les kystes mammaires"], price: "21 450 FCFA", priceNum: 21450, category: "Soins féminins", bv: 30 },
+  { id: 63, name: "Ovary Nutrition", image: productOvaryNutrition, benefits: ["Nourrit et protège les ovaires", "Régule le cycle menstruel"], price: "17 160 FCFA", priceNum: 17160, category: "Soins féminins", bv: 24 },
   { id: 71, name: "Panty Liner", image: productPantyLiner, benefits: ["Protection quotidienne", "Hygiène féminine naturelle"], price: "1 560 FCFA", priceNum: 1560, category: "Soins féminins", bv: 2 },
   { id: 72, name: "Napkin Day Use", image: productNapkinDay, benefits: ["Serviette hygiénique jour", "Confort et protection optimale"], price: "3 100 FCFA", priceNum: 3100, category: "Soins féminins", bv: 4 },
-  { id: 74, name: "Napkin Night Use", image: productPlaceholder, benefits: ["Serviette hygiénique nuit", "Protection longue durée"], price: "3 100 FCFA", priceNum: 3100, category: "Soins féminins", bv: 4 },
+  { id: 74, name: "Napkin Night Use", image: productNapkinNight, benefits: ["Serviette hygiénique nuit", "Protection longue durée"], price: "3 100 FCFA", priceNum: 3100, category: "Soins féminins", bv: 4 },
 
   // ===== SOINS MASCULINS =====
   { id: 3, name: "Kidney Tonifying Man", image: productKidney, benefits: ["Renforce les reins", "Optimise la vitalité masculine"], price: "21 450 FCFA", priceNum: 21450, category: "Soins masculins", bv: 30 },
