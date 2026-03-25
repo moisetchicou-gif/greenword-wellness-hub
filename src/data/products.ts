@@ -61,7 +61,7 @@ export const products: Product[] = [
   { id: 5, name: "A-Power Capsule", image: productAPower, benefits: ["Soutient le traitement du cancer", "Renforce l'immunité"], price: "28 600 FCFA", priceNum: 28600, category: "Compléments de santé", bv: 40 },
   { id: 7, name: "Glucoblock", image: productGlucoblock, benefits: ["Régule la glycémie", "Soutient la fonction pancréatique"], price: "12 900 FCFA", priceNum: 12900, category: "Compléments de santé", bv: 18 },
   { id: 9, name: "Cordyceps Plus Capsule", image: productCordyceps, benefits: ["Augmente l'énergie et la vitalité", "Régule le système immunitaire"], price: "14 300 FCFA", priceNum: 14300, category: "Compléments de santé", bv: 20 },
-  { id: 15, name: "Spirulina Plus Capsule", image: productPlaceholder, benefits: ["Riche en nutriments essentiels", "Favorise la digestion et la détox"], price: "15 015 FCFA", priceNum: 15015, category: "Compléments de santé", bv: 21 },
+  { id: 15, name: "Spirulina Plus Capsule", image: productSpirulina, benefits: ["Riche en nutriments essentiels", "Favorise la digestion et la détox"], price: "15 015 FCFA", priceNum: 15015, category: "Compléments de santé", bv: 21 },
   { id: 16, name: "Propolis Plus Capsule", image: productPlaceholder, benefits: ["Anti-inflammatoire naturel", "Renforce les défenses immunitaires"], price: "19 305 FCFA", priceNum: 19305, category: "Compléments de santé", bv: 27 },
   { id: 17, name: "Ganoderma Plus Capsule", image: productPlaceholder, benefits: ["Renforce l'immunité", "Soutient la santé respiratoire"], price: "16 445 FCFA", priceNum: 16445, category: "Compléments de santé", bv: 23 },
   { id: 18, name: "Cardio Power Capsule", image: productPlaceholder, benefits: ["Protège le système cardiovasculaire", "Régule la tension artérielle"], price: "13 585 FCFA", priceNum: 13585, category: "Compléments de santé", bv: 19 },
@@ -93,11 +93,11 @@ export const products: Product[] = [
   { id: 57, name: "Vitamin E Capsule", image: productPlaceholder, benefits: ["Antioxydant puissant", "Protège la peau et les cellules"], price: "16 445 FCFA", priceNum: 16445, category: "Compléments de santé", bv: 23 },
   { id: 58, name: "Vitamin D Capsule", image: productPlaceholder, benefits: ["Renforce les os", "Soutient l'immunité"], price: "16 445 FCFA", priceNum: 16445, category: "Compléments de santé", bv: 23 },
   { id: 59, name: "MNM Capsule", image: productPlaceholder, benefits: ["Anti-âge cellulaire avancé", "Régénération cellulaire premium"], price: "125 125 FCFA", priceNum: 125125, category: "Compléments de santé", bv: 175 },
-  { id: 64, name: "Meal Cellulose", image: productPlaceholder, benefits: ["Riche en fibres alimentaires", "Favorise le transit intestinal"], price: "18 590 FCFA", priceNum: 18590, category: "Compléments de santé", bv: 26 },
+  { id: 64, name: "Meal Cellulose", image: productMealCellulose, benefits: ["Riche en fibres alimentaires", "Favorise le transit intestinal"], price: "18 590 FCFA", priceNum: 18590, category: "Compléments de santé", bv: 26 },
   { id: 65, name: "Mala Power", image: productPlaceholder, benefits: ["Booste l'énergie naturelle", "Soutient la vitalité quotidienne"], price: "10 725 FCFA", priceNum: 10725, category: "Compléments de santé", bv: 15 },
-  { id: 66, name: "Tourmaline Flask", image: productPlaceholder, benefits: ["Eau alcaline et purifiée", "Améliore l'hydratation cellulaire"], price: "35 750 FCFA", priceNum: 35750, category: "Compléments de santé", bv: 50 },
-  { id: 67, name: "Compound Calcium C", image: productPlaceholder, benefits: ["Renforce les os", "Apport en calcium et vitamine C"], price: "14 300 FCFA", priceNum: 14300, category: "Compléments de santé", bv: 20 },
-  { id: 68, name: "Compound Calcium A", image: productPlaceholder, benefits: ["Calcium enrichi en vitamine A", "Prévient l'ostéoporose"], price: "15 730 FCFA", priceNum: 15730, category: "Compléments de santé", bv: 22 },
+  { id: 66, name: "Tourmaline Flask", image: productTourmalineFlask, benefits: ["Eau alcaline et purifiée", "Améliore l'hydratation cellulaire"], price: "35 750 FCFA", priceNum: 35750, category: "Compléments de santé", bv: 50 },
+  { id: 67, name: "Compound Calcium C", image: productCompoundCalciumC, benefits: ["Renforce les os", "Apport en calcium et vitamine C"], price: "14 300 FCFA", priceNum: 14300, category: "Compléments de santé", bv: 20 },
+  { id: 68, name: "Compound Calcium A", image: productCompoundCalciumA, benefits: ["Calcium enrichi en vitamine A", "Prévient l'ostéoporose"], price: "15 730 FCFA", priceNum: 15730, category: "Compléments de santé", bv: 22 },
   { id: 73, name: "Blood Cleanse Capsule", image: productPlaceholder, benefits: ["Purifie le sang", "Améliore la circulation sanguine"], price: "20 020 FCFA", priceNum: 20020, category: "Compléments de santé", bv: 28 },
   { id: 75, name: "SE Capsule", image: productPlaceholder, benefits: ["Apport en sélénium", "Antioxydant et anti-cancer"], price: "8 580 FCFA", priceNum: 8580, category: "Compléments de santé", bv: 12 },
   { id: 76, name: "Grape Seed Extract", image: productPlaceholder, benefits: ["Puissant antioxydant", "Protège les vaisseaux sanguins"], price: "17 875 FCFA", priceNum: 17875, category: "Compléments de santé", bv: 25 },
@@ -127,15 +127,15 @@ export const products: Product[] = [
   { id: 60, name: "Uterus Cleansing", image: productPlaceholder, benefits: ["Nettoie et protège l'utérus", "Prévient les infections gynécologiques"], price: "22 880 FCFA", priceNum: 22880, category: "Soins féminins", bv: 32 },
   { id: 62, name: "Breast Care Capsule", image: productPlaceholder, benefits: ["Protège la santé mammaire", "Prévient les kystes mammaires"], price: "21 450 FCFA", priceNum: 21450, category: "Soins féminins", bv: 30 },
   { id: 63, name: "Ovary Nutrition", image: productPlaceholder, benefits: ["Nourrit et protège les ovaires", "Régule le cycle menstruel"], price: "17 160 FCFA", priceNum: 17160, category: "Soins féminins", bv: 24 },
-  { id: 71, name: "Panty Liner", image: productPlaceholder, benefits: ["Protection quotidienne", "Hygiène féminine naturelle"], price: "1 560 FCFA", priceNum: 1560, category: "Soins féminins", bv: 2 },
-  { id: 72, name: "Napkin Day Use", image: productPlaceholder, benefits: ["Serviette hygiénique jour", "Confort et protection optimale"], price: "3 100 FCFA", priceNum: 3100, category: "Soins féminins", bv: 4 },
+  { id: 71, name: "Panty Liner", image: productPantyLiner, benefits: ["Protection quotidienne", "Hygiène féminine naturelle"], price: "1 560 FCFA", priceNum: 1560, category: "Soins féminins", bv: 2 },
+  { id: 72, name: "Napkin Day Use", image: productNapkinDay, benefits: ["Serviette hygiénique jour", "Confort et protection optimale"], price: "3 100 FCFA", priceNum: 3100, category: "Soins féminins", bv: 4 },
   { id: 74, name: "Napkin Night Use", image: productPlaceholder, benefits: ["Serviette hygiénique nuit", "Protection longue durée"], price: "3 100 FCFA", priceNum: 3100, category: "Soins féminins", bv: 4 },
 
   // ===== SOINS MASCULINS =====
   { id: 3, name: "Kidney Tonifying Man", image: productKidney, benefits: ["Renforce les reins", "Optimise la vitalité masculine"], price: "21 450 FCFA", priceNum: 21450, category: "Soins masculins", bv: 30 },
   { id: 4, name: "ProstaSure Capsule", image: productProstacre, benefits: ["Prévient et soulage la prostate", "Diminue les envies fréquentes d'uriner"], price: "23 595 FCFA", priceNum: 23595, category: "Soins masculins", bv: 33 },
   { id: 12, name: "Vig Power Capsule", image: productVigeurCapsule, benefits: ["Renforce la vitalité masculine", "Améliore l'endurance"], price: "18 590 FCFA", priceNum: 18590, category: "Soins masculins", bv: 26 },
-  { id: 69, name: "Golden Knight", image: productPlaceholder, benefits: ["Stimule la vitalité masculine", "Renforce la performance"], price: "12 870 FCFA", priceNum: 12870, category: "Soins masculins", bv: 18 },
+  { id: 69, name: "Golden Knight", image: productGoldenKnight, benefits: ["Stimule la vitalité masculine", "Renforce la performance"], price: "12 870 FCFA", priceNum: 12870, category: "Soins masculins", bv: 18 },
 
   // ===== ENFANTS & FAMILLE =====
   { id: 8, name: "Zinc Adulte", image: productZincAdulte, benefits: ["Renforce le système immunitaire", "Favorise la santé de la peau"], price: "11 440 FCFA", priceNum: 11440, category: "Enfants & Famille", bv: 16 },
@@ -149,7 +149,7 @@ export const products: Product[] = [
   { id: 6, name: "Anti-Aging Capsule", image: productAntiAging, benefits: ["Combat le vieillissement cellulaire", "Protège contre les radicaux libres"], price: "22 880 FCFA", priceNum: 22880, category: "Beauté & Hygiène", bv: 32 },
   { id: 13, name: "Clear (Dentifrice)", image: productClear, benefits: ["Prévient les caries et blanchit les dents", "Élimine la mauvaise haleine"], price: "5 363 FCFA", priceNum: 5363, category: "Beauté & Hygiène", bv: 7.5 },
   { id: 55, name: "Olive Soap", image: productPlaceholder, benefits: ["Savon hydratant naturel", "Nourrit et protège la peau"], price: "1 560 FCFA", priceNum: 1560, category: "Beauté & Hygiène", bv: 2 },
-  { id: 70, name: "Silver Eva", image: productPlaceholder, benefits: ["Soin féminin premium", "Hydratation et protection"], price: "12 155 FCFA", priceNum: 12155, category: "Beauté & Hygiène", bv: 17 },
+  { id: 70, name: "Silver Eva", image: productSilverEva, benefits: ["Soin féminin premium", "Hydratation et protection"], price: "12 155 FCFA", priceNum: 12155, category: "Beauté & Hygiène", bv: 17 },
 
   // ===== ENGRAIS BIO =====
   { id: 14, name: "Nutriplant Organic", image: productNutriplant, benefits: ["Améliore la qualité et le rendement", "Agriculture 100% biologique"], price: "21 450 FCFA", priceNum: 21450, category: "Engrais Bio", bv: 30 },
