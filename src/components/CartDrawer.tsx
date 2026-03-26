@@ -39,7 +39,7 @@ const CartDrawer = () => {
     setStep("payment");
   };
 
-  const WAVE_PAYMENT_LINK = "https://pay.wave.com/m/M_ci_tXW_B6Tybbrb/c/ci/";
+  const WAVE_PAYMENT_LINK = `https://pay.wave.com/m/M_ci_tXW_B6Tybbrb/c/ci/?amount=${total}`;
 
   const sendWhatsAppConfirmation = () => {
     const hour = new Date().getHours();
