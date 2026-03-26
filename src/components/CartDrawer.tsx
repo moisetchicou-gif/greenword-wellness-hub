@@ -46,64 +46,35 @@ const CartDrawer = () => {
     const greeting = hour < 18 ? "Bonjour" : "Bonsoir";
     const civ = form.civilite;
     const refId = `GW-${Date.now().toString(36).toUpperCase()}`;
-
-    const itemsList = items.map((i) => `• ${i.name} x${i.quantity} — ${(i.priceNum * i.quantity).toLocaleString("fr-FR")} FCFA`).join("\n");
-
-    const clientMsg = `${greeting} ${civ} ${form.prenom} ${form.nom} 👋,
-
-Nous avons bien reçu votre commande et elle est en cours de traitement ✅
-
-📦 *Récapitulatif :*
-${itemsList}
-
-💰 *Total :* ${total.toLocaleString("fr-FR")} FCFA
-💳 *Paiement :* ${selectedPayment}
-🔖 *Réf :* ${refId}
-✅ *Statut :* Payé
-
-📍 *Adresse :* ${form.adresse}
-📱 *Téléphone :* ${form.telephone}
-
-🚚 Vous serez livré(e) dans un délai de *1 à 2 jours ouvrés*.
-
-Merci pour votre confiance et bienvenue dans la famille Green World ! 🌿
-
-_Pour toute question, n'hésitez pas à nous écrire ici._`;
-
     const now = new Date();
     const dateStr = now.toLocaleDateString("fr-FR", { day: "2-digit", month: "2-digit", year: "numeric" });
     const timeStr = now.toLocaleTimeString("fr-FR", { hour: "2-digit", minute: "2-digit" });
 
-    const bizMsg = `🛒 *NOUVELLE COMMANDE* 🛒
-━━━━━━━━━━━━━━━━━━━━
+    const itemsList = items.map((i) => `• ${i.name} x${i.quantity} — ${(i.priceNum * i.quantity).toLocaleString("fr-FR")} FCFA`).join("\n");
+
+    // Un seul message envoyé par le client à la boutique
+    const message = `${greeting}, je souhaite passer une commande sur Green World 🌿
+
 🔖 *Réf :* ${refId}
 📅 *Date :* ${dateStr} à ${timeStr}
-━━━━━━━━━━━━━━━━━━━━
 
-👤 *INFORMATIONS CLIENT*
+👤 *Mes informations :*
 • *Civilité :* ${civ}
 • *Nom :* ${form.nom}
 • *Prénom :* ${form.prenom}
 • *Téléphone :* ${form.telephone}
 • *Adresse de livraison :* ${form.adresse}
 
-━━━━━━━━━━━━━━━━━━━━
-📦 *DÉTAIL DE LA COMMANDE*
+📦 *Ma commande :*
 ${itemsList}
 
-━━━━━━━━━━━━━━━━━━━━
-💰 *TOTAL À PAYER :* ${total.toLocaleString("fr-FR")} FCFA
-💳 *Moyen de paiement :* ${selectedPayment}
-✅ *Statut du paiement :* Payé
-━━━━━━━━━━━━━━━━━━━━`;
+💰 *Total :* ${total.toLocaleString("fr-FR")} FCFA
+💳 *Moyen de paiement choisi :* ${selectedPayment}
 
-    const whatsappUrl = `https://wa.me/2250715736370?text=${encodeURIComponent(clientMsg)}`;
+Merci de confirmer ma commande 🙏`;
+
+    const whatsappUrl = `https://wa.me/2250715736370?text=${encodeURIComponent(message)}`;
     window.open(whatsappUrl, "_blank");
-
-    setTimeout(() => {
-      const bizUrl = `https://wa.me/2250715736370?text=${encodeURIComponent(bizMsg)}`;
-      window.open(bizUrl, "_blank");
-    }, 1500);
 
     clearCart();
     setStep("done");
