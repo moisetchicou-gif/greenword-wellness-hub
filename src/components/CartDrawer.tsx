@@ -53,7 +53,7 @@ const CartDrawer = () => {
     const itemsList = items.map((i) => `• ${i.name} x${i.quantity} — ${(i.priceNum * i.quantity).toLocaleString("fr-FR")} FCFA`).join("\n");
 
     // Un seul message envoyé par le client à la boutique
-    const message = `${greeting}, je souhaite passer une commande sur Green World 🌿
+    const message = `${greeting}, j'ai passé une commande sur Green World 🌿 et j'ai effectué le paiement ✅
 
 🔖 *Réf :* ${refId}
 📅 *Date :* ${dateStr} à ${timeStr}
@@ -68,10 +68,10 @@ const CartDrawer = () => {
 📦 *Ma commande :*
 ${itemsList}
 
-💰 *Total :* ${total.toLocaleString("fr-FR")} FCFA
-💳 *Moyen de paiement choisi :* ${selectedPayment}
+💰 *Total payé :* ${total.toLocaleString("fr-FR")} FCFA
+💳 *J'ai payé via :* ${selectedPayment}
 
-Merci de confirmer ma commande 🙏`;
+Merci de confirmer la réception de ma commande 🙏`;
 
     const whatsappUrl = `https://wa.me/2250715736370?text=${encodeURIComponent(message)}`;
     window.open(whatsappUrl, "_blank");
