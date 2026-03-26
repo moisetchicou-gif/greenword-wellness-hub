@@ -45,6 +45,19 @@ const fourStarTexts = [
   "Mon père utilise Green World et ses résultats se sont améliorés.",
   "Je recommande ce produit à mes collègues.",
   "Ma digestion s'est améliorée. Je vais continuer.",
+  "Produit correct, livraison rapide. Je suis satisfait.",
+  "Ma femme et moi utilisons Green World ensemble. Bon produit.",
+  "Les résultats sont progressifs mais bien réels.",
+  "Je me sens mieux depuis que j'ai commencé Green World.",
+  "Bon produit naturel, je fais confiance à la marque.",
+];
+
+const threeStarTexts = [
+  "Produit correct mais les effets prennent du temps à se manifester.",
+  "Pas mal, mais je m'attendais à des résultats plus rapides.",
+  "Le goût n'est pas terrible mais le produit semble efficace.",
+  "Résultats moyens pour l'instant, je vais persévérer.",
+  "Correct dans l'ensemble, rapport qualité-prix acceptable.",
 ];
 
 function generateTestimonials() {
@@ -63,8 +76,9 @@ function generateTestimonials() {
       result.push({ name, city, text: texts[i % texts.length], rating });
     }
   };
-  addTestimonials(fiveStarTexts, 5, 120);
-  addTestimonials(fourStarTexts, 4, 180);
+  addTestimonials(fiveStarTexts, 5, 220);
+  addTestimonials(fourStarTexts, 4, 280);
+  addTestimonials(threeStarTexts, 3, 5);
   for (let i = result.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
     [result[i], result[j]] = [result[j], result[i]];
@@ -135,7 +149,7 @@ const TestimonialsSection = () => {
             className={`px-4 py-2 rounded-full text-xs font-medium transition-all duration-300 ${filter === null ? "bg-accent text-accent-foreground shadow-lg shadow-accent/20" : "glass text-foreground hover:bg-secondary"}`}>
             Tous ({testimonials.length})
           </button>
-          {[5, 4].map((r) => (
+          {[5, 4, 3].map((r) => (
             <button key={r} onClick={() => { setFilter(r); setPage(0); }}
               className={`px-4 py-2 rounded-full text-xs font-medium transition-all duration-300 flex items-center gap-1 ${filter === r ? "bg-accent text-accent-foreground shadow-lg shadow-accent/20" : "glass text-foreground hover:bg-secondary"}`}>
               {r} <Star className="w-3 h-3 fill-current" /> ({testimonials.filter((t) => t.rating === r).length})
