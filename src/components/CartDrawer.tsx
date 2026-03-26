@@ -70,19 +70,32 @@ Merci pour votre confiance et bienvenue dans la famille Green World ! 🌿
 
 _Pour toute question, n'hésitez pas à nous écrire ici._`;
 
-    const bizMsg = `📋 *Nouvelle commande - Réf : ${refId}*
+    const now = new Date();
+    const dateStr = now.toLocaleDateString("fr-FR", { day: "2-digit", month: "2-digit", year: "numeric" });
+    const timeStr = now.toLocaleTimeString("fr-FR", { hour: "2-digit", minute: "2-digit" });
 
-👤 *Client :* ${civ} ${form.prenom} ${form.nom}
-📱 *Tél :* ${form.telephone}
-📍 *Adresse :* ${form.adresse}
+    const bizMsg = `🛒 *NOUVELLE COMMANDE* 🛒
+━━━━━━━━━━━━━━━━━━━━
+🔖 *Réf :* ${refId}
+📅 *Date :* ${dateStr} à ${timeStr}
+━━━━━━━━━━━━━━━━━━━━
 
-📦 *Produits :*
+👤 *INFORMATIONS CLIENT*
+• *Civilité :* ${civ}
+• *Nom :* ${form.nom}
+• *Prénom :* ${form.prenom}
+• *Téléphone :* ${form.telephone}
+• *Adresse de livraison :* ${form.adresse}
+
+━━━━━━━━━━━━━━━━━━━━
+📦 *DÉTAIL DE LA COMMANDE*
 ${itemsList}
 
-💰 *Total :* ${total.toLocaleString("fr-FR")} FCFA
+━━━━━━━━━━━━━━━━━━━━
+💰 *TOTAL À PAYER :* ${total.toLocaleString("fr-FR")} FCFA
 💳 *Moyen de paiement :* ${selectedPayment}
-🔖 *Réf. paiement :* ${refId}
-✅ *Statut :* Payé`;
+✅ *Statut du paiement :* Payé
+━━━━━━━━━━━━━━━━━━━━`;
 
     const whatsappUrl = `https://wa.me/2250715736370?text=${encodeURIComponent(clientMsg)}`;
     window.open(whatsappUrl, "_blank");
