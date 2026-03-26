@@ -205,7 +205,7 @@ export const products: Product[] = [
 
   // ===== BEAUTÉ & HYGIÈNE =====
   { id: 6, name: "Anti-Aging Capsule", image: productAntiAging, benefits: ["Combat le vieillissement cellulaire", "Protège contre les radicaux libres"], price: "22 880 FCFA", priceNum: 22880, category: "Beauté & Hygiène", bv: 32 },
-  { id: 13, name: "Clear (Dentifrice)", image: productClear, benefits: ["Prévient les caries et blanchit les dents", "Élimine la mauvaise haleine"], price: "5 363 FCFA", priceNum: 5363, category: "Beauté & Hygiène", bv: 7.5 },
+  { id: 13, name: "Clear", image: productClear, benefits: ["Élimine la constipation chronique", "Favorise un transit intestinal sain"], price: "7 500 FCFA", priceNum: 7500, category: "Compléments de santé", bv: 7.5 },
   { id: 55, name: "Olive Soap", image: productOliveSoap, benefits: ["Savon hydratant naturel", "Nourrit et protège la peau"], price: "1 560 FCFA", priceNum: 1560, category: "Beauté & Hygiène", bv: 2 },
   { id: 70, name: "Silver Eva", image: productSilverEva, benefits: ["Soin féminin premium", "Hydratation et protection"], price: "12 155 FCFA", priceNum: 12155, category: "Beauté & Hygiène", bv: 17 },
 
