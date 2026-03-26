@@ -62,6 +62,16 @@ import productHepatsure from "@/assets/product-hepatsure.jpg";
 import productParashield from "@/assets/product-parashield.jpg";
 import productSlimming from "@/assets/product-slimming.jpg";
 import productSuperNutrition from "@/assets/product-super-nutrition.jpg";
+import productCoq10 from "@/assets/product-coq10.jpg";
+import productBoneCarePlaster from "@/assets/product-bone-care-plaster.webp";
+import productDiasure from "@/assets/product-diasure.jpg";
+import productJointHealth from "@/assets/product-joint-health.webp";
+import productVitaminC from "@/assets/product-vitamin-c.jpg";
+import productGastricHealth from "@/assets/product-gastric-health.jpg";
+import productDetoxinPad from "@/assets/product-detoxin-pad.jpg";
+import productBlueberryJuice from "@/assets/product-blueberry-juice.jpg";
+import productBlueberryEnzymes from "@/assets/product-blueberry-enzymes.jpg";
+import productVitaminE from "@/assets/product-vitamin-e.webp";
 
 export type Category =
   | "Compléments de santé"
