@@ -74,8 +74,8 @@ const ProductCard = ({ product, index }: { product: Product; index: number }) =>
 };
 
 const ProductsSection = () => {
-  const [activeCategory, setActiveCategory] = useState<Category>("Compléments de santé");
-  const filtered = products.filter((p) => p.category === activeCategory);
+  const [activeCategory, setActiveCategory] = useState<Category>("Tous les produits");
+  const filtered = activeCategory === "Tous les produits" ? products : products.filter((p) => p.category === activeCategory);
   const { ref, visible } = useScrollRevealSimple();
 
   return (
