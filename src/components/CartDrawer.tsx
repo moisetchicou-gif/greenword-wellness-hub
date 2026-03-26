@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { X, Minus, Plus, ShoppingCart } from "lucide-react";
 import { useCart } from "@/hooks/useCart";
+import { orderFormSchema, safeOpenExternal } from "@/lib/sanitize";
 import logoOrangeMoney from "@/assets/logo-orange-money.png";
 import logoWave from "@/assets/logo-wave.png";
 import logoMtn from "@/assets/logo-mtn.png";
@@ -20,14 +21,16 @@ type Step = "cart" | "info" | "payment" | "wave-pending" | "done";
 const CartDrawer = () => {
   const { items, removeItem, updateQuantity, clearCart, isOpen, setIsOpen, total } = useCart();
   const [step, setStep] = useState<Step>("cart");
-  const [form, setForm] = useState({ nom: "", prenom: "", adresse: "", telephone: "", civilite: "M." });
+  const [form, setForm] = useState({ nom: "", prenom: "", adresse: "", telephone: "", civilite: "M." as const });
+  const [formErrors, setFormErrors] = useState<Record<string, string>>({});
   const [selectedPayment, setSelectedPayment] = useState<string | null>(null);
 
   const handleClose = () => {
     setIsOpen(false);
     if (step === "done") {
       setStep("cart");
-      setForm({ nom: "", prenom: "", adresse: "", telephone: "", civilite: "M." });
+      setForm({ nom: "", prenom: "", adresse: "", telephone: "", civilite: "M." as const });
+      setFormErrors({});
       setSelectedPayment(null);
     }
   };
@@ -36,6 +39,17 @@ const CartDrawer = () => {
 
   const handleProceedToPayment = (e: React.FormEvent) => {
     e.preventDefault();
+    const result = orderFormSchema.safeParse(form);
+    if (!result.success) {
+      const errors: Record<string, string> = {};
+      result.error.errors.forEach((err) => {
+        if (err.path[0]) errors[err.path[0] as string] = err.message;
+      });
+      setFormErrors(errors);
+      return;
+    }
+    setFormErrors({});
+    setForm({ ...form, ...result.data });
     setStep("payment");
   };
 
@@ -74,7 +88,7 @@ ${itemsList}
 Merci de confirmer la réception de ma commande 🙏`;
 
     const whatsappUrl = `https://wa.me/2250715736370?text=${encodeURIComponent(message)}`;
-    window.open(whatsappUrl, "_blank");
+    safeOpenExternal(whatsappUrl);
 
     clearCart();
     setStep("done");
@@ -83,7 +97,7 @@ Merci de confirmer la réception de ma commande 🙏`;
   const handlePay = () => {
     if (selectedPayment === "Wave") {
       // Ouvrir Wave pour le paiement, puis attendre confirmation
-      window.open(WAVE_PAYMENT_LINK, "_blank");
+      safeOpenExternal(WAVE_PAYMENT_LINK);
       setStep("wave-pending");
       return;
     }
