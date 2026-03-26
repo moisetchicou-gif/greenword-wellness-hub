@@ -1,5 +1,6 @@
 import { Star, Quote } from "lucide-react";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
+import { useScrollReveal } from "@/hooks/useScrollReveal";
 
 const ivorianFirstNames = ["Adjoua","Kouassi","Sékou","Awa","Marie-Jeanne","Drissa","Fatou","Issouf","Aminata","Jean-Baptiste","Mariam","Lacina","Rokia","Mamadou","Clarisse","Ibrahim","Salimata","Yves","Fatoumata","Abdoulaye","Pascale","Oumar","Aïcha","Noël","Bintou","Lassina","Rachelle","Koffi","Naminata","Serge","Djénéba","Moussa","Hortense","Bakary","Sandrine","Adama","Colette","Souleymane","Pélagie","Yacouba","Estelle","Tiemoko","Léontine","Karim","Véronique","Sidiki","Élodie","Daouda","Thérèse","Youssouf"];
 const ivorianLastNames = ["Koné","Yao","Ouattara","Touré","Brou","Coulibaly","Diabaté","Traoré","Konaté","Aka","Cissé","Dembélé","Sanogo","Diallo","N'Guessan","Bamba","Kouadio","Soro","Sangaré","Ehui","Fofana","Koffi","Adou","Achi","Tanoh"];
@@ -49,7 +50,6 @@ const fourStarTexts = [
 function generateTestimonials() {
   const result: { name: string; city: string; text: string; rating: number }[] = [];
   const usedNames = new Set<string>();
-
   const addTestimonials = (texts: string[], rating: number, count: number) => {
     for (let i = 0; i < count; i++) {
       let name: string;
@@ -63,10 +63,8 @@ function generateTestimonials() {
       result.push({ name, city, text: texts[i % texts.length], rating });
     }
   };
-
   addTestimonials(fiveStarTexts, 5, 120);
   addTestimonials(fourStarTexts, 4, 180);
-
   for (let i = result.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
     [result[i], result[j]] = [result[j], result[i]];
@@ -85,20 +83,44 @@ const StarRating = ({ rating }: { rating: number }) => (
   </div>
 );
 
+const TestimonialCard = ({ t, index }: { t: { name: string; city: string; text: string; rating: number }; index: number }) => {
+  const { ref, visible } = useScrollReveal(0.1);
+
+  return (
+    <div
+      ref={ref}
+      className={`glass rounded-2xl p-6 hover-lift relative transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
+      style={{ transitionDelay: `${index * 80}ms` }}
+    >
+      <Quote className="absolute top-4 right-4 w-6 h-6 text-primary/15" />
+      <StarRating rating={t.rating} />
+      <p className="text-foreground text-sm leading-relaxed mt-3 italic">"{t.text}"</p>
+      <div className="mt-4 pt-3 border-t border-border/50">
+        <p className="font-semibold text-xs text-accent">{t.name}</p>
+        <p className="text-[11px] text-muted-foreground">{t.city}, Côte d'Ivoire</p>
+      </div>
+    </div>
+  );
+};
+
 const TestimonialsSection = () => {
   const [page, setPage] = useState(0);
   const [filter, setFilter] = useState<number | null>(null);
+  const { ref: headerRef, visible: headerVisible } = useScrollReveal(0.2);
 
   const filtered = filter !== null ? testimonials.filter((t) => t.rating === filter) : testimonials;
   const totalPages = Math.ceil(filtered.length / ITEMS_PER_PAGE);
   const displayed = filtered.slice(page * ITEMS_PER_PAGE, (page + 1) * ITEMS_PER_PAGE);
-
   const avgRating = (testimonials.reduce((s, t) => s + t.rating, 0) / testimonials.length).toFixed(1);
 
   return (
-    <section id="avis" className="py-24 bg-background">
-      <div className="container mx-auto px-6">
-        <div className="text-center mb-12 space-y-4">
+    <section id="avis" className="py-24 bg-background relative overflow-hidden">
+      {/* Decorative elements */}
+      <div className="absolute top-20 right-0 w-64 h-64 rounded-full bg-primary/5 blur-3xl" />
+      <div className="absolute bottom-20 left-0 w-48 h-48 rounded-full bg-highlight/10 blur-3xl" />
+
+      <div className="container mx-auto px-6 relative">
+        <div ref={headerRef} className={`text-center mb-12 space-y-4 transition-all duration-700 ${headerVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
           <p className="text-primary text-xs font-semibold uppercase tracking-[0.2em]">Témoignages</p>
           <h2 className="text-3xl sm:text-4xl text-accent">
             Ce que disent nos <span className="italic text-primary">clients</span>
@@ -110,12 +132,12 @@ const TestimonialsSection = () => {
 
         <div className="flex flex-wrap justify-center gap-2 mb-10">
           <button onClick={() => { setFilter(null); setPage(0); }}
-            className={`px-4 py-2 rounded-full text-xs font-medium transition-colors ${filter === null ? "bg-accent text-accent-foreground" : "bg-card border border-border text-foreground hover:bg-secondary"}`}>
+            className={`px-4 py-2 rounded-full text-xs font-medium transition-all duration-300 ${filter === null ? "bg-accent text-accent-foreground shadow-lg shadow-accent/20" : "glass text-foreground hover:bg-secondary"}`}>
             Tous ({testimonials.length})
           </button>
           {[5, 4].map((r) => (
             <button key={r} onClick={() => { setFilter(r); setPage(0); }}
-              className={`px-4 py-2 rounded-full text-xs font-medium transition-colors flex items-center gap-1 ${filter === r ? "bg-accent text-accent-foreground" : "bg-card border border-border text-foreground hover:bg-secondary"}`}>
+              className={`px-4 py-2 rounded-full text-xs font-medium transition-all duration-300 flex items-center gap-1 ${filter === r ? "bg-accent text-accent-foreground shadow-lg shadow-accent/20" : "glass text-foreground hover:bg-secondary"}`}>
               {r} <Star className="w-3 h-3 fill-current" /> ({testimonials.filter((t) => t.rating === r).length})
             </button>
           ))}
@@ -123,30 +145,22 @@ const TestimonialsSection = () => {
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
           {displayed.map((t, i) => (
-            <div key={`${t.name}-${i}`} className="bg-card rounded-2xl p-6 border border-border/50 hover:shadow-md transition-shadow duration-300 relative">
-              <Quote className="absolute top-4 right-4 w-6 h-6 text-border/60" />
-              <StarRating rating={t.rating} />
-              <p className="text-foreground text-sm leading-relaxed mt-3 italic">"{t.text}"</p>
-              <div className="mt-4 pt-3 border-t border-border/50">
-                <p className="font-semibold text-xs text-accent">{t.name}</p>
-                <p className="text-[11px] text-muted-foreground">{t.city}, Côte d'Ivoire</p>
-              </div>
-            </div>
+            <TestimonialCard key={`${t.name}-${i}`} t={t} index={i} />
           ))}
         </div>
 
         {totalPages > 1 && (
-          <div className="flex justify-center items-center gap-2 mt-10">
+          <div className="flex justify-center items-center gap-3 mt-10">
             <button disabled={page === 0} onClick={() => setPage(page - 1)}
-              className="px-4 py-2 rounded-full text-xs font-medium border border-border hover:bg-secondary disabled:opacity-30 transition-colors">
-              Précédent
+              className="px-5 py-2.5 rounded-full text-xs font-medium glass hover:bg-secondary disabled:opacity-30 transition-all duration-300">
+              ← Précédent
             </button>
-            <span className="text-xs text-muted-foreground px-3">
+            <span className="text-xs text-muted-foreground px-3 font-medium">
               {page + 1} / {totalPages}
             </span>
             <button disabled={page >= totalPages - 1} onClick={() => setPage(page + 1)}
-              className="px-4 py-2 rounded-full text-xs font-medium border border-border hover:bg-secondary disabled:opacity-30 transition-colors">
-              Suivant
+              className="px-5 py-2.5 rounded-full text-xs font-medium glass hover:bg-secondary disabled:opacity-30 transition-all duration-300">
+              Suivant →
             </button>
           </div>
         )}
