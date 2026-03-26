@@ -72,6 +72,16 @@ import productDetoxinPad from "@/assets/product-detoxin-pad.jpg";
 import productBlueberryJuice from "@/assets/product-blueberry-juice.jpg";
 import productBlueberryEnzymes from "@/assets/product-blueberry-enzymes.jpg";
 import productVitaminE from "@/assets/product-vitamin-e.webp";
+import productVitaminD from "@/assets/product-vitamin-d.jpg";
+import productMnm from "@/assets/product-mnm.jpeg";
+import productMalaPower from "@/assets/product-mala-power.jpg";
+import productSeCapsule from "@/assets/product-se-capsule.jpg";
+import productGrapeSeed from "@/assets/product-grape-seed.jpg";
+import productLivergen from "@/assets/product-livergen.jpg";
+import productAnxietyStress from "@/assets/product-anxiety-stress.jpg";
+import productProbiotics from "@/assets/product-probiotics.jpg";
+import productAntiAddiction from "@/assets/product-anti-addiction.jpg";
+import productBlueberryConcentrate from "@/assets/product-blueberry-concentrate.jpg";
 
 export type Category =
   | "Compléments de santé"
