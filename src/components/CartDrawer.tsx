@@ -182,7 +182,7 @@ Merci de confirmer la réception de ma commande 🙏`;
               <div>
                 <label className="text-xs text-muted-foreground mb-1 block">Civilité</label>
                 <div className="flex gap-3">
-                  {["M.", "Mme"].map((c) => (
+                  {(["M.", "Mme"] as const).map((c) => (
                     <button key={c} type="button" onClick={() => setForm({ ...form, civilite: c })}
                       className={`px-4 py-2 rounded-xl text-sm font-medium border transition-colors ${form.civilite === c ? "bg-primary text-primary-foreground border-primary" : "border-border text-foreground hover:bg-primary/10"}`}
                     >{c}</button>
