@@ -45,6 +45,19 @@ const fourStarTexts = [
   "Mon père utilise Green World et ses résultats se sont améliorés.",
   "Je recommande ce produit à mes collègues.",
   "Ma digestion s'est améliorée. Je vais continuer.",
+  "Produit correct, livraison rapide. Je suis satisfait.",
+  "Ma femme et moi utilisons Green World ensemble. Bon produit.",
+  "Les résultats sont progressifs mais bien réels.",
+  "Je me sens mieux depuis que j'ai commencé Green World.",
+  "Bon produit naturel, je fais confiance à la marque.",
+];
+
+const threeStarTexts = [
+  "Produit correct mais les effets prennent du temps à se manifester.",
+  "Pas mal, mais je m'attendais à des résultats plus rapides.",
+  "Le goût n'est pas terrible mais le produit semble efficace.",
+  "Résultats moyens pour l'instant, je vais persévérer.",
+  "Correct dans l'ensemble, rapport qualité-prix acceptable.",
 ];
 
 function generateTestimonials() {
@@ -63,8 +76,9 @@ function generateTestimonials() {
       result.push({ name, city, text: texts[i % texts.length], rating });
     }
   };
-  addTestimonials(fiveStarTexts, 5, 120);
-  addTestimonials(fourStarTexts, 4, 180);
+  addTestimonials(fiveStarTexts, 5, 220);
+  addTestimonials(fourStarTexts, 4, 280);
+  addTestimonials(threeStarTexts, 3, 5);
   for (let i = result.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
     [result[i], result[j]] = [result[j], result[i]];
