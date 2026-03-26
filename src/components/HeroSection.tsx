@@ -21,16 +21,16 @@ const HeroSection = () => {
       {/* Subtle texture overlay */}
       <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: "url(\"data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23000000' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E\")" }} />
 
-      <div className="container mx-auto px-6 grid md:grid-cols-2 gap-16 items-center relative">
-        <div className="space-y-8">
+      <div className="container mx-auto px-4 sm:px-6 grid md:grid-cols-2 gap-8 md:gap-16 items-center relative">
+        <div className="space-y-6 sm:space-y-8 text-center md:text-left">
           <div
-            className={`inline-flex items-center gap-2 glass text-accent px-5 py-2.5 rounded-full text-xs font-semibold tracking-widest uppercase transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}
+            className={`inline-flex items-center gap-2 glass text-accent px-4 sm:px-5 py-2 sm:py-2.5 rounded-full text-[11px] sm:text-xs font-semibold tracking-widest uppercase transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}
           >
             <Sparkles className="w-3.5 h-3.5 text-primary animate-bounce-gentle" />
             100% Naturel · Certifié Bio
           </div>
           <h1
-            className={`text-4xl sm:text-5xl lg:text-[3.75rem] leading-[1.12] text-accent transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
+            className={`text-3xl sm:text-4xl lg:text-[3.75rem] leading-[1.15] text-accent transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
             style={{ transitionDelay: "150ms" }}
           >
             La puissance de la nature,{" "}
@@ -41,14 +41,14 @@ const HeroSection = () => {
             par la science.
           </h1>
           <p
-            className={`text-muted-foreground text-lg max-w-lg leading-relaxed transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
+            className={`text-muted-foreground text-base sm:text-lg max-w-lg leading-relaxed mx-auto md:mx-0 transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
             style={{ transitionDelay: "300ms" }}
           >
             Découvrez nos compléments alimentaires et produits de beauté formulés à partir d'ingrédients biologiques d'exception,
             pour un bien-être durable au quotidien.
           </p>
           <div
-            className={`flex flex-wrap gap-4 pt-2 transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
+            className={`flex flex-wrap gap-3 sm:gap-4 pt-2 justify-center md:justify-start transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
             style={{ transitionDelay: "450ms" }}
           >
             <a
@@ -56,7 +56,7 @@ const HeroSection = () => {
               className="group bg-accent text-accent-foreground px-8 py-3.5 rounded-full font-medium text-sm tracking-wide hover:shadow-2xl transition-all duration-500 relative overflow-hidden"
               style={{ boxShadow: "0 8px 32px -8px hsl(163 33% 18% / 0.3)" }}
             >
-              <span className="relative z-10 flex items-center gap-2">
+              <span className="relative z-10 flex items-center gap-2 text-xs sm:text-sm">
                 Découvrir la boutique
                 <ArrowDown className="w-4 h-4 group-hover:translate-y-0.5 transition-transform" />
               </span>
@@ -80,7 +80,7 @@ const HeroSection = () => {
             <img
               src={heroProduct}
               alt="Produit Green World — Complément alimentaire naturel"
-              className="w-72 sm:w-96 drop-shadow-2xl relative z-10 animate-float"
+              className="w-48 sm:w-72 md:w-96 drop-shadow-2xl relative z-10 animate-float"
             />
           </div>
         </div>
