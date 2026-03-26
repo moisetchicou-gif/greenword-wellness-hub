@@ -4,7 +4,7 @@ import logo from "@/assets/logo-greenworld.jpg";
 const Footer = () => {
   return (
     <footer className="py-16 bg-accent text-accent-foreground/70 border-t border-accent-foreground/10">
-      <div className="container mx-auto px-6">
+      <div className="container mx-auto px-4 sm:px-6">
         <div className="grid md:grid-cols-3 gap-10">
           <div className="space-y-4">
             <div className="flex items-center gap-3">

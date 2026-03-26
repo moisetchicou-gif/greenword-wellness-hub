@@ -83,7 +83,7 @@ const ProductsSection = () => {
       {/* Decorative gradient */}
       <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-secondary/30 to-transparent" />
       
-      <div className="container mx-auto px-6 relative">
+      <div className="container mx-auto px-4 sm:px-6 relative">
         <div ref={ref} className={`text-center mb-12 space-y-4 transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
           <p className="text-primary text-xs font-semibold uppercase tracking-[0.2em]">Notre gamme</p>
           <h2 className="text-3xl sm:text-4xl text-accent">

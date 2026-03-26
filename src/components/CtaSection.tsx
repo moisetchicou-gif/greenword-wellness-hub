@@ -16,7 +16,7 @@ const CtaSection = () => {
       <div className="absolute -bottom-10 -left-10 w-60 h-60 rounded-full bg-primary/5 blur-2xl animate-pulse-soft" style={{ animationDelay: "1s" }} />
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full bg-primary/5 blur-3xl" />
 
-      <div ref={ref} className="container mx-auto px-6 text-center space-y-8 relative">
+      <div ref={ref} className="container mx-auto px-4 sm:px-6 text-center space-y-6 sm:space-y-8 relative">
         <p className={`text-primary/70 text-xs font-semibold uppercase tracking-[0.2em] transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}>
           Commander
         </p>
@@ -35,7 +35,7 @@ const CtaSection = () => {
         </div>
 
         {/* Contact */}
-        <div id="contact" className="grid sm:grid-cols-2 gap-3 max-w-2xl mx-auto pt-6">
+        <div id="contact" className="grid grid-cols-1 sm:grid-cols-2 gap-3 max-w-2xl mx-auto pt-6">
           <a href="tel:+2252733747334" className="flex items-center gap-3 glass-dark rounded-xl p-4 hover:bg-accent-foreground/10 transition-all duration-300 hover-lift">
             <Phone className="w-4 h-4 text-primary" />
             <div className="text-left">
