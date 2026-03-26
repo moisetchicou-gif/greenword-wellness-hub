@@ -192,24 +192,28 @@ Merci de confirmer la réception de ma commande 🙏`;
               <div className="grid grid-cols-2 gap-3">
                 <div>
                   <label className="text-xs text-muted-foreground mb-1 block">Nom</label>
-                  <input required value={form.nom} onChange={(e) => setForm({ ...form, nom: e.target.value })}
-                    className="w-full px-3 py-2.5 rounded-xl border border-border bg-secondary/50 text-foreground text-sm focus:outline-none focus:ring-2 focus:ring-primary/30" placeholder="Koné" />
+                  <input required maxLength={50} value={form.nom} onChange={(e) => setForm({ ...form, nom: e.target.value })}
+                    className={`w-full px-3 py-2.5 rounded-xl border bg-secondary/50 text-foreground text-sm focus:outline-none focus:ring-2 focus:ring-primary/30 ${formErrors.nom ? "border-destructive" : "border-border"}`} placeholder="Koné" />
+                  {formErrors.nom && <p className="text-destructive text-[10px] mt-1">{formErrors.nom}</p>}
                 </div>
                 <div>
                   <label className="text-xs text-muted-foreground mb-1 block">Prénom</label>
-                  <input required value={form.prenom} onChange={(e) => setForm({ ...form, prenom: e.target.value })}
-                    className="w-full px-3 py-2.5 rounded-xl border border-border bg-secondary/50 text-foreground text-sm focus:outline-none focus:ring-2 focus:ring-primary/30" placeholder="Adjoua" />
+                  <input required maxLength={50} value={form.prenom} onChange={(e) => setForm({ ...form, prenom: e.target.value })}
+                    className={`w-full px-3 py-2.5 rounded-xl border bg-secondary/50 text-foreground text-sm focus:outline-none focus:ring-2 focus:ring-primary/30 ${formErrors.prenom ? "border-destructive" : "border-border"}`} placeholder="Adjoua" />
+                  {formErrors.prenom && <p className="text-destructive text-[10px] mt-1">{formErrors.prenom}</p>}
                 </div>
               </div>
               <div>
                 <label className="text-xs text-muted-foreground mb-1 block">Adresse de livraison</label>
-                <input required value={form.adresse} onChange={(e) => setForm({ ...form, adresse: e.target.value })}
-                  className="w-full px-3 py-2.5 rounded-xl border border-border bg-secondary/50 text-foreground text-sm focus:outline-none focus:ring-2 focus:ring-primary/30" placeholder="Cocody, Abidjan" />
+                <input required maxLength={200} value={form.adresse} onChange={(e) => setForm({ ...form, adresse: e.target.value })}
+                  className={`w-full px-3 py-2.5 rounded-xl border bg-secondary/50 text-foreground text-sm focus:outline-none focus:ring-2 focus:ring-primary/30 ${formErrors.adresse ? "border-destructive" : "border-border"}`} placeholder="Cocody, Abidjan" />
+                {formErrors.adresse && <p className="text-destructive text-[10px] mt-1">{formErrors.adresse}</p>}
               </div>
               <div>
                 <label className="text-xs text-muted-foreground mb-1 block">Numéro de téléphone</label>
-                <input required type="tel" value={form.telephone} onChange={(e) => setForm({ ...form, telephone: e.target.value })}
-                  className="w-full px-3 py-2.5 rounded-xl border border-border bg-secondary/50 text-foreground text-sm focus:outline-none focus:ring-2 focus:ring-primary/30" placeholder="+225 07..." />
+                <input required type="tel" maxLength={20} value={form.telephone} onChange={(e) => setForm({ ...form, telephone: e.target.value })}
+                  className={`w-full px-3 py-2.5 rounded-xl border bg-secondary/50 text-foreground text-sm focus:outline-none focus:ring-2 focus:ring-primary/30 ${formErrors.telephone ? "border-destructive" : "border-border"}`} placeholder="+225 07..." />
+                {formErrors.telephone && <p className="text-destructive text-[10px] mt-1">{formErrors.telephone}</p>}
               </div>
               <div className="flex gap-3 pt-2">
                 <button type="button" onClick={() => setStep("cart")} className="flex-1 border border-border text-foreground py-3 rounded-full font-semibold hover:bg-secondary/50 transition-colors">Retour</button>
