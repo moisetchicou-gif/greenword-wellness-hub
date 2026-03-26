@@ -149,7 +149,7 @@ const TestimonialsSection = () => {
             className={`px-4 py-2 rounded-full text-xs font-medium transition-all duration-300 ${filter === null ? "bg-accent text-accent-foreground shadow-lg shadow-accent/20" : "glass text-foreground hover:bg-secondary"}`}>
             Tous ({testimonials.length})
           </button>
-          {[5, 4].map((r) => (
+          {[5, 4, 3].map((r) => (
             <button key={r} onClick={() => { setFilter(r); setPage(0); }}
               className={`px-4 py-2 rounded-full text-xs font-medium transition-all duration-300 flex items-center gap-1 ${filter === r ? "bg-accent text-accent-foreground shadow-lg shadow-accent/20" : "glass text-foreground hover:bg-secondary"}`}>
               {r} <Star className="w-3 h-3 fill-current" /> ({testimonials.filter((t) => t.rating === r).length})
