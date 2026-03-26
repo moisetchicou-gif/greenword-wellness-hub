@@ -52,6 +52,16 @@ import productSoybeanLecithin from "@/assets/product-soybean-lecithin.jpg";
 import productDeepSeaFishOil from "@/assets/product-deep-sea-fish-oil.jpg";
 import productGarlicOil from "@/assets/product-garlic-oil.jpg";
 import productEyeCare from "@/assets/product-eye-care.jpg";
+import productChitosan from "@/assets/product-chitosan.jpg";
+import productAloeVera from "@/assets/product-aloe-vera.jpg";
+import productCompoundMarrow from "@/assets/product-compound-marrow.jpg";
+import productGinkgoBiloba from "@/assets/product-ginkgo-biloba.jpg";
+import productBrainCare from "@/assets/product-brain-care.jpg";
+import productRoyalJelly from "@/assets/product-royal-jelly.jpg";
+import productHepatsure from "@/assets/product-hepatsure.jpg";
+import productParashield from "@/assets/product-parashield.jpg";
+import productSlimming from "@/assets/product-slimming.jpg";
+import productSuperNutrition from "@/assets/product-super-nutrition.jpg";
 
 export type Category =
   | "Compléments de santé"
@@ -99,16 +109,16 @@ export const products: Product[] = [
   { id: 31, name: "Deep Sea Fish Oil", image: productDeepSeaFishOil, benefits: ["Riche en Oméga-3", "Protège le cœur et le cerveau"], price: "17 875 FCFA", priceNum: 17875, category: "Compléments de santé", bv: 25 },
   { id: 32, name: "Garlic Oil Softgel", image: productGarlicOil, benefits: ["Antibactérien naturel", "Renforce l'immunité"], price: "16 088 FCFA", priceNum: 16088, category: "Compléments de santé", bv: 22.5 },
   { id: 33, name: "Eye Care Softgel", image: productEyeCare, benefits: ["Protège la vision", "Prévient la dégénérescence maculaire"], price: "20 020 FCFA", priceNum: 20020, category: "Compléments de santé", bv: 28 },
-  { id: 34, name: "Chitosan Capsule", image: productPlaceholder, benefits: ["Absorbe les graisses", "Favorise la perte de poids"], price: "17 160 FCFA", priceNum: 17160, category: "Compléments de santé", bv: 24 },
-  { id: 35, name: "Aloe Vera Plus Capsule", image: productPlaceholder, benefits: ["Détoxifie l'organisme", "Soutient la digestion"], price: "15 015 FCFA", priceNum: 15015, category: "Compléments de santé", bv: 21 },
-  { id: 36, name: "Compound Marrow Powder", image: productPlaceholder, benefits: ["Renforce les os et articulations", "Nourrit la moelle osseuse"], price: "18 590 FCFA", priceNum: 18590, category: "Compléments de santé", bv: 26 },
-  { id: 37, name: "Ginkgo Biloba", image: productPlaceholder, benefits: ["Améliore la circulation cérébrale", "Renforce la mémoire"], price: "16 088 FCFA", priceNum: 16088, category: "Compléments de santé", bv: 22.5 },
-  { id: 38, name: "Brain Care Capsule", image: productPlaceholder, benefits: ["Stimule les fonctions cognitives", "Protège les neurones"], price: "22 880 FCFA", priceNum: 22880, category: "Compléments de santé", bv: 32 },
-  { id: 40, name: "Royal Jelly Softgel", image: productPlaceholder, benefits: ["Revitalise l'organisme", "Anti-fatigue naturel"], price: "13 228 FCFA", priceNum: 13228, category: "Compléments de santé", bv: 18.5 },
-  { id: 41, name: "Hepatsure Capsule", image: productPlaceholder, benefits: ["Protège et régénère le foie", "Détoxifie l'organisme"], price: "18 590 FCFA", priceNum: 18590, category: "Compléments de santé", bv: 26 },
-  { id: 42, name: "Parashield", image: productPlaceholder, benefits: ["Antiparasitaire naturel", "Protège le système digestif"], price: "10 725 FCFA", priceNum: 10725, category: "Compléments de santé", bv: 15 },
-  { id: 43, name: "Slimming Capsule", image: productPlaceholder, benefits: ["Favorise la perte de poids", "Accélère le métabolisme"], price: "20 020 FCFA", priceNum: 20020, category: "Compléments de santé", bv: 28 },
-  { id: 44, name: "Super Nutrition", image: productPlaceholder, benefits: ["Nutrition complète", "Renforce l'immunité globale"], price: "32 890 FCFA", priceNum: 32890, category: "Compléments de santé", bv: 46 },
+  { id: 34, name: "Chitosan Capsule", image: productChitosan, benefits: ["Absorbe les graisses", "Favorise la perte de poids"], price: "17 160 FCFA", priceNum: 17160, category: "Compléments de santé", bv: 24 },
+  { id: 35, name: "Aloe Vera Plus Capsule", image: productAloeVera, benefits: ["Détoxifie l'organisme", "Soutient la digestion"], price: "15 015 FCFA", priceNum: 15015, category: "Compléments de santé", bv: 21 },
+  { id: 36, name: "Compound Marrow Powder", image: productCompoundMarrow, benefits: ["Renforce les os et articulations", "Nourrit la moelle osseuse"], price: "18 590 FCFA", priceNum: 18590, category: "Compléments de santé", bv: 26 },
+  { id: 37, name: "Ginkgo Biloba", image: productGinkgoBiloba, benefits: ["Améliore la circulation cérébrale", "Renforce la mémoire"], price: "16 088 FCFA", priceNum: 16088, category: "Compléments de santé", bv: 22.5 },
+  { id: 38, name: "Brain Care Capsule", image: productBrainCare, benefits: ["Stimule les fonctions cognitives", "Protège les neurones"], price: "22 880 FCFA", priceNum: 22880, category: "Compléments de santé", bv: 32 },
+  { id: 40, name: "Royal Jelly Softgel", image: productRoyalJelly, benefits: ["Revitalise l'organisme", "Anti-fatigue naturel"], price: "13 228 FCFA", priceNum: 13228, category: "Compléments de santé", bv: 18.5 },
+  { id: 41, name: "Hepatsure Capsule", image: productHepatsure, benefits: ["Protège et régénère le foie", "Détoxifie l'organisme"], price: "18 590 FCFA", priceNum: 18590, category: "Compléments de santé", bv: 26 },
+  { id: 42, name: "Parashield", image: productParashield, benefits: ["Antiparasitaire naturel", "Protège le système digestif"], price: "10 725 FCFA", priceNum: 10725, category: "Compléments de santé", bv: 15 },
+  { id: 43, name: "Slimming Capsule", image: productSlimming, benefits: ["Favorise la perte de poids", "Accélère le métabolisme"], price: "20 020 FCFA", priceNum: 20020, category: "Compléments de santé", bv: 28 },
+  { id: 44, name: "Super Nutrition", image: productSuperNutrition, benefits: ["Nutrition complète", "Renforce l'immunité globale"], price: "32 890 FCFA", priceNum: 32890, category: "Compléments de santé", bv: 46 },
   { id: 46, name: "CoQ-10 Capsule", image: productPlaceholder, benefits: ["Protège le cœur", "Antioxydant puissant"], price: "19 305 FCFA", priceNum: 19305, category: "Compléments de santé", bv: 27 },
   { id: 47, name: "Bone Care Plaster", image: productPlaceholder, benefits: ["Soulage les douleurs articulaires", "Patch anti-inflammatoire"], price: "14 300 FCFA", priceNum: 14300, category: "Compléments de santé", bv: 20 },
   { id: 48, name: "Diasure Capsule", image: productPlaceholder, benefits: ["Régule la glycémie", "Soutient le pancréas"], price: "12 870 FCFA", priceNum: 12870, category: "Compléments de santé", bv: 18 },
