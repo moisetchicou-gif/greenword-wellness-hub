@@ -84,6 +84,7 @@ import productAntiAddiction from "@/assets/product-anti-addiction.jpg";
 import productBlueberryConcentrate from "@/assets/product-blueberry-concentrate.jpg";
 
 export type Category =
+  | "Tous les produits"
   | "Compléments de santé"
   | "Thés & Boissons"
   | "Soins féminins"
@@ -93,6 +94,7 @@ export type Category =
   | "Engrais Bio";
 
 export const categories: Category[] = [
+  "Tous les produits",
   "Compléments de santé",
   "Thés & Boissons",
   "Soins féminins",
