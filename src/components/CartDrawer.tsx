@@ -226,17 +226,30 @@ Merci de confirmer la réception de ma commande 🙏`;
             <div className="space-y-5">
               <p className="text-sm text-muted-foreground">Choisissez votre moyen de paiement :</p>
               <div className="grid grid-cols-2 gap-3">
-                {paymentMethods.map((m) => (
-                  <button key={m.name} onClick={() => setSelectedPayment(m.name)}
-                    className={`flex flex-col items-center gap-2 p-4 rounded-xl border-2 transition-all ${selectedPayment === m.name ? "border-primary bg-primary/5 shadow-md" : "border-border hover:border-primary/40"}`}
-                  >
-                    <div className="w-12 h-10 flex items-center justify-center">
-                      <img src={m.logo} alt={m.name} className="max-w-full max-h-full object-contain" />
-                    </div>
-                    <span className="text-xs font-medium text-foreground">{m.name}</span>
-                  </button>
-                ))}
+                {paymentMethods.map((m) => {
+                  const isPaypal = m.name === "PayPal";
+                  return (
+                    <button key={m.name} onClick={() => { if (!isPaypal) setSelectedPayment(m.name); else setSelectedPayment("PayPal"); }}
+                      className={`relative flex flex-col items-center gap-2 p-4 rounded-xl border-2 transition-all ${isPaypal ? "border-border opacity-50 cursor-not-allowed" : selectedPayment === m.name ? "border-primary bg-primary/5 shadow-md" : "border-border hover:border-primary/40"}`}
+                    >
+                      <div className="w-12 h-10 flex items-center justify-center">
+                        <img src={m.logo} alt={m.name} className={`max-w-full max-h-full object-contain ${isPaypal ? "grayscale" : ""}`} />
+                      </div>
+                      <span className="text-xs font-medium text-foreground">{m.name}</span>
+                      {isPaypal && <span className="absolute top-1 right-1 text-[10px] bg-destructive text-destructive-foreground px-1.5 py-0.5 rounded-full font-semibold">Indisponible</span>}
+                    </button>
+                  );
+                })}
               </div>
+              {selectedPayment === "PayPal" && (
+                <div className="flex items-start gap-3 bg-destructive/10 border border-destructive/30 rounded-xl p-4 animate-in fade-in">
+                  <span className="text-lg mt-0.5">⚠️</span>
+                  <div>
+                    <p className="text-sm font-semibold text-destructive">Paiement PayPal Indisponible</p>
+                    <p className="text-xs text-destructive/80 mt-1">Ce moyen de paiement n'est pas disponible dans votre zone pour le moment. Veuillez sélectionner une autre méthode.</p>
+                  </div>
+                </div>
+              )}
               <div className="border-t border-border pt-4">
                 <div className="flex justify-between text-foreground font-bold text-lg mb-4">
                   <span>Total à payer</span>
@@ -244,7 +257,7 @@ Merci de confirmer la réception de ma commande 🙏`;
                 </div>
                 <div className="flex gap-3">
                   <button onClick={() => setStep("info")} className="flex-1 border border-border text-foreground py-3 rounded-full font-semibold hover:bg-secondary/50 transition-colors">Retour</button>
-                  <button onClick={handlePay} disabled={!selectedPayment}
+                  <button onClick={handlePay} disabled={!selectedPayment || selectedPayment === "PayPal"}
                     className="flex-1 bg-primary text-primary-foreground py-3 rounded-full font-semibold hover:opacity-90 active:scale-[0.97] transition-all disabled:opacity-40 disabled:cursor-not-allowed">
                     Payer maintenant
                   </button>
