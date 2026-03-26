@@ -62,6 +62,16 @@ import productHepatsure from "@/assets/product-hepatsure.jpg";
 import productParashield from "@/assets/product-parashield.jpg";
 import productSlimming from "@/assets/product-slimming.jpg";
 import productSuperNutrition from "@/assets/product-super-nutrition.jpg";
+import productCoq10 from "@/assets/product-coq10.jpg";
+import productBoneCarePlaster from "@/assets/product-bone-care-plaster.webp";
+import productDiasure from "@/assets/product-diasure.jpg";
+import productJointHealth from "@/assets/product-joint-health.webp";
+import productVitaminC from "@/assets/product-vitamin-c.jpg";
+import productGastricHealth from "@/assets/product-gastric-health.jpg";
+import productDetoxinPad from "@/assets/product-detoxin-pad.jpg";
+import productBlueberryJuice from "@/assets/product-blueberry-juice.jpg";
+import productBlueberryEnzymes from "@/assets/product-blueberry-enzymes.jpg";
+import productVitaminE from "@/assets/product-vitamin-e.webp";
 
 export type Category =
   | "Compléments de santé"
@@ -119,16 +129,16 @@ export const products: Product[] = [
   { id: 42, name: "Parashield", image: productParashield, benefits: ["Antiparasitaire naturel", "Protège le système digestif"], price: "10 725 FCFA", priceNum: 10725, category: "Compléments de santé", bv: 15 },
   { id: 43, name: "Slimming Capsule", image: productSlimming, benefits: ["Favorise la perte de poids", "Accélère le métabolisme"], price: "20 020 FCFA", priceNum: 20020, category: "Compléments de santé", bv: 28 },
   { id: 44, name: "Super Nutrition", image: productSuperNutrition, benefits: ["Nutrition complète", "Renforce l'immunité globale"], price: "32 890 FCFA", priceNum: 32890, category: "Compléments de santé", bv: 46 },
-  { id: 46, name: "CoQ-10 Capsule", image: productPlaceholder, benefits: ["Protège le cœur", "Antioxydant puissant"], price: "19 305 FCFA", priceNum: 19305, category: "Compléments de santé", bv: 27 },
-  { id: 47, name: "Bone Care Plaster", image: productPlaceholder, benefits: ["Soulage les douleurs articulaires", "Patch anti-inflammatoire"], price: "14 300 FCFA", priceNum: 14300, category: "Compléments de santé", bv: 20 },
-  { id: 48, name: "Diasure Capsule", image: productPlaceholder, benefits: ["Régule la glycémie", "Soutient le pancréas"], price: "12 870 FCFA", priceNum: 12870, category: "Compléments de santé", bv: 18 },
-  { id: 49, name: "Joint Health Capsule", image: productPlaceholder, benefits: ["Renforce les articulations", "Soulage les douleurs articulaires"], price: "20 020 FCFA", priceNum: 20020, category: "Compléments de santé", bv: 28 },
-  { id: 50, name: "Vitamin C Tablet", image: productPlaceholder, benefits: ["Renforce l'immunité", "Puissant antioxydant"], price: "8 580 FCFA", priceNum: 8580, category: "Compléments de santé", bv: 12 },
-  { id: 51, name: "Gastric Health Tablet", image: productPlaceholder, benefits: ["Soulage les troubles gastriques", "Protège la muqueuse stomacale"], price: "11 440 FCFA", priceNum: 11440, category: "Compléments de santé", bv: 16 },
-  { id: 52, name: "Magic Detoxin Pad", image: productPlaceholder, benefits: ["Détoxification par les pieds", "Élimine les toxines"], price: "14 300 FCFA", priceNum: 14300, category: "Compléments de santé", bv: 20 },
-  { id: 53, name: "Blueberry Juice", image: productPlaceholder, benefits: ["Riche en antioxydants", "Protège la vision"], price: "15 730 FCFA", priceNum: 15730, category: "Compléments de santé", bv: 22 },
-  { id: 54, name: "Blueberry Enzymes", image: productPlaceholder, benefits: ["Favorise la digestion", "Riche en enzymes naturelles"], price: "15 730 FCFA", priceNum: 15730, category: "Compléments de santé", bv: 22 },
-  { id: 57, name: "Vitamin E Capsule", image: productPlaceholder, benefits: ["Antioxydant puissant", "Protège la peau et les cellules"], price: "16 445 FCFA", priceNum: 16445, category: "Compléments de santé", bv: 23 },
+  { id: 46, name: "CoQ-10 Capsule", image: productCoq10, benefits: ["Protège le cœur", "Antioxydant puissant"], price: "19 305 FCFA", priceNum: 19305, category: "Compléments de santé", bv: 27 },
+  { id: 47, name: "Bone Care Plaster", image: productBoneCarePlaster, benefits: ["Soulage les douleurs articulaires", "Patch anti-inflammatoire"], price: "14 300 FCFA", priceNum: 14300, category: "Compléments de santé", bv: 20 },
+  { id: 48, name: "Diasure Capsule", image: productDiasure, benefits: ["Régule la glycémie", "Soutient le pancréas"], price: "12 870 FCFA", priceNum: 12870, category: "Compléments de santé", bv: 18 },
+  { id: 49, name: "Joint Health Capsule", image: productJointHealth, benefits: ["Renforce les articulations", "Soulage les douleurs articulaires"], price: "20 020 FCFA", priceNum: 20020, category: "Compléments de santé", bv: 28 },
+  { id: 50, name: "Vitamin C Tablet", image: productVitaminC, benefits: ["Renforce l'immunité", "Puissant antioxydant"], price: "8 580 FCFA", priceNum: 8580, category: "Compléments de santé", bv: 12 },
+  { id: 51, name: "Gastric Health Tablet", image: productGastricHealth, benefits: ["Soulage les troubles gastriques", "Protège la muqueuse stomacale"], price: "11 440 FCFA", priceNum: 11440, category: "Compléments de santé", bv: 16 },
+  { id: 52, name: "Magic Detoxin Pad", image: productDetoxinPad, benefits: ["Détoxification par les pieds", "Élimine les toxines"], price: "14 300 FCFA", priceNum: 14300, category: "Compléments de santé", bv: 20 },
+  { id: 53, name: "Blueberry Juice", image: productBlueberryJuice, benefits: ["Riche en antioxydants", "Protège la vision"], price: "15 730 FCFA", priceNum: 15730, category: "Compléments de santé", bv: 22 },
+  { id: 54, name: "Blueberry Enzymes", image: productBlueberryEnzymes, benefits: ["Favorise la digestion", "Riche en enzymes naturelles"], price: "15 730 FCFA", priceNum: 15730, category: "Compléments de santé", bv: 22 },
+  { id: 57, name: "Vitamin E Capsule", image: productVitaminE, benefits: ["Antioxydant puissant", "Protège la peau et les cellules"], price: "16 445 FCFA", priceNum: 16445, category: "Compléments de santé", bv: 23 },
   { id: 58, name: "Vitamin D Capsule", image: productPlaceholder, benefits: ["Renforce les os", "Soutient l'immunité"], price: "16 445 FCFA", priceNum: 16445, category: "Compléments de santé", bv: 23 },
   { id: 59, name: "MNM Capsule", image: productPlaceholder, benefits: ["Anti-âge cellulaire avancé", "Régénération cellulaire premium"], price: "125 125 FCFA", priceNum: 125125, category: "Compléments de santé", bv: 175 },
   { id: 64, name: "Meal Cellulose", image: productMealCellulose, benefits: ["Riche en fibres alimentaires", "Favorise le transit intestinal"], price: "18 590 FCFA", priceNum: 18590, category: "Compléments de santé", bv: 26 },
