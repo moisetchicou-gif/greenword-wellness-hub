@@ -21,7 +21,7 @@ type Step = "cart" | "info" | "payment" | "wave-pending" | "done";
 const CartDrawer = () => {
   const { items, removeItem, updateQuantity, clearCart, isOpen, setIsOpen, total } = useCart();
   const [step, setStep] = useState<Step>("cart");
-  const [form, setForm] = useState({ nom: "", prenom: "", adresse: "", telephone: "", civilite: "M." as const });
+  const [form, setForm] = useState<{ nom: string; prenom: string; adresse: string; telephone: string; civilite: "M." | "Mme" }>({ nom: "", prenom: "", adresse: "", telephone: "", civilite: "M." });
   const [formErrors, setFormErrors] = useState<Record<string, string>>({});
   const [selectedPayment, setSelectedPayment] = useState<string | null>(null);
 
