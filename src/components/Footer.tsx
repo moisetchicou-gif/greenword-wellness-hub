@@ -1,4 +1,5 @@
 import { Phone, MapPin, Mail } from "lucide-react";
+import { Link } from "react-router-dom";
 import logo from "@/assets/logo-greenworld.jpg";
 
 const Footer = () => {
