@@ -57,8 +57,8 @@ const Footer = () => {
         <div className="border-t border-accent-foreground/10 mt-10 pt-6 flex flex-col md:flex-row items-center justify-between gap-4">
           <div className="flex gap-6 text-xs">
             <Link to="/mentions-legales" className="hover:text-accent-foreground transition-colors">Mentions légales</Link>
-            <Link to="/politique-confidentialite" className="hover:text-accent-foreground transition-colors">Politique de confidentialité</Link>
-            <a href="#contact" className="hover:text-accent-foreground transition-colors">Contact</a>
+            <Link to="/cgv" className="hover:text-accent-foreground transition-colors">CGV</Link>
+            <Link to="/politique-confidentialite" className="hover:text-accent-foreground transition-colors">Confidentialité</Link>
           </div>
           <p className="text-[10px] opacity-60">© 2026 Green World. Tous droits réservés.</p>
         </div>
