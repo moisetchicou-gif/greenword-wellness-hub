@@ -6,6 +6,8 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { CartProvider } from "@/hooks/useCart";
 import Index from "./pages/Index.tsx";
 import NotFound from "./pages/NotFound.tsx";
+import MentionsLegales from "./pages/MentionsLegales.tsx";
+import PolitiqueConfidentialite from "./pages/PolitiqueConfidentialite.tsx";
 
 const queryClient = new QueryClient();
 
@@ -18,6 +20,8 @@ const App = () => (
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Index />} />
+            <Route path="/mentions-legales" element={<MentionsLegales />} />
+            <Route path="/politique-confidentialite" element={<PolitiqueConfidentialite />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>
