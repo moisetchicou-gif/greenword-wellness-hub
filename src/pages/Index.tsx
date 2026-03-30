@@ -9,6 +9,7 @@ import CtaSection from "@/components/CtaSection";
 import Footer from "@/components/Footer";
 import CartDrawer from "@/components/CartDrawer";
 import WhatsAppButton from "@/components/WhatsAppButton";
+import CookieBanner from "@/components/CookieBanner";
 
 const Index = () => {
   return (
@@ -24,6 +25,7 @@ const Index = () => {
       <Footer />
       <CartDrawer />
       <WhatsAppButton />
+      <CookieBanner />
     </div>
   );
 };
