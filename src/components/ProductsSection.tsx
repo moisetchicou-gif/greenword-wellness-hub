@@ -105,7 +105,7 @@ const ProductsSection = () => {
                   : "bg-secondary text-secondary-foreground hover:bg-highlight/50 border border-border/50 hover:scale-[1.02]"
               }`}
             >
-              {cat}
+              {cat === "Tous les produits" ? `${cat} (${products.length})` : cat}
             </button>
           ))}
         </div>
