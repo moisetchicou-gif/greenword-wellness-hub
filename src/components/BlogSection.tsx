@@ -4,11 +4,11 @@ import { blogArticles } from "@/data/blog";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 
 const BlogSection = () => {
-  const sectionRef = useScrollReveal();
+  const { ref } = useScrollReveal();
   const featured = blogArticles.slice(0, 3);
 
   return (
-    <section id="blog" className="py-20 bg-secondary/30" ref={sectionRef}>
+    <section id="blog" className="py-20 bg-secondary/30" ref={ref}>
       <div className="container mx-auto px-4 sm:px-6">
         <div className="text-center mb-12 reveal">
           <span className="text-xs font-semibold tracking-widest uppercase text-primary">
