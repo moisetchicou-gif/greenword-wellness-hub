@@ -27,10 +27,17 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
   const [items, setItems] = useState<CartItem[]>([]);
   const [isOpen, setIsOpen] = useState(false);
 
+  const MAX_QUANTITY = 50;
+  const MAX_CART_ITEMS = 30;
+
   const addItem = (item: Omit<CartItem, "quantity">) => {
     setItems((prev) => {
       const existing = prev.find((i) => i.id === item.id);
-      if (existing) return prev.map((i) => i.id === item.id ? { ...i, quantity: i.quantity + 1 } : i);
+      if (existing) {
+        if (existing.quantity >= MAX_QUANTITY) return prev;
+        return prev.map((i) => i.id === item.id ? { ...i, quantity: Math.min(i.quantity + 1, MAX_QUANTITY) } : i);
+      }
+      if (prev.length >= MAX_CART_ITEMS) return prev;
       return [...prev, { ...item, quantity: 1 }];
     });
   };
