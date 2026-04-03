@@ -50,11 +50,28 @@ export const orderFormSchema = z.object({
 
 export type OrderFormData = z.infer<typeof orderFormSchema>;
 
-// Safely open external links
+// Allowed external domains for safe navigation
+const ALLOWED_DOMAINS = [
+  "wa.me",
+  "pay.wave.com",
+];
+
+// Safely open external links — only allows https and whitelisted domains
 export const safeOpenExternal = (url: string) => {
-  const a = document.createElement("a");
-  a.href = url;
-  a.target = "_blank";
-  a.rel = "noopener noreferrer";
-  a.click();
+  try {
+    const parsed = new URL(url);
+    if (!["https:", "http:"].includes(parsed.protocol)) return;
+    const domain = parsed.hostname;
+    if (!ALLOWED_DOMAINS.some((d) => domain === d || domain.endsWith(`.${d}`))) {
+      console.warn("Blocked navigation to non-whitelisted domain:", domain);
+      return;
+    }
+    const a = document.createElement("a");
+    a.href = url;
+    a.target = "_blank";
+    a.rel = "noopener noreferrer";
+    a.click();
+  } catch {
+    console.warn("Invalid URL blocked:", url);
+  }
 };
