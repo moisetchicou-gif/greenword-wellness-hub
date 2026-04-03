@@ -45,7 +45,8 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
   const removeItem = (id: number) => setItems((prev) => prev.filter((i) => i.id !== id));
   const updateQuantity = (id: number, qty: number) => {
     if (qty <= 0) return removeItem(id);
-    setItems((prev) => prev.map((i) => i.id === id ? { ...i, quantity: qty } : i));
+    const safeQty = Math.min(Math.max(1, Math.floor(qty)), MAX_QUANTITY);
+    setItems((prev) => prev.map((i) => i.id === id ? { ...i, quantity: safeQty } : i));
   };
   const clearCart = () => setItems([]);
   const toggleCartOpen = () => setIsOpen((v) => !v);
