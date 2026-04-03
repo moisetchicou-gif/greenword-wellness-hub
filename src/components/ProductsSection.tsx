@@ -41,7 +41,7 @@ const ProductCard = ({ product, index }: { product: Product; index: number }) =>
         <div className="absolute inset-0 bg-accent/0 group-hover:bg-accent/5 transition-colors duration-500" />
       </div>
       <div className="p-5 space-y-3">
-        <h3 className="text-base font-display text-accent group-hover:text-primary transition-colors duration-300">{product.name}</h3>
+        <Link to={`/produit/${getProductSlug(product)}`} className="text-base font-display text-accent group-hover:text-primary transition-colors duration-300 block">{product.name}</Link>
         <ul className="space-y-1">
           {product.benefits.map((b) => (
             <li key={b} className="text-muted-foreground text-xs flex items-start gap-2">
