@@ -10,6 +10,8 @@ import NotFound from "./pages/NotFound.tsx";
 import MentionsLegales from "./pages/MentionsLegales.tsx";
 import PolitiqueConfidentialite from "./pages/PolitiqueConfidentialite.tsx";
 import CGV from "./pages/CGV.tsx";
+import Blog from "./pages/Blog.tsx";
+import BlogArticle from "./pages/BlogArticle.tsx";
 
 const queryClient = new QueryClient();
 
