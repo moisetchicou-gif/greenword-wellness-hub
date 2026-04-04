@@ -7,8 +7,12 @@ import slider3 from "@/assets/slider-3.jpg";
 import slider4 from "@/assets/slider-4.jpg";
 import slider5 from "@/assets/slider-5.jpg";
 import slider6 from "@/assets/slider-6.jpg";
+import slider7 from "@/assets/slider-7.jpg";
+import slider8 from "@/assets/slider-8.jpg";
+import slider9 from "@/assets/slider-9.jpg";
+import slider10 from "@/assets/slider-10.jpg";
 
-const slides = [slider1, slider2, slider3, slider4, slider5, slider6];
+const slides = [slider1, slider2, slider3, slider4, slider5, slider6, slider7, slider8, slider9, slider10];
 
 const PromoSlider = () => {
   const [current, setCurrent] = useState(0);
@@ -34,7 +38,7 @@ const PromoSlider = () => {
           </p>
         </div>
 
-        <div className="relative max-w-lg mx-auto">
+        <div className="relative max-w-3xl mx-auto">
           <div className="relative aspect-square rounded-2xl overflow-hidden shadow-2xl shadow-accent/10 border border-border/40">
             {slides.map((src, i) => (
               <img
