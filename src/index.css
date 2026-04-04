@@ -57,20 +57,35 @@
 
   html {
     scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 
   body {
     @apply bg-background text-foreground font-body antialiased;
     overflow-x: hidden;
+    text-rendering: optimizeLegibility;
   }
 
   h1, h2, h3, h4 {
     @apply font-display;
   }
 
-  /* Smooth section transitions */
+  /* GPU-accelerated sections */
   section {
     position: relative;
+    contain: layout style;
+  }
+
+  /* Faster touch response on mobile */
+  a, button {
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  /* Smooth images */
+  img {
+    content-visibility: auto;
   }
 }
 
