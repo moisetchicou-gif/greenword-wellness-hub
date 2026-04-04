@@ -39,7 +39,7 @@ const PromoSlider = () => {
         </div>
 
         <div className="relative max-w-3xl mx-auto">
-          <div className="relative aspect-square rounded-2xl overflow-hidden shadow-2xl shadow-accent/10 border border-border/40">
+          <div className="relative aspect-[16/9] rounded-2xl overflow-hidden shadow-2xl shadow-accent/10 border border-border/40">
             {slides.map((src, i) => (
               <img
                 key={i}
