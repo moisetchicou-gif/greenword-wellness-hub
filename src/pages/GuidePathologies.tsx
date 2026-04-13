@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef, useMemo } from "react";
 import { Link } from "react-router-dom";
-import { Search, Heart, ShoppingCart, Check, ChevronDown, ArrowLeft } from "lucide-react";
+import { Search, ShoppingCart, Check, ChevronDown, ArrowLeft, HeartPulse, Bone, Brain, Baby, Dumbbell, Wind, Eye, Droplets, Shield, Stethoscope, Ribbon, Pill } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import CartDrawer from "@/components/CartDrawer";
@@ -50,6 +50,21 @@ const ProductMini = ({ productId }: { productId: number }) => {
   );
 };
 
+const categoryIcons: Record<string, React.ReactNode> = {
+  "Cardiovasculaire": <HeartPulse className="w-5 h-5 text-primary" />,
+  "Dermatologie": <Droplets className="w-5 h-5 text-primary" />,
+  "Digestif": <Pill className="w-5 h-5 text-primary" />,
+  "Immunité & Infections": <Shield className="w-5 h-5 text-primary" />,
+  "Neurologie & Mental": <Brain className="w-5 h-5 text-primary" />,
+  "Os & Articulations": <Bone className="w-5 h-5 text-primary" />,
+  "Santé féminine": <Ribbon className="w-5 h-5 text-primary" />,
+  "Santé masculine": <Dumbbell className="w-5 h-5 text-primary" />,
+  "Métabolisme": <Stethoscope className="w-5 h-5 text-primary" />,
+  "Respiratoire": <Wind className="w-5 h-5 text-primary" />,
+  "Yeux & Vision": <Eye className="w-5 h-5 text-primary" />,
+  "Autres": <Baby className="w-5 h-5 text-primary" />,
+};
+
 const PathologyCard = ({ pathology }: { pathology: typeof pathologies[0] }) => {
   const [expanded, setExpanded] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
@@ -74,7 +89,7 @@ const PathologyCard = ({ pathology }: { pathology: typeof pathologies[0] }) => {
         className="w-full p-5 flex items-start gap-4 text-left hover:bg-secondary/30 transition-colors"
       >
         <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0 mt-0.5">
-          <Heart className="w-5 h-5 text-primary" />
+          {categoryIcons[pathology.category] || <HeartPulse className="w-5 h-5 text-primary" />}
         </div>
         <div className="flex-1 min-w-0">
           <h3 className="font-display text-base text-foreground">{pathology.name}</h3>
