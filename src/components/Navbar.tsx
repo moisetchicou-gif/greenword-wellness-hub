@@ -15,7 +15,7 @@ const Navbar = () => {
   const searchInputRef = useRef<HTMLInputElement>(null);
   const { items, toggleCartOpen } = useCart();
   const totalItems = items.reduce((s, i) => s + i.quantity, 0);
-
+  const [selectedIndex, setSelectedIndex] = useState(-1);
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
     window.addEventListener("scroll", onScroll, { passive: true });
