@@ -1,10 +1,13 @@
 import { useState, useEffect, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 import { Menu, X, ShoppingCart, Search } from "lucide-react";
 import logo from "@/assets/logo-greenworld.jpg";
 import { useCart } from "@/hooks/useCart";
 import { products } from "@/data/products";
+import { getProductSlug } from "@/lib/productUtils";
 
 const Navbar = () => {
+  const navigate = useNavigate();
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
@@ -44,12 +47,10 @@ const Navbar = () => {
     { label: "À propos", href: "/#contact" },
   ];
 
-  const handleResultClick = (productId: number) => {
+  const handleResultClick = (product: typeof products[0]) => {
     setSearchOpen(false);
     setQuery("");
-    // Scroll to products section
-    const el = document.getElementById("produits");
-    if (el) el.scrollIntoView({ behavior: "smooth" });
+    navigate(`/produit/${getProductSlug(product)}`);
   };
 
   return (
@@ -141,7 +142,7 @@ const Navbar = () => {
                     {results.map((product) => (
                       <button
                         key={product.id}
-                        onClick={() => handleResultClick(product.id)}
+                        onClick={() => handleResultClick(product)}
                         className="w-full flex items-center gap-3 px-5 py-3 hover:bg-secondary/50 transition-colors text-left"
                       >
                         <img src={product.image} alt={product.name} className="w-10 h-10 object-contain rounded-lg bg-secondary/30 shrink-0" />
