@@ -39,6 +39,19 @@ const Navbar = () => {
     ? products.filter((p) => p.name.toLowerCase().includes(query.toLowerCase())).slice(0, 8)
     : [];
 
+  const highlightMatch = (text: string, q: string) => {
+    if (!q.trim()) return text;
+    const idx = text.toLowerCase().indexOf(q.toLowerCase());
+    if (idx === -1) return text;
+    return (
+      <>
+        {text.slice(0, idx)}
+        <span className="text-primary font-semibold">{text.slice(idx, idx + q.length)}</span>
+        {text.slice(idx + q.length)}
+      </>
+    );
+  };
+
   const links = [
     { label: "Accueil", href: "/" },
     { label: "Boutique", href: "/#produits" },
