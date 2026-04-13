@@ -37,11 +37,11 @@ const Navbar = () => {
     : [];
 
   const links = [
-    { label: "Accueil", href: "#" },
-    { label: "Boutique", href: "#produits" },
+    { label: "Accueil", href: "/" },
+    { label: "Boutique", href: "/#produits" },
     { label: "Guide Santé", href: "/guide-pathologies" },
-    { label: "Avis", href: "#avis" },
-    { label: "À propos", href: "#contact" },
+    { label: "Avis", href: "/#avis" },
+    { label: "À propos", href: "/#contact" },
   ];
 
   const handleResultClick = (productId: number) => {
