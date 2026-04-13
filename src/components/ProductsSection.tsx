@@ -75,53 +75,22 @@ const ProductCard = ({ product, index }: { product: Product; index: number }) =>
   );
 };
 
+const PRODUCTS_PER_PAGE = 10;
+
 const ProductsSection = () => {
   const [activeCategory, setActiveCategory] = useState<Category>("Tous les produits");
+  const [visibleCount, setVisibleCount] = useState(PRODUCTS_PER_PAGE);
   const filtered = activeCategory === "Tous les produits" ? products : products.filter((p) => p.category === activeCategory);
+  const displayed = filtered.slice(0, visibleCount);
+  const hasMore = visibleCount < filtered.length;
   const { ref, visible } = useScrollRevealSimple();
 
-  return (
-    <section id="produits" className="py-24 bg-background relative">
-      {/* Decorative gradient */}
-      <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-secondary/30 to-transparent" />
-      
-      <div className="container mx-auto px-4 sm:px-6 relative">
-        <div ref={ref} className={`text-center mb-12 space-y-4 transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
-          <p className="text-primary text-xs font-semibold uppercase tracking-[0.2em]">Notre gamme</p>
-          <h2 className="text-3xl sm:text-4xl text-accent">
-            Nos <span className="italic text-primary">Best-sellers</span>
-          </h2>
-          <p className="text-muted-foreground max-w-xl mx-auto text-sm leading-relaxed">
-            Découvrez notre gamme complète de compléments alimentaires naturels et produits Green World.
-          </p>
-        </div>
+  // Reset visible count when category changes
+  const handleCategoryChange = (cat: Category) => {
+    setActiveCategory(cat);
+    setVisibleCount(PRODUCTS_PER_PAGE);
+  };
 
-        <div className="flex flex-wrap justify-center gap-2 sm:gap-3 mb-14">
-          {categories.map((cat) => (
-            <button
-              key={cat}
-              onClick={() => setActiveCategory(cat)}
-              className={`px-4 sm:px-6 py-2 sm:py-2.5 rounded-full text-xs sm:text-sm font-medium transition-all duration-500 tracking-wide ${
-                activeCategory === cat
-                  ? "bg-accent text-accent-foreground shadow-lg shadow-accent/20 scale-105"
-                  : "bg-secondary text-secondary-foreground hover:bg-highlight/50 border border-border/50 hover:scale-[1.02]"
-              }`}
-            >
-              {cat === "Tous les produits" ? `${cat} (${products.length})` : cat}
-            </button>
-          ))}
-        </div>
-
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-5">
-          {filtered.map((product, i) => (
-            <ProductCard key={product.id} product={product} index={i} />
-          ))}
-          {filtered.length === 0 && (
-            <p className="col-span-full text-center text-muted-foreground py-16 text-sm">
-              Produits bientôt disponibles dans cette catégorie.
-            </p>
-          )}
-        </div>
 
         {/* CTA Guide Santé */}
         <div className="mt-16 relative">
