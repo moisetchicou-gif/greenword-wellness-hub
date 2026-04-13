@@ -29,16 +29,16 @@ const ProductCard = ({ product, index }: { product: Product; index: number }) =>
   return (
     <div
       ref={ref}
-      className={`bg-card rounded-2xl border border-border/60 overflow-hidden hover-lift group transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"}`}
-      style={{ transitionDelay: `${index * 60}ms` }}
+      className={`bg-card rounded-2xl border border-border/60 overflow-hidden group transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] hover:shadow-premium hover:-translate-y-1.5 ${visible ? "opacity-100 translate-y-0 blur-0" : "opacity-0 translate-y-12 blur-[2px]"}`}
+      style={{ transitionDelay: `${index * 80}ms` }}
     >
       <div className="aspect-square bg-secondary/30 flex items-center justify-center p-6 overflow-hidden relative">
-        <img src={product.image} alt={product.name} className="w-full h-full object-contain group-hover:scale-110 transition-transform duration-700 ease-out" loading="lazy" />
+        <img src={product.image} alt={product.name} className="w-full h-full object-contain group-hover:scale-110 transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]" loading="lazy" />
         <div className="absolute top-3 left-3 flex gap-1.5">
           <span className="glass text-accent text-[10px] font-semibold px-2.5 py-1 rounded-full">{product.bv} BV</span>
         </div>
         {/* Hover overlay */}
-        <div className="absolute inset-0 bg-accent/0 group-hover:bg-accent/5 transition-colors duration-500" />
+        <div className="absolute inset-0 bg-gradient-to-t from-primary/[0.06] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
       </div>
       <div className="p-5 space-y-3">
         <Link to={`/produit/${getProductSlug(product)}`} className="text-base font-display text-accent group-hover:text-primary transition-colors duration-300 block">{product.name}</Link>
@@ -52,10 +52,10 @@ const ProductCard = ({ product, index }: { product: Product; index: number }) =>
         <p className="text-accent font-semibold text-lg font-display">{product.price}</p>
         <button
           onClick={handleAdd}
-          className={`w-full px-6 py-2.5 rounded-full text-sm font-medium active:scale-[0.97] transition-all duration-300 mt-1 flex items-center justify-center gap-2 tracking-wide ${
+          className={`w-full px-6 py-2.5 rounded-full text-sm font-medium active:scale-[0.95] transition-all duration-300 mt-1 flex items-center justify-center gap-2 tracking-wide ${
             added
-              ? "bg-primary text-primary-foreground"
-              : "bg-accent text-accent-foreground hover:shadow-lg hover:shadow-accent/20"
+              ? "bg-primary text-primary-foreground shadow-lg shadow-primary/25"
+              : "bg-accent text-accent-foreground hover:shadow-lg hover:shadow-accent/20 hover:scale-[1.02]"
           }`}
         >
           {added ? (
