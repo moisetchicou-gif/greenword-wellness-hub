@@ -75,14 +75,25 @@ const ProductCard = ({ product, index }: { product: Product; index: number }) =>
   );
 };
 
+const PRODUCTS_PER_PAGE = 10;
+
 const ProductsSection = () => {
   const [activeCategory, setActiveCategory] = useState<Category>("Tous les produits");
+  const [visibleCount, setVisibleCount] = useState(PRODUCTS_PER_PAGE);
   const filtered = activeCategory === "Tous les produits" ? products : products.filter((p) => p.category === activeCategory);
+  const displayed = filtered.slice(0, visibleCount);
+  const hasMore = visibleCount < filtered.length;
   const { ref, visible } = useScrollRevealSimple();
+
+  // Reset visible count when category changes
+  const handleCategoryChange = (cat: Category) => {
+    setActiveCategory(cat);
+    setVisibleCount(PRODUCTS_PER_PAGE);
+  };
+
 
   return (
     <section id="produits" className="py-24 bg-background relative">
-      {/* Decorative gradient */}
       <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-secondary/30 to-transparent" />
       
       <div className="container mx-auto px-4 sm:px-6 relative">
@@ -100,7 +111,7 @@ const ProductsSection = () => {
           {categories.map((cat) => (
             <button
               key={cat}
-              onClick={() => setActiveCategory(cat)}
+              onClick={() => handleCategoryChange(cat)}
               className={`px-4 sm:px-6 py-2 sm:py-2.5 rounded-full text-xs sm:text-sm font-medium transition-all duration-500 tracking-wide ${
                 activeCategory === cat
                   ? "bg-accent text-accent-foreground shadow-lg shadow-accent/20 scale-105"
@@ -113,7 +124,7 @@ const ProductsSection = () => {
         </div>
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-5">
-          {filtered.map((product, i) => (
+          {displayed.map((product, i) => (
             <ProductCard key={product.id} product={product} index={i} />
           ))}
           {filtered.length === 0 && (
@@ -122,6 +133,17 @@ const ProductsSection = () => {
             </p>
           )}
         </div>
+
+        {hasMore && (
+          <div className="flex justify-center mt-10">
+            <button
+              onClick={() => setVisibleCount((prev) => prev + PRODUCTS_PER_PAGE)}
+              className="px-8 py-3 rounded-full bg-secondary text-secondary-foreground border border-border/50 text-sm font-medium hover:bg-accent hover:text-accent-foreground hover:shadow-lg hover:scale-[1.03] active:scale-[0.97] transition-all duration-300 tracking-wide"
+            >
+              Voir plus ({filtered.length - visibleCount} restant{filtered.length - visibleCount > 1 ? "s" : ""})
+            </button>
+          </div>
+        )}
 
         {/* CTA Guide Santé */}
         <div className="mt-16 relative">
