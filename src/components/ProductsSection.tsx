@@ -122,6 +122,15 @@ const ProductsSection = () => {
             </p>
           )}
         </div>
+
+        <div className="text-center mt-12">
+          <Link
+            to="/guide-pathologies"
+            className="inline-flex items-center gap-2 px-8 py-3 rounded-full bg-primary/10 text-primary text-sm font-semibold hover:bg-primary hover:text-primary-foreground transition-all duration-300 border border-primary/30"
+          >
+            🩺 Trouver un produit par pathologie
+          </Link>
+        </div>
       </div>
     </section>
   );
