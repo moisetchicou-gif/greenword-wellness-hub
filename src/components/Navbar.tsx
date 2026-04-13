@@ -147,7 +147,7 @@ const Navbar = () => {
                       >
                         <img src={product.image} alt={product.name} className="w-10 h-10 object-contain rounded-lg bg-secondary/30 shrink-0" />
                         <div className="min-w-0">
-                          <p className="text-sm font-medium text-foreground truncate">{product.name}</p>
+                          <p className="text-sm font-medium text-foreground truncate">{highlightMatch(product.name, query)}</p>
                           <p className="text-xs text-primary font-semibold">{product.price}</p>
                         </div>
                       </button>
