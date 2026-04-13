@@ -25,6 +25,11 @@ const Index = () => {
       <Navbar />
       <HeroSection />
       <TrustBar />
+      <div className="bg-accent border-y border-border/50 py-2.5">
+        <p className="text-center text-xs sm:text-sm text-muted-foreground italic px-4">
+          <strong>Note :</strong> Ces produits sont des compléments alimentaires et ne remplacent pas un avis médical.
+        </p>
+      </div>
       <Suspense fallback={<SectionFallback />}>
         <PromoSlider />
       </Suspense>
