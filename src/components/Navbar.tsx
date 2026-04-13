@@ -39,6 +39,19 @@ const Navbar = () => {
     ? products.filter((p) => p.name.toLowerCase().includes(query.toLowerCase())).slice(0, 8)
     : [];
 
+  const highlightMatch = (text: string, q: string) => {
+    if (!q.trim()) return text;
+    const idx = text.toLowerCase().indexOf(q.toLowerCase());
+    if (idx === -1) return text;
+    return (
+      <>
+        {text.slice(0, idx)}
+        <span className="text-primary font-semibold">{text.slice(idx, idx + q.length)}</span>
+        {text.slice(idx + q.length)}
+      </>
+    );
+  };
+
   const links = [
     { label: "Accueil", href: "/" },
     { label: "Boutique", href: "/#produits" },
@@ -147,7 +160,7 @@ const Navbar = () => {
                       >
                         <img src={product.image} alt={product.name} className="w-10 h-10 object-contain rounded-lg bg-secondary/30 shrink-0" />
                         <div className="min-w-0">
-                          <p className="text-sm font-medium text-foreground truncate">{product.name}</p>
+                          <p className="text-sm font-medium text-foreground truncate">{highlightMatch(product.name, query)}</p>
                           <p className="text-xs text-primary font-semibold">{product.price}</p>
                         </div>
                       </button>
