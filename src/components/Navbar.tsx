@@ -26,6 +26,13 @@ const Navbar = () => {
     if (searchOpen) searchInputRef.current?.focus();
   }, [searchOpen]);
 
+  const results = query.trim().length >= 2
+    ? products.filter((p) => p.name.toLowerCase().includes(query.toLowerCase())).slice(0, 8)
+    : [];
+
+  // Reset selected index when query changes
+  useEffect(() => { setSelectedIndex(-1); }, [query]);
+
   // Keyboard navigation
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
@@ -45,10 +52,6 @@ const Navbar = () => {
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
   }, [searchOpen, selectedIndex, results]);
-
-  const results = query.trim().length >= 2
-    ? products.filter((p) => p.name.toLowerCase().includes(query.toLowerCase())).slice(0, 8)
-    : [];
 
   const highlightMatch = (text: string, q: string) => {
     if (!q.trim()) return text;
@@ -163,11 +166,11 @@ const Navbar = () => {
               <div className="max-h-80 overflow-y-auto">
                 {results.length > 0 ? (
                   <div className="py-2">
-                    {results.map((product) => (
+                    {results.map((product, i) => (
                       <button
                         key={product.id}
                         onClick={() => handleResultClick(product)}
-                        className="w-full flex items-center gap-3 px-5 py-3 hover:bg-secondary/50 transition-colors text-left"
+                        className={`w-full flex items-center gap-3 px-5 py-3 hover:bg-secondary/50 transition-colors text-left ${selectedIndex === i ? "bg-secondary/60" : ""}`}
                       >
                         <img src={product.image} alt={product.name} className="w-10 h-10 object-contain rounded-lg bg-secondary/30 shrink-0" />
                         <div className="min-w-0">
