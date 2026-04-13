@@ -142,7 +142,7 @@ const Navbar = () => {
                     {results.map((product) => (
                       <button
                         key={product.id}
-                        onClick={() => handleResultClick(product.id)}
+                        onClick={() => handleResultClick(product)}
                         className="w-full flex items-center gap-3 px-5 py-3 hover:bg-secondary/50 transition-colors text-left"
                       >
                         <img src={product.image} alt={product.name} className="w-10 h-10 object-contain rounded-lg bg-secondary/30 shrink-0" />
