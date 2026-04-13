@@ -26,6 +26,13 @@ const Navbar = () => {
     if (searchOpen) searchInputRef.current?.focus();
   }, [searchOpen]);
 
+  const results = query.trim().length >= 2
+    ? products.filter((p) => p.name.toLowerCase().includes(query.toLowerCase())).slice(0, 8)
+    : [];
+
+  // Reset selected index when query changes
+  useEffect(() => { setSelectedIndex(-1); }, [query]);
+
   // Keyboard navigation
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
@@ -45,10 +52,6 @@ const Navbar = () => {
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
   }, [searchOpen, selectedIndex, results]);
-
-  const results = query.trim().length >= 2
-    ? products.filter((p) => p.name.toLowerCase().includes(query.toLowerCase())).slice(0, 8)
-    : [];
 
   const highlightMatch = (text: string, q: string) => {
     if (!q.trim()) return text;
