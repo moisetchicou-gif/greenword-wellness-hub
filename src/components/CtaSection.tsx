@@ -36,10 +36,17 @@ const CtaSection = () => {
 
         {/* Contact */}
         <div id="contact" className="grid grid-cols-1 sm:grid-cols-2 gap-3 max-w-2xl mx-auto pt-6">
-          <a href="tel:+2252733747334" className="flex items-center gap-3 glass-dark rounded-xl p-4 hover:bg-accent-foreground/10 transition-all duration-300 hover-lift">
+          <a href="tel:+2250500796868" className="flex items-center gap-3 glass-dark rounded-xl p-4 hover:bg-accent-foreground/10 transition-all duration-300 hover-lift">
             <Phone className="w-4 h-4 text-primary" />
             <div className="text-left">
               <p className="text-[10px] opacity-60 uppercase tracking-wider">Téléphone</p>
+              <p className="font-medium text-sm">+225 05 00 79 68 68</p>
+            </div>
+          </a>
+          <a href="tel:+2252733747334" className="flex items-center gap-3 glass-dark rounded-xl p-4 hover:bg-accent-foreground/10 transition-all duration-300 hover-lift">
+            <Phone className="w-4 h-4 text-primary" />
+            <div className="text-left">
+              <p className="text-[10px] opacity-60 uppercase tracking-wider">Téléphone Orange</p>
               <p className="font-medium text-sm">+225 27 33 74 73 34</p>
             </div>
           </a>
