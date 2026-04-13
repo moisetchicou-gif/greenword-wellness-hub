@@ -15,7 +15,7 @@ const Navbar = () => {
   const searchInputRef = useRef<HTMLInputElement>(null);
   const { items, toggleCartOpen } = useCart();
   const totalItems = items.reduce((s, i) => s + i.quantity, 0);
-
+  const [selectedIndex, setSelectedIndex] = useState(-1);
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
     window.addEventListener("scroll", onScroll, { passive: true });
@@ -26,14 +26,25 @@ const Navbar = () => {
     if (searchOpen) searchInputRef.current?.focus();
   }, [searchOpen]);
 
-  // Close search on Escape
+  // Keyboard navigation
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setSearchOpen(false);
+      if (e.key === "Escape") { setSearchOpen(false); return; }
+      if (!searchOpen) return;
+      if (e.key === "ArrowDown") {
+        e.preventDefault();
+        setSelectedIndex((prev) => (prev < results.length - 1 ? prev + 1 : 0));
+      } else if (e.key === "ArrowUp") {
+        e.preventDefault();
+        setSelectedIndex((prev) => (prev > 0 ? prev - 1 : results.length - 1));
+      } else if (e.key === "Enter" && selectedIndex >= 0 && results[selectedIndex]) {
+        e.preventDefault();
+        handleResultClick(results[selectedIndex]);
+      }
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, []);
+  }, [searchOpen, selectedIndex, results]);
 
   const results = query.trim().length >= 2
     ? products.filter((p) => p.name.toLowerCase().includes(query.toLowerCase())).slice(0, 8)
