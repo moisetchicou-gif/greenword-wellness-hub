@@ -42,9 +42,15 @@ const BenefitCard = ({ product, index }: { product: Product; index: number }) =>
   );
 };
 
+const BENEFITS_PER_PAGE = 5;
+
 const FeaturesSection = () => {
   const ref = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(false);
+  const [visibleCount, setVisibleCount] = useState(BENEFITS_PER_PAGE);
+
+  const displayed = products.slice(0, visibleCount);
+  const hasMore = visibleCount < products.length;
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -57,7 +63,6 @@ const FeaturesSection = () => {
 
   return (
     <section id="bienfaits" className="py-24 bg-secondary/30 relative overflow-hidden">
-      {/* Decorative */}
       <div className="absolute top-0 right-0 w-72 h-72 rounded-full bg-primary/5 blur-3xl" />
       <div className="absolute bottom-0 left-0 w-48 h-48 rounded-full bg-highlight/10 blur-3xl" />
 
@@ -72,10 +77,21 @@ const FeaturesSection = () => {
           </p>
         </div>
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-          {products.map((product, i) => (
+          {displayed.map((product, i) => (
             <BenefitCard key={product.id} product={product} index={i} />
           ))}
         </div>
+
+        {hasMore && (
+          <div className="flex justify-center mt-10">
+            <button
+              onClick={() => setVisibleCount((prev) => prev + BENEFITS_PER_PAGE)}
+              className="px-8 py-3 rounded-full bg-secondary text-secondary-foreground border border-border/50 text-sm font-medium hover:bg-accent hover:text-accent-foreground hover:shadow-lg hover:scale-[1.03] active:scale-[0.97] transition-all duration-300 tracking-wide"
+            >
+              Voir plus ({products.length - visibleCount} restant{products.length - visibleCount > 1 ? "s" : ""})
+            </button>
+          </div>
+        )}
       </div>
     </section>
   );
