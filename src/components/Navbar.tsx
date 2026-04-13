@@ -47,12 +47,10 @@ const Navbar = () => {
     { label: "À propos", href: "/#contact" },
   ];
 
-  const handleResultClick = (productId: number) => {
+  const handleResultClick = (product: typeof products[0]) => {
     setSearchOpen(false);
     setQuery("");
-    // Scroll to products section
-    const el = document.getElementById("produits");
-    if (el) el.scrollIntoView({ behavior: "smooth" });
+    navigate(`/produit/${getProductSlug(product)}`);
   };
 
   return (
