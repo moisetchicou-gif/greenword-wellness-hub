@@ -123,13 +123,26 @@ const ProductsSection = () => {
           )}
         </div>
 
-        <div className="text-center mt-12">
-          <Link
-            to="/guide-pathologies"
-            className="inline-flex items-center gap-2 px-8 py-3 rounded-full bg-primary/10 text-primary text-sm font-semibold hover:bg-primary hover:text-primary-foreground transition-all duration-300 border border-primary/30"
-          >
-            🩺 Trouver un produit par pathologie
-          </Link>
+        {/* CTA Guide Santé */}
+        <div className="mt-16 relative">
+          <div className="bg-gradient-to-r from-primary/10 via-primary/5 to-primary/10 rounded-2xl border border-primary/20 p-8 sm:p-10 text-center space-y-4">
+            <div className="w-14 h-14 rounded-2xl bg-primary/15 flex items-center justify-center mx-auto">
+              <span className="text-2xl">🩺</span>
+            </div>
+            <h3 className="text-xl sm:text-2xl font-display text-foreground">
+              Vous avez un <span className="text-primary italic">problème de santé</span> ?
+            </h3>
+            <p className="text-muted-foreground text-sm max-w-lg mx-auto leading-relaxed">
+              Consultez notre guide complet pour trouver les compléments alimentaires adaptés à votre pathologie.
+            </p>
+            <Link
+              to="/guide-pathologies"
+              className="inline-flex items-center gap-2.5 px-8 py-3.5 rounded-full bg-primary text-primary-foreground text-sm font-semibold hover:shadow-xl hover:shadow-primary/30 hover:scale-105 active:scale-[0.98] transition-all duration-300"
+            >
+              <span className="text-base">📋</span>
+              Guide Santé par Pathologie
+            </Link>
+          </div>
         </div>
       </div>
     </section>
