@@ -7,6 +7,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { CartProvider } from "@/hooks/useCart";
 import ErrorBoundary from "@/components/ErrorBoundary";
 import Index from "./pages/Index.tsx";
+import GuideButton from "@/components/GuideButton";
 
 const MentionsLegales = lazy(() => import("./pages/MentionsLegales.tsx"));
 const PolitiqueConfidentialite = lazy(() => import("./pages/PolitiqueConfidentialite.tsx"));
@@ -41,6 +42,7 @@ const App = () => (
                 <Route path="/guide-pathologies" element={<GuidePathologies />} />
                 <Route path="*" element={<NotFound />} />
               </Routes>
+              <GuideButton />
             </Suspense>
           </BrowserRouter>
         </CartProvider>
