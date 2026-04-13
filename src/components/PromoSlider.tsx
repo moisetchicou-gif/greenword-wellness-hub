@@ -59,7 +59,7 @@ const PromoSlider = memo(() => {
                 alt={`Slide ${i + 1}`}
                 loading={i === 0 ? "eager" : "lazy"}
                 decoding="async"
-                className={`absolute inset-0 w-full h-full object-cover transition-all duration-500 ease-out will-change-[opacity,transform] ${
+                className={`absolute inset-0 w-full h-full object-contain transition-all duration-500 ease-out will-change-[opacity,transform] ${
                   i === current
                     ? "opacity-100 scale-100"
                     : "opacity-0 scale-[1.02]"
