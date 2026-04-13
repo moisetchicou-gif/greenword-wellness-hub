@@ -1,4 +1,4 @@
-import { Phone, Mail, MapPin, ArrowRight } from "lucide-react";
+import { Phone, Mail, MapPin, ArrowRight, Facebook } from "lucide-react";
 import logoOrangeMoney from "@/assets/logo-orange-money.png";
 import logoWave from "@/assets/logo-wave.png";
 import logoMtn from "@/assets/logo-mtn.png";
@@ -71,6 +71,13 @@ const CtaSection = () => {
             <div className="text-left">
               <p className="text-[10px] opacity-60 uppercase tracking-wider">Localisation</p>
               <p className="font-medium text-sm">Koumassi Remblais, Imm. Résidence 2000</p>
+            </div>
+          </a>
+          <a href="https://www.facebook.com/share/1AL3rAwBQL/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 glass-dark rounded-xl p-4 hover:bg-accent-foreground/10 transition-all duration-300 hover-lift">
+            <Facebook className="w-4 h-4 text-primary" />
+            <div className="text-left">
+              <p className="text-[10px] opacity-60 uppercase tracking-wider">Facebook</p>
+              <p className="font-medium text-sm">Green World CI</p>
             </div>
           </a>
         </div>
