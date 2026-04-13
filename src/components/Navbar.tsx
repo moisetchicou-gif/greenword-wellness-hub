@@ -1,8 +1,10 @@
 import { useState, useEffect, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 import { Menu, X, ShoppingCart, Search } from "lucide-react";
 import logo from "@/assets/logo-greenworld.jpg";
 import { useCart } from "@/hooks/useCart";
 import { products } from "@/data/products";
+import { getProductSlug } from "@/lib/productUtils";
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
