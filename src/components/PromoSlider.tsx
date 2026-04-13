@@ -51,7 +51,7 @@ const PromoSlider = memo(() => {
         </div>
 
         <div className="relative max-w-5xl mx-auto">
-          <div className="relative aspect-[21/9] rounded-2xl overflow-hidden shadow-2xl shadow-accent/10 border border-border/40 will-change-contents">
+          <div className="relative aspect-[16/9] rounded-2xl overflow-hidden shadow-2xl shadow-accent/10 border border-border/40 will-change-contents bg-black/5">
             {slides.map((src, i) => (
               <img
                 key={i}
