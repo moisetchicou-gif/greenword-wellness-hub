@@ -7,6 +7,7 @@ import { products } from "@/data/products";
 import { getProductSlug } from "@/lib/productUtils";
 
 const Navbar = () => {
+  const navigate = useNavigate();
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
