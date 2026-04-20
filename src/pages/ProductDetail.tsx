@@ -5,6 +5,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import CartDrawer from "@/components/CartDrawer";
 import WhatsAppButton from "@/components/WhatsAppButton";
+import SEO from "@/components/SEO";
 import { products } from "@/data/products";
 import { useCart } from "@/hooks/useCart";
 import { getProductSlug } from "@/lib/productUtils";
@@ -16,6 +17,37 @@ const ProductDetail = () => {
   const { addItem } = useCart();
 
   if (!product) return <Navigate to="/#produits" replace />;
+
+  const siteUrl = "https://greenworldprestige.lovable.app";
+  const slugStr = getProductSlug(product);
+  const canonical = `${siteUrl}/produit/${slugStr}`;
+  const productJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    name: product.name,
+    description: `${product.name} — complément alimentaire naturel Green World. ${product.benefits.join(". ")}.`,
+    image: [product.image],
+    category: product.category,
+    brand: { "@type": "Brand", name: "Green World" },
+    offers: {
+      "@type": "Offer",
+      url: canonical,
+      priceCurrency: "XOF",
+      price: product.priceNum,
+      availability: "https://schema.org/InStock",
+      seller: { "@type": "Organization", name: "Green World" },
+    },
+  };
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Accueil", item: siteUrl },
+      { "@type": "ListItem", position: 2, name: "Produits", item: `${siteUrl}/#produits` },
+      { "@type": "ListItem", position: 3, name: product.category, item: `${siteUrl}/#produits` },
+      { "@type": "ListItem", position: 4, name: product.name, item: canonical },
+    ],
+  };
 
   const handleAdd = () => {
     addItem({ id: product.id, name: product.name, price: product.price, priceNum: product.priceNum, image: product.image });
@@ -29,6 +61,14 @@ const ProductDetail = () => {
 
   return (
     <div className="min-h-screen">
+      <SEO
+        title={`${product.name} — ${product.category} ${product.price} | Green World`}
+        description={`${product.name} : ${product.benefits.slice(0, 2).join(", ")}. Complément alimentaire naturel Green World à ${product.price}. Livraison en Côte d'Ivoire.`}
+        canonical={canonical}
+        image={product.image}
+        type="product"
+        jsonLd={[productJsonLd, breadcrumbJsonLd]}
+      />
       <Navbar />
       <main className="pt-28 pb-20">
         <div className="container mx-auto px-4 sm:px-6">
