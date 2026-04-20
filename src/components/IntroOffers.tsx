@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
-import { Check, Play, Sparkles, ArrowRight, CalendarCheck } from "lucide-react";
+import { Check, Play, Sparkles, CalendarCheck } from "lucide-react";
 import { offers, type Offer } from "@/data/offers";
 import BookingDialog from "@/components/BookingDialog";
 
