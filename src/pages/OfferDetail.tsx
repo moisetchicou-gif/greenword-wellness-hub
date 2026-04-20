@@ -22,6 +22,55 @@ const OfferDetail = () => {
 
   if (!offer) return <Navigate to="/" replace />;
 
+  const siteUrl = "https://greenworldprestige.lovable.app";
+  const canonical = `${siteUrl}/offre/${offer.slug}`;
+  const productJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    name: offer.name,
+    description: offer.shortDescription,
+    image: [offer.image],
+    brand: { "@type": "Brand", name: "Green World" },
+    offers: {
+      "@type": "Offer",
+      url: canonical,
+      priceCurrency: "XOF",
+      price: offer.priceNum,
+      availability: "https://schema.org/InStock",
+      seller: { "@type": "Organization", name: "Green World" },
+    },
+    aggregateRating: {
+      "@type": "AggregateRating",
+      ratingValue: (
+        offer.testimonials.reduce((s, t) => s + t.rating, 0) / offer.testimonials.length
+      ).toFixed(1),
+      reviewCount: offer.testimonials.length,
+    },
+    review: offer.testimonials.map((t) => ({
+      "@type": "Review",
+      reviewRating: { "@type": "Rating", ratingValue: t.rating, bestRating: 5 },
+      author: { "@type": "Person", name: t.name },
+      reviewBody: t.text,
+    })),
+  };
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: offer.faq.map((f) => ({
+      "@type": "Question",
+      name: f.q,
+      acceptedAnswer: { "@type": "Answer", text: f.a },
+    })),
+  };
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Accueil", item: siteUrl },
+      { "@type": "ListItem", position: 2, name: offer.name, item: canonical },
+    ],
+  };
+
   const handleAdd = () => {
     addItem({
       id: offer.id,
