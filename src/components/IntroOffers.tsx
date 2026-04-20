@@ -134,6 +134,18 @@ const OfferCard = ({ offer, index }: { offer: Offer; index: number }) => {
                 <ArrowRight className="w-4 h-4" />
               </Link>
             </div>
+            <BookingDialog
+              offerName={offer.name}
+              trigger={
+                <button
+                  type="button"
+                  className="w-full px-5 py-3 rounded-full text-sm font-semibold border-2 border-primary/30 text-primary hover:bg-primary hover:text-primary-foreground transition-all duration-300 flex items-center justify-center gap-2"
+                >
+                  <CalendarCheck className="w-4 h-4" />
+                  Réserver une séance
+                </button>
+              }
+            />
           </div>
         </div>
       </div>
