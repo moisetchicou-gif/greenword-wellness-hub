@@ -5,6 +5,7 @@ import TrustBar from "@/components/TrustBar";
 import CartDrawer from "@/components/CartDrawer";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import CookieBanner from "@/components/CookieBanner";
+import SEO from "@/components/SEO";
 
 const IntroOffers = lazy(() => import("@/components/IntroOffers"));
 const ProductsSection = lazy(() => import("@/components/ProductsSection"));
@@ -20,8 +21,44 @@ const SectionFallback = () => (
 );
 
 const Index = () => {
+  const siteUrl = "https://greenworldprestige.lovable.app";
+  const orgJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: "Green World",
+    url: siteUrl,
+    logo: `${siteUrl}/placeholder.svg`,
+    description:
+      "Green World propose des compléments alimentaires naturels et efficaces pour votre bien-être quotidien en Côte d'Ivoire.",
+    address: {
+      "@type": "PostalAddress",
+      addressCountry: "CI",
+      addressLocality: "Abidjan",
+    },
+    contactPoint: {
+      "@type": "ContactPoint",
+      telephone: "+2250715736370",
+      contactType: "customer service",
+      areaServed: "CI",
+      availableLanguage: ["French"],
+    },
+  };
+  const websiteJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: "Green World",
+    url: siteUrl,
+    inLanguage: "fr-FR",
+  };
+
   return (
     <div className="min-h-screen">
+      <SEO
+        title="Green World Côte d'Ivoire — Compléments alimentaires naturels"
+        description="Découvrez plus de 80 compléments alimentaires 100% naturels Green World en Côte d'Ivoire. Scanner santé QRMA & Detox Pad à 5 000 FCFA. Livraison Abidjan."
+        canonical={siteUrl + "/"}
+        jsonLd={[orgJsonLd, websiteJsonLd]}
+      />
       <Navbar />
       <HeroSection />
       <TrustBar />
