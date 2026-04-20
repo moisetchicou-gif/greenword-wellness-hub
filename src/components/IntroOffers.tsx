@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
-import { ShoppingCart, Check, Play, Sparkles, ArrowRight, CalendarCheck } from "lucide-react";
-import { useCart } from "@/hooks/useCart";
+import { Check, Play, Sparkles, ArrowRight, CalendarCheck } from "lucide-react";
 import { offers, type Offer } from "@/data/offers";
 import BookingDialog from "@/components/BookingDialog";
 
@@ -9,10 +8,8 @@ const OfferCard = ({ offer, index }: { offer: Offer; index: number }) => {
   const ref = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
   const [visible, setVisible] = useState(false);
-  const [added, setAdded] = useState(false);
   const [showVideo, setShowVideo] = useState(false);
   const [videoError, setVideoError] = useState(false);
-  const { addItem } = useCart();
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -23,11 +20,6 @@ const OfferCard = ({ offer, index }: { offer: Offer; index: number }) => {
     return () => observer.disconnect();
   }, []);
 
-  const handleAdd = () => {
-    addItem({ id: offer.id, name: offer.name, price: offer.price, priceNum: offer.priceNum, image: offer.image });
-    setAdded(true);
-    setTimeout(() => setAdded(false), 1500);
-  };
 
   return (
     <div
@@ -106,46 +98,26 @@ const OfferCard = ({ offer, index }: { offer: Offer; index: number }) => {
               <span className="text-xs text-muted-foreground">seulement</span>
             </div>
             <div className="flex flex-col sm:flex-row gap-2">
-              <button
-                onClick={handleAdd}
-                className={`flex-1 px-5 py-3 rounded-full text-sm font-semibold active:scale-[0.97] transition-all duration-300 flex items-center justify-center gap-2 ${
-                  added
-                    ? "bg-primary text-primary-foreground shadow-lg shadow-primary/25"
-                    : "bg-accent text-accent-foreground hover:shadow-lg hover:shadow-accent/20 hover:scale-[1.02]"
-                }`}
-              >
-                {added ? (
-                  <>
-                    <Check className="w-4 h-4" />
-                    Ajouté !
-                  </>
-                ) : (
-                  <>
-                    <ShoppingCart className="w-4 h-4" />
-                    Ajouter
-                  </>
-                )}
-              </button>
               <Link
                 to={`/offre/${offer.slug}`}
-                className="px-5 py-3 rounded-full text-sm font-semibold border-2 border-accent/20 text-accent hover:border-accent hover:bg-accent hover:text-accent-foreground transition-all duration-300 flex items-center justify-center gap-1.5"
+                className="flex-1 px-5 py-3 rounded-full text-sm font-semibold border-2 border-accent/20 text-accent hover:border-accent hover:bg-accent hover:text-accent-foreground transition-all duration-300 flex items-center justify-center gap-1.5"
               >
                 En savoir plus
                 <ArrowRight className="w-4 h-4" />
               </Link>
+              <BookingDialog
+                offerName={offer.name}
+                trigger={
+                  <button
+                    type="button"
+                    className="flex-1 px-5 py-3 rounded-full text-sm font-semibold bg-primary text-primary-foreground hover:shadow-lg hover:shadow-primary/25 hover:scale-[1.02] transition-all duration-300 flex items-center justify-center gap-2"
+                  >
+                    <CalendarCheck className="w-4 h-4" />
+                    Réserver
+                  </button>
+                }
+              />
             </div>
-            <BookingDialog
-              offerName={offer.name}
-              trigger={
-                <button
-                  type="button"
-                  className="w-full px-5 py-3 rounded-full text-sm font-semibold border-2 border-primary/30 text-primary hover:bg-primary hover:text-primary-foreground transition-all duration-300 flex items-center justify-center gap-2"
-                >
-                  <CalendarCheck className="w-4 h-4" />
-                  Réserver une séance
-                </button>
-              }
-            />
           </div>
         </div>
       </div>

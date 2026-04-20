@@ -1,6 +1,6 @@
 import { useState, useRef } from "react";
 import { useParams, Link, Navigate } from "react-router-dom";
-import { ArrowLeft, ShoppingCart, Check, Shield, Sparkles, Clock, Users, Star, Play, ChevronDown, CalendarCheck } from "lucide-react";
+import { ArrowLeft, Check, Shield, Sparkles, Clock, Users, Star, Play, ChevronDown, CalendarCheck } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import CartDrawer from "@/components/CartDrawer";
@@ -8,17 +8,14 @@ import WhatsAppButton from "@/components/WhatsAppButton";
 import BookingDialog from "@/components/BookingDialog";
 import SEO from "@/components/SEO";
 import { getOfferBySlug } from "@/data/offers";
-import { useCart } from "@/hooks/useCart";
 
 const OfferDetail = () => {
   const { slug } = useParams<{ slug: string }>();
   const offer = slug ? getOfferBySlug(slug) : undefined;
-  const [added, setAdded] = useState(false);
   const [showVideo, setShowVideo] = useState(false);
   const [videoError, setVideoError] = useState(false);
   const [openFaq, setOpenFaq] = useState<number | null>(0);
   const videoRef = useRef<HTMLVideoElement>(null);
-  const { addItem } = useCart();
 
   if (!offer) return <Navigate to="/" replace />;
 
@@ -69,18 +66,6 @@ const OfferDetail = () => {
       { "@type": "ListItem", position: 1, name: "Accueil", item: siteUrl },
       { "@type": "ListItem", position: 2, name: offer.name, item: canonical },
     ],
-  };
-
-  const handleAdd = () => {
-    addItem({
-      id: offer.id,
-      name: offer.name,
-      price: offer.price,
-      priceNum: offer.priceNum,
-      image: offer.image,
-    });
-    setAdded(true);
-    setTimeout(() => setAdded(false), 1500);
   };
 
   return (
@@ -180,40 +165,18 @@ const OfferDetail = () => {
               </div>
 
               {/* CTA */}
-              <div className="flex flex-col sm:flex-row gap-3">
-                <button
-                  onClick={handleAdd}
-                  className={`flex-1 sm:flex-none px-8 py-3.5 rounded-full text-sm font-semibold active:scale-[0.97] transition-all duration-300 flex items-center justify-center gap-2 tracking-wide ${
-                    added
-                      ? "bg-primary text-primary-foreground"
-                      : "bg-accent text-accent-foreground hover:shadow-lg hover:shadow-accent/20 hover:scale-[1.02]"
-                  }`}
-                >
-                  {added ? (
-                    <>
-                      <Check className="w-4 h-4" />
-                      Ajouté au panier !
-                    </>
-                  ) : (
-                    <>
-                      <ShoppingCart className="w-4 h-4" />
-                      Ajouter au panier
-                    </>
-                  )}
-                </button>
-                <BookingDialog
-                  offerName={offer.name}
-                  trigger={
-                    <button
-                      type="button"
-                      className="flex-1 sm:flex-none px-8 py-3.5 rounded-full text-sm font-semibold border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground active:scale-[0.97] transition-all duration-300 flex items-center justify-center gap-2 tracking-wide"
-                    >
-                      <CalendarCheck className="w-4 h-4" />
-                      Réserver une séance
-                    </button>
-                  }
-                />
-              </div>
+              <BookingDialog
+                offerName={offer.name}
+                trigger={
+                  <button
+                    type="button"
+                    className="w-full sm:w-auto px-8 py-3.5 rounded-full text-sm font-semibold bg-primary text-primary-foreground hover:shadow-lg hover:shadow-primary/25 hover:scale-[1.02] active:scale-[0.97] transition-all duration-300 flex items-center justify-center gap-2 tracking-wide"
+                  >
+                    <CalendarCheck className="w-4 h-4" />
+                    Réserver ma séance
+                  </button>
+                }
+              />
 
               {/* Meta info */}
               <div className="flex flex-wrap gap-4 pt-4 border-t border-border/50">
@@ -344,27 +307,18 @@ const OfferDetail = () => {
               <p className="text-sm opacity-80 max-w-md mx-auto">
                 Profitez de notre offre découverte à seulement {offer.price}.
               </p>
-              <div className="flex flex-col sm:flex-row gap-3 justify-center">
-                <button
-                  onClick={handleAdd}
-                  className="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-full bg-primary text-primary-foreground text-sm font-semibold hover:shadow-xl hover:shadow-primary/30 hover:scale-105 active:scale-[0.98] transition-all duration-300"
-                >
-                  <ShoppingCart className="w-4 h-4" />
-                  Ajouter au panier — {offer.price}
-                </button>
-                <BookingDialog
-                  offerName={offer.name}
-                  trigger={
-                    <button
-                      type="button"
-                      className="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-full bg-background text-foreground text-sm font-semibold hover:shadow-xl hover:scale-105 active:scale-[0.98] transition-all duration-300"
-                    >
-                      <CalendarCheck className="w-4 h-4" />
-                      Réserver une séance
-                    </button>
-                  }
-                />
-              </div>
+              <BookingDialog
+                offerName={offer.name}
+                trigger={
+                  <button
+                    type="button"
+                    className="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-full bg-primary text-primary-foreground text-sm font-semibold hover:shadow-xl hover:shadow-primary/30 hover:scale-105 active:scale-[0.98] transition-all duration-300"
+                  >
+                    <CalendarCheck className="w-4 h-4" />
+                    Réserver ma séance — {offer.price}
+                  </button>
+                }
+              />
             </div>
           </section>
         </div>
