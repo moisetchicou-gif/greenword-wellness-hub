@@ -1,10 +1,11 @@
 import { useState, useRef } from "react";
 import { useParams, Link, Navigate } from "react-router-dom";
-import { ArrowLeft, ShoppingCart, Check, Shield, Sparkles, Clock, Users, Star, Play, ChevronDown } from "lucide-react";
+import { ArrowLeft, ShoppingCart, Check, Shield, Sparkles, Clock, Users, Star, Play, ChevronDown, CalendarCheck } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import CartDrawer from "@/components/CartDrawer";
 import WhatsAppButton from "@/components/WhatsAppButton";
+import BookingDialog from "@/components/BookingDialog";
 import { getOfferBySlug } from "@/data/offers";
 import { useCart } from "@/hooks/useCart";
 
