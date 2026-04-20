@@ -6,7 +6,6 @@ import CartDrawer from "@/components/CartDrawer";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import CookieBanner from "@/components/CookieBanner";
 
-const PromoSlider = lazy(() => import("@/components/PromoSlider"));
 const IntroOffers = lazy(() => import("@/components/IntroOffers"));
 const ProductsSection = lazy(() => import("@/components/ProductsSection"));
 const FeaturesSection = lazy(() => import("@/components/FeaturesSection"));
@@ -33,9 +32,6 @@ const Index = () => {
       </div>
       <Suspense fallback={<SectionFallback />}>
         <IntroOffers />
-      </Suspense>
-      <Suspense fallback={<SectionFallback />}>
-        <PromoSlider />
       </Suspense>
       <Suspense fallback={<SectionFallback />}>
         <ProductsSection />
