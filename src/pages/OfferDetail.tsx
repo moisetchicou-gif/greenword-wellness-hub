@@ -159,9 +159,15 @@ const OfferDetail = () => {
               </div>
 
               {/* Prix */}
-              <div className="flex items-baseline gap-3 pt-2">
-                <p className="text-3xl font-display text-primary font-bold">{offer.price}</p>
-                <span className="text-sm text-muted-foreground">seulement</span>
+              <div>
+                <div className="flex items-baseline gap-3 pt-2">
+                  <p className="text-3xl font-display text-primary font-bold">{offer.price}</p>
+                  <span className="text-sm text-muted-foreground">seulement</span>
+                </div>
+                <p className="mt-2 inline-flex items-center gap-1.5 text-xs text-muted-foreground italic">
+                  <CalendarCheck className="w-3.5 h-3.5 text-primary" />
+                  Sur rendez-vous uniquement — pas d'ajout au panier
+                </p>
               </div>
 
               {/* CTA */}
