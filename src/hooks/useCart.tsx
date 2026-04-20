@@ -1,4 +1,5 @@
 import { createContext, useContext, useState, ReactNode } from "react";
+import { toast } from "@/hooks/use-toast";
 
 export interface CartItem {
   id: number;
@@ -23,6 +24,10 @@ interface CartContextType {
 
 const CartContext = createContext<CartContextType | null>(null);
 
+// IDs des offres "sur rendez-vous uniquement" qui ne peuvent pas être ajoutées au panier.
+// Doit rester synchronisé avec src/data/offers.ts.
+const BOOKING_ONLY_IDS = new Set<number>([1001, 1002]);
+
 export const CartProvider = ({ children }: { children: ReactNode }) => {
   const [items, setItems] = useState<CartItem[]>([]);
   const [isOpen, setIsOpen] = useState(false);
@@ -31,6 +36,17 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
   const MAX_CART_ITEMS = 30;
 
   const addItem = (item: Omit<CartItem, "quantity">) => {
+    // Garde-fou : les offres spéciales (Scanner QRMA, Magic Detoxin Pad)
+    // sont uniquement disponibles via réservation et ne doivent jamais
+    // arriver dans le panier, même via un appel direct au hook.
+    if (BOOKING_ONLY_IDS.has(item.id)) {
+      toast({
+        title: "Sur réservation uniquement",
+        description: `${item.name} se réserve directement avec notre équipe — pas d'ajout au panier.`,
+      });
+      return;
+    }
+
     setItems((prev) => {
       const existing = prev.find((i) => i.id === item.id);
       if (existing) {
