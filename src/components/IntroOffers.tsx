@@ -1,8 +1,9 @@
 import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
-import { ShoppingCart, Check, Play, Sparkles, ArrowRight } from "lucide-react";
+import { ShoppingCart, Check, Play, Sparkles, ArrowRight, CalendarCheck } from "lucide-react";
 import { useCart } from "@/hooks/useCart";
 import { offers, type Offer } from "@/data/offers";
+import BookingDialog from "@/components/BookingDialog";
 
 const OfferCard = ({ offer, index }: { offer: Offer; index: number }) => {
   const ref = useRef<HTMLDivElement>(null);
