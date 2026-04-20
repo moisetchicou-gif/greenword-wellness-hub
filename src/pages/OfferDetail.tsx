@@ -122,26 +122,40 @@ const OfferDetail = () => {
               </div>
 
               {/* CTA */}
-              <button
-                onClick={handleAdd}
-                className={`w-full sm:w-auto px-8 py-3.5 rounded-full text-sm font-semibold active:scale-[0.97] transition-all duration-300 flex items-center justify-center gap-2 tracking-wide ${
-                  added
-                    ? "bg-primary text-primary-foreground"
-                    : "bg-accent text-accent-foreground hover:shadow-lg hover:shadow-accent/20 hover:scale-[1.02]"
-                }`}
-              >
-                {added ? (
-                  <>
-                    <Check className="w-4 h-4" />
-                    Ajouté au panier !
-                  </>
-                ) : (
-                  <>
-                    <ShoppingCart className="w-4 h-4" />
-                    Ajouter au panier
-                  </>
-                )}
-              </button>
+              <div className="flex flex-col sm:flex-row gap-3">
+                <button
+                  onClick={handleAdd}
+                  className={`flex-1 sm:flex-none px-8 py-3.5 rounded-full text-sm font-semibold active:scale-[0.97] transition-all duration-300 flex items-center justify-center gap-2 tracking-wide ${
+                    added
+                      ? "bg-primary text-primary-foreground"
+                      : "bg-accent text-accent-foreground hover:shadow-lg hover:shadow-accent/20 hover:scale-[1.02]"
+                  }`}
+                >
+                  {added ? (
+                    <>
+                      <Check className="w-4 h-4" />
+                      Ajouté au panier !
+                    </>
+                  ) : (
+                    <>
+                      <ShoppingCart className="w-4 h-4" />
+                      Ajouter au panier
+                    </>
+                  )}
+                </button>
+                <BookingDialog
+                  offerName={offer.name}
+                  trigger={
+                    <button
+                      type="button"
+                      className="flex-1 sm:flex-none px-8 py-3.5 rounded-full text-sm font-semibold border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground active:scale-[0.97] transition-all duration-300 flex items-center justify-center gap-2 tracking-wide"
+                    >
+                      <CalendarCheck className="w-4 h-4" />
+                      Réserver une séance
+                    </button>
+                  }
+                />
+              </div>
 
               {/* Meta info */}
               <div className="flex flex-wrap gap-4 pt-4 border-t border-border/50">
