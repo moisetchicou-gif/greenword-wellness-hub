@@ -5,6 +5,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import CartDrawer from "@/components/CartDrawer";
 import WhatsAppButton from "@/components/WhatsAppButton";
+import SEO from "@/components/SEO";
 import { products } from "@/data/products";
 import { useCart } from "@/hooks/useCart";
 import { getProductSlug } from "@/lib/productUtils";

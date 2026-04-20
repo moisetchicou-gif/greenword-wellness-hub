@@ -6,6 +6,7 @@ import Footer from "@/components/Footer";
 import CartDrawer from "@/components/CartDrawer";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import BookingDialog from "@/components/BookingDialog";
+import SEO from "@/components/SEO";
 import { getOfferBySlug } from "@/data/offers";
 import { useCart } from "@/hooks/useCart";
 
