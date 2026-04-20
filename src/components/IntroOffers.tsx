@@ -82,10 +82,15 @@ const OfferCard = ({ offer, index }: { offer: Offer; index: number }) => {
         <div className="p-6 sm:p-7 flex flex-col justify-between space-y-4">
           <div className="space-y-3">
             <p className="text-primary text-[10px] font-semibold uppercase tracking-[0.2em]">{offer.tagline}</p>
-            <h3 className="text-xl sm:text-2xl font-display text-accent leading-tight">{offer.name}</h3>
-            <p className="text-muted-foreground text-sm leading-relaxed">{offer.description}</p>
+            <Link
+              to={`/offre/${offer.slug}`}
+              className="text-xl sm:text-2xl font-display text-accent leading-tight hover:text-primary transition-colors block"
+            >
+              {offer.name}
+            </Link>
+            <p className="text-muted-foreground text-sm leading-relaxed">{offer.shortDescription}</p>
             <ul className="space-y-1.5 pt-1">
-              {offer.benefits.map((b) => (
+              {offer.benefits.slice(0, 3).map((b) => (
                 <li key={b} className="text-foreground text-xs flex items-start gap-2">
                   <Check className="w-3.5 h-3.5 text-primary mt-0.5 flex-shrink-0" />
                   {b}
@@ -99,26 +104,35 @@ const OfferCard = ({ offer, index }: { offer: Offer; index: number }) => {
               <span className="text-2xl font-bold font-display text-primary">{offer.price}</span>
               <span className="text-xs text-muted-foreground">seulement</span>
             </div>
-            <button
-              onClick={handleAdd}
-              className={`w-full px-5 py-3 rounded-full text-sm font-semibold active:scale-[0.97] transition-all duration-300 flex items-center justify-center gap-2 ${
-                added
-                  ? "bg-primary text-primary-foreground shadow-lg shadow-primary/25"
-                  : "bg-accent text-accent-foreground hover:shadow-lg hover:shadow-accent/20 hover:scale-[1.02]"
-              }`}
-            >
-              {added ? (
-                <>
-                  <Check className="w-4 h-4" />
-                  Ajouté !
-                </>
-              ) : (
-                <>
-                  <ShoppingCart className="w-4 h-4" />
-                  Ajouter au panier
-                </>
-              )}
-            </button>
+            <div className="flex flex-col sm:flex-row gap-2">
+              <button
+                onClick={handleAdd}
+                className={`flex-1 px-5 py-3 rounded-full text-sm font-semibold active:scale-[0.97] transition-all duration-300 flex items-center justify-center gap-2 ${
+                  added
+                    ? "bg-primary text-primary-foreground shadow-lg shadow-primary/25"
+                    : "bg-accent text-accent-foreground hover:shadow-lg hover:shadow-accent/20 hover:scale-[1.02]"
+                }`}
+              >
+                {added ? (
+                  <>
+                    <Check className="w-4 h-4" />
+                    Ajouté !
+                  </>
+                ) : (
+                  <>
+                    <ShoppingCart className="w-4 h-4" />
+                    Ajouter
+                  </>
+                )}
+              </button>
+              <Link
+                to={`/offre/${offer.slug}`}
+                className="px-5 py-3 rounded-full text-sm font-semibold border-2 border-accent/20 text-accent hover:border-accent hover:bg-accent hover:text-accent-foreground transition-all duration-300 flex items-center justify-center gap-1.5"
+              >
+                En savoir plus
+                <ArrowRight className="w-4 h-4" />
+              </Link>
+            </div>
           </div>
         </div>
       </div>
