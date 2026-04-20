@@ -126,6 +126,7 @@ const OfferCard = ({ offer, index }: { offer: Offer; index: number }) => {
                 }
               />
             </div>
+          </div>
         </div>
       </div>
     </div>
