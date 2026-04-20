@@ -85,6 +85,14 @@ const OfferDetail = () => {
 
   return (
     <div className="min-h-screen">
+      <SEO
+        title={`${offer.name} — ${offer.tagline} à ${offer.price} | Green World`}
+        description={offer.shortDescription}
+        canonical={canonical}
+        image={offer.image}
+        type="product"
+        jsonLd={[productJsonLd, faqJsonLd, breadcrumbJsonLd]}
+      />
       <Navbar />
       <main className="pt-28 pb-20">
         <div className="container mx-auto px-4 sm:px-6">

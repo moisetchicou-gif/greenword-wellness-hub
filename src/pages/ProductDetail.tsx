@@ -18,6 +18,37 @@ const ProductDetail = () => {
 
   if (!product) return <Navigate to="/#produits" replace />;
 
+  const siteUrl = "https://greenworldprestige.lovable.app";
+  const slugStr = getProductSlug(product);
+  const canonical = `${siteUrl}/produit/${slugStr}`;
+  const productJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    name: product.name,
+    description: `${product.name} — complément alimentaire naturel Green World. ${product.benefits.join(". ")}.`,
+    image: [product.image],
+    category: product.category,
+    brand: { "@type": "Brand", name: "Green World" },
+    offers: {
+      "@type": "Offer",
+      url: canonical,
+      priceCurrency: "XOF",
+      price: product.priceNum,
+      availability: "https://schema.org/InStock",
+      seller: { "@type": "Organization", name: "Green World" },
+    },
+  };
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Accueil", item: siteUrl },
+      { "@type": "ListItem", position: 2, name: "Produits", item: `${siteUrl}/#produits` },
+      { "@type": "ListItem", position: 3, name: product.category, item: `${siteUrl}/#produits` },
+      { "@type": "ListItem", position: 4, name: product.name, item: canonical },
+    ],
+  };
+
   const handleAdd = () => {
     addItem({ id: product.id, name: product.name, price: product.price, priceNum: product.priceNum, image: product.image });
     setAdded(true);
