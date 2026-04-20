@@ -1,8 +1,9 @@
 import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
-import { ShoppingCart, Check, Play, Sparkles, ArrowRight } from "lucide-react";
+import { ShoppingCart, Check, Play, Sparkles, ArrowRight, CalendarCheck } from "lucide-react";
 import { useCart } from "@/hooks/useCart";
 import { offers, type Offer } from "@/data/offers";
+import BookingDialog from "@/components/BookingDialog";
 
 const OfferCard = ({ offer, index }: { offer: Offer; index: number }) => {
   const ref = useRef<HTMLDivElement>(null);
@@ -133,6 +134,18 @@ const OfferCard = ({ offer, index }: { offer: Offer; index: number }) => {
                 <ArrowRight className="w-4 h-4" />
               </Link>
             </div>
+            <BookingDialog
+              offerName={offer.name}
+              trigger={
+                <button
+                  type="button"
+                  className="w-full px-5 py-3 rounded-full text-sm font-semibold border-2 border-primary/30 text-primary hover:bg-primary hover:text-primary-foreground transition-all duration-300 flex items-center justify-center gap-2"
+                >
+                  <CalendarCheck className="w-4 h-4" />
+                  Réserver une séance
+                </button>
+              }
+            />
           </div>
         </div>
       </div>
