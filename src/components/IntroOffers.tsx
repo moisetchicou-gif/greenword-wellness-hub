@@ -93,9 +93,15 @@ const OfferCard = ({ offer, index }: { offer: Offer; index: number }) => {
           </div>
 
           <div className="space-y-3 pt-2">
-            <div className="flex items-baseline gap-2">
-              <span className="text-2xl font-bold font-display text-primary">{offer.price}</span>
-              <span className="text-xs text-muted-foreground">seulement</span>
+            <div>
+              <div className="flex items-baseline gap-2">
+                <span className="text-2xl font-bold font-display text-primary">{offer.price}</span>
+                <span className="text-xs text-muted-foreground">seulement</span>
+              </div>
+              <p className="mt-1 inline-flex items-center gap-1.5 text-[11px] text-muted-foreground italic">
+                <CalendarCheck className="w-3 h-3 text-primary" />
+                Sur rendez-vous uniquement
+              </p>
             </div>
             <div className="flex flex-col sm:flex-row gap-2">
               <Link
