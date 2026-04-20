@@ -1,3 +1,7 @@
+# Sitemap pour faciliter l'indexation
+Sitemap: https://greenworldprestige.lovable.app/sitemap.xml
+
+# Bots majeurs : tout autorisé
 User-agent: Googlebot
 Allow: /
 
@@ -10,5 +14,10 @@ Allow: /
 User-agent: facebookexternalhit
 Allow: /
 
+# Politique par défaut
 User-agent: *
 Allow: /
+Disallow: /api/
+
+# Pages techniques à ne pas indexer
+Disallow: /*?*
