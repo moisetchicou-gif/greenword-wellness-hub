@@ -198,7 +198,7 @@ export const products: Product[] = [
   { id: 69, name: "Golden Knight", image: productGoldenKnight, benefits: ["Stimule la vitalité masculine", "Renforce la performance"], price: "12 870 FCFA", priceNum: 12870, category: "Soins masculins", bv: 18 },
 
   // ===== ENFANTS & FAMILLE =====
-  { id: 8, name: "Zinc Adulte", image: productZincAdulte, benefits: ["Renforce le système immunitaire", "Favorise la santé de la peau"], price: "11 440 FCFA", priceNum: 11440, category: "Enfants & Famille", bv: 16 },
+  { id: 8, name: "Zinc Adulte", image: productZincAdulte, benefits: ["Renforce le système immunitaire", "Favorise la santé de la peau"], price: "11 440 FCFA", priceNum: 11440, category: "Soins masculins", bv: 16 },
   { id: 26, name: "Multi-vitamin Enfants", image: productMultivitaminEnfants, benefits: ["Apport complet en vitamines", "Favorise la croissance"], price: "6 078 FCFA", priceNum: 6078, category: "Enfants & Famille", bv: 8.5 },
   { id: 84, name: "Multi-vitamin Adultes", image: productMultivitaminAdultes, benefits: ["Apport quotidien en vitamines", "Renforce la vitalité"], price: "16 445 FCFA", priceNum: 16445, category: "Enfants & Famille", bv: 23 },
   { id: 85, name: "Calcium Enfants", image: productCalciumEnfants, benefits: ["Renforce les os en croissance", "Favorise le développement"], price: "8 608 FCFA", priceNum: 8608, category: "Enfants & Famille", bv: 12 },
