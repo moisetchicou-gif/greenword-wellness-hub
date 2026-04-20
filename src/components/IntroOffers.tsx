@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
-import { ShoppingCart, Check, Play, Sparkles, ArrowRight, CalendarCheck } from "lucide-react";
-import { useCart } from "@/hooks/useCart";
+import { Check, Play, Sparkles, ArrowRight, CalendarCheck } from "lucide-react";
 import { offers, type Offer } from "@/data/offers";
 import BookingDialog from "@/components/BookingDialog";
 
@@ -9,10 +8,8 @@ const OfferCard = ({ offer, index }: { offer: Offer; index: number }) => {
   const ref = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
   const [visible, setVisible] = useState(false);
-  const [added, setAdded] = useState(false);
   const [showVideo, setShowVideo] = useState(false);
   const [videoError, setVideoError] = useState(false);
-  const { addItem } = useCart();
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -23,11 +20,6 @@ const OfferCard = ({ offer, index }: { offer: Offer; index: number }) => {
     return () => observer.disconnect();
   }, []);
 
-  const handleAdd = () => {
-    addItem({ id: offer.id, name: offer.name, price: offer.price, priceNum: offer.priceNum, image: offer.image });
-    setAdded(true);
-    setTimeout(() => setAdded(false), 1500);
-  };
 
   return (
     <div
