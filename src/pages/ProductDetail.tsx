@@ -61,6 +61,14 @@ const ProductDetail = () => {
 
   return (
     <div className="min-h-screen">
+      <SEO
+        title={`${product.name} — ${product.category} ${product.price} | Green World`}
+        description={`${product.name} : ${product.benefits.slice(0, 2).join(", ")}. Complément alimentaire naturel Green World à ${product.price}. Livraison en Côte d'Ivoire.`}
+        canonical={canonical}
+        image={product.image}
+        type="product"
+        jsonLd={[productJsonLd, breadcrumbJsonLd]}
+      />
       <Navbar />
       <main className="pt-28 pb-20">
         <div className="container mx-auto px-4 sm:px-6">
