@@ -1,6 +1,6 @@
 import { useState, useRef } from "react";
 import { useParams, Link, Navigate } from "react-router-dom";
-import { ArrowLeft, ShoppingCart, Check, Shield, Sparkles, Clock, Users, Star, Play, ChevronDown, CalendarCheck } from "lucide-react";
+import { ArrowLeft, Check, Shield, Sparkles, Clock, Users, Star, Play, ChevronDown, CalendarCheck } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import CartDrawer from "@/components/CartDrawer";
@@ -8,17 +8,14 @@ import WhatsAppButton from "@/components/WhatsAppButton";
 import BookingDialog from "@/components/BookingDialog";
 import SEO from "@/components/SEO";
 import { getOfferBySlug } from "@/data/offers";
-import { useCart } from "@/hooks/useCart";
 
 const OfferDetail = () => {
   const { slug } = useParams<{ slug: string }>();
   const offer = slug ? getOfferBySlug(slug) : undefined;
-  const [added, setAdded] = useState(false);
   const [showVideo, setShowVideo] = useState(false);
   const [videoError, setVideoError] = useState(false);
   const [openFaq, setOpenFaq] = useState<number | null>(0);
   const videoRef = useRef<HTMLVideoElement>(null);
-  const { addItem } = useCart();
 
   if (!offer) return <Navigate to="/" replace />;
 
@@ -69,18 +66,6 @@ const OfferDetail = () => {
       { "@type": "ListItem", position: 1, name: "Accueil", item: siteUrl },
       { "@type": "ListItem", position: 2, name: offer.name, item: canonical },
     ],
-  };
-
-  const handleAdd = () => {
-    addItem({
-      id: offer.id,
-      name: offer.name,
-      price: offer.price,
-      priceNum: offer.priceNum,
-      image: offer.image,
-    });
-    setAdded(true);
-    setTimeout(() => setAdded(false), 1500);
   };
 
   return (
