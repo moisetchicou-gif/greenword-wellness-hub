@@ -1,46 +1,8 @@
 import { useEffect, useRef, useState } from "react";
-import { ShoppingCart, Check, Play, Sparkles } from "lucide-react";
+import { Link } from "react-router-dom";
+import { ShoppingCart, Check, Play, Sparkles, ArrowRight } from "lucide-react";
 import { useCart } from "@/hooks/useCart";
-import scannerImg from "@/assets/product-scanner-qrma.jpg";
-import detoxImg from "@/assets/product-detoxin-pad.jpg";
-
-interface Offer {
-  id: number;
-  name: string;
-  tagline: string;
-  description: string;
-  price: string;
-  priceNum: number;
-  oldPrice?: string;
-  image: string;
-  video?: string; // path under /public, e.g. "/videos/scanner.mp4"
-  benefits: string[];
-}
-
-const offers: Offer[] = [
-  {
-    id: 1001,
-    name: "Scanner QRMA",
-    tagline: "Bilan de santé express",
-    description: "Analyse rapide et complète de votre état de santé en quelques minutes grâce à la technologie QRMA.",
-    price: "5 000 FCFA",
-    priceNum: 5000,
-    image: scannerImg,
-    video: "/videos/scanner-qrma.mp4",
-    benefits: ["Analyse multi-organes", "Résultats instantanés", "Indolore et non-invasif"],
-  },
-  {
-    id: 1002,
-    name: "Magic Detoxin Pad",
-    tagline: "Détox en une nuit",
-    description: "Patchs détoxifiants à appliquer sous les pieds pour éliminer les toxines pendant votre sommeil.",
-    price: "5 000 FCFA",
-    priceNum: 5000,
-    image: detoxImg,
-    video: "/videos/detox-pad.mp4",
-    benefits: ["Élimine les toxines", "Améliore le sommeil", "Boost d'énergie"],
-  },
-];
+import { offers, type Offer } from "@/data/offers";
 
 const OfferCard = ({ offer, index }: { offer: Offer; index: number }) => {
   const ref = useRef<HTMLDivElement>(null);
