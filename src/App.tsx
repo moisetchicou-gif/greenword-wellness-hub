@@ -13,6 +13,7 @@ const MentionsLegales = lazy(() => import("./pages/MentionsLegales.tsx"));
 const PolitiqueConfidentialite = lazy(() => import("./pages/PolitiqueConfidentialite.tsx"));
 const CGV = lazy(() => import("./pages/CGV.tsx"));
 const ProductDetail = lazy(() => import("./pages/ProductDetail.tsx"));
+const OfferDetail = lazy(() => import("./pages/OfferDetail.tsx"));
 const GuidePathologies = lazy(() => import("./pages/GuidePathologies.tsx"));
 const NotFound = lazy(() => import("./pages/NotFound.tsx"));
 
@@ -39,6 +40,7 @@ const App = () => (
                 <Route path="/politique-confidentialite" element={<PolitiqueConfidentialite />} />
                 <Route path="/cgv" element={<CGV />} />
                 <Route path="/produit/:slug" element={<ProductDetail />} />
+                <Route path="/offre/:slug" element={<OfferDetail />} />
                 <Route path="/guide-pathologies" element={<GuidePathologies />} />
                 <Route path="*" element={<NotFound />} />
               </Routes>
