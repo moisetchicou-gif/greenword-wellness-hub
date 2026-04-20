@@ -286,13 +286,27 @@ const OfferDetail = () => {
               <p className="text-sm opacity-80 max-w-md mx-auto">
                 Profitez de notre offre découverte à seulement {offer.price}.
               </p>
-              <button
-                onClick={handleAdd}
-                className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-primary text-primary-foreground text-sm font-semibold hover:shadow-xl hover:shadow-primary/30 hover:scale-105 active:scale-[0.98] transition-all duration-300"
-              >
-                <ShoppingCart className="w-4 h-4" />
-                Ajouter au panier — {offer.price}
-              </button>
+              <div className="flex flex-col sm:flex-row gap-3 justify-center">
+                <button
+                  onClick={handleAdd}
+                  className="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-full bg-primary text-primary-foreground text-sm font-semibold hover:shadow-xl hover:shadow-primary/30 hover:scale-105 active:scale-[0.98] transition-all duration-300"
+                >
+                  <ShoppingCart className="w-4 h-4" />
+                  Ajouter au panier — {offer.price}
+                </button>
+                <BookingDialog
+                  offerName={offer.name}
+                  trigger={
+                    <button
+                      type="button"
+                      className="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-full bg-background text-foreground text-sm font-semibold hover:shadow-xl hover:scale-105 active:scale-[0.98] transition-all duration-300"
+                    >
+                      <CalendarCheck className="w-4 h-4" />
+                      Réserver une séance
+                    </button>
+                  }
+                />
+              </div>
             </div>
           </section>
         </div>
