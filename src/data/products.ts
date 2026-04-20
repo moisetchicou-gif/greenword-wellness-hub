@@ -200,7 +200,7 @@ export const products: Product[] = [
   // ===== ENFANTS & FAMILLE =====
   { id: 8, name: "Zinc Adulte", image: productZincAdulte, benefits: ["Renforce le système immunitaire", "Favorise la santé de la peau"], price: "11 440 FCFA", priceNum: 11440, category: "Soins masculins", bv: 16 },
   { id: 26, name: "Multi-vitamin Enfants", image: productMultivitaminEnfants, benefits: ["Apport complet en vitamines", "Favorise la croissance"], price: "6 078 FCFA", priceNum: 6078, category: "Enfants & Famille", bv: 8.5 },
-  { id: 84, name: "Multi-vitamin Adultes", image: productMultivitaminAdultes, benefits: ["Apport quotidien en vitamines", "Renforce la vitalité"], price: "16 445 FCFA", priceNum: 16445, category: "Enfants & Famille", bv: 23 },
+  { id: 84, name: "Multi-vitamin Adultes", image: productMultivitaminAdultes, benefits: ["Apport quotidien en vitamines", "Renforce la vitalité"], price: "16 445 FCFA", priceNum: 16445, category: "Compléments de santé", bv: 23 },
   { id: 85, name: "Calcium Enfants", image: productCalciumEnfants, benefits: ["Renforce les os en croissance", "Favorise le développement"], price: "8 608 FCFA", priceNum: 8608, category: "Enfants & Famille", bv: 12 },
   { id: 86, name: "Calcium Adultes", image: productCalciumAdultes, benefits: ["Prévient l'ostéoporose", "Renforce les os et les dents"], price: "15 730 FCFA", priceNum: 15730, category: "Enfants & Famille", bv: 22 },
   { id: 87, name: "Zinc Enfants", image: productZincEnfants, benefits: ["Renforce l'immunité de l'enfant", "Favorise la croissance"], price: "6 435 FCFA", priceNum: 6435, category: "Enfants & Famille", bv: 9 },
