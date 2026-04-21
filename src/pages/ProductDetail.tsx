@@ -172,11 +172,12 @@ const ProductDetail = () => {
               <div className="bg-card rounded-xl border border-border p-6 space-y-3">
                 <h3 className="font-display text-base text-foreground flex items-center gap-2">
                   <Leaf className="w-4 h-4 text-primary" />
-                  Description
+                  Conseils
                 </h3>
                 <p className="text-xs text-muted-foreground leading-relaxed">
-                  {product.name} est un complément alimentaire naturel de la gamme Green World.
-                  Formulé à partir d'ingrédients 100% naturels, il est conçu pour soutenir votre bien-être au quotidien.
+                  {product.conseils
+                    ? product.conseils
+                    : `${product.name} est un complément alimentaire naturel de la gamme Green World. Formulé à partir d'ingrédients 100% naturels, il est conçu pour soutenir votre bien-être au quotidien.`}
                 </p>
               </div>
 
@@ -198,8 +199,9 @@ const ProductDetail = () => {
                   Posologie
                 </h3>
                 <p className="text-xs text-muted-foreground leading-relaxed">
-                  Prendre 2 à 3 capsules par jour avec de l'eau tiède, de préférence avant les repas.
-                  Cure recommandée : 1 à 3 mois. Consulter un professionnel de santé avant utilisation.
+                  {product.posologie
+                    ? product.posologie
+                    : "Prendre 2 à 3 capsules par jour avec de l'eau tiède, de préférence avant les repas. Cure recommandée : 1 à 3 mois. Consulter un professionnel de santé avant utilisation."}
                 </p>
               </div>
             </div>
