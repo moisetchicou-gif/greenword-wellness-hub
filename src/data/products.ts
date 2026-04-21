@@ -113,6 +113,8 @@ export interface Product {
   priceNum: number;
   category: Category;
   bv: number;
+  posologie?: string;
+  conseils?: string;
 }
 
 export const products: Product[] = [
