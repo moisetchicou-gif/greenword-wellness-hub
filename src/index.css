@@ -207,6 +207,9 @@
     .premium-cursor {
       --cursor-x: 0px;
       --cursor-y: 0px;
+      --cursor-primary: var(--primary);
+      --cursor-accent: var(--gold);
+      --cursor-deep: var(--accent);
       display: block;
       position: fixed;
       inset: 0;
@@ -217,10 +220,23 @@
       mix-blend-mode: multiply;
     }
 
+    .premium-cursor.is-gold {
+      --cursor-primary: var(--gold);
+      --cursor-accent: var(--primary);
+      --cursor-deep: var(--accent);
+    }
+
+    .premium-cursor.is-deep {
+      --cursor-primary: var(--accent);
+      --cursor-accent: var(--highlight);
+      --cursor-deep: var(--primary);
+    }
+
     .premium-cursor.is-visible {
       opacity: 1;
     }
 
+    .premium-cursor__aura,
     .premium-cursor__ring,
     .premium-cursor__dot {
       position: fixed;
@@ -230,16 +246,33 @@
       will-change: transform, width, height, opacity, background-color, border-color;
     }
 
+    .premium-cursor__aura {
+      width: 58px;
+      height: 58px;
+      opacity: 0.42;
+      background:
+        radial-gradient(circle at 35% 32%, hsl(var(--cursor-accent) / 0.26), transparent 34%),
+        radial-gradient(circle, hsl(var(--cursor-primary) / 0.13), transparent 66%);
+      filter: blur(8px) saturate(1.15);
+      transition:
+        width 260ms cubic-bezier(0.16, 1, 0.3, 1),
+        height 260ms cubic-bezier(0.16, 1, 0.3, 1),
+        opacity 180ms ease;
+    }
+
     .premium-cursor__ring {
       width: 34px;
       height: 34px;
-      border: 1px solid hsl(var(--primary) / 0.48);
+      border: 1px solid hsl(var(--cursor-primary) / 0.5);
       background:
-        radial-gradient(circle, hsl(var(--primary) / 0.08) 0%, transparent 58%),
+        linear-gradient(135deg, hsl(var(--cursor-primary) / 0.12), hsl(var(--cursor-accent) / 0.08)),
+        radial-gradient(circle at 32% 28%, hsl(var(--card) / 0.36), transparent 34%),
+        radial-gradient(circle, hsl(var(--cursor-primary) / 0.08) 0%, transparent 58%),
         hsl(var(--card) / 0.14);
       box-shadow:
-        0 0 0 1px hsl(var(--primary) / 0.08),
-        0 12px 32px hsl(var(--accent) / 0.14);
+        0 0 0 1px hsl(var(--cursor-primary) / 0.08),
+        inset 0 0 16px hsl(var(--cursor-accent) / 0.1),
+        0 12px 32px hsl(var(--cursor-deep) / 0.14);
       backdrop-filter: blur(6px);
       transition:
         width 220ms cubic-bezier(0.16, 1, 0.3, 1),
@@ -252,8 +285,8 @@
     .premium-cursor__dot {
       width: 7px;
       height: 7px;
-      background: hsl(var(--primary));
-      box-shadow: 0 0 18px hsl(var(--primary) / 0.45);
+      background: hsl(var(--cursor-primary));
+      box-shadow: 0 0 18px hsl(var(--cursor-primary) / 0.45);
       transition:
         width 180ms ease,
         height 180ms ease,
@@ -264,16 +297,35 @@
     .premium-cursor.is-active .premium-cursor__ring {
       width: 52px;
       height: 52px;
-      border-color: hsl(var(--gold) / 0.72);
+      border-color: hsl(var(--cursor-accent) / 0.74);
       background:
-        radial-gradient(circle, hsl(var(--gold) / 0.18) 0%, transparent 62%),
+        linear-gradient(135deg, hsl(var(--cursor-primary) / 0.1), hsl(var(--cursor-accent) / 0.16)),
+        radial-gradient(circle, hsl(var(--cursor-accent) / 0.18) 0%, transparent 62%),
         hsl(var(--card) / 0.22);
+    }
+
+    .premium-cursor.is-active .premium-cursor__aura {
+      width: 76px;
+      height: 76px;
+      opacity: 0.56;
     }
 
     .premium-cursor.is-active .premium-cursor__dot {
       width: 10px;
       height: 10px;
-      background: hsl(var(--gold));
+      background: hsl(var(--cursor-accent));
+    }
+
+    .premium-cursor.is-scrolling .premium-cursor__ring {
+      width: 42px;
+      height: 30px;
+      opacity: 0.88;
+    }
+
+    .premium-cursor.is-scrolling .premium-cursor__aura {
+      width: 88px;
+      height: 44px;
+      opacity: 0.34;
     }
 
     .premium-cursor.is-pressed .premium-cursor__ring {
