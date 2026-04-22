@@ -116,7 +116,7 @@ export const offers: Offer[] = [
   {
     id: 1002,
     slug: "magic-detoxin-pad",
-    name: "Magic Detoxin Pad",
+    name: "Une détox par les pieds est principalement appelée bain de pieds ionique",
     tagline: "Détox en une nuit",
     shortDescription:
       "Patchs détoxifiants à appliquer sous les pieds pour éliminer les toxines pendant votre sommeil.",
