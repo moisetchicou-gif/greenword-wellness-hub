@@ -9,6 +9,7 @@ import { CartProvider } from "@/hooks/useCart";
 import ErrorBoundary from "@/components/ErrorBoundary";
 import Index from "./pages/Index.tsx";
 import GuideButton from "@/components/GuideButton";
+import PremiumCursor from "@/components/PremiumCursor";
 
 const MentionsLegales = lazy(() => import("./pages/MentionsLegales.tsx"));
 const PolitiqueConfidentialite = lazy(() => import("./pages/PolitiqueConfidentialite.tsx"));
@@ -34,6 +35,7 @@ const App = () => (
           <CartProvider>
             <Toaster />
             <Sonner />
+            <PremiumCursor />
             <BrowserRouter>
               <Suspense fallback={<Loading />}>
                 <Routes>
