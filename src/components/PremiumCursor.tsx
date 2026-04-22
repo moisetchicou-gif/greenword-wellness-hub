@@ -1,5 +1,6 @@
 import { type CSSProperties, useEffect, useRef, useState } from "react";
 import { useLocation } from "react-router-dom";
+import { CURSOR_PREFERENCE_EVENT, isCustomCursorDisabled, setCustomCursorDisabled } from "@/config/cursorPreferences";
 import { getCursorThemeForPath, type CursorThemeName } from "@/config/cursorThemes";
 
 type CursorState = {
@@ -13,8 +14,6 @@ type CursorState = {
   reducedMotion: boolean;
   theme: CursorThemeName;
 };
-
-const CURSOR_DISABLED_KEY = "gw-custom-cursor-disabled";
 
 const interactiveSelector = [
   "a",
@@ -36,7 +35,7 @@ const PremiumCursor = () => {
   const auraRef = useRef<HTMLDivElement>(null);
   const cursor = useRef({ x: 0, y: 0, ringX: 0, ringY: 0, auraX: 0, auraY: 0, scrollVelocity: 0, lastY: 0, lastScrollTime: 0, lastFrame: 0 });
   const scrollTimeout = useRef<number>();
-  const [disabled, setDisabled] = useState(() => localStorage.getItem(CURSOR_DISABLED_KEY) === "true");
+  const [disabled, setDisabled] = useState(() => isCustomCursorDisabled());
   const [state, setState] = useState<CursorState>({
     x: 0,
     y: 0,
@@ -161,13 +160,22 @@ const PremiumCursor = () => {
   }, [disabled, location.pathname]);
 
   useEffect(() => {
-    localStorage.setItem(CURSOR_DISABLED_KEY, String(disabled));
     document.documentElement.classList.toggle("custom-cursor-disabled", disabled);
   }, [disabled]);
 
+  useEffect(() => {
+    const syncPreference = () => setDisabled(isCustomCursorDisabled());
+    window.addEventListener("storage", syncPreference);
+    window.addEventListener(CURSOR_PREFERENCE_EVENT, syncPreference);
+    return () => {
+      window.removeEventListener("storage", syncPreference);
+      window.removeEventListener(CURSOR_PREFERENCE_EVENT, syncPreference);
+    };
+  }, []);
+
   if (disabled) {
     return (
-      <button className="premium-cursor-toggle" type="button" onClick={() => setDisabled(false)} aria-label="Activer le curseur personnalisé">
+      <button className="premium-cursor-toggle" type="button" onClick={() => setCustomCursorDisabled(false)} aria-label="Activer le curseur personnalisé">
         Curseur
       </button>
     );
@@ -175,7 +183,7 @@ const PremiumCursor = () => {
 
   return (
     <>
-      <button className="premium-cursor-toggle" type="button" onClick={() => setDisabled(true)} aria-label="Désactiver le curseur personnalisé">
+      <button className="premium-cursor-toggle" type="button" onClick={() => setCustomCursorDisabled(true)} aria-label="Désactiver le curseur personnalisé">
         Curseur
       </button>
       <div
