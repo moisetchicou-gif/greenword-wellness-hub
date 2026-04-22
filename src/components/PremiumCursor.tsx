@@ -1,6 +1,6 @@
 import { type CSSProperties, useEffect, useRef, useState } from "react";
 import { useLocation } from "react-router-dom";
-import { CURSOR_PREFERENCE_EVENT, isCustomCursorDisabled, setCustomCursorDisabled } from "@/config/cursorPreferences";
+import { CURSOR_PREFERENCE_EVENT, isCustomCursorDisabled } from "@/config/cursorPreferences";
 import { getCursorThemeForPath, type CursorThemeName } from "@/config/cursorThemes";
 
 type CursorState = {
@@ -174,18 +174,11 @@ const PremiumCursor = () => {
   }, []);
 
   if (disabled) {
-    return (
-      <button className="premium-cursor-toggle" type="button" onClick={() => setCustomCursorDisabled(false)} aria-label="Activer le curseur personnalisé">
-        Curseur
-      </button>
-    );
+    return null;
   }
 
   return (
     <>
-      <button className="premium-cursor-toggle" type="button" onClick={() => setCustomCursorDisabled(true)} aria-label="Désactiver le curseur personnalisé">
-        Curseur
-      </button>
       <div
         aria-hidden="true"
         className={`premium-cursor is-${state.theme} ${state.visible ? "is-visible" : ""} ${state.active ? "is-active" : ""} ${state.pressed ? "is-pressed" : ""} ${state.scrolling ? "is-scrolling" : ""} ${state.keyboard ? "is-keyboard" : ""} ${state.reducedMotion ? "is-reduced-motion" : ""}`}

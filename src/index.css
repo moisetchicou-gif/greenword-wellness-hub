@@ -375,26 +375,10 @@
       height: 12px;
     }
 
-    .premium-cursor-toggle {
-      position: fixed;
-      right: 4rem;
-      bottom: 5.25rem;
-      z-index: 60;
-      border: 1px solid hsl(var(--border));
-      border-radius: 9999px;
-      background: hsl(var(--card) / 0.88);
-      color: hsl(var(--muted-foreground));
-      padding: 0.45rem 0.7rem;
-      font-size: 0.68rem;
-      font-weight: 600;
-      box-shadow: 0 10px 24px hsl(var(--accent) / 0.1);
-      backdrop-filter: blur(10px);
-    }
-
     .settings-panel-trigger {
       position: fixed;
       right: 0.75rem;
-      bottom: 5.25rem;
+      bottom: 0.75rem;
       z-index: 60;
       display: inline-flex;
       height: 2.15rem;
