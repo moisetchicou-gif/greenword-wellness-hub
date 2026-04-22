@@ -377,7 +377,7 @@
 
     .premium-cursor-toggle {
       position: fixed;
-      right: 0.75rem;
+      right: 4rem;
       bottom: 5.25rem;
       z-index: 60;
       border: 1px solid hsl(var(--border));
@@ -389,6 +389,32 @@
       font-weight: 600;
       box-shadow: 0 10px 24px hsl(var(--accent) / 0.1);
       backdrop-filter: blur(10px);
+    }
+
+    .settings-panel-trigger {
+      position: fixed;
+      right: 0.75rem;
+      bottom: 5.25rem;
+      z-index: 60;
+      display: inline-flex;
+      height: 2.15rem;
+      width: 2.15rem;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid hsl(var(--border));
+      border-radius: 9999px;
+      background: hsl(var(--card) / 0.9);
+      color: hsl(var(--muted-foreground));
+      box-shadow: 0 10px 24px hsl(var(--accent) / 0.1);
+      backdrop-filter: blur(10px);
+      transition: color 180ms ease, border-color 180ms ease, transform 180ms ease;
+    }
+
+    .settings-panel-trigger:hover,
+    .settings-panel-trigger:focus-visible {
+      color: hsl(var(--accent));
+      border-color: hsl(var(--primary) / 0.38);
+      transform: translateY(-1px);
     }
   }
 }
