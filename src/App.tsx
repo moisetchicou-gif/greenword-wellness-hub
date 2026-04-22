@@ -10,6 +10,7 @@ import ErrorBoundary from "@/components/ErrorBoundary";
 import Index from "./pages/Index.tsx";
 import GuideButton from "@/components/GuideButton";
 import PremiumCursor from "@/components/PremiumCursor";
+import SettingsPanel from "@/components/SettingsPanel";
 
 const MentionsLegales = lazy(() => import("./pages/MentionsLegales.tsx"));
 const PolitiqueConfidentialite = lazy(() => import("./pages/PolitiqueConfidentialite.tsx"));
@@ -37,6 +38,7 @@ const App = () => (
             <Sonner />
             <BrowserRouter>
               <PremiumCursor />
+              <SettingsPanel />
               <Suspense fallback={<Loading />}>
                 <Routes>
                   <Route path="/" element={<Index />} />
