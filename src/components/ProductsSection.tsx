@@ -32,14 +32,18 @@ const ProductCard = ({ product, index }: { product: Product; index: number }) =>
       className={`bg-card rounded-2xl border border-border/60 overflow-hidden group transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] hover:shadow-premium hover:-translate-y-1.5 ${visible ? "opacity-100 translate-y-0 blur-0" : "opacity-0 translate-y-12 blur-[2px]"}`}
       style={{ transitionDelay: `${index * 80}ms` }}
     >
-      <div className="aspect-square bg-secondary/30 flex items-center justify-center p-6 overflow-hidden relative">
+      <Link
+        to={`/produit/${getProductSlug(product)}`}
+        aria-label={`Voir les détails de ${product.name}`}
+        className="aspect-square bg-secondary/30 flex items-center justify-center p-6 overflow-hidden relative focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+      >
         <img src={product.image} alt={product.name} className="w-full h-full object-contain group-hover:scale-110 transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]" loading="lazy" />
         <div className="absolute top-3 left-3 flex gap-1.5">
           <span className="glass text-accent text-[10px] font-semibold px-2.5 py-1 rounded-full">{product.bv} BV</span>
         </div>
         {/* Hover overlay */}
         <div className="absolute inset-0 bg-gradient-to-t from-primary/[0.06] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-      </div>
+      </Link>
       <div className="p-5 space-y-3">
         <Link to={`/produit/${getProductSlug(product)}`} className="text-base font-display text-accent group-hover:text-primary transition-colors duration-300 block">{product.name}</Link>
         <ul className="space-y-1">
