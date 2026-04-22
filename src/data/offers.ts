@@ -125,6 +125,7 @@ export const offers: Offer[] = [
     price: "5 000 FCFA",
     priceNum: 5000,
     image: detoxImg,
+    video: "/videos/detox-bains-de-pieds-ioniques.mp4",
     highlights: [
       "Séance relaxante",
       "Méthode non-invasive",
