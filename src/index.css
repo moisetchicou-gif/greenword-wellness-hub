@@ -85,17 +85,17 @@
   }
 
   @media (hover: hover) and (pointer: fine) {
-    body,
-    a,
-    button,
-    input,
-    textarea,
-    select,
-    summary,
-    [role="button"],
-    [role="link"],
-    [tabindex]:not([tabindex="-1"]),
-    video {
+    html:not(.custom-cursor-disabled) body,
+    html:not(.custom-cursor-disabled) a,
+    html:not(.custom-cursor-disabled) button,
+    html:not(.custom-cursor-disabled) input,
+    html:not(.custom-cursor-disabled) textarea,
+    html:not(.custom-cursor-disabled) select,
+    html:not(.custom-cursor-disabled) summary,
+    html:not(.custom-cursor-disabled) [role="button"],
+    html:not(.custom-cursor-disabled) [role="link"],
+    html:not(.custom-cursor-disabled) [tabindex]:not([tabindex="-1"]),
+    html:not(.custom-cursor-disabled) video {
       cursor: none;
     }
   }
