@@ -35,8 +35,8 @@ const App = () => (
           <CartProvider>
             <Toaster />
             <Sonner />
-            <PremiumCursor />
             <BrowserRouter>
+              <PremiumCursor />
               <Suspense fallback={<Loading />}>
                 <Routes>
                   <Route path="/" element={<Index />} />
