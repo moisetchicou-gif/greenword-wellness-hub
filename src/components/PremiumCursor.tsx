@@ -1,4 +1,6 @@
 import { type CSSProperties, useEffect, useRef, useState } from "react";
+import { useLocation } from "react-router-dom";
+import { getCursorThemeForPath, type CursorThemeName } from "@/config/cursorThemes";
 
 type CursorState = {
   x: number;
@@ -7,8 +9,12 @@ type CursorState = {
   active: boolean;
   pressed: boolean;
   scrolling: boolean;
-  section: "botanical" | "gold" | "deep";
+  keyboard: boolean;
+  reducedMotion: boolean;
+  theme: CursorThemeName;
 };
+
+const CURSOR_DISABLED_KEY = "gw-custom-cursor-disabled";
 
 const interactiveSelector = [
   "a",
@@ -24,11 +30,13 @@ const interactiveSelector = [
 ].join(",");
 
 const PremiumCursor = () => {
+  const location = useLocation();
   const dotRef = useRef<HTMLDivElement>(null);
   const ringRef = useRef<HTMLDivElement>(null);
   const auraRef = useRef<HTMLDivElement>(null);
-  const cursor = useRef({ x: 0, y: 0, ringX: 0, ringY: 0, auraX: 0, auraY: 0, scrollVelocity: 0 });
+  const cursor = useRef({ x: 0, y: 0, ringX: 0, ringY: 0, auraX: 0, auraY: 0, scrollVelocity: 0, lastY: 0, lastScrollTime: 0, lastFrame: 0 });
   const scrollTimeout = useRef<number>();
+  const [disabled, setDisabled] = useState(() => localStorage.getItem(CURSOR_DISABLED_KEY) === "true");
   const [state, setState] = useState<CursorState>({
     x: 0,
     y: 0,
@@ -36,8 +44,14 @@ const PremiumCursor = () => {
     active: false,
     pressed: false,
     scrolling: false,
-    section: "botanical",
+    keyboard: false,
+    reducedMotion: false,
+    theme: getCursorThemeForPath(window.location.pathname),
   });
+
+  useEffect(() => {
+    setState((prev) => ({ ...prev, theme: getCursorThemeForPath(location.pathname) }));
+  }, [location.pathname]);
 
   useEffect(() => {
     const supportsFinePointer = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
