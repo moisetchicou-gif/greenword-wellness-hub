@@ -1,4 +1,5 @@
 import scannerImg from "@/assets/product-scanner-qrma.jpg";
+import detoxImg from "@/assets/product-detoxin-pad.jpg";
 
 export interface OfferTestimonial {
   name: string;
@@ -109,6 +110,79 @@ export const offers: Offer[] = [
       {
         q: "Puis-je le faire enceinte ou avec un pacemaker ?",
         a: "Le scanner n'est pas recommandé pour les femmes enceintes ni les personnes portant un pacemaker. Demandez conseil avant.",
+      },
+    ],
+  },
+  {
+    id: 1002,
+    slug: "detox-bains-de-pieds-ioniques",
+    name: "Détox — bains de pieds ioniques",
+    tagline: "Détox par les pieds",
+    shortDescription:
+      "Séance de détox douce par bain de pieds ionique pour favoriser l'élimination des toxines et la sensation de légèreté.",
+    longDescription:
+      "Le bain de pieds ionique est une méthode de bien-être non-invasive qui consiste à placer les pieds dans une eau tiède activée par un dispositif ionique. La séance aide à détendre le corps, stimuler la circulation et accompagner naturellement les processus d'élimination. C'est une solution simple, relaxante et accessible pour les personnes qui souhaitent prendre soin de leur équilibre, réduire la sensation de fatigue et commencer une routine de détox en douceur.",
+    price: "5 000 FCFA",
+    priceNum: 5000,
+    image: detoxImg,
+    highlights: [
+      "Séance relaxante",
+      "Méthode non-invasive",
+      "Détox par les pieds",
+      "Accompagnement personnalisé",
+    ],
+    benefits: [
+      "Aide à soutenir l'élimination naturelle des toxines",
+      "Procure une sensation de légèreté et de détente",
+      "Favorise le bien-être général après une période de fatigue",
+      "Moment relaxant pour les pieds et le corps",
+      "Conseils personnalisés pour prolonger les effets de la séance",
+    ],
+    steps: [
+      { title: "Accueil & échange", description: "Court entretien sur vos besoins, votre fatigue et vos habitudes de bien-être." },
+      { title: "Installation", description: "Vous placez les pieds dans une bassine d'eau tiède préparée pour la séance ionique." },
+      { title: "Séance détox", description: "Le dispositif ionique accompagne la détox pendant que vous restez confortablement installé." },
+      { title: "Conseils", description: "Recommandations simples d'hydratation et de routine naturelle après la séance." },
+    ],
+    duration: "Environ 20 à 30 minutes",
+    forWhom:
+      "Toute personne souhaitant une séance de détente, une sensation de légèreté ou un accompagnement bien-être naturel. Déconseillé aux femmes enceintes, aux porteurs de pacemaker et aux personnes ayant une plaie ouverte aux pieds.",
+    testimonials: [
+      {
+        name: "Nadia K.",
+        city: "Abidjan",
+        rating: 5,
+        text: "La séance m'a beaucoup détendue. J'ai ressenti mes jambes plus légères et j'ai apprécié les conseils donnés après le bain.",
+      },
+      {
+        name: "Serge A.",
+        city: "Cocody",
+        rating: 5,
+        text: "Très bonne découverte. C'est simple, relaxant et l'équipe prend le temps d'expliquer le déroulement.",
+      },
+      {
+        name: "Mariame T.",
+        city: "Marcory",
+        rating: 4,
+        text: "Un vrai moment de détente. Je recommande pour commencer une cure bien-être en douceur.",
+      },
+    ],
+    faq: [
+      {
+        q: "La séance est-elle douloureuse ?",
+        a: "Non. Vous gardez simplement les pieds dans une eau tiède pendant la séance. C'est une méthode douce et relaxante.",
+      },
+      {
+        q: "Combien de temps dure un bain de pieds ionique ?",
+        a: "La séance dure généralement 20 à 30 minutes, avec un court échange avant et des conseils après.",
+      },
+      {
+        q: "Faut-il boire de l'eau après la séance ?",
+        a: "Oui, il est recommandé de bien s'hydrater après la séance pour accompagner naturellement l'organisme.",
+      },
+      {
+        q: "Y a-t-il des contre-indications ?",
+        a: "La séance est déconseillée aux femmes enceintes, aux personnes portant un pacemaker et en cas de plaie ouverte ou infection au niveau des pieds.",
       },
     ],
   },
