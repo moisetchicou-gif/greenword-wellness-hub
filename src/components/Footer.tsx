@@ -1,6 +1,7 @@
 import { Phone, MapPin, Mail } from "lucide-react";
 import { Link } from "react-router-dom";
 import logo from "@/assets/logo-greenworld.jpg";
+import SettingsPanel from "@/components/SettingsPanel";
 
 const Footer = () => {
   return (
@@ -60,7 +61,10 @@ const Footer = () => {
             <Link to="/cgv" className="hover:text-accent-foreground transition-colors">CGV</Link>
             <Link to="/politique-confidentialite" className="hover:text-accent-foreground transition-colors">Confidentialité</Link>
           </div>
-          <p className="text-[10px] opacity-60">© 2026 Green World. Tous droits réservés.</p>
+          <div className="flex items-center gap-3">
+            <p className="text-[10px] opacity-60">© 2026 Green World. Tous droits réservés.</p>
+            <SettingsPanel />
+          </div>
         </div>
       </div>
     </footer>
