@@ -119,9 +119,9 @@ export const offers: Offer[] = [
     name: "Détox — bains de pieds ioniques",
     tagline: "Détox par les pieds",
     shortDescription:
-      "Séance de détox douce par bain de pieds ionique pour favoriser l'élimination des toxines et la sensation de légèreté.",
+      "Séance bien-être par bain de pieds ionique pour accompagner la détox naturelle, la détente et la sensation de légèreté.",
     longDescription:
-      "Le bain de pieds ionique est une méthode de bien-être non-invasive qui consiste à placer les pieds dans une eau tiède activée par un dispositif ionique. La séance aide à détendre le corps, stimuler la circulation et accompagner naturellement les processus d'élimination. C'est une solution simple, relaxante et accessible pour les personnes qui souhaitent prendre soin de leur équilibre, réduire la sensation de fatigue et commencer une routine de détox en douceur.",
+      "Le bain de pieds ionique est une séance de bien-être douce et non-invasive. Les pieds sont placés dans une eau tiède activée par un dispositif ionique afin de favoriser la relaxation, la sensation de légèreté et l'accompagnement naturel des fonctions d'élimination. Cette offre découverte permet de tester une routine détox simple, encadrée et accessible, avec des conseils pratiques avant et après la séance.",
     price: "5 000 FCFA",
     priceNum: 5000,
     image: detoxImg,
@@ -132,11 +132,11 @@ export const offers: Offer[] = [
       "Accompagnement personnalisé",
     ],
     benefits: [
-      "Aide à soutenir l'élimination naturelle des toxines",
-      "Procure une sensation de légèreté et de détente",
-      "Favorise le bien-être général après une période de fatigue",
-      "Moment relaxant pour les pieds et le corps",
-      "Conseils personnalisés pour prolonger les effets de la séance",
+      "Accompagne les fonctions naturelles d'élimination",
+      "Aide à retrouver une sensation de jambes légères",
+      "Favorise un moment de détente profonde",
+      "Convient pour démarrer une routine bien-être en douceur",
+      "Inclut des conseils simples d'hydratation et d'hygiène de vie",
     ],
     steps: [
       { title: "Accueil & échange", description: "Court entretien sur vos besoins, votre fatigue et vos habitudes de bien-être." },
@@ -146,7 +146,7 @@ export const offers: Offer[] = [
     ],
     duration: "Environ 20 à 30 minutes",
     forWhom:
-      "Toute personne souhaitant une séance de détente, une sensation de légèreté ou un accompagnement bien-être naturel. Déconseillé aux femmes enceintes, aux porteurs de pacemaker et aux personnes ayant une plaie ouverte aux pieds.",
+      "Cette séance s'adresse aux personnes qui ressentent de la fatigue, une sensation de lourdeur, un besoin de détente ou qui souhaitent commencer une routine détox naturelle. Elle convient aux adultes recherchant un accompagnement bien-être doux, sans manipulation douloureuse. Elle est déconseillée aux femmes enceintes, aux personnes portant un pacemaker, ainsi qu'en cas de plaie ouverte, infection ou irritation importante au niveau des pieds.",
     testimonials: [
       {
         name: "Nadia K.",
@@ -169,20 +169,24 @@ export const offers: Offer[] = [
     ],
     faq: [
       {
-        q: "La séance est-elle douloureuse ?",
-        a: "Non. Vous gardez simplement les pieds dans une eau tiède pendant la séance. C'est une méthode douce et relaxante.",
+        q: "Comment se déroule une séance de bain de pieds ionique ?",
+        a: "Après un court échange, vous installez vos pieds dans une eau tiède préparée pour la séance. Vous restez confortablement assis pendant l'accompagnement ionique, puis vous recevez des conseils simples pour la suite.",
       },
       {
-        q: "Combien de temps dure un bain de pieds ionique ?",
-        a: "La séance dure généralement 20 à 30 minutes, avec un court échange avant et des conseils après.",
+        q: "La détox par les pieds est-elle douloureuse ?",
+        a: "Non. La séance est douce, non-invasive et relaxante. Vous ressentez principalement la chaleur de l'eau et un moment de détente.",
       },
       {
-        q: "Faut-il boire de l'eau après la séance ?",
-        a: "Oui, il est recommandé de bien s'hydrater après la séance pour accompagner naturellement l'organisme.",
+        q: "Combien de temps dure la séance ?",
+        a: "Il faut compter environ 20 à 30 minutes, incluant l'installation et les recommandations après la séance.",
       },
       {
         q: "Y a-t-il des contre-indications ?",
-        a: "La séance est déconseillée aux femmes enceintes, aux personnes portant un pacemaker et en cas de plaie ouverte ou infection au niveau des pieds.",
+        a: "Oui. La séance est déconseillée aux femmes enceintes, aux porteurs de pacemaker, ainsi qu'aux personnes ayant une plaie ouverte, une infection ou une irritation importante au niveau des pieds.",
+      },
+      {
+        q: "Que faire après la séance ?",
+        a: "Il est recommandé de boire suffisamment d'eau, d'éviter les excès juste après la séance et de suivre les conseils personnalisés donnés sur place.",
       },
     ],
   },
