@@ -1,5 +1,4 @@
 import scannerImg from "@/assets/product-scanner-qrma.jpg";
-import detoxImg from "@/assets/product-detoxin-pad.jpg";
 
 export interface OfferTestimonial {
   name: string;
@@ -110,81 +109,6 @@ export const offers: Offer[] = [
       {
         q: "Puis-je le faire enceinte ou avec un pacemaker ?",
         a: "Le scanner n'est pas recommandé pour les femmes enceintes ni les personnes portant un pacemaker. Demandez conseil avant.",
-      },
-    ],
-  },
-  {
-    id: 1002,
-    slug: "magic-detoxin-pad",
-    name: "Une détox par les pieds est principalement appelée bain de pieds ionique",
-    tagline: "Détox en une nuit",
-    shortDescription:
-      "Patchs détoxifiants à appliquer sous les pieds pour éliminer les toxines pendant votre sommeil.",
-    longDescription:
-      "Le Magic Detoxin Pad utilise les principes de la réflexologie plantaire combinés à des ingrédients naturels (vinaigre de bambou, tourmaline, chitosane) pour absorber les toxines accumulées dans votre organisme. Appliqués avant le coucher, les patchs travaillent toute la nuit et ressortent au matin foncés, signe visible de l'élimination des impuretés. Une cure régulière améliore le sommeil, réduit la fatigue chronique et booste votre énergie au quotidien.",
-    price: "5 000 FCFA",
-    priceNum: 5000,
-    image: detoxImg,
-    video: "/videos/detox-pad.mp4",
-    highlights: [
-      "Action pendant le sommeil",
-      "Ingrédients 100% naturels",
-      "Effet visible dès la 1ʳᵉ nuit",
-      "Sans effet secondaire",
-    ],
-    benefits: [
-      "Élimine les toxines accumulées",
-      "Améliore la qualité du sommeil",
-      "Réduit la fatigue chronique",
-      "Soulage les douleurs articulaires légères",
-      "Booste l'énergie et la vitalité",
-      "Renforce le système immunitaire",
-    ],
-    steps: [
-      { title: "Nettoyage des pieds", description: "Lavez et séchez soigneusement la plante de vos pieds avant l'application." },
-      { title: "Application du patch", description: "Collez un patch sous chaque pied, le côté adhésif vers la peau." },
-      { title: "Nuit réparatrice", description: "Gardez les patchs toute la nuit (8 heures recommandées)." },
-      { title: "Constatation au matin", description: "Retirez les patchs : leur couleur foncée témoigne des toxines absorbées." },
-    ],
-    duration: "1 application par nuit, cure de 7 à 14 jours",
-    forWhom:
-      "Personnes fatiguées, stressées, exposées à la pollution ou à une mauvaise alimentation. Idéal en cure de changement de saison ou après des excès.",
-    testimonials: [
-      {
-        name: "Mariam T.",
-        city: "Abidjan",
-        rating: 5,
-        text: "Dès la première nuit, j'ai été choquée de voir les patchs aussi foncés au réveil ! Après une semaine, je dors mieux et je me sens beaucoup plus légère.",
-      },
-      {
-        name: "Koffi A.",
-        city: "San-Pédro",
-        rating: 5,
-        text: "Je travaille beaucoup et j'étais épuisé en permanence. Une cure de 10 jours et mon énergie est revenue. Je recommande à tous.",
-      },
-      {
-        name: "Sandrine B.",
-        city: "Cocody",
-        rating: 4,
-        text: "Très bon produit pour le prix. J'ai remarqué une amélioration de mon sommeil et moins de douleurs aux jambes le matin.",
-      },
-    ],
-    faq: [
-      {
-        q: "Combien de temps dure une cure ?",
-        a: "Une cure complète dure 7 à 14 jours, à raison d'un patch par pied chaque nuit. À renouveler tous les 2 à 3 mois.",
-      },
-      {
-        q: "Pourquoi les patchs sont-ils foncés au matin ?",
-        a: "C'est le signe visible de l'absorption des toxines (métaux lourds, déchets métaboliques) à travers la peau de vos pieds.",
-      },
-      {
-        q: "Y a-t-il des effets secondaires ?",
-        a: "Aucun effet secondaire connu. Les ingrédients sont 100% naturels. Évitez en cas de plaie ouverte sur les pieds.",
-      },
-      {
-        q: "Peut-on l'utiliser enceinte ?",
-        a: "Par précaution, demandez conseil à un professionnel de santé avant utilisation pendant la grossesse ou l'allaitement.",
       },
     ],
   },
