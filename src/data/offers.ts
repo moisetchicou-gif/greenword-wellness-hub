@@ -1,5 +1,6 @@
 import scannerImg from "@/assets/product-scanner-qrma.jpg";
 import detoxImg from "@/assets/product-detoxin-pad.jpg";
+import detoxCoverImg from "@/assets/detox-bains-pieds-cover.jpg";
 
 export interface OfferTestimonial {
   name: string;
@@ -124,7 +125,7 @@ export const offers: Offer[] = [
       "Le bain de pieds ionique est une séance de bien-être douce et non-invasive. Les pieds sont placés dans une eau tiède activée par un dispositif ionique afin de favoriser la relaxation, la sensation de légèreté et l'accompagnement naturel des fonctions d'élimination. Cette offre découverte permet de tester une routine détox simple, encadrée et accessible, avec des conseils pratiques avant et après la séance.",
     price: "5 000 FCFA",
     priceNum: 5000,
-    image: detoxImg,
+    image: detoxCoverImg,
     video: "/videos/detox-bains-de-pieds-ioniques.mp4",
     highlights: [
       "Séance relaxante",
