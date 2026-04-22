@@ -1,11 +1,15 @@
-import { Settings } from "lucide-react";
+import { ChevronDown, Settings } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { CURSOR_PREFERENCE_EVENT, isCustomCursorDisabled, setCustomCursorDisabled } from "@/config/cursorPreferences";
 
-const SettingsPanel = () => {
+type SettingsPanelProps = {
+  variant?: "icon" | "nav";
+};
+
+const SettingsPanel = ({ variant = "icon" }: SettingsPanelProps) => {
   const [cursorDisabled, setCursorDisabled] = useState(() => isCustomCursorDisabled());
 
   useEffect(() => {
@@ -27,8 +31,14 @@ const SettingsPanel = () => {
   return (
     <Popover>
       <PopoverTrigger asChild>
-        <button className="settings-panel-trigger" type="button" aria-label="Ouvrir les paramètres">
+        <button className={`settings-panel-trigger ${variant === "nav" ? "settings-panel-trigger--nav" : ""}`} type="button" aria-label="Ouvrir les paramètres">
           <Settings className="h-4 w-4" aria-hidden="true" />
+          {variant === "nav" && (
+            <>
+              <span>Paramètres</span>
+              <ChevronDown className="h-3.5 w-3.5" aria-hidden="true" />
+            </>
+          )}
         </button>
       </PopoverTrigger>
       <PopoverContent align="end" side="top" className="w-72 rounded-xl border-border/70 bg-card/95 p-4 shadow-premium backdrop-blur-xl">
