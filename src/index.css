@@ -397,6 +397,29 @@
       border-color: hsl(var(--primary) / 0.38);
       transform: translateY(-1px);
     }
+
+    .settings-panel-trigger--nav {
+      width: auto;
+      height: 2.3rem;
+      gap: 0.4rem;
+      padding: 0 0.75rem;
+      border-color: hsl(var(--gold) / 0.34);
+      border-radius: 9999px;
+      background: linear-gradient(135deg, hsl(var(--highlight) / 0.42), hsl(var(--card) / 0.88));
+      color: hsl(var(--accent));
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0;
+      text-transform: uppercase;
+      box-shadow: 0 10px 24px hsl(var(--gold) / 0.12);
+    }
+
+    .settings-panel-trigger--nav:hover,
+    .settings-panel-trigger--nav:focus-visible {
+      border-color: hsl(var(--gold) / 0.62);
+      color: hsl(var(--primary));
+      transform: translateY(-1px);
+    }
   }
 }
 

@@ -5,6 +5,7 @@ import logo from "@/assets/logo-greenworld.jpg";
 import { useCart } from "@/hooks/useCart";
 import { products } from "@/data/products";
 import { getProductSlug } from "@/lib/productUtils";
+import SettingsPanel from "@/components/SettingsPanel";
 
 const Navbar = () => {
   const navigate = useNavigate();
@@ -95,6 +96,7 @@ const Navbar = () => {
                 {l.label}
               </a>
             ))}
+            <SettingsPanel variant="nav" />
           </div>
 
           <div className="flex items-center gap-2">
@@ -134,6 +136,9 @@ const Navbar = () => {
                   {l.label}
                 </a>
               ))}
+              <div className="pt-2">
+                <SettingsPanel variant="nav" />
+              </div>
             </div>
           </div>
         </div>
