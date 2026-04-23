@@ -27,10 +27,10 @@ const OfferCard = ({ offer, index }: { offer: Offer; index: number }) => {
       className={`group relative bg-card rounded-3xl border-2 border-primary/20 overflow-hidden shadow-lg hover:shadow-2xl hover:shadow-primary/10 transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-1 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"}`}
       style={{ transitionDelay: `${index * 120}ms` }}
     >
-      {/* Badge offre d'appel */}
+      {/* Badge offre spéciale */}
       <div className="absolute top-4 left-4 z-10 flex items-center gap-1.5 bg-primary text-primary-foreground px-3 py-1.5 rounded-full text-xs font-bold shadow-lg">
         <Sparkles className="w-3.5 h-3.5" />
-        OFFRE D'APPEL
+        OFFRE SPÉCIALE
       </div>
 
       <div className="grid sm:grid-cols-2 gap-0">

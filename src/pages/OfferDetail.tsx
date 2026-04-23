@@ -95,7 +95,7 @@ const OfferDetail = () => {
             <div className="relative bg-white rounded-2xl p-6 sm:p-10 flex items-center justify-center aspect-square border-2 border-primary/20 overflow-hidden">
               <div className="absolute top-4 left-4 z-10 flex items-center gap-1.5 bg-primary text-primary-foreground px-3 py-1.5 rounded-full text-xs font-bold shadow-lg">
                 <Sparkles className="w-3.5 h-3.5" />
-                OFFRE D'APPEL
+                OFFRE SPÉCIALE
               </div>
 
               {showVideo && offer.video && !videoError ? (
