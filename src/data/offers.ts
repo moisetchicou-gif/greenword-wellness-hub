@@ -1,4 +1,4 @@
-import scannerImg from "@/assets/product-scanner-qrma.jpg";
+import scannerImg from "@/assets/scanner-qrma-cover.jpg";
 import detoxImg from "@/assets/product-detoxin-pad.jpg";
 import detoxCoverImg from "@/assets/detox-bains-pieds-cover.jpg";
 
