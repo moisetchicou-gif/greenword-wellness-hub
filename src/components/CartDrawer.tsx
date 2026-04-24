@@ -315,6 +315,22 @@ Merci de confirmer la réception de ma commande 🙏`;
                   </div>
                 </div>
               )}
+              {payError && (
+                <div role="alert" className="flex items-start gap-3 bg-destructive/10 border border-destructive/30 rounded-xl p-4 animate-in fade-in">
+                  <AlertTriangle className="w-5 h-5 text-destructive shrink-0 mt-0.5" />
+                  <div className="flex-1">
+                    <p className="text-sm font-semibold text-destructive">Paiement Wave non lancé</p>
+                    <p className="text-xs text-destructive/80 mt-1">{payError}</p>
+                    <button
+                      type="button"
+                      onClick={() => setPayError(null)}
+                      className="text-xs text-destructive underline mt-2 hover:no-underline"
+                    >
+                      Masquer
+                    </button>
+                  </div>
+                </div>
+              )}
               <div className="border-t border-border pt-4">
                 <div className="flex justify-between text-foreground font-bold text-lg mb-4">
                   <span>Total à payer</span>
