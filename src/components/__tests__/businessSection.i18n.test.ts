@@ -83,10 +83,11 @@ describe("buildWhatsAppMessage — parité FR/EN", () => {
       }
     });
 
-    it("n'a jamais d'espace avant ponctuation (.,;:)", () => {
+    it("n'a jamais d'espace avant une virgule, un point ou un point-virgule", () => {
+      // NB : on autorise « espace + ':' » (typographie française : « Mon numéro : ... »).
       for (const [n, c, g, s, p] of ALL_COMBOS) {
         const out = decode(buildWhatsAppMessage(n, c, g, s, p, lang));
-        expect(out, `Espace avant ponct. (${lang}) : "${out}"`).not.toMatch(/\s[,.;:]/);
+        expect(out, `Espace avant ponct. (${lang}) : "${out}"`).not.toMatch(/\s[,.;]/);
       }
     });
 
