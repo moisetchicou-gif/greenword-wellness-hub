@@ -79,7 +79,7 @@ const ProductCard = ({ product, index }: { product: Product; index: number }) =>
   );
 };
 
-const PRODUCTS_PER_PAGE = 10;
+const PRODUCTS_PER_PAGE = 20;
 
 const ProductsSection = () => {
   const [activeCategory, setActiveCategory] = useState<Category>("Tous les produits");
