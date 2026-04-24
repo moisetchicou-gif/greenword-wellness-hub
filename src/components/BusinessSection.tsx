@@ -328,12 +328,12 @@ const BusinessSection = () => {
                 <Input
                   id="biz-city"
                   value={city}
-                  onChange={(e) => setCity(e.target.value)}
+                  onChange={handleCityChange}
                   placeholder="Ex : Abidjan"
                   maxLength={CITY_MAX}
                   aria-invalid={!!validation.cityError}
                   aria-describedby="biz-city-error"
-                  className={validation.cityError ? "border-destructive focus-visible:ring-destructive" : ""}
+                  className={`${getInputBorderClass(city.length, CITY_MAX, !!validation.cityError)} ${shake.city ? "animate-shake" : ""}`}
                 />
                 {validation.cityError && (
                   <p id="biz-city-error" className="text-[11px] text-destructive flex items-center gap-1">
