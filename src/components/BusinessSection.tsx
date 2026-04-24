@@ -1,5 +1,5 @@
 import { useState, useMemo } from "react";
-import { Briefcase, TrendingUp, Plane, Car, Home, Gift, Check, User, MapPin, AlertCircle, Target, Building2 } from "lucide-react";
+import { Briefcase, TrendingUp, Plane, Car, Home, Gift, Check, User, MapPin, AlertCircle, Target, Building2, Phone } from "lucide-react";
 import { z } from "zod";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { Input } from "@/components/ui/input";
@@ -19,8 +19,11 @@ const SAFE_TEXT_REGEX = /^[\p{L}\s'’\-.]*$/u;
 const NAME_MAX = 60;
 const CITY_MAX = 40;
 const SECTOR_MAX = 60;
+const PHONE_MAX = 20;
 // Zone/secteur : lettres, chiffres, espaces, tirets, apostrophes, virgules, slash et points.
 const SECTOR_REGEX = /^[\p{L}0-9\s'’\-,/.]*$/u;
+// Téléphone : chiffres, espaces, +, parenthèses, points, tirets.
+const PHONE_REGEX = /^[+0-9\s().-]*$/;
 
 const GOAL_OPTIONS = [
   { value: "revente", label: "Revente de produits", message: "faire de la revente de produits" },
@@ -53,6 +56,16 @@ const contactSchema = z.object({
     .regex(SECTOR_REGEX, "Zone : caractères spéciaux non autorisés")
     .optional()
     .or(z.literal("")),
+  phone: z
+    .string()
+    .trim()
+    .max(PHONE_MAX, `Téléphone : ${PHONE_MAX} caractères max`)
+    .regex(PHONE_REGEX, "Téléphone : format invalide")
+    .refine((v) => v === "" || v.replace(/\D/g, "").length >= 8, {
+      message: "Téléphone : au moins 8 chiffres",
+    })
+    .optional()
+    .or(z.literal("")),
 });
 
 const buildWhatsAppMessage = (
@@ -60,6 +73,7 @@ const buildWhatsAppMessage = (
   city: string,
   goal: GoalValue | undefined,
   sector: string,
+  phone: string,
 ) => {
   const cleanName = name.trim();
   const cleanCity = city.trim();
@@ -72,8 +86,10 @@ const buildWhatsAppMessage = (
     : `Je suis intéressé(e) par l'opportunité Business Green World (devenir distributeur).`;
   const cleanSector = sector.trim();
   const sectorSentence = cleanSector ? ` Zone / secteur : ${cleanSector}.` : "";
+  const cleanPhone = phone.trim();
+  const phoneSentence = cleanPhone ? ` Mon numéro : ${cleanPhone}.` : "";
   return encodeURIComponent(
-    `${intro} ${goalSentence}${sectorSentence} Pouvez-vous me donner plus d'informations ?`
+    `${intro} ${goalSentence}${sectorSentence}${phoneSentence} Pouvez-vous me donner plus d'informations ?`
   );
 };
 
@@ -105,22 +121,25 @@ const BusinessSection = () => {
   const [name, setName] = useState("");
   const [city, setCity] = useState("");
   const [sector, setSector] = useState("");
+  const [phone, setPhone] = useState("");
   const [goal, setGoal] = useState<GoalValue | undefined>(undefined);
 
   const validation = useMemo(() => {
-    const result = contactSchema.safeParse({ name, city, sector });
-    if (result.success) return { isValid: true, nameError: "", cityError: "", sectorError: "" };
+    const result = contactSchema.safeParse({ name, city, sector, phone });
+    if (result.success)
+      return { isValid: true, nameError: "", cityError: "", sectorError: "", phoneError: "" };
     const errors = result.error.flatten().fieldErrors;
     return {
       isValid: false,
       nameError: errors.name?.[0] ?? "",
       cityError: errors.city?.[0] ?? "",
       sectorError: errors.sector?.[0] ?? "",
+      phoneError: errors.phone?.[0] ?? "",
     };
-  }, [name, city, sector]);
+  }, [name, city, sector, phone]);
 
   const whatsappHref = validation.isValid
-    ? `https://wa.me/${WHATSAPP_NUMBER}?text=${buildWhatsAppMessage(name, city, goal, sector)}`
+    ? `https://wa.me/${WHATSAPP_NUMBER}?text=${buildWhatsAppMessage(name, city, goal, sector, phone)}`
     : undefined;
 
   return (
@@ -289,6 +308,36 @@ const BusinessSection = () => {
                 <p id="biz-sector-error" className="text-[11px] text-destructive flex items-center gap-1">
                   <AlertCircle className="w-3 h-3" />
                   {validation.sectorError}
+                </p>
+              )}
+            </div>
+
+            <div className="space-y-1.5 text-left">
+              <div className="flex items-center justify-between gap-2">
+                <Label htmlFor="biz-phone" className="text-xs">
+                  <Phone className="inline w-3.5 h-3.5 mr-1 text-primary" />
+                  Ton numéro de téléphone <span className="text-muted-foreground font-normal">(optionnel)</span>
+                </Label>
+                <span className={`text-[10px] tabular-nums ${getCounterClass(phone.length, PHONE_MAX)}`}>
+                  {phone.length}/{PHONE_MAX}
+                </span>
+              </div>
+              <Input
+                id="biz-phone"
+                type="tel"
+                inputMode="tel"
+                value={phone}
+                onChange={(e) => setPhone(e.target.value)}
+                placeholder="+225 07 00 00 00 00"
+                maxLength={PHONE_MAX}
+                aria-invalid={!!validation.phoneError}
+                aria-describedby="biz-phone-error"
+                className={validation.phoneError ? "border-destructive focus-visible:ring-destructive" : ""}
+              />
+              {validation.phoneError && (
+                <p id="biz-phone-error" className="text-[11px] text-destructive flex items-center gap-1">
+                  <AlertCircle className="w-3 h-3" />
+                  {validation.phoneError}
                 </p>
               )}
             </div>
