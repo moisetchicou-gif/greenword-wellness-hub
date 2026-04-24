@@ -505,18 +505,34 @@ const BusinessSection = () => {
               </div>
               <Input
                 id="biz-sector"
+                type="text"
+                inputMode="text"
+                autoComplete="off"
+                autoCorrect="off"
+                autoCapitalize="words"
+                spellCheck={false}
                 value={sector}
-                onChange={(e) => setSector(e.target.value)}
+                onChange={handleSectorChange}
+                onBlur={() => setSectorTouched(true)}
                 placeholder="Ex : Cocody, Yopougon, quartier 220 logements…"
                 maxLength={SECTOR_MAX}
-                aria-invalid={!!validation.sectorError}
-                aria-describedby="biz-sector-error"
-                className={validation.sectorError ? "border-destructive focus-visible:ring-destructive" : ""}
+                aria-invalid={sectorTouched && !!validation.sectorError}
+                aria-describedby="biz-sector-error biz-sector-hint"
+                className={`${getInputBorderClass(sector.length, SECTOR_MAX, sectorTouched && !!validation.sectorError)} ${shake.sector ? "animate-shake" : ""}`}
               />
-              {validation.sectorError && (
-                <p id="biz-sector-error" className="text-[11px] text-destructive flex items-center gap-1">
-                  <AlertCircle className="w-3 h-3" />
-                  {validation.sectorError}
+              {sectorTouched && validation.sectorError ? (
+                <p
+                  id="biz-sector-error"
+                  role="alert"
+                  aria-live="polite"
+                  className="text-[11px] text-destructive flex items-start gap-1"
+                >
+                  <AlertCircle className="w-3 h-3 mt-0.5 shrink-0" />
+                  <span>{validation.sectorError}</span>
+                </p>
+              ) : (
+                <p id="biz-sector-hint" className="text-[10px] text-muted-foreground">
+                  Lettres, chiffres, espaces et , . / - ’ uniquement.
                 </p>
               )}
             </div>
