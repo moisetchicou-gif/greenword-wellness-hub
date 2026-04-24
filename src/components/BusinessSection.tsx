@@ -1,5 +1,5 @@
-import { useState, useMemo } from "react";
-import { Briefcase, TrendingUp, Plane, Car, Home, Gift, Check, User, MapPin, AlertCircle, Target, Building2, Phone, Languages } from "lucide-react";
+import { useState, useMemo, useEffect } from "react";
+import { Briefcase, TrendingUp, Plane, Car, Home, Gift, Check, User, MapPin, AlertCircle, Target, Building2, Phone, Languages, RotateCcw } from "lucide-react";
 import { z } from "zod";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { Input } from "@/components/ui/input";
@@ -223,20 +223,132 @@ const getInputBorderClass = (current: number, max: number, hasError: boolean) =>
   return "";
 };
 
+// ----- Persistance locale du brouillon de formulaire -----
+const DRAFT_STORAGE_KEY = "gw.business.contact.draft.v1";
+
+type DraftState = {
+  name: string;
+  city: string;
+  sector: string;
+  phone: string;
+  goal: GoalValue | undefined;
+  lang: Lang;
+};
+
+const EMPTY_DRAFT: DraftState = {
+  name: "",
+  city: "",
+  sector: "",
+  phone: "",
+  goal: undefined,
+  lang: "fr",
+};
+
+/** Récupère un champ string borné à `max` caractères depuis un objet brut. */
+const readString = (raw: unknown, max: number): string => {
+  if (typeof raw !== "string") return "";
+  return raw.slice(0, max);
+};
+
+/** Charge le brouillon depuis localStorage en validant chaque champ (défensif). */
+const loadDraft = (): DraftState => {
+  if (typeof window === "undefined") return EMPTY_DRAFT;
+  try {
+    const raw = window.localStorage.getItem(DRAFT_STORAGE_KEY);
+    if (!raw) return EMPTY_DRAFT;
+    const parsed = JSON.parse(raw) as Record<string, unknown>;
+    const goalRaw = parsed.goal;
+    const langRaw = parsed.lang;
+    return {
+      name: readString(parsed.name, NAME_MAX),
+      city: readString(parsed.city, CITY_MAX),
+      sector: readString(parsed.sector, SECTOR_MAX),
+      phone: readString(parsed.phone, PHONE_MAX),
+      goal:
+        typeof goalRaw === "string" && (GOAL_VALUES as readonly string[]).includes(goalRaw)
+          ? (goalRaw as GoalValue)
+          : undefined,
+      lang: langRaw === "en" || langRaw === "fr" ? langRaw : "fr",
+    };
+  } catch {
+    return EMPTY_DRAFT;
+  }
+};
+
+/** Sauvegarde le brouillon (silencieux si quota plein / mode privé). */
+const saveDraft = (draft: DraftState) => {
+  if (typeof window === "undefined") return;
+  try {
+    // Si tout est vide, on nettoie la clé pour ne pas polluer le storage.
+    const isEmpty =
+      !draft.name && !draft.city && !draft.sector && !draft.phone && !draft.goal && draft.lang === "fr";
+    if (isEmpty) {
+      window.localStorage.removeItem(DRAFT_STORAGE_KEY);
+      return;
+    }
+    window.localStorage.setItem(DRAFT_STORAGE_KEY, JSON.stringify(draft));
+  } catch {
+    // Quota dépassé ou storage indisponible : on ignore silencieusement.
+  }
+};
+
+const clearDraft = () => {
+  if (typeof window === "undefined") return;
+  try {
+    window.localStorage.removeItem(DRAFT_STORAGE_KEY);
+  } catch {
+    // ignore
+  }
+};
+
 const BusinessSection = () => {
   const { ref, visible } = useScrollReveal(0.1);
-  const [name, setName] = useState("");
-  const [city, setCity] = useState("");
-  const [sector, setSector] = useState("");
-  const [phone, setPhone] = useState("");
-  const [goal, setGoal] = useState<GoalValue | undefined>(undefined);
-  const [lang, setLang] = useState<Lang>("fr");
+  // Initialisation paresseuse depuis localStorage : les valeurs précédemment saisies
+  // sont restaurées au premier rendu pour éviter tout « flash » de champs vides.
+  const initialDraft = useMemo(() => loadDraft(), []);
+  const [name, setName] = useState<string>(initialDraft.name);
+  const [city, setCity] = useState<string>(initialDraft.city);
+  const [sector, setSector] = useState<string>(initialDraft.sector);
+  const [phone, setPhone] = useState<string>(initialDraft.phone);
+  const [goal, setGoal] = useState<GoalValue | undefined>(initialDraft.goal);
+  const [lang, setLang] = useState<Lang>(initialDraft.lang);
   const [shake, setShake] = useState<{ name: boolean; city: boolean; sector: boolean }>({
     name: false,
     city: false,
     sector: false,
   });
   const [sectorTouched, setSectorTouched] = useState(false);
+  const [justRestored, setJustRestored] = useState<boolean>(
+    () => initialDraft !== EMPTY_DRAFT &&
+      (!!initialDraft.name || !!initialDraft.city || !!initialDraft.sector || !!initialDraft.phone || !!initialDraft.goal),
+  );
+
+  // Sauvegarde le brouillon, debounced à ~300 ms pour limiter les écritures.
+  useEffect(() => {
+    const handle = window.setTimeout(() => {
+      saveDraft({ name, city, sector, phone, goal, lang });
+    }, 300);
+    return () => window.clearTimeout(handle);
+  }, [name, city, sector, phone, goal, lang]);
+
+  // Masque la bannière « valeurs restaurées » au bout de quelques secondes.
+  useEffect(() => {
+    if (!justRestored) return;
+    const handle = window.setTimeout(() => setJustRestored(false), 5000);
+    return () => window.clearTimeout(handle);
+  }, [justRestored]);
+
+  const handleResetDraft = () => {
+    setName("");
+    setCity("");
+    setSector("");
+    setPhone("");
+    setGoal(undefined);
+    setLang("fr");
+    setSectorTouched(false);
+    setJustRestored(false);
+    clearDraft();
+  };
 
   const triggerShake = (field: "name" | "city" | "sector") => {
     setShake((s) => ({ ...s, [field]: true }));
@@ -380,6 +492,26 @@ const BusinessSection = () => {
                 Contactez-nous sur WhatsApp pour rejoindre le réseau et démarrer votre activité.
               </p>
             </div>
+
+            {justRestored && (
+              <div
+                role="status"
+                aria-live="polite"
+                className="flex items-start gap-2 rounded-lg border border-primary/30 bg-primary/5 px-3 py-2 text-left text-[11px] text-foreground"
+              >
+                <Check className="w-3.5 h-3.5 mt-0.5 shrink-0 text-primary" />
+                <span className="flex-1">
+                  Vos informations ont été restaurées depuis votre dernière visite.
+                </span>
+                <button
+                  type="button"
+                  onClick={handleResetDraft}
+                  className="text-primary hover:underline font-medium shrink-0"
+                >
+                  Effacer
+                </button>
+              </div>
+            )}
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-left">
               <div className="space-y-1.5">
@@ -583,6 +715,17 @@ const BusinessSection = () => {
               </svg>
               Rejoindre sur WhatsApp
             </a>
+            {(name || city || sector || phone || goal) && (
+              <button
+                type="button"
+                onClick={handleResetDraft}
+                className="inline-flex items-center justify-center gap-1.5 text-xs text-muted-foreground hover:text-destructive transition-colors mx-auto md:mx-0"
+                aria-label="Réinitialiser le formulaire et effacer les valeurs sauvegardées"
+              >
+                <RotateCcw className="w-3 h-3" />
+                Réinitialiser le formulaire
+              </button>
+            )}
             <p className="text-xs text-muted-foreground">
               <span className="font-semibold text-accent">+225 07 07 08 96 31</span> · Réponse rapide
             </p>
