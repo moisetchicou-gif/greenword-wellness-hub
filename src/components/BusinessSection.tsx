@@ -493,6 +493,26 @@ const BusinessSection = () => {
               </p>
             </div>
 
+            {justRestored && (
+              <div
+                role="status"
+                aria-live="polite"
+                className="flex items-start gap-2 rounded-lg border border-primary/30 bg-primary/5 px-3 py-2 text-left text-[11px] text-foreground"
+              >
+                <Check className="w-3.5 h-3.5 mt-0.5 shrink-0 text-primary" />
+                <span className="flex-1">
+                  Vos informations ont été restaurées depuis votre dernière visite.
+                </span>
+                <button
+                  type="button"
+                  onClick={handleResetDraft}
+                  className="text-primary hover:underline font-medium shrink-0"
+                >
+                  Effacer
+                </button>
+              </div>
+            )}
+
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-left">
               <div className="space-y-1.5">
                 <div className="flex items-center justify-between gap-2">
