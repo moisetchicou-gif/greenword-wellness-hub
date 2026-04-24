@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { buildWhatsAppMessage } from "../BusinessSection";
+import { buildWhatsAppMessage, WA_MESSAGE_MAX } from "../BusinessSection";
 
 const decode = (s: string) => decodeURIComponent(s);
 
@@ -79,5 +79,49 @@ describe("buildWhatsAppMessage", () => {
     // @ts-expect-error - lang invalide
     const out = decode(buildWhatsAppMessage("Aïcha", "", undefined, "", "", "es"));
     expect(out).toContain("Bonjour");
+  });
+
+  describe("longueur maximale", () => {
+    it("ne dépasse jamais WA_MESSAGE_MAX (texte décodé)", () => {
+      const longSector = "Cocody ".repeat(500); // ~3500 chars
+      const out = decode(
+        buildWhatsAppMessage("Aïcha", "Abidjan", "revente", longSector, "+225 07 00 00 00 00", "fr"),
+      );
+      expect(out.length).toBeLessThanOrEqual(WA_MESSAGE_MAX);
+    });
+
+    it("préserve intro, objectif, téléphone et clôture quand le secteur est trop long", () => {
+      const longSector = "x ".repeat(1000);
+      const out = decode(
+        buildWhatsAppMessage("Aïcha", "Abidjan", "revente", longSector, "+225 07 00 00 00 00", "fr"),
+      );
+      expect(out).toContain("Bonjour, je suis Aïcha (Abidjan).");
+      expect(out).toContain("Mon objectif : faire de la revente de produits.");
+      expect(out).toContain("Mon numéro : +225 07 00 00 00 00.");
+      expect(out).toContain("Pouvez-vous me donner plus d'informations ?");
+    });
+
+    it("tronque le secteur avec une ellipse propre (pas de mot coupé en plein milieu)", () => {
+      const longSector = "Cocody ".repeat(500);
+      const out = decode(buildWhatsAppMessage("A", "", "revente", longSector, "", "fr"));
+      // Le secteur doit se terminer par … suivi du point final.
+      expect(out).toMatch(/Zone \/ secteur : .+…\./);
+      // Pas de mot Cocody coupé (ex : "Coco." ou "Cocod.")
+      expect(out).not.toMatch(/Coco[a-z]?\./);
+    });
+
+    it("ne touche pas au secteur s'il rentre largement dans la limite", () => {
+      const out = decode(buildWhatsAppMessage("A", "", "revente", "Cocody", "", "fr"));
+      expect(out).toContain("Zone / secteur : Cocody.");
+      expect(out).not.toContain("…");
+    });
+
+    it("supprime totalement la ligne secteur s'il ne reste pas la place pour un fragment lisible", () => {
+      // Nom qui sature presque tout l'espace.
+      const hugeName = "x".repeat(WA_MESSAGE_MAX - 50);
+      const out = decode(buildWhatsAppMessage(hugeName, "", "revente", "Cocody", "", "fr"));
+      expect(out).not.toContain("Zone / secteur");
+      expect(out.length).toBeLessThanOrEqual(WA_MESSAGE_MAX);
+    });
   });
 });
