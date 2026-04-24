@@ -26,13 +26,35 @@ const SECTOR_REGEX = /^[\p{L}0-9\s'’\-,/.]*$/u;
 const PHONE_REGEX = /^[+0-9\s().-]*$/;
 
 const GOAL_OPTIONS = [
-  { value: "revente", label: "Revente de produits", message: "faire de la revente de produits" },
-  { value: "distribution", label: "Distribution / réseau", message: "rejoindre le réseau de distribution" },
-  { value: "demarrage", label: "Démarrage d'activité", message: "démarrer une activité avec Green World" },
-  { value: "info", label: "Juste m'informer", message: "obtenir plus d'informations sur l'opportunité" },
+  {
+    value: "revente",
+    label: "Revente de produits",
+    message: { fr: "faire de la revente de produits", en: "resell the products" },
+  },
+  {
+    value: "distribution",
+    label: "Distribution / réseau",
+    message: { fr: "rejoindre le réseau de distribution", en: "join the distribution network" },
+  },
+  {
+    value: "demarrage",
+    label: "Démarrage d'activité",
+    message: { fr: "démarrer une activité avec Green World", en: "start a business with Green World" },
+  },
+  {
+    value: "info",
+    label: "Juste m'informer",
+    message: { fr: "obtenir plus d'informations sur l'opportunité", en: "get more information about the opportunity" },
+  },
 ] as const;
 
 type GoalValue = (typeof GOAL_OPTIONS)[number]["value"];
+type Lang = "fr" | "en";
+
+const LANG_OPTIONS: { value: Lang; label: string }[] = [
+  { value: "fr", label: "Français" },
+  { value: "en", label: "English" },
+];
 
 const contactSchema = z.object({
   name: z
