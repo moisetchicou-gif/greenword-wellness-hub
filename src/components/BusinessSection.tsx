@@ -162,6 +162,12 @@ const getCounterClass = (current: number, max: number) => {
   return "text-muted-foreground";
 };
 
+const getInputBorderClass = (current: number, max: number, hasError: boolean) => {
+  if (hasError || current >= max) return "border-destructive focus-visible:ring-destructive";
+  if (current / max >= 0.85) return "border-amber-500 focus-visible:ring-amber-500";
+  return "";
+};
+
 const BusinessSection = () => {
   const { ref, visible } = useScrollReveal(0.1);
   const [name, setName] = useState("");
