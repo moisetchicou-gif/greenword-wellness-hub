@@ -210,6 +210,9 @@ Merci de confirmer la réception de ma commande 🙏`;
 
           {step === "info" && (
             <form onSubmit={handleProceedToPayment} className="space-y-4">
+              <PersistenceConsent
+                description="Mémoriser mes coordonnées de livraison sur cet appareil pour ne pas avoir à les ressaisir lors de mes prochaines commandes (30 jours)."
+              />
               <div>
                 <label className="text-xs text-muted-foreground mb-1 block">Civilité</label>
                 <div className="flex gap-3">
