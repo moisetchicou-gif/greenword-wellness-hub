@@ -11,6 +11,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import PersistenceConsent from "@/components/PersistenceConsent";
 
 const WHATSAPP_NUMBER = "2250707089631";
 
@@ -381,6 +382,12 @@ const readString = (raw: unknown, max: number): string => {
 /** Charge le brouillon depuis localStorage en validant chaque champ (défensif). */
 const loadDraft = (): DraftState => {
   if (typeof window === "undefined") return EMPTY_DRAFT;
+  // Pas de chargement sans consentement explicite (RGPD).
+  try {
+    if (window.localStorage.getItem("gw.persistence.consent.v1") !== "1") return EMPTY_DRAFT;
+  } catch {
+    return EMPTY_DRAFT;
+  }
   try {
     const raw = window.localStorage.getItem(DRAFT_STORAGE_KEY);
     if (!raw) return EMPTY_DRAFT;
@@ -403,10 +410,11 @@ const loadDraft = (): DraftState => {
   }
 };
 
-/** Sauvegarde le brouillon (silencieux si quota plein / mode privé). */
+/** Sauvegarde le brouillon (silencieux si quota plein / mode privé / consentement refusé). */
 const saveDraft = (draft: DraftState) => {
   if (typeof window === "undefined") return;
   try {
+    if (window.localStorage.getItem("gw.persistence.consent.v1") !== "1") return;
     // Si tout est vide, on nettoie la clé pour ne pas polluer le storage.
     const isEmpty =
       !draft.name && !draft.city && !draft.sector && !draft.phone && !draft.goal && draft.lang === "fr";
@@ -666,6 +674,10 @@ const BusinessSection = () => {
                 </button>
               </div>
             )}
+
+            <PersistenceConsent
+              description="Mémoriser mes informations (nom, ville, objectif, zone, téléphone) sur cet appareil pour les retrouver à ma prochaine visite (30 jours)."
+            />
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-left">
               <div className="space-y-1.5">

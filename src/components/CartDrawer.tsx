@@ -2,6 +2,8 @@ import { useState } from "react";
 import { X, Minus, Plus, ShoppingCart } from "lucide-react";
 import { useCart } from "@/hooks/useCart";
 import { orderFormSchema, safeOpenExternal } from "@/lib/sanitize";
+import { usePersistentState } from "@/hooks/usePersistentState";
+import PersistenceConsent from "@/components/PersistenceConsent";
 import logoOrangeMoney from "@/assets/logo-orange-money.png";
 import logoWave from "@/assets/logo-wave.png";
 import logoMtn from "@/assets/logo-mtn.png";
@@ -21,17 +23,46 @@ type Step = "cart" | "info" | "payment" | "wave-pending" | "done";
 const CartDrawer = () => {
   const { items, removeItem, updateQuantity, clearCart, isOpen, setIsOpen, total } = useCart();
   const [step, setStep] = useState<Step>("cart");
-  const [form, setForm] = useState<{ nom: string; prenom: string; adresse: string; telephone: string; civilite: "M." | "Mme" }>({ nom: "", prenom: "", adresse: "", telephone: "", civilite: "M." });
+  // Coordonnées de livraison : persistées 30 jours après opt-in (PersistenceConsent).
+  // Validées défensivement à la lecture pour rejeter toute valeur corrompue dans localStorage.
+  const [form, setForm] = usePersistentState<{
+    nom: string;
+    prenom: string;
+    adresse: string;
+    telephone: string;
+    civilite: "M." | "Mme";
+  }>(
+    "gw.cart.checkout.form.v1",
+    { nom: "", prenom: "", adresse: "", telephone: "", civilite: "M." },
+    {
+      validate: (raw): raw is { nom: string; prenom: string; adresse: string; telephone: string; civilite: "M." | "Mme" } => {
+        if (!raw || typeof raw !== "object") return false;
+        const r = raw as Record<string, unknown>;
+        return (
+          typeof r.nom === "string" &&
+          typeof r.prenom === "string" &&
+          typeof r.adresse === "string" &&
+          typeof r.telephone === "string" &&
+          (r.civilite === "M." || r.civilite === "Mme")
+        );
+      },
+    },
+  );
   const [formErrors, setFormErrors] = useState<Record<string, string>>({});
-  const [selectedPayment, setSelectedPayment] = useState<string | null>(null);
+  // Le mode de paiement préféré est aussi mémorisé (mais reste révoquable).
+  const [selectedPayment, setSelectedPayment] = usePersistentState<string | null>(
+    "gw.cart.payment.method.v1",
+    null,
+    { validate: (raw): raw is string | null => raw === null || typeof raw === "string" },
+  );
 
   const handleClose = () => {
     setIsOpen(false);
     if (step === "done") {
       setStep("cart");
-      setForm({ nom: "", prenom: "", adresse: "", telephone: "", civilite: "M." as const });
+      // On NE réinitialise PAS le formulaire : les coordonnées restent disponibles
+      // pour la prochaine commande (objectif de la mémorisation).
       setFormErrors({});
-      setSelectedPayment(null);
     }
   };
 
@@ -179,6 +210,9 @@ Merci de confirmer la réception de ma commande 🙏`;
 
           {step === "info" && (
             <form onSubmit={handleProceedToPayment} className="space-y-4">
+              <PersistenceConsent
+                description="Mémoriser mes coordonnées de livraison sur cet appareil pour ne pas avoir à les ressaisir lors de mes prochaines commandes (30 jours)."
+              />
               <div>
                 <label className="text-xs text-muted-foreground mb-1 block">Civilité</label>
                 <div className="flex gap-3">
