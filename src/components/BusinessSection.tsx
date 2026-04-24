@@ -1,5 +1,5 @@
 import { useState, useMemo, useEffect } from "react";
-import { Briefcase, TrendingUp, Plane, Car, Home, Gift, Check, User, MapPin, AlertCircle, Target, Building2, Phone, Languages, RotateCcw } from "lucide-react";
+import { Briefcase, TrendingUp, Plane, Car, Home, Gift, Check, User, MapPin, AlertCircle, Target, Building2, Phone, Languages, RotateCcw, Lock, Unlock } from "lucide-react";
 import { z } from "zod";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { Input } from "@/components/ui/input";
