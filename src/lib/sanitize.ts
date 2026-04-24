@@ -56,22 +56,27 @@ const ALLOWED_DOMAINS = [
   "pay.wave.com",
 ];
 
-// Safely open external links — only allows https and whitelisted domains
-export const safeOpenExternal = (url: string) => {
+// Safely open external links — only allows https and whitelisted domains.
+// Returns true when the navigation was successfully triggered, false otherwise
+// (invalid URL, non-whitelisted domain, missing DOM, or browser exception).
+export const safeOpenExternal = (url: string): boolean => {
   try {
     const parsed = new URL(url);
-    if (!["https:", "http:"].includes(parsed.protocol)) return;
+    if (!["https:", "http:"].includes(parsed.protocol)) return false;
     const domain = parsed.hostname;
     if (!ALLOWED_DOMAINS.some((d) => domain === d || domain.endsWith(`.${d}`))) {
       console.warn("Blocked navigation to non-whitelisted domain:", domain);
-      return;
+      return false;
     }
+    if (typeof document === "undefined") return false;
     const a = document.createElement("a");
     a.href = url;
     a.target = "_blank";
     a.rel = "noopener noreferrer";
     a.click();
+    return true;
   } catch {
     console.warn("Invalid URL blocked:", url);
+    return false;
   }
 };
