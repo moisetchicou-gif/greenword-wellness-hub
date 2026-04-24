@@ -2,14 +2,21 @@ import { lazy, Suspense } from "react";
 import { Link } from "react-router-dom";
 import { ArrowLeft, TrendingUp, Plane, Car, Home, Gift, ShieldCheck, GraduationCap, Globe2, Clock, HeartHandshake, Sparkles } from "lucide-react";
 import Navbar from "@/components/Navbar";
+import { buildWhatsAppMessage } from "@/components/BusinessSection";
 
 const BusinessSection = lazy(() => import("@/components/BusinessSection"));
 
 const WHATSAPP_NUMBER = "2250707089631";
-const WHATSAPP_DEFAULT_MESSAGE = encodeURIComponent(
-  "Bonjour, je suis intéressé(e) par l'opportunité Business Green World (devenir distributeur). Pouvez-vous me donner plus d'informations ?",
-);
-const WHATSAPP_HREF = `https://wa.me/${WHATSAPP_NUMBER}?text=${WHATSAPP_DEFAULT_MESSAGE}`;
+// Message par défaut généré via le même builder que le formulaire pour garantir la cohérence
+// (pas de double "Bonjour", phrasé harmonisé, etc.).
+const WHATSAPP_HREF = `https://wa.me/${WHATSAPP_NUMBER}?text=${buildWhatsAppMessage(
+  "",
+  "",
+  undefined,
+  "",
+  "",
+  "fr",
+)}`;
 
 const rewards = [
   { icon: TrendingUp, label: "20% de commission", desc: "Sur chacune de vos ventes directes" },
