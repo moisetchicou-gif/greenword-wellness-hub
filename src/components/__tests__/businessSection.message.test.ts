@@ -56,7 +56,7 @@ describe("buildWhatsAppMessage", () => {
       // @ts-expect-error - valeur volontairement invalide
       buildWhatsAppMessage("Aïcha", "", "hacker", "", "", "fr"),
     );
-    expect(out).toContain("Je suis intéressé(e) par l'opportunité Business Green World");
+    expect(out).toContain("Je souhaite en savoir plus sur l'opportunité Business Green World");
   });
 
   it("intègre zone/secteur et téléphone quand renseignés", () => {
