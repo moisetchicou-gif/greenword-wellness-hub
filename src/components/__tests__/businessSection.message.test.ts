@@ -6,9 +6,9 @@ const decode = (s: string) => decodeURIComponent(s);
 describe("buildWhatsAppMessage", () => {
   it("génère un message FR sans nom ni ville", () => {
     const out = decode(buildWhatsAppMessage("", "", undefined, "", "", "fr"));
-    expect(out).toContain("Bonjour,");
-    expect(out).toContain("Je suis intéressé(e) par l'opportunité Business Green World");
-    expect(out).toContain("Pouvez-vous me donner plus d'informations ?");
+    expect(out).toContain("Bonjour.");
+    expect(out).toContain("Je souhaite en savoir plus sur l'opportunité Business Green World");
+    expect(out).toContain("Merci de me recontacter dès que possible.");
   });
 
   it("tolère undefined / null pour name, city, sector, phone", () => {
