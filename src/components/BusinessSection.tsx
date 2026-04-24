@@ -713,7 +713,7 @@ const BusinessSection = () => {
                 <div className="flex items-center justify-between gap-2">
                   <Label htmlFor="biz-name" className="text-xs">
                     <User className="inline w-3.5 h-3.5 mr-1 text-primary" />
-                    Votre nom <span className="text-muted-foreground font-normal">(optionnel)</span>
+                    Votre nom <span className="text-destructive font-normal">*</span>
                   </Label>
                   <span className={`text-[10px] tabular-nums ${getCounterClass(name.length, NAME_MAX)}`}>
                     {name.length}/{NAME_MAX}
@@ -740,7 +740,7 @@ const BusinessSection = () => {
                 <div className="flex items-center justify-between gap-2">
                   <Label htmlFor="biz-city" className="text-xs">
                     <MapPin className="inline w-3.5 h-3.5 mr-1 text-primary" />
-                    Votre ville <span className="text-muted-foreground font-normal">(optionnel)</span>
+                    Votre ville <span className="text-destructive font-normal">*</span>
                   </Label>
                   <span className={`text-[10px] tabular-nums ${getCounterClass(city.length, CITY_MAX)}`}>
                     {city.length}/{CITY_MAX}
@@ -787,7 +787,7 @@ const BusinessSection = () => {
             <div className="space-y-1.5 text-left">
               <Label htmlFor="biz-goal" className="text-xs">
                 <Target className="inline w-3.5 h-3.5 mr-1 text-primary" />
-                Votre objectif <span className="text-muted-foreground font-normal">(optionnel)</span>
+                Votre objectif <span className="text-destructive font-normal">*</span>
               </Label>
               <Select
                 value={goal}
@@ -887,7 +887,7 @@ const BusinessSection = () => {
               <div className="flex items-center justify-between gap-2">
                 <Label htmlFor="biz-phone" className="text-xs">
                   <Phone className="inline w-3.5 h-3.5 mr-1 text-primary" />
-                  Ton numéro de téléphone <span className="text-muted-foreground font-normal">(optionnel)</span>
+                  Ton numéro de téléphone <span className="text-destructive font-normal">*</span>
                 </Label>
                 <span className={`text-[10px] tabular-nums ${getCounterClass(phone.length, PHONE_MAX)}`}>
                   {phone.length}/{PHONE_MAX}
