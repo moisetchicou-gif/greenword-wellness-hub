@@ -1,5 +1,5 @@
 import { useState, useMemo } from "react";
-import { Briefcase, TrendingUp, Plane, Car, Home, Gift, Check, User, MapPin, AlertCircle, Target, Building2, Phone } from "lucide-react";
+import { Briefcase, TrendingUp, Plane, Car, Home, Gift, Check, User, MapPin, AlertCircle, Target, Building2, Phone, Languages } from "lucide-react";
 import { z } from "zod";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { Input } from "@/components/ui/input";
@@ -26,13 +26,35 @@ const SECTOR_REGEX = /^[\p{L}0-9\s'’\-,/.]*$/u;
 const PHONE_REGEX = /^[+0-9\s().-]*$/;
 
 const GOAL_OPTIONS = [
-  { value: "revente", label: "Revente de produits", message: "faire de la revente de produits" },
-  { value: "distribution", label: "Distribution / réseau", message: "rejoindre le réseau de distribution" },
-  { value: "demarrage", label: "Démarrage d'activité", message: "démarrer une activité avec Green World" },
-  { value: "info", label: "Juste m'informer", message: "obtenir plus d'informations sur l'opportunité" },
+  {
+    value: "revente",
+    label: "Revente de produits",
+    message: { fr: "faire de la revente de produits", en: "resell the products" },
+  },
+  {
+    value: "distribution",
+    label: "Distribution / réseau",
+    message: { fr: "rejoindre le réseau de distribution", en: "join the distribution network" },
+  },
+  {
+    value: "demarrage",
+    label: "Démarrage d'activité",
+    message: { fr: "démarrer une activité avec Green World", en: "start a business with Green World" },
+  },
+  {
+    value: "info",
+    label: "Juste m'informer",
+    message: { fr: "obtenir plus d'informations sur l'opportunité", en: "get more information about the opportunity" },
+  },
 ] as const;
 
 type GoalValue = (typeof GOAL_OPTIONS)[number]["value"];
+type Lang = "fr" | "en";
+
+const LANG_OPTIONS: { value: Lang; label: string }[] = [
+  { value: "fr", label: "Français" },
+  { value: "en", label: "English" },
+];
 
 const contactSchema = z.object({
   name: z
@@ -68,28 +90,49 @@ const contactSchema = z.object({
     .or(z.literal("")),
 });
 
+const I18N = {
+  fr: {
+    helloNamed: (n: string, c: string) => `Bonjour, je suis ${n}${c ? ` (${c})` : ""}.`,
+    helloAnon: (c: string) => `Bonjour${c ? ` (${c})` : ""},`,
+    goalPrefix: "Mon objectif : ",
+    fallbackGoal: "Je suis intéressé(e) par l'opportunité Business Green World (devenir distributeur).",
+    sectorPrefix: " Zone / secteur : ",
+    phonePrefix: " Mon numéro : ",
+    closing: " Pouvez-vous me donner plus d'informations ?",
+  },
+  en: {
+    helloNamed: (n: string, c: string) => `Hello, I'm ${n}${c ? ` (${c})` : ""}.`,
+    helloAnon: (c: string) => `Hello${c ? ` (${c})` : ""},`,
+    goalPrefix: "My goal: ",
+    fallbackGoal: "I'm interested in the Green World Business opportunity (becoming a distributor).",
+    sectorPrefix: " Area / sector: ",
+    phonePrefix: " My phone number: ",
+    closing: " Could you give me more information?",
+  },
+} as const;
+
 const buildWhatsAppMessage = (
   name: string,
   city: string,
   goal: GoalValue | undefined,
   sector: string,
   phone: string,
+  lang: Lang,
 ) => {
+  const t = I18N[lang];
   const cleanName = name.trim();
   const cleanCity = city.trim();
-  const intro = cleanName
-    ? `Bonjour, je suis ${cleanName}${cleanCity ? ` (${cleanCity})` : ""}.`
-    : `Bonjour${cleanCity ? ` (${cleanCity})` : ""},`;
+  const intro = cleanName ? t.helloNamed(cleanName, cleanCity) : t.helloAnon(cleanCity);
   const goalOption = GOAL_OPTIONS.find((g) => g.value === goal);
   const goalSentence = goalOption
-    ? `Mon objectif : ${goalOption.message}.`
-    : `Je suis intéressé(e) par l'opportunité Business Green World (devenir distributeur).`;
+    ? `${t.goalPrefix}${goalOption.message[lang]}.`
+    : t.fallbackGoal;
   const cleanSector = sector.trim();
-  const sectorSentence = cleanSector ? ` Zone / secteur : ${cleanSector}.` : "";
+  const sectorSentence = cleanSector ? `${t.sectorPrefix}${cleanSector}.` : "";
   const cleanPhone = phone.trim();
-  const phoneSentence = cleanPhone ? ` Mon numéro : ${cleanPhone}.` : "";
+  const phoneSentence = cleanPhone ? `${t.phonePrefix}${cleanPhone}.` : "";
   return encodeURIComponent(
-    `${intro} ${goalSentence}${sectorSentence}${phoneSentence} Pouvez-vous me donner plus d'informations ?`
+    `${intro} ${goalSentence}${sectorSentence}${phoneSentence}${t.closing}`
   );
 };
 
@@ -123,6 +166,7 @@ const BusinessSection = () => {
   const [sector, setSector] = useState("");
   const [phone, setPhone] = useState("");
   const [goal, setGoal] = useState<GoalValue | undefined>(undefined);
+  const [lang, setLang] = useState<Lang>("fr");
 
   const validation = useMemo(() => {
     const result = contactSchema.safeParse({ name, city, sector, phone });
@@ -139,7 +183,7 @@ const BusinessSection = () => {
   }, [name, city, sector, phone]);
 
   const whatsappHref = validation.isValid
-    ? `https://wa.me/${WHATSAPP_NUMBER}?text=${buildWhatsAppMessage(name, city, goal, sector, phone)}`
+    ? `https://wa.me/${WHATSAPP_NUMBER}?text=${buildWhatsAppMessage(name, city, goal, sector, phone, lang)}`
     : undefined;
 
   return (
@@ -263,6 +307,25 @@ const BusinessSection = () => {
                   </p>
                 )}
               </div>
+            </div>
+
+            <div className="space-y-1.5 text-left">
+              <Label htmlFor="biz-lang" className="text-xs">
+                <Languages className="inline w-3.5 h-3.5 mr-1 text-primary" />
+                Langue du message
+              </Label>
+              <Select value={lang} onValueChange={(v) => setLang(v as Lang)}>
+                <SelectTrigger id="biz-lang" className="w-full">
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  {LANG_OPTIONS.map((opt) => (
+                    <SelectItem key={opt.value} value={opt.value}>
+                      {opt.label}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
             </div>
 
             <div className="space-y-1.5 text-left">
