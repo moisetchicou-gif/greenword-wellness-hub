@@ -223,6 +223,84 @@ const getInputBorderClass = (current: number, max: number, hasError: boolean) =>
   return "";
 };
 
+// ----- Persistance locale du brouillon de formulaire -----
+const DRAFT_STORAGE_KEY = "gw.business.contact.draft.v1";
+
+type DraftState = {
+  name: string;
+  city: string;
+  sector: string;
+  phone: string;
+  goal: GoalValue | undefined;
+  lang: Lang;
+};
+
+const EMPTY_DRAFT: DraftState = {
+  name: "",
+  city: "",
+  sector: "",
+  phone: "",
+  goal: undefined,
+  lang: "fr",
+};
+
+/** Récupère un champ string borné à `max` caractères depuis un objet brut. */
+const readString = (raw: unknown, max: number): string => {
+  if (typeof raw !== "string") return "";
+  return raw.slice(0, max);
+};
+
+/** Charge le brouillon depuis localStorage en validant chaque champ (défensif). */
+const loadDraft = (): DraftState => {
+  if (typeof window === "undefined") return EMPTY_DRAFT;
+  try {
+    const raw = window.localStorage.getItem(DRAFT_STORAGE_KEY);
+    if (!raw) return EMPTY_DRAFT;
+    const parsed = JSON.parse(raw) as Record<string, unknown>;
+    const goalRaw = parsed.goal;
+    const langRaw = parsed.lang;
+    return {
+      name: readString(parsed.name, NAME_MAX),
+      city: readString(parsed.city, CITY_MAX),
+      sector: readString(parsed.sector, SECTOR_MAX),
+      phone: readString(parsed.phone, PHONE_MAX),
+      goal:
+        typeof goalRaw === "string" && (GOAL_VALUES as readonly string[]).includes(goalRaw)
+          ? (goalRaw as GoalValue)
+          : undefined,
+      lang: langRaw === "en" || langRaw === "fr" ? langRaw : "fr",
+    };
+  } catch {
+    return EMPTY_DRAFT;
+  }
+};
+
+/** Sauvegarde le brouillon (silencieux si quota plein / mode privé). */
+const saveDraft = (draft: DraftState) => {
+  if (typeof window === "undefined") return;
+  try {
+    // Si tout est vide, on nettoie la clé pour ne pas polluer le storage.
+    const isEmpty =
+      !draft.name && !draft.city && !draft.sector && !draft.phone && !draft.goal && draft.lang === "fr";
+    if (isEmpty) {
+      window.localStorage.removeItem(DRAFT_STORAGE_KEY);
+      return;
+    }
+    window.localStorage.setItem(DRAFT_STORAGE_KEY, JSON.stringify(draft));
+  } catch {
+    // Quota dépassé ou storage indisponible : on ignore silencieusement.
+  }
+};
+
+const clearDraft = () => {
+  if (typeof window === "undefined") return;
+  try {
+    window.localStorage.removeItem(DRAFT_STORAGE_KEY);
+  } catch {
+    // ignore
+  }
+};
+
 const BusinessSection = () => {
   const { ref, visible } = useScrollReveal(0.1);
   const [name, setName] = useState("");
