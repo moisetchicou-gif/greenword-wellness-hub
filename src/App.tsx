@@ -9,7 +9,6 @@ import { CartProvider } from "@/hooks/useCart";
 import ErrorBoundary from "@/components/ErrorBoundary";
 import Index from "./pages/Index.tsx";
 import GuideButton from "@/components/GuideButton";
-import MobileBottomNav from "@/components/MobileBottomNav";
 import CartDrawer from "@/components/CartDrawer";
 import PremiumCursor from "@/components/PremiumCursor";
 
@@ -53,7 +52,6 @@ const App = () => (
                   <Route path="*" element={<NotFound />} />
                 </Routes>
                 <GuideButton />
-                <MobileBottomNav />
               </Suspense>
               <CartDrawer />
             </BrowserRouter>
