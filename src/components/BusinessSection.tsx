@@ -1,10 +1,34 @@
-import { useState } from "react";
-import { Briefcase, TrendingUp, Plane, Car, Home, Gift, Check, User, MapPin } from "lucide-react";
+import { useState, useMemo } from "react";
+import { Briefcase, TrendingUp, Plane, Car, Home, Gift, Check, User, MapPin, AlertCircle } from "lucide-react";
+import { z } from "zod";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 
 const WHATSAPP_NUMBER = "2250707089631";
+
+// Lettres (accents inclus), espaces, apostrophes, tirets et points uniquement.
+const SAFE_TEXT_REGEX = /^[\p{L}\s'’\-.]*$/u;
+const NAME_MAX = 60;
+const CITY_MAX = 40;
+
+const contactSchema = z.object({
+  name: z
+    .string()
+    .trim()
+    .max(NAME_MAX, `Nom : ${NAME_MAX} caractères max`)
+    .regex(SAFE_TEXT_REGEX, "Nom : caractères spéciaux non autorisés")
+    .optional()
+    .or(z.literal("")),
+  city: z
+    .string()
+    .trim()
+    .max(CITY_MAX, `Ville : ${CITY_MAX} caractères max`)
+    .regex(SAFE_TEXT_REGEX, "Ville : caractères spéciaux non autorisés")
+    .optional()
+    .or(z.literal("")),
+});
+
 const buildWhatsAppMessage = (name: string, city: string) => {
   const cleanName = name.trim();
   const cleanCity = city.trim();
@@ -36,7 +60,21 @@ const BusinessSection = () => {
   const { ref, visible } = useScrollReveal(0.1);
   const [name, setName] = useState("");
   const [city, setCity] = useState("");
-  const whatsappHref = `https://wa.me/${WHATSAPP_NUMBER}?text=${buildWhatsAppMessage(name, city)}`;
+
+  const validation = useMemo(() => {
+    const result = contactSchema.safeParse({ name, city });
+    if (result.success) return { isValid: true, nameError: "", cityError: "" };
+    const errors = result.error.flatten().fieldErrors;
+    return {
+      isValid: false,
+      nameError: errors.name?.[0] ?? "",
+      cityError: errors.city?.[0] ?? "",
+    };
+  }, [name, city]);
+
+  const whatsappHref = validation.isValid
+    ? `https://wa.me/${WHATSAPP_NUMBER}?text=${buildWhatsAppMessage(name, city)}`
+    : undefined;
 
   return (
     <section
@@ -115,8 +153,17 @@ const BusinessSection = () => {
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   placeholder="Ex : Aïcha Koné"
-                  maxLength={80}
+                  maxLength={NAME_MAX}
+                  aria-invalid={!!validation.nameError}
+                  aria-describedby="biz-name-error"
+                  className={validation.nameError ? "border-destructive focus-visible:ring-destructive" : ""}
                 />
+                {validation.nameError && (
+                  <p id="biz-name-error" className="text-[11px] text-destructive flex items-center gap-1">
+                    <AlertCircle className="w-3 h-3" />
+                    {validation.nameError}
+                  </p>
+                )}
               </div>
               <div className="space-y-1.5">
                 <Label htmlFor="biz-city" className="text-xs">
@@ -128,8 +175,17 @@ const BusinessSection = () => {
                   value={city}
                   onChange={(e) => setCity(e.target.value)}
                   placeholder="Ex : Abidjan"
-                  maxLength={60}
+                  maxLength={CITY_MAX}
+                  aria-invalid={!!validation.cityError}
+                  aria-describedby="biz-city-error"
+                  className={validation.cityError ? "border-destructive focus-visible:ring-destructive" : ""}
                 />
+                {validation.cityError && (
+                  <p id="biz-city-error" className="text-[11px] text-destructive flex items-center gap-1">
+                    <AlertCircle className="w-3 h-3" />
+                    {validation.cityError}
+                  </p>
+                )}
               </div>
             </div>
 
@@ -137,7 +193,11 @@ const BusinessSection = () => {
               href={whatsappHref}
               target="_blank"
               rel="noopener noreferrer"
-              className="group inline-flex items-center justify-center gap-3 w-full sm:w-auto bg-[#25D366] text-white px-7 py-4 rounded-full font-semibold text-sm tracking-wide shadow-lg hover:shadow-2xl hover:scale-[1.03] active:scale-[0.97] transition-all duration-300"
+              aria-disabled={!validation.isValid}
+              onClick={(e) => {
+                if (!validation.isValid) e.preventDefault();
+              }}
+              className={`group inline-flex items-center justify-center gap-3 w-full sm:w-auto bg-[#25D366] text-white px-7 py-4 rounded-full font-semibold text-sm tracking-wide shadow-lg transition-all duration-300 ${validation.isValid ? "hover:shadow-2xl hover:scale-[1.03] active:scale-[0.97]" : "opacity-50 cursor-not-allowed pointer-events-none"}`}
               style={{ boxShadow: "0 8px 24px rgba(37, 211, 102, 0.35)" }}
             >
               <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
