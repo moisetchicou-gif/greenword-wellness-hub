@@ -124,4 +124,44 @@ describe("buildWhatsAppMessage", () => {
       expect(out.length).toBeLessThanOrEqual(WA_MESSAGE_MAX);
     });
   });
+
+  describe("anomalies de phrasé", () => {
+    it("ne contient jamais 'Bonjour' deux fois", () => {
+      const cases = [
+        buildWhatsAppMessage("", "", undefined, "", "", "fr"),
+        buildWhatsAppMessage("Aïcha", "", undefined, "", "", "fr"),
+        buildWhatsAppMessage("Aïcha", "Abidjan", "revente", "Cocody", "0707", "fr"),
+        buildWhatsAppMessage("", "Abidjan", "info", "", "", "fr"),
+      ];
+      for (const raw of cases) {
+        const out = decode(raw);
+        const matches = out.match(/Bonjour/g) ?? [];
+        expect(matches.length, `Trop de "Bonjour" dans : ${out}`).toBeLessThanOrEqual(1);
+      }
+    });
+
+    it("ne répète pas 'Je suis' (intro + fallbackGoal)", () => {
+      const out = decode(buildWhatsAppMessage("Aïcha", "Abidjan", undefined, "", "", "fr"));
+      const matches = out.match(/[Jj]e suis/g) ?? [];
+      expect(matches.length, `'je suis' répété dans : ${out}`).toBeLessThanOrEqual(1);
+    });
+
+    it("ne contient jamais de double espace", () => {
+      const cases = [
+        buildWhatsAppMessage("", "", undefined, "", "", "fr"),
+        buildWhatsAppMessage("Aïcha", "Abidjan", "revente", "Cocody", "0707", "fr"),
+        buildWhatsAppMessage("", "", undefined, "", "", "en"),
+      ];
+      for (const raw of cases) {
+        const out = decode(raw);
+        expect(out, `Double espace dans : ${out}`).not.toMatch(/ {2,}/);
+      }
+    });
+
+    it("ne commence pas par une virgule suivie d'une majuscule (mauvaise ponctuation)", () => {
+      const out = decode(buildWhatsAppMessage("", "Abidjan", "info", "", "", "fr"));
+      // Anti-régression : avant on avait "Bonjour (Abidjan), Mon objectif" → virgule + majuscule.
+      expect(out).not.toMatch(/, [A-ZÀ-Ý]/);
+    });
+  });
 });
