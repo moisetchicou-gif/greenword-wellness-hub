@@ -265,6 +265,34 @@ const BusinessSection = () => {
               </Select>
             </div>
 
+            <div className="space-y-1.5 text-left">
+              <div className="flex items-center justify-between gap-2">
+                <Label htmlFor="biz-sector" className="text-xs">
+                  <Building2 className="inline w-3.5 h-3.5 mr-1 text-primary" />
+                  Zone / secteur <span className="text-muted-foreground font-normal">(optionnel)</span>
+                </Label>
+                <span className={`text-[10px] tabular-nums ${getCounterClass(sector.length, SECTOR_MAX)}`}>
+                  {sector.length}/{SECTOR_MAX}
+                </span>
+              </div>
+              <Input
+                id="biz-sector"
+                value={sector}
+                onChange={(e) => setSector(e.target.value)}
+                placeholder="Ex : Cocody, Yopougon, quartier 220 logements…"
+                maxLength={SECTOR_MAX}
+                aria-invalid={!!validation.sectorError}
+                aria-describedby="biz-sector-error"
+                className={validation.sectorError ? "border-destructive focus-visible:ring-destructive" : ""}
+              />
+              {validation.sectorError && (
+                <p id="biz-sector-error" className="text-[11px] text-destructive flex items-center gap-1">
+                  <AlertCircle className="w-3 h-3" />
+                  {validation.sectorError}
+                </p>
+              )}
+            </div>
+
             <a
               href={whatsappHref}
               target="_blank"
