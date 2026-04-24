@@ -344,8 +344,19 @@ const BusinessSection = () => {
                 <Target className="inline w-3.5 h-3.5 mr-1 text-primary" />
                 Votre objectif <span className="text-muted-foreground font-normal">(optionnel)</span>
               </Label>
-              <Select value={goal} onValueChange={(v) => setGoal(v as GoalValue)}>
-                <SelectTrigger id="biz-goal" className="w-full">
+              <Select
+                value={goal}
+                onValueChange={(v) => {
+                  // Whitelist : on n'accepte que les valeurs déclarées dans GOAL_OPTIONS.
+                  setGoal(GOAL_VALUES.includes(v as GoalValue) ? (v as GoalValue) : undefined);
+                }}
+              >
+                <SelectTrigger
+                  id="biz-goal"
+                  className={`w-full ${validation.goalError ? "border-destructive focus-visible:ring-destructive" : ""}`}
+                  aria-invalid={!!validation.goalError}
+                  aria-describedby="biz-goal-error"
+                >
                   <SelectValue placeholder="Choisir un objectif…" />
                 </SelectTrigger>
                 <SelectContent>
@@ -356,6 +367,12 @@ const BusinessSection = () => {
                   ))}
                 </SelectContent>
               </Select>
+              {validation.goalError && (
+                <p id="biz-goal-error" className="text-[11px] text-destructive flex items-center gap-1">
+                  <AlertCircle className="w-3 h-3" />
+                  {validation.goalError}
+                </p>
+              )}
             </div>
 
             <div className="space-y-1.5 text-left">
