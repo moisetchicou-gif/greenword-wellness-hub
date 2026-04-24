@@ -124,22 +124,25 @@ const contactSchema = z.object({
 
 const I18N = {
   fr: {
+    // Toujours terminé par un point pour permettre une majuscule à la phrase suivante.
     helloNamed: (n: string, c: string) => `Bonjour, je suis ${n}${c ? ` (${c})` : ""}.`,
-    helloAnon: (c: string) => `Bonjour${c ? ` (${c})` : ""},`,
-    goalPrefix: "Mon objectif : ",
-    fallbackGoal: "Je suis intéressé(e) par l'opportunité Business Green World (devenir distributeur).",
+    helloAnon: (c: string) => `Bonjour${c ? ` (${c})` : ""}.`,
+    goalPrefix: " Mon objectif : ",
+    // Reformulé pour éviter la répétition « je suis » avec helloNamed.
+    fallbackGoal: " Je souhaite en savoir plus sur l'opportunité Business Green World (devenir distributeur).",
     sectorPrefix: " Zone / secteur : ",
     phonePrefix: " Mon numéro : ",
-    closing: " Pouvez-vous me donner plus d'informations ?",
+    // Reformulé pour éviter la répétition du mot « informations » avec fallbackGoal.
+    closing: " Merci de me recontacter dès que possible.",
   },
   en: {
     helloNamed: (n: string, c: string) => `Hello, I'm ${n}${c ? ` (${c})` : ""}.`,
-    helloAnon: (c: string) => `Hello${c ? ` (${c})` : ""},`,
-    goalPrefix: "My goal: ",
-    fallbackGoal: "I'm interested in the Green World Business opportunity (becoming a distributor).",
+    helloAnon: (c: string) => `Hello${c ? ` (${c})` : ""}.`,
+    goalPrefix: " My goal: ",
+    fallbackGoal: " I'd like to learn more about the Green World Business opportunity (becoming a distributor).",
     sectorPrefix: " Area / sector: ",
     phonePrefix: " My phone number: ",
-    closing: " Could you give me more information?",
+    closing: " Please get back to me as soon as possible.",
   },
 } as const;
 
