@@ -77,7 +77,7 @@ const Navbar = () => {
     { label: "Boutique", href: "/#produits" },
     { label: "Guide Santé", href: "/guide-pathologies" },
     { label: "Business", href: "/business" },
-    { label: "Avis", href: "/#avis" },
+    
     { label: "À propos", href: "/#contact" },
   ];
 
