@@ -179,9 +179,10 @@ export const buildWhatsAppMessage = (
   const cleanPhone = (phone ?? "").trim();
   const phoneSentence = cleanPhone ? `${t.phonePrefix}${cleanPhone}.` : "";
 
+  // Tous les segments suivants (goalSentence, sectorSentence, phoneSentence, closing) commencent
+  // déjà par un espace via leurs préfixes I18N — on concatène donc directement après `intro`.
   // Calcule la place disponible pour le secteur après assemblage des autres parties.
-  // Tout ce qui n'est PAS le secteur est prioritaire.
-  const fixedParts = `${intro} ${goalSentence}${phoneSentence}${t.closing}`;
+  const fixedParts = `${intro}${goalSentence}${phoneSentence}${t.closing}`;
   const sectorWrapperLen = `${t.sectorPrefix}.`.length;
   const availableForSector = WA_MESSAGE_MAX - fixedParts.length - sectorWrapperLen;
 
@@ -196,7 +197,9 @@ export const buildWhatsAppMessage = (
     }
   }
 
-  let finalText = `${intro} ${goalSentence}${sectorSentence}${phoneSentence}${t.closing}`;
+  let finalText = `${intro}${goalSentence}${sectorSentence}${phoneSentence}${t.closing}`;
+  // Nettoyage défensif : élimine d'éventuels doubles espaces résiduels.
+  finalText = finalText.replace(/\s{2,}/g, " ").trim();
 
   // Garde-fou : si malgré tout on dépasse (cas extrême : nom/ville très longs), on tronque le tout.
   if (finalText.length > WA_MESSAGE_MAX) {
