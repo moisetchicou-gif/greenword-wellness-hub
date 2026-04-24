@@ -310,6 +310,25 @@ const BusinessSection = () => {
             </div>
 
             <div className="space-y-1.5 text-left">
+              <Label htmlFor="biz-lang" className="text-xs">
+                <Languages className="inline w-3.5 h-3.5 mr-1 text-primary" />
+                Langue du message
+              </Label>
+              <Select value={lang} onValueChange={(v) => setLang(v as Lang)}>
+                <SelectTrigger id="biz-lang" className="w-full">
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  {LANG_OPTIONS.map((opt) => (
+                    <SelectItem key={opt.value} value={opt.value}>
+                      {opt.label}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
+
+            <div className="space-y-1.5 text-left">
               <Label htmlFor="biz-goal" className="text-xs">
                 <Target className="inline w-3.5 h-3.5 mr-1 text-primary" />
                 Votre objectif <span className="text-muted-foreground font-normal">(optionnel)</span>
