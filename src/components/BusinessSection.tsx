@@ -80,7 +80,7 @@ const BusinessSection = () => {
   const { ref, visible } = useScrollReveal(0.1);
   const [name, setName] = useState("");
   const [city, setCity] = useState("");
-  const [goal, setGoal] = useState<GoalValue>("");
+  const [goal, setGoal] = useState<GoalValue | undefined>(undefined);
 
   const validation = useMemo(() => {
     const result = contactSchema.safeParse({ name, city });
