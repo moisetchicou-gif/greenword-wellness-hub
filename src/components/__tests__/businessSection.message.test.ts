@@ -98,7 +98,7 @@ describe("buildWhatsAppMessage", () => {
       expect(out).toContain("Bonjour, je suis Aïcha (Abidjan).");
       expect(out).toContain("Mon objectif : faire de la revente de produits.");
       expect(out).toContain("Mon numéro : +225 07 00 00 00 00.");
-      expect(out).toContain("Pouvez-vous me donner plus d'informations ?");
+      expect(out).toContain("Merci de me recontacter dès que possible.");
     });
 
     it("tronque le secteur avec une ellipse propre (pas de mot coupé en plein milieu)", () => {
