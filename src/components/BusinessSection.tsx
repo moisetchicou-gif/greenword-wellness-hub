@@ -824,7 +824,7 @@ const BusinessSection = () => {
               <div className="flex items-center justify-between gap-2">
                 <Label htmlFor="biz-sector" className="text-xs">
                   <Building2 className="inline w-3.5 h-3.5 mr-1 text-primary" />
-                  Votre zone d'activité <span className="text-muted-foreground font-normal">(ville – commune / quartier)</span>
+                  Votre zone d'activité <span className="text-destructive font-normal">*</span> <span className="text-muted-foreground font-normal">(ville – commune / quartier)</span>
                 </Label>
                 <span className={`text-[10px] tabular-nums ${getCounterClass(sector.length, SECTOR_MAX)}`}>
                   {sector.length}/{SECTOR_MAX}
