@@ -13,7 +13,11 @@ const Navbar = () => {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
-  const [query, setQuery] = useState("");
+  // Dernière requête de recherche : conservée 30 jours après opt-in (PersistenceConsent).
+  const [query, setQuery] = usePersistentState<string>("gw.search.lastQuery.v1", "", {
+    validate: (raw): raw is string => typeof raw === "string" && raw.length <= 200,
+    debounceMs: 500,
+  });
   const searchInputRef = useRef<HTMLInputElement>(null);
   const { items, toggleCartOpen } = useCart();
   const totalItems = items.reduce((s, i) => s + i.quantity, 0);
