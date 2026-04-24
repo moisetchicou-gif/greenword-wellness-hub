@@ -4,7 +4,6 @@ import HeroSection from "@/components/HeroSection";
 import TrustBar from "@/components/TrustBar";
 import CartDrawer from "@/components/CartDrawer";
 import WhatsAppButton from "@/components/WhatsAppButton";
-import MobileBottomNav from "@/components/MobileBottomNav";
 import CookieBanner from "@/components/CookieBanner";
 import SEO from "@/components/SEO";
 
@@ -88,7 +87,6 @@ const Index = () => {
       </Suspense>
       <CartDrawer />
       <WhatsAppButton />
-      <MobileBottomNav />
       <CookieBanner />
     </div>
   );
