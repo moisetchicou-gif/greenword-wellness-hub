@@ -548,9 +548,9 @@ const BusinessSection = () => {
   const totalCount = checklist.length;
   const allFilled = filledCount === totalCount;
   const missingFields = checklist.filter((c) => !c.filled);
-  // Le bouton WhatsApp est actif uniquement si la validation passe ET — en mode strict —
-  // si tous les champs clés sont remplis. Empêche tout envoi prématuré côté client.
-  const canSend = validation.isValid && (!strictMode || allFilled);
+  // Tous les champs sont obligatoires : le bouton WhatsApp ne s'active que si la validation passe
+  // ET si l'intégralité de la checklist est remplie. Empêche tout envoi prématuré côté client.
+  const canSend = validation.isValid && allFilled;
 
   const whatsappHref = canSend
     ? `https://wa.me/${WHATSAPP_NUMBER}?text=${buildWhatsAppMessage(
