@@ -1,10 +1,20 @@
-import { Briefcase, TrendingUp, Plane, Car, Home, Gift, Check } from "lucide-react";
+import { useState } from "react";
+import { Briefcase, TrendingUp, Plane, Car, Home, Gift, Check, User, MapPin } from "lucide-react";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 
 const WHATSAPP_NUMBER = "2250707089631";
-const WHATSAPP_MESSAGE = encodeURIComponent(
-  "Bonjour, je suis intéressé(e) par l'opportunité Business Green World (devenir distributeur). Pouvez-vous me donner plus d'informations ?"
-);
+const buildWhatsAppMessage = (name: string, city: string) => {
+  const cleanName = name.trim();
+  const cleanCity = city.trim();
+  const intro = cleanName
+    ? `Bonjour, je suis ${cleanName}${cleanCity ? ` (${cleanCity})` : ""}.`
+    : `Bonjour${cleanCity ? ` (${cleanCity})` : ""},`;
+  return encodeURIComponent(
+    `${intro} Je suis intéressé(e) par l'opportunité Business Green World (devenir distributeur). Pouvez-vous me donner plus d'informations ?`
+  );
+};
 
 const rewards = [
   { icon: TrendingUp, label: "20% de commission", desc: "Sur chacune de vos ventes" },
@@ -24,6 +34,9 @@ const benefits = [
 
 const BusinessSection = () => {
   const { ref, visible } = useScrollReveal(0.1);
+  const [name, setName] = useState("");
+  const [city, setCity] = useState("");
+  const whatsappHref = `https://wa.me/${WHATSAPP_NUMBER}?text=${buildWhatsAppMessage(name, city)}`;
 
   return (
     <section
@@ -91,8 +104,37 @@ const BusinessSection = () => {
               </p>
             </div>
 
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-left">
+              <div className="space-y-1.5">
+                <Label htmlFor="biz-name" className="text-xs">
+                  <User className="inline w-3.5 h-3.5 mr-1 text-primary" />
+                  Votre nom <span className="text-muted-foreground font-normal">(optionnel)</span>
+                </Label>
+                <Input
+                  id="biz-name"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  placeholder="Ex : Aïcha Koné"
+                  maxLength={80}
+                />
+              </div>
+              <div className="space-y-1.5">
+                <Label htmlFor="biz-city" className="text-xs">
+                  <MapPin className="inline w-3.5 h-3.5 mr-1 text-primary" />
+                  Votre ville <span className="text-muted-foreground font-normal">(optionnel)</span>
+                </Label>
+                <Input
+                  id="biz-city"
+                  value={city}
+                  onChange={(e) => setCity(e.target.value)}
+                  placeholder="Ex : Abidjan"
+                  maxLength={60}
+                />
+              </div>
+            </div>
+
             <a
-              href={`https://wa.me/${WHATSAPP_NUMBER}?text=${WHATSAPP_MESSAGE}`}
+              href={whatsappHref}
               target="_blank"
               rel="noopener noreferrer"
               className="group inline-flex items-center justify-center gap-3 w-full sm:w-auto bg-[#25D366] text-white px-7 py-4 rounded-full font-semibold text-sm tracking-wide shadow-lg hover:shadow-2xl hover:scale-[1.03] active:scale-[0.97] transition-all duration-300"
