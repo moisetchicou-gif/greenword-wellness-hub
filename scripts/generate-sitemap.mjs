@@ -13,7 +13,7 @@ import { fileURLToPath, pathToFileURL } from "node:url";
 import { register } from "node:module";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
-const SITE_URL = "https://greenworldprestige.lovable.app";
+const SITE_URL = "https://greenworldprestige.com";
 
 // Hook pour permettre d'importer les fichiers .ts/.tsx (qui importent des assets)
 // On évite ça : on parse les fichiers data en lisant le source brut.

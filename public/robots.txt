@@ -1,5 +1,5 @@
 # Sitemap pour faciliter l'indexation
-Sitemap: https://greenworldprestige.lovable.app/sitemap.xml
+Sitemap: https://greenworldprestige.com/sitemap.xml
 
 # Bots majeurs : tout autorisé
 User-agent: Googlebot

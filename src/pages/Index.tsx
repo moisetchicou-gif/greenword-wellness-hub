@@ -20,7 +20,7 @@ const SectionFallback = () => (
 );
 
 const Index = () => {
-  const siteUrl = "https://greenworldprestige.lovable.app";
+  const siteUrl = "https://greenworldprestige.com";
   const orgJsonLd = {
     "@context": "https://schema.org",
     "@type": "Organization",

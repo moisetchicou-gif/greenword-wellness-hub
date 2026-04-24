@@ -17,7 +17,7 @@ const ProductDetail = () => {
 
   if (!product) return <Navigate to="/#produits" replace />;
 
-  const siteUrl = "https://greenworldprestige.lovable.app";
+  const siteUrl = "https://greenworldprestige.com";
   const slugStr = getProductSlug(product);
   const canonical = `${siteUrl}/produit/${slugStr}`;
   const productJsonLd = {
