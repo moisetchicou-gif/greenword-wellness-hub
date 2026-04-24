@@ -10,7 +10,7 @@ const paymentMethods = [
   { name: "Wave", logo: logoWave },
 ];
 
-type Step = "cart" | "info" | "payment" | "wave-pending" | "done";
+type Step = "cart" | "info" | "payment" | "done";
 
 const CartDrawer = () => {
   const { items, removeItem, updateQuantity, clearCart, isOpen, setIsOpen, total } = useCart();
@@ -41,6 +41,8 @@ const CartDrawer = () => {
     },
   );
   const [formErrors, setFormErrors] = useState<Record<string, string>>({});
+  // Numéro de commande affiché à l'utilisateur après paiement (généré juste avant l'ouverture de Wave/WhatsApp)
+  const [orderRef, setOrderRef] = useState<string>("");
   // Le mode de paiement préféré est aussi mémorisé (mais reste révoquable).
   const [selectedPayment, setSelectedPayment] = usePersistentState<string | null>(
     "gw.cart.payment.method.v1",
@@ -78,21 +80,22 @@ const CartDrawer = () => {
 
   const WAVE_PAYMENT_LINK = `https://pay.wave.com/m/M_ci_tXW_B6Tybbrb/c/ci/?amount=${total}`;
 
-  const sendWhatsAppConfirmation = () => {
+  // Construit le message WhatsApp pré-rempli pour la commande, en incluant le numéro de commande.
+  const buildWhatsAppUrl = (refId: string) => {
     const hour = new Date().getHours();
     const greeting = hour < 18 ? "Bonjour" : "Bonsoir";
     const civ = form.civilite;
-    const refId = `GW-${Date.now().toString(36).toUpperCase()}`;
     const now = new Date();
     const dateStr = now.toLocaleDateString("fr-FR", { day: "2-digit", month: "2-digit", year: "numeric" });
     const timeStr = now.toLocaleTimeString("fr-FR", { hour: "2-digit", minute: "2-digit" });
 
-    const itemsList = items.map((i) => `• ${i.name} x${i.quantity} — ${(i.priceNum * i.quantity).toLocaleString("fr-FR")} FCFA`).join("\n");
+    const itemsList = items
+      .map((i) => `• ${i.name} x${i.quantity} — ${(i.priceNum * i.quantity).toLocaleString("fr-FR")} FCFA`)
+      .join("\n");
 
-    // Un seul message envoyé par le client à la boutique
     const message = `${greeting}, j'ai passé une commande sur Green World 🌿 et j'ai effectué le paiement ✅
 
-🔖 *Réf :* ${refId}
+🔖 *N° de commande :* ${refId}
 📅 *Date :* ${dateStr} à ${timeStr}
 
 👤 *Mes informations :*
@@ -110,27 +113,37 @@ ${itemsList}
 
 Merci de confirmer la réception de ma commande 🙏`;
 
-    const whatsappUrl = `https://wa.me/2250715736370?text=${encodeURIComponent(message)}`;
-    safeOpenExternal(whatsappUrl);
+    return `https://wa.me/2250715736370?text=${encodeURIComponent(message)}`;
+  };
 
+  // Génère un identifiant de commande unique (court, lisible).
+  const generateOrderRef = () => `GW-${Date.now().toString(36).toUpperCase()}`;
+
+  // Cas non-Wave : envoi direct du récapitulatif WhatsApp.
+  const sendWhatsAppConfirmation = () => {
+    const refId = generateOrderRef();
+    setOrderRef(refId);
+    safeOpenExternal(buildWhatsAppUrl(refId));
     clearCart();
     setStep("done");
   };
 
   const handlePay = () => {
     if (selectedPayment === "Wave") {
-      // Ouvrir Wave pour le paiement dans un nouvel onglet,
-      // puis rediriger immédiatement le client vers WhatsApp pour la confirmation.
+      // 1) Génère le numéro de commande
+      const refId = generateOrderRef();
+      setOrderRef(refId);
+      // 2) Ouvre Wave dans un nouvel onglet pour le paiement
       safeOpenExternal(WAVE_PAYMENT_LINK);
-      sendWhatsAppConfirmation();
+      // 3) Redirige immédiatement le client vers WhatsApp (message pré-rempli avec le n° de commande).
+      //    Les deux ouvertures sont déclenchées dans le même geste utilisateur => pas de blocage navigateur.
+      safeOpenExternal(buildWhatsAppUrl(refId));
+      clearCart();
+      setStep("done");
       return;
     }
 
     // Pour les autres moyens de paiement, envoyer directement
-    sendWhatsAppConfirmation();
-  };
-
-  const handleWaveConfirm = () => {
     sendWhatsAppConfirmation();
   };
 
@@ -293,32 +306,20 @@ Merci de confirmer la réception de ma commande 🙏`;
             </div>
           )}
 
-          {step === "wave-pending" && (
-            <div className="text-center py-12 space-y-5">
-              <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto animate-pulse">
-                <span className="text-3xl">💳</span>
-              </div>
-              <h3 className="text-xl font-display text-foreground">Paiement Wave en cours...</h3>
-              <p className="text-muted-foreground text-sm max-w-xs mx-auto">
-                Une fois votre paiement effectué sur Wave, cliquez sur le bouton ci-dessous pour confirmer votre commande.
-              </p>
-              <button onClick={handleWaveConfirm} className="w-full bg-primary text-primary-foreground py-3 rounded-full font-semibold hover:opacity-90 active:scale-[0.97] transition-all">
-                ✅ J'ai payé sur Wave
-              </button>
-              <button onClick={() => setStep("payment")} className="text-muted-foreground text-sm hover:underline">
-                Retour aux moyens de paiement
-              </button>
-            </div>
-          )}
-
           {step === "done" && (
             <div className="text-center py-12 space-y-4">
               <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto">
                 <span className="text-3xl">✅</span>
               </div>
               <h3 className="text-xl font-display text-foreground">Commande confirmée !</h3>
+              {orderRef && (
+                <div className="mx-auto inline-flex flex-col items-center gap-1 px-4 py-3 rounded-2xl bg-secondary/60 border border-border/60">
+                  <span className="text-[11px] uppercase tracking-widest text-muted-foreground">Numéro de commande</span>
+                  <span className="font-mono font-semibold text-foreground text-base">{orderRef}</span>
+                </div>
+              )}
               <p className="text-muted-foreground text-sm max-w-xs mx-auto">
-                Votre commande a été transmise avec succès. Vous recevrez un message de confirmation sur WhatsApp.
+                Wave et WhatsApp se sont ouverts dans un nouvel onglet. Finalisez votre paiement Wave puis envoyez le message WhatsApp pré-rempli pour confirmer votre commande.
               </p>
               <button onClick={handleClose} className="bg-primary text-primary-foreground px-6 py-2.5 rounded-full text-sm font-semibold hover:opacity-90 transition-opacity">
                 Fermer
