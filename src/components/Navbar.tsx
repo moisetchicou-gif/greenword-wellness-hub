@@ -107,9 +107,9 @@ const Navbar = () => {
     <>
       <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled ? "bg-background/90 backdrop-blur-xl shadow-sm border-b border-border/50" : "bg-transparent"}`}>
         <div className="container mx-auto flex items-center justify-between h-14 sm:h-16 px-4 sm:px-6">
-          <a href="/" className="flex items-center gap-2.5 group">
+          <a href="/" className="flex items-center gap-2.5 group" aria-label="Green World - Accueil">
             <img src={logo} alt="Green World" className="w-9 h-9 object-contain rounded-md group-hover:scale-105 transition-transform duration-300" />
-            <span className="font-display text-lg text-accent tracking-wide">Green World</span>
+            <span className="hidden sm:inline font-display text-lg text-accent tracking-wide">Green World</span>
           </a>
 
           <div className="hidden lg:flex items-center gap-8 text-[13px] font-medium tracking-wide uppercase text-muted-foreground">
@@ -124,7 +124,7 @@ const Navbar = () => {
           <div className="flex items-center gap-1 sm:gap-2">
             <button
               onClick={() => setSearchOpen(true)}
-              className="hidden sm:flex p-2.5 text-muted-foreground hover:text-accent transition-colors hover:bg-secondary/50 rounded-full min-w-[44px] min-h-[44px] items-center justify-center"
+              className="p-2.5 text-muted-foreground hover:text-accent transition-colors hover:bg-secondary/50 rounded-full min-w-[44px] min-h-[44px] flex items-center justify-center"
               aria-label="Rechercher"
             >
               <Search className="w-5 h-5" />
@@ -142,9 +142,10 @@ const Navbar = () => {
               )}
             </button>
             <button
-              className="lg:hidden text-foreground p-2.5 hover:bg-secondary/50 rounded-full transition-colors min-w-[44px] min-h-[44px] flex items-center justify-center"
+              className="lg:hidden text-foreground p-2.5 bg-secondary/40 hover:bg-secondary/70 rounded-full transition-colors min-w-[44px] min-h-[44px] flex items-center justify-center"
               onClick={() => setOpen(!open)}
               aria-label={open ? "Fermer le menu" : "Ouvrir le menu"}
+              aria-expanded={open}
             >
               {open ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
