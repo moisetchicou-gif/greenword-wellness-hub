@@ -18,6 +18,9 @@ const WHATSAPP_NUMBER = "2250707089631";
 const SAFE_TEXT_REGEX = /^[\p{L}\s'’\-.]*$/u;
 const NAME_MAX = 60;
 const CITY_MAX = 40;
+const SECTOR_MAX = 60;
+// Zone/secteur : lettres, chiffres, espaces, tirets, apostrophes, virgules, slash et points.
+const SECTOR_REGEX = /^[\p{L}0-9\s'’\-,/.]*$/u;
 
 const GOAL_OPTIONS = [
   { value: "revente", label: "Revente de produits", message: "faire de la revente de produits" },
