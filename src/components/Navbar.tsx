@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import { usePersistentState } from "@/hooks/usePersistentState";
 import { useNavigate } from "react-router-dom";
 import { Menu, X, ShoppingCart, Search } from "lucide-react";
 import logo from "@/assets/logo-greenworld.jpg";
