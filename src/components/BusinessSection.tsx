@@ -969,52 +969,26 @@ const BusinessSection = () => {
                   </li>
                 ))}
               </ul>
-              {!allFilled && !strictMode && (
-                <p className="text-[10px] text-muted-foreground mt-3 leading-relaxed">
-                  Tous les champs sont optionnels, mais plus votre message est précis, plus notre réponse sera adaptée.
-                </p>
-              )}
-              {strictMode && !allFilled && (
+              {!allFilled && (
                 <p
                   role="alert"
                   className="text-[11px] text-destructive mt-3 leading-relaxed flex items-start gap-1.5"
                 >
                   <Lock className="w-3 h-3 mt-0.5 shrink-0" aria-hidden="true" />
                   <span>
-                    Mode strict activé : remplissez les {missingFields.length} champ
+                    Remplissez les {missingFields.length} champ
                     {missingFields.length > 1 ? "s" : ""} manquant
                     {missingFields.length > 1 ? "s" : ""} (
-                    {missingFields.map((f) => f.label).join(", ")}) pour débloquer l'envoi.
+                    {missingFields.map((f) => f.label).join(", ")}) pour pouvoir envoyer le message.
                   </span>
                 </p>
               )}
-              {/* Toggle « mode strict » : persiste la préférence dans localStorage. */}
-              <label
-                htmlFor="biz-strict-mode"
-                className="mt-4 flex items-start gap-2.5 cursor-pointer select-none rounded-lg border border-border/40 bg-background/50 px-3 py-2.5 hover:border-primary/40 transition-colors"
-              >
-                <input
-                  id="biz-strict-mode"
-                  type="checkbox"
-                  checked={strictMode}
-                  onChange={(e) => setStrictMode(e.target.checked)}
-                  className="mt-0.5 h-4 w-4 rounded border-border accent-primary cursor-pointer shrink-0"
-                  aria-describedby="biz-strict-mode-desc"
-                />
-                <span className="flex-1 text-[11px] leading-relaxed">
-                  <span className="font-semibold text-accent flex items-center gap-1.5">
-                    {strictMode ? (
-                      <Lock className="w-3 h-3 text-primary" aria-hidden="true" />
-                    ) : (
-                      <Unlock className="w-3 h-3 text-muted-foreground" aria-hidden="true" />
-                    )}
-                    Bloquer l'envoi tant que tous les champs ne sont pas remplis
-                  </span>
-                  <span id="biz-strict-mode-desc" className="block text-muted-foreground mt-0.5">
-                    Recommandé pour garantir un message complet et obtenir une réponse plus rapide.
-                  </span>
-                </span>
-              </label>
+              {allFilled && (
+                <p className="text-[11px] text-primary mt-3 leading-relaxed flex items-start gap-1.5">
+                  <Check className="w-3 h-3 mt-0.5 shrink-0" aria-hidden="true" />
+                  <span>Tous les champs sont remplis : vous pouvez envoyer votre message.</span>
+                </p>
+              )}
             </div>
 
             <a
@@ -1023,7 +997,7 @@ const BusinessSection = () => {
               rel="noopener noreferrer"
               aria-disabled={!canSend}
               title={
-                !canSend && strictMode && !allFilled
+                !canSend && !allFilled
                   ? `Remplissez d'abord : ${missingFields.map((f) => f.label).join(", ")}`
                   : undefined
               }
