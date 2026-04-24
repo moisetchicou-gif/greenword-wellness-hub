@@ -18,7 +18,7 @@ const OfferDetail = () => {
 
   if (!offer) return <Navigate to="/" replace />;
 
-  const siteUrl = "https://greenworldprestige.lovable.app";
+  const siteUrl = "https://greenworldprestige.com";
   const canonical = `${siteUrl}/offre/${offer.slug}`;
   const productJsonLd = {
     "@context": "https://schema.org",

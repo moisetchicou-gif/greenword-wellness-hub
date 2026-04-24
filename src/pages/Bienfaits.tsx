@@ -4,7 +4,7 @@ import SEO from "@/components/SEO";
 import FeaturesSection from "@/components/FeaturesSection";
 
 const Bienfaits = () => {
-  const siteUrl = "https://greenworldprestige.lovable.app";
+  const siteUrl = "https://greenworldprestige.com";
   return (
     <div className="min-h-screen flex flex-col">
       <SEO

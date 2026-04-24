@@ -11,7 +11,7 @@ interface SEOProps {
 }
 
 const SITE_NAME = "Green World";
-const SITE_URL = "https://greenworldprestige.lovable.app";
+const SITE_URL = "https://greenworldprestige.com";
 
 const SEO = ({
   title,

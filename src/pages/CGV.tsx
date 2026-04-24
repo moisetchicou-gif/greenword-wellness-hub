@@ -14,7 +14,7 @@ const CGV = () => (
         <section>
           <h2 className="text-foreground font-display text-xl font-semibold">1. Objet</h2>
           <p>
-            Les présentes Conditions Générales de Vente (CGV) régissent l'ensemble des ventes de produits effectuées par Green World via le site internet Les présentes Conditions Générales de Vente (CGV) régissent l'ensemble des ventes de produits effectuées par Green World via le site internet greenworld-wellness-hub.lovable.app. Toute commande implique l'acceptation sans réserve des présentes CGV.. Toute commande implique l'acceptation sans réserve des présentes CGV.
+            Les présentes Conditions Générales de Vente (CGV) régissent l'ensemble des ventes de produits effectuées par Green World via le site internet greenworldprestige.com. Toute commande implique l'acceptation sans réserve des présentes CGV.
           </p>
         </section>
 
