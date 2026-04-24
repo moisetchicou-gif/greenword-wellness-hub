@@ -872,7 +872,7 @@ const BusinessSection = () => {
               )}
             </div>
 
-            {/* Checklist de complétude — aide visuelle, n'empêche pas l'envoi. */}
+            {/* Checklist de complétude — informative, et conditionnelle si « mode strict » activé. */}
             <div
               className="rounded-xl border border-border/60 bg-card/50 p-4 text-left"
               aria-live="polite"
