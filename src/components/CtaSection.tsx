@@ -1,9 +1,5 @@
 import { Phone, Mail, MapPin, ArrowRight, Facebook } from "lucide-react";
-import logoOrangeMoney from "@/assets/logo-orange-money.png";
 import logoWave from "@/assets/logo-wave.png";
-import logoMtn from "@/assets/logo-mtn.png";
-import logoMoov from "@/assets/logo-moov.jpg";
-import logoPaypal from "@/assets/logo-paypal.png";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 
 const CtaSection = () => {
@@ -87,11 +83,7 @@ const CtaSection = () => {
           <p className="text-xs opacity-60 mb-5 uppercase tracking-wider">Méthodes de paiement acceptées</p>
           <div className="flex flex-wrap justify-center gap-5">
             {[
-              { name: "Orange Money", logo: logoOrangeMoney },
               { name: "Wave", logo: logoWave },
-              { name: "MTN Money", logo: logoMtn },
-              { name: "Moov Money", logo: logoMoov },
-              { name: "PayPal", logo: logoPaypal },
             ].map((method) => (
               <div key={method.name} className="flex flex-col items-center gap-2 group">
                 <div className="w-14 h-10 rounded-lg bg-accent-foreground/90 flex items-center justify-center shadow-md overflow-hidden p-1.5 group-hover:scale-110 transition-transform duration-300">
