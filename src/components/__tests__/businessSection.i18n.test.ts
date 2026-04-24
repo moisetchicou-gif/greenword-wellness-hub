@@ -107,9 +107,11 @@ describe("buildWhatsAppMessage — parité FR/EN", () => {
     });
 
     it("ne commence pas par une virgule + majuscule (mauvaise jointure)", () => {
+      // L'intro EN « Hello, I'm » est légitime → on n'inspecte qu'à partir de la 2e phrase.
       for (const [n, c, g, s, p] of ALL_COMBOS) {
         const out = decode(buildWhatsAppMessage(n, c, g, s, p, lang));
-        expect(out, `Virgule + maj (${lang}) : "${out}"`).not.toMatch(/, [A-ZÀ-Ý]/);
+        const afterIntro = out.replace(/^[^.]*\.\s*/, "");
+        expect(afterIntro, `Virgule + maj (${lang}) : "${out}"`).not.toMatch(/, [A-ZÀ-Ý]/);
       }
     });
 
