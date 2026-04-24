@@ -550,20 +550,8 @@ const BusinessSection = () => {
     };
   }, [normalized, goal]);
 
-  const whatsappHref = validation.isValid
-    ? `https://wa.me/${WHATSAPP_NUMBER}?text=${buildWhatsAppMessage(
-        normalized.name,
-        normalized.city,
-        goal,
-        normalized.sector,
-        normalized.phone,
-        lang,
-      )}`
-    : undefined;
-
   // Checklist de complétude : signale à l'utilisateur quels champs sont remplis ou manquants.
-  // Ne bloque PAS l'envoi (les champs restent optionnels) — c'est juste une aide visuelle
-  // pour qu'il puisse rendre son message plus précis avant d'envoyer.
+  // En mode normal, sert d'aide visuelle. En mode strict (toggle), conditionne aussi l'envoi.
   const checklist = useMemo(
     () => [
       { key: "name", label: "Votre nom", filled: normalized.name.length > 0 },
@@ -577,6 +565,21 @@ const BusinessSection = () => {
   const filledCount = checklist.filter((c) => c.filled).length;
   const totalCount = checklist.length;
   const allFilled = filledCount === totalCount;
+  const missingFields = checklist.filter((c) => !c.filled);
+  // Le bouton WhatsApp est actif uniquement si la validation passe ET — en mode strict —
+  // si tous les champs clés sont remplis. Empêche tout envoi prématuré côté client.
+  const canSend = validation.isValid && (!strictMode || allFilled);
+
+  const whatsappHref = canSend
+    ? `https://wa.me/${WHATSAPP_NUMBER}?text=${buildWhatsAppMessage(
+        normalized.name,
+        normalized.city,
+        goal,
+        normalized.sector,
+        normalized.phone,
+        lang,
+      )}`
+    : undefined;
 
   return (
     <section
