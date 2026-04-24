@@ -980,11 +980,16 @@ const BusinessSection = () => {
               href={whatsappHref}
               target="_blank"
               rel="noopener noreferrer"
-              aria-disabled={!validation.isValid}
+              aria-disabled={!canSend}
+              title={
+                !canSend && strictMode && !allFilled
+                  ? `Remplissez d'abord : ${missingFields.map((f) => f.label).join(", ")}`
+                  : undefined
+              }
               onClick={(e) => {
-                if (!validation.isValid) e.preventDefault();
+                if (!canSend) e.preventDefault();
               }}
-              className={`group inline-flex items-center justify-center gap-3 w-full sm:w-auto bg-[#25D366] text-white px-7 py-4 rounded-full font-semibold text-sm tracking-wide shadow-lg transition-all duration-300 ${validation.isValid ? "hover:shadow-2xl hover:scale-[1.03] active:scale-[0.97]" : "opacity-50 cursor-not-allowed pointer-events-none"}`}
+              className={`group inline-flex items-center justify-center gap-3 w-full sm:w-auto bg-[#25D366] text-white px-7 py-4 rounded-full font-semibold text-sm tracking-wide shadow-lg transition-all duration-300 ${canSend ? "hover:shadow-2xl hover:scale-[1.03] active:scale-[0.97]" : "opacity-50 cursor-not-allowed pointer-events-none"}`}
               style={{ boxShadow: "0 8px 24px rgba(37, 211, 102, 0.35)" }}
             >
               <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
