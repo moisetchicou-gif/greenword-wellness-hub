@@ -119,9 +119,10 @@ Merci de confirmer la réception de ma commande 🙏`;
 
   const handlePay = () => {
     if (selectedPayment === "Wave") {
-      // Ouvrir Wave pour le paiement, puis attendre confirmation
+      // Ouvrir Wave pour le paiement dans un nouvel onglet,
+      // puis rediriger immédiatement le client vers WhatsApp pour la confirmation.
       safeOpenExternal(WAVE_PAYMENT_LINK);
-      setStep("wave-pending");
+      sendWhatsAppConfirmation();
       return;
     }
 
