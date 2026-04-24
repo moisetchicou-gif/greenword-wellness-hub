@@ -37,22 +37,72 @@ const PHONE_REGEX = /^[+0-9\s().-]*$/;
 /**
  * Normalise un texte avant validation et envoi :
  * - normalisation Unicode NFC (compose les accents)
- * - unifie les apostrophes typographiques (’ ‘ ` ´) → '
- * - unifie les tirets longs (— –) → -
- * - réduit les suites d'espaces / tabulations / sauts de ligne en un seul espace
+ * - unifie les apostrophes typographiques (’ ‘ ` ´ ′) → '
+ * - unifie les tirets longs (— – ‒ ―) → -
+ * - unifie les guillemets typographiques (« » " " „ ‟ ‹ ›) → "
+ * - convertit tous les sauts de ligne (\r \n \v \f U+2028 U+2029) en espaces
+ * - supprime les caractères invisibles / de contrôle (zero-width, BOM, etc.)
+ * - normalise les espaces non-cassables (NBSP U+00A0, U+202F, U+2007) en espace standard
+ * - réduit les suites d'espaces en un seul espace
  * - trim final
  */
 const normalizeText = (raw: string): string =>
   raw
     .normalize("NFC")
-    .replace(/[’‘`´]/g, "'")
-    .replace(/[—–]/g, "-")
+    // Apostrophes typographiques → ASCII
+    .replace(/[’‘`´′]/g, "'")
+    // Tirets longs / cadratins → ASCII
+    .replace(/[—–‒―]/g, "-")
+    // Guillemets typographiques → ASCII
+    .replace(/[«»“”„‟‹›]/g, '"')
+    // Tous les sauts de ligne et tabulations verticales → espace
+    .replace(/[\r\n\v\f\u2028\u2029]+/g, " ")
+    // Espaces non-cassables (NBSP, narrow NBSP, figure space) → espace standard
+    .replace(/[\u00A0\u202F\u2007]/g, " ")
+    // Caractères de contrôle invisibles : zero-width space/joiner, BOM, marks de direction, etc.
+    .replace(/[\u200B-\u200F\u202A-\u202E\u2060-\u206F\uFEFF]/g, "")
+    // Compactage final des espaces multiples
     .replace(/\s+/g, " ")
     .trim();
 
-/** Normalise un numéro de téléphone : compacte les espaces. */
+/** Normalise un numéro de téléphone : applique la même hygiène que normalizeText puis compacte. */
 const normalizePhone = (raw: string): string =>
-  raw.normalize("NFC").replace(/\s+/g, " ").trim();
+  raw
+    .normalize("NFC")
+    .replace(/[\r\n\v\f\u2028\u2029]+/g, " ")
+    .replace(/[\u00A0\u202F\u2007]/g, " ")
+    .replace(/[\u200B-\u200F\u202A-\u202E\u2060-\u206F\uFEFF]/g, "")
+    .replace(/\s+/g, " ")
+    .trim();
+
+/**
+ * Retire un préfixe de salutation que l'utilisateur aurait pu taper par erreur dans le champ nom
+ * (ex : « Bonjour, je suis Aïcha », « Hello, my name is John », « Salut Aïcha »).
+ * Évite la répétition « Bonjour ... Bonjour, je suis Aïcha » dans le message final.
+ */
+const stripGreetingPrefix = (raw: string): string => {
+  if (!raw) return raw;
+  // Liste de préfixes à éliminer (insensible à la casse, multiples passages possibles).
+  const patterns: RegExp[] = [
+    /^\s*(bonjour|bonsoir|salut|coucou|hello|hi|hey|good\s+(morning|afternoon|evening))\b[\s,!.;:]*/i,
+    /^\s*(je\s+(suis|m'appelle|me\s+nomme)|moi\s+c'est|c'est)\b[\s,]*/i,
+    /^\s*(my\s+name\s+is|i'?m|i\s+am|this\s+is)\b[\s,]*/i,
+  ];
+  let cleaned = raw;
+  // Plusieurs passes pour gérer les enchaînements (« Bonjour, je suis Aïcha »).
+  for (let i = 0; i < 3; i++) {
+    let changed = false;
+    for (const p of patterns) {
+      const next = cleaned.replace(p, "");
+      if (next !== cleaned) {
+        cleaned = next;
+        changed = true;
+      }
+    }
+    if (!changed) break;
+  }
+  return cleaned.trim();
+};
 
 const GOAL_OPTIONS = [
   {
