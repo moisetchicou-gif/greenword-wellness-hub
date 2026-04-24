@@ -41,6 +41,8 @@ const CartDrawer = () => {
     },
   );
   const [formErrors, setFormErrors] = useState<Record<string, string>>({});
+  // Numéro de commande affiché à l'utilisateur après paiement (généré juste avant l'ouverture de Wave/WhatsApp)
+  const [orderRef, setOrderRef] = useState<string>("");
   // Le mode de paiement préféré est aussi mémorisé (mais reste révoquable).
   const [selectedPayment, setSelectedPayment] = usePersistentState<string | null>(
     "gw.cart.payment.method.v1",
@@ -78,21 +80,22 @@ const CartDrawer = () => {
 
   const WAVE_PAYMENT_LINK = `https://pay.wave.com/m/M_ci_tXW_B6Tybbrb/c/ci/?amount=${total}`;
 
-  const sendWhatsAppConfirmation = () => {
+  // Construit le message WhatsApp pré-rempli pour la commande, en incluant le numéro de commande.
+  const buildWhatsAppUrl = (refId: string) => {
     const hour = new Date().getHours();
     const greeting = hour < 18 ? "Bonjour" : "Bonsoir";
     const civ = form.civilite;
-    const refId = `GW-${Date.now().toString(36).toUpperCase()}`;
     const now = new Date();
     const dateStr = now.toLocaleDateString("fr-FR", { day: "2-digit", month: "2-digit", year: "numeric" });
     const timeStr = now.toLocaleTimeString("fr-FR", { hour: "2-digit", minute: "2-digit" });
 
-    const itemsList = items.map((i) => `• ${i.name} x${i.quantity} — ${(i.priceNum * i.quantity).toLocaleString("fr-FR")} FCFA`).join("\n");
+    const itemsList = items
+      .map((i) => `• ${i.name} x${i.quantity} — ${(i.priceNum * i.quantity).toLocaleString("fr-FR")} FCFA`)
+      .join("\n");
 
-    // Un seul message envoyé par le client à la boutique
     const message = `${greeting}, j'ai passé une commande sur Green World 🌿 et j'ai effectué le paiement ✅
 
-🔖 *Réf :* ${refId}
+🔖 *N° de commande :* ${refId}
 📅 *Date :* ${dateStr} à ${timeStr}
 
 👤 *Mes informations :*
@@ -110,27 +113,37 @@ ${itemsList}
 
 Merci de confirmer la réception de ma commande 🙏`;
 
-    const whatsappUrl = `https://wa.me/2250715736370?text=${encodeURIComponent(message)}`;
-    safeOpenExternal(whatsappUrl);
+    return `https://wa.me/2250715736370?text=${encodeURIComponent(message)}`;
+  };
 
+  // Génère un identifiant de commande unique (court, lisible).
+  const generateOrderRef = () => `GW-${Date.now().toString(36).toUpperCase()}`;
+
+  // Cas non-Wave : envoi direct du récapitulatif WhatsApp.
+  const sendWhatsAppConfirmation = () => {
+    const refId = generateOrderRef();
+    setOrderRef(refId);
+    safeOpenExternal(buildWhatsAppUrl(refId));
     clearCart();
     setStep("done");
   };
 
   const handlePay = () => {
     if (selectedPayment === "Wave") {
-      // Ouvrir Wave pour le paiement dans un nouvel onglet,
-      // puis rediriger immédiatement le client vers WhatsApp pour la confirmation.
+      // 1) Génère le numéro de commande
+      const refId = generateOrderRef();
+      setOrderRef(refId);
+      // 2) Ouvre Wave dans un nouvel onglet pour le paiement
       safeOpenExternal(WAVE_PAYMENT_LINK);
-      sendWhatsAppConfirmation();
+      // 3) Redirige immédiatement le client vers WhatsApp (message pré-rempli avec le n° de commande).
+      //    Les deux ouvertures sont déclenchées dans le même geste utilisateur => pas de blocage navigateur.
+      safeOpenExternal(buildWhatsAppUrl(refId));
+      clearCart();
+      setStep("done");
       return;
     }
 
     // Pour les autres moyens de paiement, envoyer directement
-    sendWhatsAppConfirmation();
-  };
-
-  const handleWaveConfirm = () => {
     sendWhatsAppConfirmation();
   };
 
