@@ -68,6 +68,12 @@
     @apply bg-background text-foreground font-body antialiased;
     overflow-x: hidden;
     text-rendering: optimizeLegibility;
+    /* Espace pour la barre d'actions mobile fixe (cachée en desktop) */
+    padding-bottom: calc(72px + env(safe-area-inset-bottom));
+  }
+
+  @media (min-width: 1024px) {
+    body { padding-bottom: 0; }
   }
 
   h1, h2, h3, h4 {

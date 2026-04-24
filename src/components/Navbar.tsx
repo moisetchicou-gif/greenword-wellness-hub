@@ -32,6 +32,22 @@ const Navbar = () => {
     if (searchOpen) searchInputRef.current?.focus();
   }, [searchOpen]);
 
+  // Permettre l'ouverture de la recherche depuis la barre d'actions mobile
+  useEffect(() => {
+    const open = () => setSearchOpen(true);
+    window.addEventListener("gw:open-search", open);
+    return () => window.removeEventListener("gw:open-search", open);
+  }, []);
+
+  // Verrouille le scroll du body quand le menu mobile plein écran est ouvert
+  useEffect(() => {
+    if (open) {
+      const prev = document.body.style.overflow;
+      document.body.style.overflow = "hidden";
+      return () => { document.body.style.overflow = prev; };
+    }
+  }, [open]);
+
   const results = query.trim().length >= 2
     ? products.filter((p) => p.name.toLowerCase().includes(query.toLowerCase())).slice(0, 8)
     : [];
@@ -105,49 +121,58 @@ const Navbar = () => {
             <SettingsPanel variant="nav" />
           </div>
 
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-1 sm:gap-2">
             <button
               onClick={() => setSearchOpen(true)}
-              className="p-2 text-muted-foreground hover:text-accent transition-colors hover:bg-secondary/50 rounded-full"
+              className="hidden sm:flex p-2.5 text-muted-foreground hover:text-accent transition-colors hover:bg-secondary/50 rounded-full min-w-[44px] min-h-[44px] items-center justify-center"
               aria-label="Rechercher"
             >
               <Search className="w-5 h-5" />
             </button>
-            <button onClick={toggleCartOpen} className="relative p-2 text-muted-foreground hover:text-accent transition-colors hover:bg-secondary/50 rounded-full">
+            <button
+              onClick={toggleCartOpen}
+              className="relative p-2.5 text-muted-foreground hover:text-accent transition-colors hover:bg-secondary/50 rounded-full min-w-[44px] min-h-[44px] flex items-center justify-center"
+              aria-label="Panier"
+            >
               <ShoppingCart className="w-5 h-5" />
               {totalItems > 0 && (
-                <span className="absolute -top-0.5 -right-0.5 bg-accent text-accent-foreground text-[10px] font-bold w-5 h-5 rounded-full flex items-center justify-center animate-scale-in">
+                <span className="absolute top-0 right-0 bg-accent text-accent-foreground text-[10px] font-bold w-5 h-5 rounded-full flex items-center justify-center animate-scale-in">
                   {totalItems}
                 </span>
               )}
             </button>
-            <button className="lg:hidden text-foreground p-2 hover:bg-secondary/50 rounded-full transition-colors" onClick={() => setOpen(!open)}>
-              {open ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+            <button
+              className="lg:hidden text-foreground p-2.5 hover:bg-secondary/50 rounded-full transition-colors min-w-[44px] min-h-[44px] flex items-center justify-center"
+              onClick={() => setOpen(!open)}
+              aria-label={open ? "Fermer le menu" : "Ouvrir le menu"}
+            >
+              {open ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
           </div>
         </div>
 
-        {/* Mobile menu */}
-        <div className={`lg:hidden overflow-hidden transition-all duration-500 ${open ? "max-h-96 opacity-100" : "max-h-0 opacity-0"}`}>
-          <div className="bg-background/95 backdrop-blur-xl border-t border-border/50">
-            <div className="container mx-auto px-6 py-5 flex flex-col gap-1">
+        {/* Mobile menu — plein écran, grandes cibles tactiles */}
+        {open && (
+          <div className="lg:hidden fixed inset-0 top-14 sm:top-16 z-40 bg-background/98 backdrop-blur-xl animate-fade-in overflow-y-auto">
+            <div className="container mx-auto px-6 py-8 flex flex-col gap-2">
               {links.map((l, i) => (
                 <a
                   key={l.label}
                   href={l.href}
                   onClick={() => setOpen(false)}
-                  className="text-sm font-medium text-muted-foreground hover:text-accent py-2.5 border-b border-border/50 last:border-0 transition-all duration-300 hover:pl-2"
-                  style={{ transitionDelay: open ? `${i * 50}ms` : "0ms" }}
+                  className="text-lg font-medium text-foreground hover:text-accent active:bg-secondary/40 py-5 px-4 rounded-2xl border-b border-border/40 last:border-0 transition-all duration-300 flex items-center justify-between min-h-[60px] animate-fade-in"
+                  style={{ animationDelay: `${i * 60}ms` }}
                 >
-                  {l.label}
+                  <span>{l.label}</span>
+                  <span className="text-muted-foreground text-xl" aria-hidden>›</span>
                 </a>
               ))}
-              <div className="pt-2">
+              <div className="pt-4 px-2">
                 <SettingsPanel variant="nav" />
               </div>
             </div>
           </div>
-        </div>
+        )}
       </nav>
 
       {/* Search overlay */}

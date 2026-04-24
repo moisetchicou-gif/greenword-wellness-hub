@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import { Search, ShoppingCart, Check, ChevronDown, ArrowLeft, HeartPulse, Bone, Brain, Baby, Dumbbell, Wind, Eye, Droplets, Shield, Stethoscope, Ribbon, Pill } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import CartDrawer from "@/components/CartDrawer";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import { pathologies, pathologyCategories, type PathologyCategory } from "@/data/pathologies";
 import { products } from "@/data/products";
@@ -230,7 +229,6 @@ const GuidePathologies = () => {
         </div>
       </main>
       <Footer />
-      <CartDrawer />
       <WhatsAppButton />
     </div>
   );
