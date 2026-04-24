@@ -23,17 +23,46 @@ type Step = "cart" | "info" | "payment" | "wave-pending" | "done";
 const CartDrawer = () => {
   const { items, removeItem, updateQuantity, clearCart, isOpen, setIsOpen, total } = useCart();
   const [step, setStep] = useState<Step>("cart");
-  const [form, setForm] = useState<{ nom: string; prenom: string; adresse: string; telephone: string; civilite: "M." | "Mme" }>({ nom: "", prenom: "", adresse: "", telephone: "", civilite: "M." });
+  // Coordonnées de livraison : persistées 30 jours après opt-in (PersistenceConsent).
+  // Validées défensivement à la lecture pour rejeter toute valeur corrompue dans localStorage.
+  const [form, setForm] = usePersistentState<{
+    nom: string;
+    prenom: string;
+    adresse: string;
+    telephone: string;
+    civilite: "M." | "Mme";
+  }>(
+    "gw.cart.checkout.form.v1",
+    { nom: "", prenom: "", adresse: "", telephone: "", civilite: "M." },
+    {
+      validate: (raw): raw is { nom: string; prenom: string; adresse: string; telephone: string; civilite: "M." | "Mme" } => {
+        if (!raw || typeof raw !== "object") return false;
+        const r = raw as Record<string, unknown>;
+        return (
+          typeof r.nom === "string" &&
+          typeof r.prenom === "string" &&
+          typeof r.adresse === "string" &&
+          typeof r.telephone === "string" &&
+          (r.civilite === "M." || r.civilite === "Mme")
+        );
+      },
+    },
+  );
   const [formErrors, setFormErrors] = useState<Record<string, string>>({});
-  const [selectedPayment, setSelectedPayment] = useState<string | null>(null);
+  // Le mode de paiement préféré est aussi mémorisé (mais reste révoquable).
+  const [selectedPayment, setSelectedPayment] = usePersistentState<string | null>(
+    "gw.cart.payment.method.v1",
+    null,
+    { validate: (raw): raw is string | null => raw === null || typeof raw === "string" },
+  );
 
   const handleClose = () => {
     setIsOpen(false);
     if (step === "done") {
       setStep("cart");
-      setForm({ nom: "", prenom: "", adresse: "", telephone: "", civilite: "M." as const });
+      // On NE réinitialise PAS le formulaire : les coordonnées restent disponibles
+      // pour la prochaine commande (objectif de la mémorisation).
       setFormErrors({});
-      setSelectedPayment(null);
     }
   };
 
