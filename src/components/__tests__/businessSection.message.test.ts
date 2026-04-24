@@ -6,9 +6,9 @@ const decode = (s: string) => decodeURIComponent(s);
 describe("buildWhatsAppMessage", () => {
   it("génère un message FR sans nom ni ville", () => {
     const out = decode(buildWhatsAppMessage("", "", undefined, "", "", "fr"));
-    expect(out).toContain("Bonjour,");
-    expect(out).toContain("Je suis intéressé(e) par l'opportunité Business Green World");
-    expect(out).toContain("Pouvez-vous me donner plus d'informations ?");
+    expect(out).toContain("Bonjour.");
+    expect(out).toContain("Je souhaite en savoir plus sur l'opportunité Business Green World");
+    expect(out).toContain("Merci de me recontacter dès que possible.");
   });
 
   it("tolère undefined / null pour name, city, sector, phone", () => {
@@ -34,7 +34,7 @@ describe("buildWhatsAppMessage", () => {
 
   it("affiche la ville même sans nom", () => {
     const out = decode(buildWhatsAppMessage("", "Abidjan", undefined, "", "", "fr"));
-    expect(out).toContain("Bonjour (Abidjan),");
+    expect(out).toContain("Bonjour (Abidjan).");
   });
 
   it.each([
@@ -56,7 +56,7 @@ describe("buildWhatsAppMessage", () => {
       // @ts-expect-error - valeur volontairement invalide
       buildWhatsAppMessage("Aïcha", "", "hacker", "", "", "fr"),
     );
-    expect(out).toContain("Je suis intéressé(e) par l'opportunité Business Green World");
+    expect(out).toContain("Je souhaite en savoir plus sur l'opportunité Business Green World");
   });
 
   it("intègre zone/secteur et téléphone quand renseignés", () => {
@@ -98,7 +98,7 @@ describe("buildWhatsAppMessage", () => {
       expect(out).toContain("Bonjour, je suis Aïcha (Abidjan).");
       expect(out).toContain("Mon objectif : faire de la revente de produits.");
       expect(out).toContain("Mon numéro : +225 07 00 00 00 00.");
-      expect(out).toContain("Pouvez-vous me donner plus d'informations ?");
+      expect(out).toContain("Merci de me recontacter dès que possible.");
     });
 
     it("tronque le secteur avec une ellipse propre (pas de mot coupé en plein milieu)", () => {
@@ -122,6 +122,46 @@ describe("buildWhatsAppMessage", () => {
       const out = decode(buildWhatsAppMessage(hugeName, "", "revente", "Cocody", "", "fr"));
       expect(out).not.toContain("Zone / secteur");
       expect(out.length).toBeLessThanOrEqual(WA_MESSAGE_MAX);
+    });
+  });
+
+  describe("anomalies de phrasé", () => {
+    it("ne contient jamais 'Bonjour' deux fois", () => {
+      const cases = [
+        buildWhatsAppMessage("", "", undefined, "", "", "fr"),
+        buildWhatsAppMessage("Aïcha", "", undefined, "", "", "fr"),
+        buildWhatsAppMessage("Aïcha", "Abidjan", "revente", "Cocody", "0707", "fr"),
+        buildWhatsAppMessage("", "Abidjan", "info", "", "", "fr"),
+      ];
+      for (const raw of cases) {
+        const out = decode(raw);
+        const matches = out.match(/Bonjour/g) ?? [];
+        expect(matches.length, `Trop de "Bonjour" dans : ${out}`).toBeLessThanOrEqual(1);
+      }
+    });
+
+    it("ne répète pas 'Je suis' (intro + fallbackGoal)", () => {
+      const out = decode(buildWhatsAppMessage("Aïcha", "Abidjan", undefined, "", "", "fr"));
+      const matches = out.match(/[Jj]e suis/g) ?? [];
+      expect(matches.length, `'je suis' répété dans : ${out}`).toBeLessThanOrEqual(1);
+    });
+
+    it("ne contient jamais de double espace", () => {
+      const cases = [
+        buildWhatsAppMessage("", "", undefined, "", "", "fr"),
+        buildWhatsAppMessage("Aïcha", "Abidjan", "revente", "Cocody", "0707", "fr"),
+        buildWhatsAppMessage("", "", undefined, "", "", "en"),
+      ];
+      for (const raw of cases) {
+        const out = decode(raw);
+        expect(out, `Double espace dans : ${out}`).not.toMatch(/ {2,}/);
+      }
+    });
+
+    it("ne commence pas par une virgule suivie d'une majuscule (mauvaise ponctuation)", () => {
+      const out = decode(buildWhatsAppMessage("", "Abidjan", "info", "", "", "fr"));
+      // Anti-régression : avant on avait "Bonjour (Abidjan), Mon objectif" → virgule + majuscule.
+      expect(out).not.toMatch(/, [A-ZÀ-Ý]/);
     });
   });
 });

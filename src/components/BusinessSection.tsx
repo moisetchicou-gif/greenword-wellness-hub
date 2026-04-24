@@ -124,22 +124,25 @@ const contactSchema = z.object({
 
 const I18N = {
   fr: {
+    // Toujours terminé par un point pour permettre une majuscule à la phrase suivante.
     helloNamed: (n: string, c: string) => `Bonjour, je suis ${n}${c ? ` (${c})` : ""}.`,
-    helloAnon: (c: string) => `Bonjour${c ? ` (${c})` : ""},`,
-    goalPrefix: "Mon objectif : ",
-    fallbackGoal: "Je suis intéressé(e) par l'opportunité Business Green World (devenir distributeur).",
+    helloAnon: (c: string) => `Bonjour${c ? ` (${c})` : ""}.`,
+    goalPrefix: " Mon objectif : ",
+    // Reformulé pour éviter la répétition « je suis » avec helloNamed.
+    fallbackGoal: " Je souhaite en savoir plus sur l'opportunité Business Green World (devenir distributeur).",
     sectorPrefix: " Zone / secteur : ",
     phonePrefix: " Mon numéro : ",
-    closing: " Pouvez-vous me donner plus d'informations ?",
+    // Reformulé pour éviter la répétition du mot « informations » avec fallbackGoal.
+    closing: " Merci de me recontacter dès que possible.",
   },
   en: {
     helloNamed: (n: string, c: string) => `Hello, I'm ${n}${c ? ` (${c})` : ""}.`,
-    helloAnon: (c: string) => `Hello${c ? ` (${c})` : ""},`,
-    goalPrefix: "My goal: ",
-    fallbackGoal: "I'm interested in the Green World Business opportunity (becoming a distributor).",
+    helloAnon: (c: string) => `Hello${c ? ` (${c})` : ""}.`,
+    goalPrefix: " My goal: ",
+    fallbackGoal: " I'd like to learn more about the Green World Business opportunity (becoming a distributor).",
     sectorPrefix: " Area / sector: ",
     phonePrefix: " My phone number: ",
-    closing: " Could you give me more information?",
+    closing: " Please get back to me as soon as possible.",
   },
 } as const;
 
@@ -176,9 +179,10 @@ export const buildWhatsAppMessage = (
   const cleanPhone = (phone ?? "").trim();
   const phoneSentence = cleanPhone ? `${t.phonePrefix}${cleanPhone}.` : "";
 
+  // Tous les segments suivants (goalSentence, sectorSentence, phoneSentence, closing) commencent
+  // déjà par un espace via leurs préfixes I18N — on concatène donc directement après `intro`.
   // Calcule la place disponible pour le secteur après assemblage des autres parties.
-  // Tout ce qui n'est PAS le secteur est prioritaire.
-  const fixedParts = `${intro} ${goalSentence}${phoneSentence}${t.closing}`;
+  const fixedParts = `${intro}${goalSentence}${phoneSentence}${t.closing}`;
   const sectorWrapperLen = `${t.sectorPrefix}.`.length;
   const availableForSector = WA_MESSAGE_MAX - fixedParts.length - sectorWrapperLen;
 
@@ -193,7 +197,9 @@ export const buildWhatsAppMessage = (
     }
   }
 
-  let finalText = `${intro} ${goalSentence}${sectorSentence}${phoneSentence}${t.closing}`;
+  let finalText = `${intro}${goalSentence}${sectorSentence}${phoneSentence}${t.closing}`;
+  // Nettoyage défensif : élimine d'éventuels doubles espaces résiduels.
+  finalText = finalText.replace(/\s{2,}/g, " ").trim();
 
   // Garde-fou : si malgré tout on dépasse (cas extrême : nom/ville très longs), on tronque le tout.
   if (finalText.length > WA_MESSAGE_MAX) {
