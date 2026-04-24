@@ -312,6 +312,36 @@ const BusinessSection = () => {
               )}
             </div>
 
+            <div className="space-y-1.5 text-left">
+              <div className="flex items-center justify-between gap-2">
+                <Label htmlFor="biz-phone" className="text-xs">
+                  <Phone className="inline w-3.5 h-3.5 mr-1 text-primary" />
+                  Ton numéro de téléphone <span className="text-muted-foreground font-normal">(optionnel)</span>
+                </Label>
+                <span className={`text-[10px] tabular-nums ${getCounterClass(phone.length, PHONE_MAX)}`}>
+                  {phone.length}/{PHONE_MAX}
+                </span>
+              </div>
+              <Input
+                id="biz-phone"
+                type="tel"
+                inputMode="tel"
+                value={phone}
+                onChange={(e) => setPhone(e.target.value)}
+                placeholder="+225 07 00 00 00 00"
+                maxLength={PHONE_MAX}
+                aria-invalid={!!validation.phoneError}
+                aria-describedby="biz-phone-error"
+                className={validation.phoneError ? "border-destructive focus-visible:ring-destructive" : ""}
+              />
+              {validation.phoneError && (
+                <p id="biz-phone-error" className="text-[11px] text-destructive flex items-center gap-1">
+                  <AlertCircle className="w-3 h-3" />
+                  {validation.phoneError}
+                </p>
+              )}
+            </div>
+
             <a
               href={whatsappHref}
               target="_blank"
