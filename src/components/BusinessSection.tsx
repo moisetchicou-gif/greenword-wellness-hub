@@ -20,6 +20,15 @@ const NAME_MAX = 60;
 const CITY_MAX = 40;
 const SECTOR_MAX = 60;
 const PHONE_MAX = 20;
+
+// Format de zone adapté au marché ivoirien : « Ville – Commune / Quartier ».
+// 3 exemples concrets, cliquables comme suggestions rapides.
+const SECTOR_EXAMPLES = [
+  "Abidjan – Cocody Angré",
+  "Yamoussoukro – Habitat",
+  "Bouaké – Air France",
+] as const;
+const SECTOR_PLACEHOLDER = "Ex : Abidjan – Cocody Angré";
 // Zone/secteur : lettres, chiffres, espaces, tirets, apostrophes, virgules, slash et points.
 const SECTOR_REGEX = /^[\p{L}0-9\s'’\-,/.]*$/u;
 // Téléphone : chiffres, espaces, +, parenthèses, points, tirets.
