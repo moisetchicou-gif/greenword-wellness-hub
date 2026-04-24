@@ -162,6 +162,7 @@ describe("buildWhatsAppMessage", () => {
       const out = decode(buildWhatsAppMessage("", "Abidjan", "info", "", "", "fr"));
       // Anti-régression : avant on avait "Bonjour (Abidjan), Mon objectif" → virgule + majuscule.
       expect(out).not.toMatch(/, [A-ZÀ-Ý]/);
+    });
   });
 
   describe("normalisation supplémentaire des inputs", () => {
