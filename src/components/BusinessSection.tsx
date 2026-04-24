@@ -172,10 +172,15 @@ const BusinessSection = () => {
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-left">
               <div className="space-y-1.5">
-                <Label htmlFor="biz-name" className="text-xs">
-                  <User className="inline w-3.5 h-3.5 mr-1 text-primary" />
-                  Votre nom <span className="text-muted-foreground font-normal">(optionnel)</span>
-                </Label>
+                <div className="flex items-center justify-between gap-2">
+                  <Label htmlFor="biz-name" className="text-xs">
+                    <User className="inline w-3.5 h-3.5 mr-1 text-primary" />
+                    Votre nom <span className="text-muted-foreground font-normal">(optionnel)</span>
+                  </Label>
+                  <span className={`text-[10px] tabular-nums ${getCounterClass(name.length, NAME_MAX)}`}>
+                    {name.length}/{NAME_MAX}
+                  </span>
+                </div>
                 <Input
                   id="biz-name"
                   value={name}
