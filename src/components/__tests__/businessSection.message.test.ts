@@ -16,8 +16,14 @@ describe("buildWhatsAppMessage", () => {
       buildWhatsAppMessage(undefined, undefined, undefined, undefined, undefined, "fr"),
     ).not.toThrow();
     expect(() =>
-      // @ts-expect-error - simulate runtime null
-      buildWhatsAppMessage(null, null, undefined, null, null, "fr"),
+      buildWhatsAppMessage(
+        null as unknown as string,
+        null as unknown as string,
+        undefined,
+        null as unknown as string,
+        null as unknown as string,
+        "fr",
+      ),
     ).not.toThrow();
   });
 
