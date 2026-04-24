@@ -26,7 +26,7 @@ const GOAL_OPTIONS = [
   { value: "info", label: "Juste m'informer", message: "obtenir plus d'informations sur l'opportunité" },
 ] as const;
 
-type GoalValue = (typeof GOAL_OPTIONS)[number]["value"] | "";
+type GoalValue = (typeof GOAL_OPTIONS)[number]["value"];
 
 const contactSchema = z.object({
   name: z
