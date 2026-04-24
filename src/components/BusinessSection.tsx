@@ -90,6 +90,7 @@ const contactSchema = z.object({
     })
     .optional()
     .or(z.literal("")),
+  goal: goalSchema,
 });
 
 const I18N = {
