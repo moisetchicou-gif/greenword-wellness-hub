@@ -56,6 +56,16 @@ const contactSchema = z.object({
     .regex(SECTOR_REGEX, "Zone : caractères spéciaux non autorisés")
     .optional()
     .or(z.literal("")),
+  phone: z
+    .string()
+    .trim()
+    .max(PHONE_MAX, `Téléphone : ${PHONE_MAX} caractères max`)
+    .regex(PHONE_REGEX, "Téléphone : format invalide")
+    .refine((v) => v === "" || v.replace(/\D/g, "").length >= 8, {
+      message: "Téléphone : au moins 8 chiffres",
+    })
+    .optional()
+    .or(z.literal("")),
 });
 
 const buildWhatsAppMessage = (
@@ -63,6 +73,7 @@ const buildWhatsAppMessage = (
   city: string,
   goal: GoalValue | undefined,
   sector: string,
+  phone: string,
 ) => {
   const cleanName = name.trim();
   const cleanCity = city.trim();
