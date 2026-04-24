@@ -53,7 +53,7 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen pb-[72px] lg:pb-0">
       <SEO
         title="Green World Côte d'Ivoire — Compléments alimentaires naturels"
         description="Découvrez plus de 80 compléments alimentaires 100% naturels Green World en Côte d'Ivoire. Scanner santé QRMA & Detox Pad à 5 000 FCFA. Livraison Abidjan."
@@ -88,6 +88,7 @@ const Index = () => {
       </Suspense>
       <CartDrawer />
       <WhatsAppButton />
+      <MobileBottomNav />
       <CookieBanner />
     </div>
   );
