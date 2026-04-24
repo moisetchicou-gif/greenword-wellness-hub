@@ -176,6 +176,24 @@ const BusinessSection = () => {
   const [phone, setPhone] = useState("");
   const [goal, setGoal] = useState<GoalValue | undefined>(undefined);
   const [lang, setLang] = useState<Lang>("fr");
+  const [shake, setShake] = useState<{ name: boolean; city: boolean }>({ name: false, city: false });
+
+  const triggerShake = (field: "name" | "city") => {
+    setShake((s) => ({ ...s, [field]: true }));
+    window.setTimeout(() => setShake((s) => ({ ...s, [field]: false })), 400);
+  };
+
+  const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const next = e.target.value.slice(0, NAME_MAX);
+    if (name.length >= NAME_MAX && next.length >= NAME_MAX) triggerShake("name");
+    setName(next);
+  };
+
+  const handleCityChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const next = e.target.value.slice(0, CITY_MAX);
+    if (city.length >= CITY_MAX && next.length >= CITY_MAX) triggerShake("city");
+    setCity(next);
+  };
 
   const validation = useMemo(() => {
     const result = contactSchema.safeParse({ name, city, sector, phone, goal });
