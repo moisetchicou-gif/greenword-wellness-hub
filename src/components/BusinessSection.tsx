@@ -1,5 +1,5 @@
 import { useState, useMemo } from "react";
-import { Briefcase, TrendingUp, Plane, Car, Home, Gift, Check, User, MapPin, AlertCircle, Target } from "lucide-react";
+import { Briefcase, TrendingUp, Plane, Car, Home, Gift, Check, User, MapPin, AlertCircle, Target, Building2 } from "lucide-react";
 import { z } from "zod";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { Input } from "@/components/ui/input";
@@ -18,6 +18,9 @@ const WHATSAPP_NUMBER = "2250707089631";
 const SAFE_TEXT_REGEX = /^[\p{L}\s'’\-.]*$/u;
 const NAME_MAX = 60;
 const CITY_MAX = 40;
+const SECTOR_MAX = 60;
+// Zone/secteur : lettres, chiffres, espaces, tirets, apostrophes, virgules, slash et points.
+const SECTOR_REGEX = /^[\p{L}0-9\s'’\-,/.]*$/u;
 
 const GOAL_OPTIONS = [
   { value: "revente", label: "Revente de produits", message: "faire de la revente de produits" },
@@ -43,9 +46,21 @@ const contactSchema = z.object({
     .regex(SAFE_TEXT_REGEX, "Ville : caractères spéciaux non autorisés")
     .optional()
     .or(z.literal("")),
+  sector: z
+    .string()
+    .trim()
+    .max(SECTOR_MAX, `Zone : ${SECTOR_MAX} caractères max`)
+    .regex(SECTOR_REGEX, "Zone : caractères spéciaux non autorisés")
+    .optional()
+    .or(z.literal("")),
 });
 
-const buildWhatsAppMessage = (name: string, city: string, goal: GoalValue | undefined) => {
+const buildWhatsAppMessage = (
+  name: string,
+  city: string,
+  goal: GoalValue | undefined,
+  sector: string,
+) => {
   const cleanName = name.trim();
   const cleanCity = city.trim();
   const intro = cleanName
@@ -55,8 +70,10 @@ const buildWhatsAppMessage = (name: string, city: string, goal: GoalValue | unde
   const goalSentence = goalOption
     ? `Mon objectif : ${goalOption.message}.`
     : `Je suis intéressé(e) par l'opportunité Business Green World (devenir distributeur).`;
+  const cleanSector = sector.trim();
+  const sectorSentence = cleanSector ? ` Zone / secteur : ${cleanSector}.` : "";
   return encodeURIComponent(
-    `${intro} ${goalSentence} Pouvez-vous me donner plus d'informations ?`
+    `${intro} ${goalSentence}${sectorSentence} Pouvez-vous me donner plus d'informations ?`
   );
 };
 
@@ -87,21 +104,23 @@ const BusinessSection = () => {
   const { ref, visible } = useScrollReveal(0.1);
   const [name, setName] = useState("");
   const [city, setCity] = useState("");
+  const [sector, setSector] = useState("");
   const [goal, setGoal] = useState<GoalValue | undefined>(undefined);
 
   const validation = useMemo(() => {
-    const result = contactSchema.safeParse({ name, city });
-    if (result.success) return { isValid: true, nameError: "", cityError: "" };
+    const result = contactSchema.safeParse({ name, city, sector });
+    if (result.success) return { isValid: true, nameError: "", cityError: "", sectorError: "" };
     const errors = result.error.flatten().fieldErrors;
     return {
       isValid: false,
       nameError: errors.name?.[0] ?? "",
       cityError: errors.city?.[0] ?? "",
+      sectorError: errors.sector?.[0] ?? "",
     };
-  }, [name, city]);
+  }, [name, city, sector]);
 
   const whatsappHref = validation.isValid
-    ? `https://wa.me/${WHATSAPP_NUMBER}?text=${buildWhatsAppMessage(name, city, goal)}`
+    ? `https://wa.me/${WHATSAPP_NUMBER}?text=${buildWhatsAppMessage(name, city, goal, sector)}`
     : undefined;
 
   return (
@@ -244,6 +263,34 @@ const BusinessSection = () => {
                   ))}
                 </SelectContent>
               </Select>
+            </div>
+
+            <div className="space-y-1.5 text-left">
+              <div className="flex items-center justify-between gap-2">
+                <Label htmlFor="biz-sector" className="text-xs">
+                  <Building2 className="inline w-3.5 h-3.5 mr-1 text-primary" />
+                  Zone / secteur <span className="text-muted-foreground font-normal">(optionnel)</span>
+                </Label>
+                <span className={`text-[10px] tabular-nums ${getCounterClass(sector.length, SECTOR_MAX)}`}>
+                  {sector.length}/{SECTOR_MAX}
+                </span>
+              </div>
+              <Input
+                id="biz-sector"
+                value={sector}
+                onChange={(e) => setSector(e.target.value)}
+                placeholder="Ex : Cocody, Yopougon, quartier 220 logements…"
+                maxLength={SECTOR_MAX}
+                aria-invalid={!!validation.sectorError}
+                aria-describedby="biz-sector-error"
+                className={validation.sectorError ? "border-destructive focus-visible:ring-destructive" : ""}
+              />
+              {validation.sectorError && (
+                <p id="biz-sector-error" className="text-[11px] text-destructive flex items-center gap-1">
+                  <AlertCircle className="w-3 h-3" />
+                  {validation.sectorError}
+                </p>
+              )}
             </div>
 
             <a
