@@ -49,6 +49,8 @@ const GOAL_OPTIONS = [
 ] as const;
 
 type GoalValue = (typeof GOAL_OPTIONS)[number]["value"];
+const GOAL_VALUES = GOAL_OPTIONS.map((g) => g.value) as [GoalValue, ...GoalValue[]];
+const goalSchema = z.enum(GOAL_VALUES, { errorMap: () => ({ message: "Objectif : option invalide" }) }).optional();
 type Lang = "fr" | "en";
 
 const LANG_OPTIONS: { value: Lang; label: string }[] = [
