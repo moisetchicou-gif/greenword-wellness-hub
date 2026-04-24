@@ -231,9 +231,14 @@ const BusinessSection = () => {
   const [phone, setPhone] = useState("");
   const [goal, setGoal] = useState<GoalValue | undefined>(undefined);
   const [lang, setLang] = useState<Lang>("fr");
-  const [shake, setShake] = useState<{ name: boolean; city: boolean }>({ name: false, city: false });
+  const [shake, setShake] = useState<{ name: boolean; city: boolean; sector: boolean }>({
+    name: false,
+    city: false,
+    sector: false,
+  });
+  const [sectorTouched, setSectorTouched] = useState(false);
 
-  const triggerShake = (field: "name" | "city") => {
+  const triggerShake = (field: "name" | "city" | "sector") => {
     setShake((s) => ({ ...s, [field]: true }));
     window.setTimeout(() => setShake((s) => ({ ...s, [field]: false })), 400);
   };
@@ -248,6 +253,22 @@ const BusinessSection = () => {
     const next = e.target.value.slice(0, CITY_MAX);
     if (city.length >= CITY_MAX && next.length >= CITY_MAX) triggerShake("city");
     setCity(next);
+  };
+
+  /**
+   * Saisie « Zone / secteur » : on filtre à la volée les caractères non autorisés
+   * pour donner un feedback immédiat sur mobile, et on bloque la frappe au-delà du max.
+   */
+  const handleSectorChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const raw = e.target.value;
+    // Conserve uniquement les caractères autorisés par SECTOR_REGEX (mêmes classes).
+    const filtered = raw.replace(/[^\p{L}0-9\s'’\-,/.]/gu, "");
+    const hadInvalidChar = filtered.length !== raw.length;
+    const next = filtered.slice(0, SECTOR_MAX);
+    if ((hadInvalidChar || (sector.length >= SECTOR_MAX && next.length >= SECTOR_MAX))) {
+      triggerShake("sector");
+    }
+    setSector(next);
   };
 
   // Valeurs normalisées utilisées pour la validation et la génération du message.
