@@ -442,6 +442,23 @@ const BusinessSection = () => {
       )}`
     : undefined;
 
+  // Checklist de complétude : signale à l'utilisateur quels champs sont remplis ou manquants.
+  // Ne bloque PAS l'envoi (les champs restent optionnels) — c'est juste une aide visuelle
+  // pour qu'il puisse rendre son message plus précis avant d'envoyer.
+  const checklist = useMemo(
+    () => [
+      { key: "name", label: "Votre nom", filled: normalized.name.length > 0 },
+      { key: "city", label: "Votre ville", filled: normalized.city.length > 0 },
+      { key: "goal", label: "Votre objectif", filled: !!goal && (GOAL_VALUES as readonly string[]).includes(goal) },
+      { key: "sector", label: "Zone / secteur", filled: normalized.sector.length > 0 },
+      { key: "phone", label: "Téléphone", filled: normalized.phone.length > 0 },
+    ],
+    [normalized, goal],
+  );
+  const filledCount = checklist.filter((c) => c.filled).length;
+  const totalCount = checklist.length;
+  const allFilled = filledCount === totalCount;
+
   return (
     <section
       id="business"
