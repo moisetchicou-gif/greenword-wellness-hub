@@ -199,10 +199,15 @@ const BusinessSection = () => {
                 )}
               </div>
               <div className="space-y-1.5">
-                <Label htmlFor="biz-city" className="text-xs">
-                  <MapPin className="inline w-3.5 h-3.5 mr-1 text-primary" />
-                  Votre ville <span className="text-muted-foreground font-normal">(optionnel)</span>
-                </Label>
+                <div className="flex items-center justify-between gap-2">
+                  <Label htmlFor="biz-city" className="text-xs">
+                    <MapPin className="inline w-3.5 h-3.5 mr-1 text-primary" />
+                    Votre ville <span className="text-muted-foreground font-normal">(optionnel)</span>
+                  </Label>
+                  <span className={`text-[10px] tabular-nums ${getCounterClass(city.length, CITY_MAX)}`}>
+                    {city.length}/{CITY_MAX}
+                  </span>
+                </div>
                 <Input
                   id="biz-city"
                   value={city}
