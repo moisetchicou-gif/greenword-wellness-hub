@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { buildWhatsAppMessage } from "../BusinessSection";
+import { buildWhatsAppMessage, WA_MESSAGE_MAX } from "../BusinessSection";
 
 const decode = (s: string) => decodeURIComponent(s);
 
