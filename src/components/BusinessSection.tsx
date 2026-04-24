@@ -12,6 +12,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import PersistenceConsent from "@/components/PersistenceConsent";
+import businessHero from "@/assets/business-opportunity-hero.jpg";
 
 const WHATSAPP_NUMBER = "2250707089631";
 
@@ -611,6 +612,61 @@ const BusinessSection = () => {
             des voyages internationaux, des voitures, une maison et de nombreux lots.
           </p>
         </div>
+
+        {/* Editorial hero — visuel pro reflétant les récompenses (voyages, voiture, maison, produits) */}
+        <figure
+          className={`relative max-w-5xl mx-auto mb-14 rounded-3xl overflow-hidden shadow-2xl shadow-accent/10 ring-1 ring-border/50 transition-all duration-1000 ${
+            visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+          }`}
+        >
+          <img
+            src={businessHero}
+            alt="Distributrice Green World élégante entourée des récompenses du programme : voyages internationaux, voiture, maison, produits naturels"
+            loading="lazy"
+            width={1920}
+            height={1080}
+            className="w-full h-auto object-cover aspect-[16/9] transition-transform duration-[1500ms] ease-out hover:scale-[1.02]"
+          />
+          {/* Overlay dégradé pour la lisibilité du texte (gauche → droite, sombre → transparent) */}
+          <div
+            className="absolute inset-0 bg-gradient-to-r from-accent/85 via-accent/40 to-transparent"
+            aria-hidden="true"
+          />
+          {/* Accent or sur le coin */}
+          <div
+            className="absolute top-0 left-0 w-1.5 h-full bg-gradient-to-b from-[hsl(var(--gold))] via-[hsl(var(--gold))]/60 to-transparent"
+            aria-hidden="true"
+          />
+
+          <figcaption className="absolute inset-0 flex flex-col justify-end sm:justify-center p-6 sm:p-10 md:p-14 max-w-xl text-left">
+            <span className="inline-flex items-center gap-2 self-start px-3 py-1 rounded-full bg-[hsl(var(--gold))]/20 backdrop-blur-sm border border-[hsl(var(--gold))]/40 text-[hsl(var(--gold))] text-[10px] font-semibold uppercase tracking-[0.2em] mb-3 sm:mb-4">
+              <Briefcase className="w-3 h-3" />
+              Réseau Green World
+            </span>
+            <p className="font-display text-2xl sm:text-3xl md:text-4xl text-white leading-tight">
+              Une vie qui change,<br />
+              <span className="italic text-[hsl(var(--gold))]">à votre rythme.</span>
+            </p>
+            <p className="hidden sm:block text-white/80 text-sm md:text-base mt-3 max-w-md leading-relaxed">
+              Des milliers de distributeurs en Côte d'Ivoire et à travers l'Afrique
+              transforment leur quotidien grâce au plan de carrière Green World.
+            </p>
+            <div className="hidden md:flex items-center gap-4 mt-5 text-white/90 text-xs">
+              <div className="flex items-center gap-1.5">
+                <span className="w-1.5 h-1.5 rounded-full bg-[hsl(var(--gold))]" />
+                <span>Depuis 1994</span>
+              </div>
+              <div className="flex items-center gap-1.5">
+                <span className="w-1.5 h-1.5 rounded-full bg-[hsl(var(--gold))]" />
+                <span>+30 pays</span>
+              </div>
+              <div className="flex items-center gap-1.5">
+                <span className="w-1.5 h-1.5 rounded-full bg-[hsl(var(--gold))]" />
+                <span>100% naturel</span>
+              </div>
+            </div>
+          </figcaption>
+        </figure>
 
         {/* Rewards grid */}
         <div className="grid grid-cols-2 md:grid-cols-5 gap-4 max-w-5xl mx-auto mb-14">
