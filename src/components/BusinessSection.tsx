@@ -172,9 +172,16 @@ const BusinessSection = () => {
   const [lang, setLang] = useState<Lang>("fr");
 
   const validation = useMemo(() => {
-    const result = contactSchema.safeParse({ name, city, sector, phone });
+    const result = contactSchema.safeParse({ name, city, sector, phone, goal });
     if (result.success)
-      return { isValid: true, nameError: "", cityError: "", sectorError: "", phoneError: "" };
+      return {
+        isValid: true,
+        nameError: "",
+        cityError: "",
+        sectorError: "",
+        phoneError: "",
+        goalError: "",
+      };
     const errors = result.error.flatten().fieldErrors;
     return {
       isValid: false,
@@ -182,8 +189,9 @@ const BusinessSection = () => {
       cityError: errors.city?.[0] ?? "",
       sectorError: errors.sector?.[0] ?? "",
       phoneError: errors.phone?.[0] ?? "",
+      goalError: errors.goal?.[0] ?? "",
     };
-  }, [name, city, sector, phone]);
+  }, [name, city, sector, phone, goal]);
 
   const whatsappHref = validation.isValid
     ? `https://wa.me/${WHATSAPP_NUMBER}?text=${buildWhatsAppMessage(name, city, goal, sector, phone, lang)}`
