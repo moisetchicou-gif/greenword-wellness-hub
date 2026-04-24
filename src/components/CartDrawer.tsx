@@ -10,7 +10,7 @@ const paymentMethods = [
   { name: "Wave", logo: logoWave },
 ];
 
-type Step = "cart" | "info" | "payment" | "wave-pending" | "done";
+type Step = "cart" | "info" | "payment" | "done";
 
 const CartDrawer = () => {
   const { items, removeItem, updateQuantity, clearCart, isOpen, setIsOpen, total } = useCart();
