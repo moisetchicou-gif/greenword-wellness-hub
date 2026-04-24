@@ -104,21 +104,23 @@ const BusinessSection = () => {
   const { ref, visible } = useScrollReveal(0.1);
   const [name, setName] = useState("");
   const [city, setCity] = useState("");
+  const [sector, setSector] = useState("");
   const [goal, setGoal] = useState<GoalValue | undefined>(undefined);
 
   const validation = useMemo(() => {
-    const result = contactSchema.safeParse({ name, city });
-    if (result.success) return { isValid: true, nameError: "", cityError: "" };
+    const result = contactSchema.safeParse({ name, city, sector });
+    if (result.success) return { isValid: true, nameError: "", cityError: "", sectorError: "" };
     const errors = result.error.flatten().fieldErrors;
     return {
       isValid: false,
       nameError: errors.name?.[0] ?? "",
       cityError: errors.city?.[0] ?? "",
+      sectorError: errors.sector?.[0] ?? "",
     };
-  }, [name, city]);
+  }, [name, city, sector]);
 
   const whatsappHref = validation.isValid
-    ? `https://wa.me/${WHATSAPP_NUMBER}?text=${buildWhatsAppMessage(name, city, goal)}`
+    ? `https://wa.me/${WHATSAPP_NUMBER}?text=${buildWhatsAppMessage(name, city, goal, sector)}`
     : undefined;
 
   return (
