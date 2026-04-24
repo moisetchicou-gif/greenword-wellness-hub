@@ -598,7 +598,8 @@ const BusinessSection = () => {
             loading="lazy"
             width={1920}
             height={1080}
-            className="w-full h-auto object-cover aspect-[16/9] transition-transform duration-[1500ms] ease-out hover:scale-[1.02]"
+            className="w-full h-auto object-cover aspect-[16/9] transition-transform ease-out hover:scale-[1.02]"
+            style={{ transitionDuration: "1500ms" }}
           />
           {/* Overlay dégradé pour la lisibilité du texte (gauche → droite, sombre → transparent) */}
           <div

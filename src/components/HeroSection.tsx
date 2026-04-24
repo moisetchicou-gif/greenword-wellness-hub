@@ -28,31 +28,31 @@ const HeroSection = () => {
       <div className="container mx-auto px-4 sm:px-6 grid md:grid-cols-2 gap-8 md:gap-16 items-center relative">
         <div className="space-y-6 sm:space-y-8 text-center md:text-left">
           <div
-            className={`inline-flex items-center gap-2 glass text-accent px-4 sm:px-5 py-2 sm:py-2.5 rounded-full text-[11px] sm:text-xs font-semibold tracking-widest uppercase transition-all duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)] ${visible ? "opacity-100 translate-y-0 blur-0" : "opacity-0 translate-y-8 blur-sm"}`}
+            className={`inline-flex items-center gap-2 glass text-accent px-4 sm:px-5 py-2 sm:py-2.5 rounded-full text-[11px] sm:text-xs font-semibold tracking-widest uppercase transition-all duration-1000 ease-premium ${visible ? "opacity-100 translate-y-0 blur-0" : "opacity-0 translate-y-8 blur-sm"}`}
           >
             <Sparkles className="w-3.5 h-3.5 text-primary animate-bounce-gentle" />
             100% Naturel · Certifié Bio
           </div>
           <h1
-            className={`text-3xl sm:text-4xl lg:text-[3.75rem] leading-[1.15] text-accent transition-all duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)] ${visible ? "opacity-100 translate-y-0 blur-0" : "opacity-0 translate-y-10 blur-sm"}`}
+            className={`text-3xl sm:text-4xl lg:text-[3.75rem] leading-[1.15] text-accent transition-all duration-1000 ease-premium ${visible ? "opacity-100 translate-y-0 blur-0" : "opacity-0 translate-y-10 blur-sm"}`}
             style={{ transitionDelay: "200ms" }}
           >
             La puissance de la nature,{" "}
             <span className="italic text-primary relative">
               validée
-              <span className={`absolute -bottom-1 left-0 h-0.5 bg-gradient-to-r from-primary/50 to-gold/50 rounded-full transition-all duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)] ${visible ? "w-full" : "w-0"}`} style={{ transitionDelay: "800ms" }} />
+              <span className={`absolute -bottom-1 left-0 h-0.5 bg-gradient-to-r from-primary/50 to-gold/50 rounded-full transition-all duration-1000 ease-premium ${visible ? "w-full" : "w-0"}`} style={{ transitionDelay: "800ms" }} />
             </span>{" "}
             par la science.
           </h1>
           <p
-            className={`text-muted-foreground text-base sm:text-lg max-w-lg leading-relaxed mx-auto md:mx-0 transition-all duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)] ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
+            className={`text-muted-foreground text-base sm:text-lg max-w-lg leading-relaxed mx-auto md:mx-0 transition-all duration-1000 ease-premium ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
             style={{ transitionDelay: "350ms" }}
           >
             Découvrez nos compléments alimentaires et produits de beauté formulés à partir d'ingrédients biologiques d'exception,
             pour un bien-être durable au quotidien.
           </p>
           <div
-            className={`flex flex-wrap gap-3 sm:gap-4 pt-2 justify-center md:justify-start transition-all duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)] ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
+            className={`flex flex-wrap gap-3 sm:gap-4 pt-2 justify-center md:justify-start transition-all duration-1000 ease-premium ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
             style={{ transitionDelay: "500ms" }}
           >
             <a
@@ -64,7 +64,7 @@ const HeroSection = () => {
                 Découvrir la boutique
                 <ArrowDown className="w-4 h-4 group-hover:translate-y-1 transition-transform duration-300" />
               </span>
-              <span className="absolute inset-0 bg-primary/20 translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]" />
+              <span className="absolute inset-0 bg-primary/20 translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-premium" />
             </a>
             <a
               href="/bienfaits"
@@ -75,8 +75,8 @@ const HeroSection = () => {
           </div>
         </div>
         <div
-          className={`flex justify-center transition-all duration-[1200ms] ease-[cubic-bezier(0.16,1,0.3,1)] ${visible ? "opacity-100 scale-100 blur-0" : "opacity-0 scale-[0.85] blur-md"}`}
-          style={{ transitionDelay: "400ms" }}
+          className={`flex justify-center transition-all ease-premium ${visible ? "opacity-100 scale-100 blur-0" : "opacity-0 scale-[0.85] blur-md"}`}
+          style={{ transitionDelay: "400ms", transitionDuration: "1200ms" }}
         >
           <div className="relative">
             {/* Glow behind product */}

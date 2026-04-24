@@ -13,6 +13,10 @@ export default {
       },
     },
     extend: {
+      transitionTimingFunction: {
+        // Easing premium réutilisée dans toute l'app (évite les classes ambiguës ease-[cubic-bezier(...)])
+        premium: "cubic-bezier(0.16, 1, 0.3, 1)",
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
