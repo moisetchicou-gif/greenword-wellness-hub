@@ -210,6 +210,25 @@ const BusinessSection = () => {
               </div>
             </div>
 
+            <div className="space-y-1.5 text-left">
+              <Label htmlFor="biz-goal" className="text-xs">
+                <Target className="inline w-3.5 h-3.5 mr-1 text-primary" />
+                Votre objectif <span className="text-muted-foreground font-normal">(optionnel)</span>
+              </Label>
+              <Select value={goal} onValueChange={(v) => setGoal(v as GoalValue)}>
+                <SelectTrigger id="biz-goal" className="w-full">
+                  <SelectValue placeholder="Choisir un objectif…" />
+                </SelectTrigger>
+                <SelectContent>
+                  {GOAL_OPTIONS.map((opt) => (
+                    <SelectItem key={opt.value} value={opt.value}>
+                      {opt.label}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
+
             <a
               href={whatsappHref}
               target="_blank"
