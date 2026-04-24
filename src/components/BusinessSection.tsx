@@ -303,18 +303,52 @@ const clearDraft = () => {
 
 const BusinessSection = () => {
   const { ref, visible } = useScrollReveal(0.1);
-  const [name, setName] = useState("");
-  const [city, setCity] = useState("");
-  const [sector, setSector] = useState("");
-  const [phone, setPhone] = useState("");
-  const [goal, setGoal] = useState<GoalValue | undefined>(undefined);
-  const [lang, setLang] = useState<Lang>("fr");
+  // Initialisation paresseuse depuis localStorage : les valeurs précédemment saisies
+  // sont restaurées au premier rendu pour éviter tout « flash » de champs vides.
+  const initialDraft = useMemo(() => loadDraft(), []);
+  const [name, setName] = useState<string>(initialDraft.name);
+  const [city, setCity] = useState<string>(initialDraft.city);
+  const [sector, setSector] = useState<string>(initialDraft.sector);
+  const [phone, setPhone] = useState<string>(initialDraft.phone);
+  const [goal, setGoal] = useState<GoalValue | undefined>(initialDraft.goal);
+  const [lang, setLang] = useState<Lang>(initialDraft.lang);
   const [shake, setShake] = useState<{ name: boolean; city: boolean; sector: boolean }>({
     name: false,
     city: false,
     sector: false,
   });
   const [sectorTouched, setSectorTouched] = useState(false);
+  const [justRestored, setJustRestored] = useState<boolean>(
+    () => initialDraft !== EMPTY_DRAFT &&
+      (!!initialDraft.name || !!initialDraft.city || !!initialDraft.sector || !!initialDraft.phone || !!initialDraft.goal),
+  );
+
+  // Sauvegarde le brouillon, debounced à ~300 ms pour limiter les écritures.
+  useEffect(() => {
+    const handle = window.setTimeout(() => {
+      saveDraft({ name, city, sector, phone, goal, lang });
+    }, 300);
+    return () => window.clearTimeout(handle);
+  }, [name, city, sector, phone, goal, lang]);
+
+  // Masque la bannière « valeurs restaurées » au bout de quelques secondes.
+  useEffect(() => {
+    if (!justRestored) return;
+    const handle = window.setTimeout(() => setJustRestored(false), 5000);
+    return () => window.clearTimeout(handle);
+  }, [justRestored]);
+
+  const handleResetDraft = () => {
+    setName("");
+    setCity("");
+    setSector("");
+    setPhone("");
+    setGoal(undefined);
+    setLang("fr");
+    setSectorTouched(false);
+    setJustRestored(false);
+    clearDraft();
+  };
 
   const triggerShake = (field: "name" | "city" | "sector") => {
     setShake((s) => ({ ...s, [field]: true }));
