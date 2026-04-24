@@ -19,6 +19,7 @@ const ProductDetail = lazy(() => import("./pages/ProductDetail.tsx"));
 const OfferDetail = lazy(() => import("./pages/OfferDetail.tsx"));
 const GuidePathologies = lazy(() => import("./pages/GuidePathologies.tsx"));
 const Business = lazy(() => import("./pages/Business.tsx"));
+const Bienfaits = lazy(() => import("./pages/Bienfaits.tsx"));
 const NotFound = lazy(() => import("./pages/NotFound.tsx"));
 
 const queryClient = new QueryClient();
@@ -49,6 +50,7 @@ const App = () => (
                   <Route path="/offre/:slug" element={<OfferDetail />} />
                   <Route path="/guide-pathologies" element={<GuidePathologies />} />
                   <Route path="/business" element={<Business />} />
+                  <Route path="/bienfaits" element={<Bienfaits />} />
                   <Route path="*" element={<NotFound />} />
                 </Routes>
                 <GuideButton />

@@ -67,7 +67,7 @@ const HeroSection = () => {
               <span className="absolute inset-0 bg-primary/20 translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]" />
             </a>
             <a
-              href="#bienfaits"
+              href="/bienfaits"
               className="border border-accent/20 text-accent px-8 py-3.5 rounded-full font-medium text-sm tracking-wide hover:bg-accent hover:text-accent-foreground transition-all duration-500 hover:shadow-lg hover:scale-[1.03] active:scale-[0.97] hover:border-transparent"
             >
               Nos bienfaits
