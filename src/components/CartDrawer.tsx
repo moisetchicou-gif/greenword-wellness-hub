@@ -306,32 +306,20 @@ Merci de confirmer la réception de ma commande 🙏`;
             </div>
           )}
 
-          {step === "wave-pending" && (
-            <div className="text-center py-12 space-y-5">
-              <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto animate-pulse">
-                <span className="text-3xl">💳</span>
-              </div>
-              <h3 className="text-xl font-display text-foreground">Paiement Wave en cours...</h3>
-              <p className="text-muted-foreground text-sm max-w-xs mx-auto">
-                Une fois votre paiement effectué sur Wave, cliquez sur le bouton ci-dessous pour confirmer votre commande.
-              </p>
-              <button onClick={handleWaveConfirm} className="w-full bg-primary text-primary-foreground py-3 rounded-full font-semibold hover:opacity-90 active:scale-[0.97] transition-all">
-                ✅ J'ai payé sur Wave
-              </button>
-              <button onClick={() => setStep("payment")} className="text-muted-foreground text-sm hover:underline">
-                Retour aux moyens de paiement
-              </button>
-            </div>
-          )}
-
           {step === "done" && (
             <div className="text-center py-12 space-y-4">
               <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto">
                 <span className="text-3xl">✅</span>
               </div>
               <h3 className="text-xl font-display text-foreground">Commande confirmée !</h3>
+              {orderRef && (
+                <div className="mx-auto inline-flex flex-col items-center gap-1 px-4 py-3 rounded-2xl bg-secondary/60 border border-border/60">
+                  <span className="text-[11px] uppercase tracking-widest text-muted-foreground">Numéro de commande</span>
+                  <span className="font-mono font-semibold text-foreground text-base">{orderRef}</span>
+                </div>
+              )}
               <p className="text-muted-foreground text-sm max-w-xs mx-auto">
-                Votre commande a été transmise avec succès. Vous recevrez un message de confirmation sur WhatsApp.
+                Wave et WhatsApp se sont ouverts dans un nouvel onglet. Finalisez votre paiement Wave puis envoyez le message WhatsApp pré-rempli pour confirmer votre commande.
               </p>
               <button onClick={handleClose} className="bg-primary text-primary-foreground px-6 py-2.5 rounded-full text-sm font-semibold hover:opacity-90 transition-opacity">
                 Fermer
