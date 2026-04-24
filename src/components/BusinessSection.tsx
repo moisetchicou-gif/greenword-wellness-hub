@@ -1,10 +1,20 @@
-import { Briefcase, TrendingUp, Plane, Car, Home, Gift, Check } from "lucide-react";
+import { useState } from "react";
+import { Briefcase, TrendingUp, Plane, Car, Home, Gift, Check, User, MapPin } from "lucide-react";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 
 const WHATSAPP_NUMBER = "2250707089631";
-const WHATSAPP_MESSAGE = encodeURIComponent(
-  "Bonjour, je suis intéressé(e) par l'opportunité Business Green World (devenir distributeur). Pouvez-vous me donner plus d'informations ?"
-);
+const buildWhatsAppMessage = (name: string, city: string) => {
+  const cleanName = name.trim();
+  const cleanCity = city.trim();
+  const intro = cleanName
+    ? `Bonjour, je suis ${cleanName}${cleanCity ? ` (${cleanCity})` : ""}.`
+    : `Bonjour${cleanCity ? ` (${cleanCity})` : ""},`;
+  return encodeURIComponent(
+    `${intro} Je suis intéressé(e) par l'opportunité Business Green World (devenir distributeur). Pouvez-vous me donner plus d'informations ?`
+  );
+};
 
 const rewards = [
   { icon: TrendingUp, label: "20% de commission", desc: "Sur chacune de vos ventes" },
