@@ -171,6 +171,7 @@ export default {
         "rotate-slow": "rotate-slow 20s linear infinite",
         "blur-in": "blur-in 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards",
         "slide-up-fade": "slide-up-fade 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards",
+        "shake": "shake 0.4s ease-in-out",
       },
     },
   },
