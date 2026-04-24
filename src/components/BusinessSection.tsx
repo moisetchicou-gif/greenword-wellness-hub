@@ -1,5 +1,5 @@
 import { useState, useMemo, useEffect } from "react";
-import { Briefcase, TrendingUp, Plane, Car, Home, Gift, Check, User, MapPin, AlertCircle, Target, Building2, Phone, Languages, RotateCcw } from "lucide-react";
+import { Briefcase, TrendingUp, Plane, Car, Home, Gift, Check, User, MapPin, AlertCircle, Target, Building2, Phone, Languages, RotateCcw, Lock, Unlock } from "lucide-react";
 import { z } from "zod";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { Input } from "@/components/ui/input";
@@ -332,6 +332,27 @@ const getInputBorderClass = (current: number, max: number, hasError: boolean) =>
 
 // ----- Persistance locale du brouillon de formulaire -----
 const DRAFT_STORAGE_KEY = "gw.business.contact.draft.v1";
+// Préférence UI distincte : « bloquer l'envoi tant que tous les champs ne sont pas remplis ».
+const STRICT_MODE_STORAGE_KEY = "gw.business.contact.strict.v1";
+
+const loadStrictMode = (): boolean => {
+  if (typeof window === "undefined") return false;
+  try {
+    return window.localStorage.getItem(STRICT_MODE_STORAGE_KEY) === "1";
+  } catch {
+    return false;
+  }
+};
+
+const saveStrictMode = (enabled: boolean) => {
+  if (typeof window === "undefined") return;
+  try {
+    if (enabled) window.localStorage.setItem(STRICT_MODE_STORAGE_KEY, "1");
+    else window.localStorage.removeItem(STRICT_MODE_STORAGE_KEY);
+  } catch {
+    // ignore
+  }
+};
 
 type DraftState = {
   name: string;
@@ -425,6 +446,7 @@ const BusinessSection = () => {
     sector: false,
   });
   const [sectorTouched, setSectorTouched] = useState(false);
+  const [strictMode, setStrictMode] = useState<boolean>(() => loadStrictMode());
   const [justRestored, setJustRestored] = useState<boolean>(
     () => initialDraft !== EMPTY_DRAFT &&
       (!!initialDraft.name || !!initialDraft.city || !!initialDraft.sector || !!initialDraft.phone || !!initialDraft.goal),
@@ -437,6 +459,11 @@ const BusinessSection = () => {
     }, 300);
     return () => window.clearTimeout(handle);
   }, [name, city, sector, phone, goal, lang]);
+
+  // Persiste la préférence « strict » immédiatement (pas besoin de debounce, événement rare).
+  useEffect(() => {
+    saveStrictMode(strictMode);
+  }, [strictMode]);
 
   // Masque la bannière « valeurs restaurées » au bout de quelques secondes.
   useEffect(() => {
@@ -523,20 +550,8 @@ const BusinessSection = () => {
     };
   }, [normalized, goal]);
 
-  const whatsappHref = validation.isValid
-    ? `https://wa.me/${WHATSAPP_NUMBER}?text=${buildWhatsAppMessage(
-        normalized.name,
-        normalized.city,
-        goal,
-        normalized.sector,
-        normalized.phone,
-        lang,
-      )}`
-    : undefined;
-
   // Checklist de complétude : signale à l'utilisateur quels champs sont remplis ou manquants.
-  // Ne bloque PAS l'envoi (les champs restent optionnels) — c'est juste une aide visuelle
-  // pour qu'il puisse rendre son message plus précis avant d'envoyer.
+  // En mode normal, sert d'aide visuelle. En mode strict (toggle), conditionne aussi l'envoi.
   const checklist = useMemo(
     () => [
       { key: "name", label: "Votre nom", filled: normalized.name.length > 0 },
@@ -550,6 +565,21 @@ const BusinessSection = () => {
   const filledCount = checklist.filter((c) => c.filled).length;
   const totalCount = checklist.length;
   const allFilled = filledCount === totalCount;
+  const missingFields = checklist.filter((c) => !c.filled);
+  // Le bouton WhatsApp est actif uniquement si la validation passe ET — en mode strict —
+  // si tous les champs clés sont remplis. Empêche tout envoi prématuré côté client.
+  const canSend = validation.isValid && (!strictMode || allFilled);
+
+  const whatsappHref = canSend
+    ? `https://wa.me/${WHATSAPP_NUMBER}?text=${buildWhatsAppMessage(
+        normalized.name,
+        normalized.city,
+        goal,
+        normalized.sector,
+        normalized.phone,
+        lang,
+      )}`
+    : undefined;
 
   return (
     <section
@@ -842,7 +872,7 @@ const BusinessSection = () => {
               )}
             </div>
 
-            {/* Checklist de complétude — aide visuelle, n'empêche pas l'envoi. */}
+            {/* Checklist de complétude — informative, et conditionnelle si « mode strict » activé. */}
             <div
               className="rounded-xl border border-border/60 bg-card/50 p-4 text-left"
               aria-live="polite"
@@ -898,22 +928,68 @@ const BusinessSection = () => {
                   </li>
                 ))}
               </ul>
-              {!allFilled && (
+              {!allFilled && !strictMode && (
                 <p className="text-[10px] text-muted-foreground mt-3 leading-relaxed">
                   Tous les champs sont optionnels, mais plus votre message est précis, plus notre réponse sera adaptée.
                 </p>
               )}
+              {strictMode && !allFilled && (
+                <p
+                  role="alert"
+                  className="text-[11px] text-destructive mt-3 leading-relaxed flex items-start gap-1.5"
+                >
+                  <Lock className="w-3 h-3 mt-0.5 shrink-0" aria-hidden="true" />
+                  <span>
+                    Mode strict activé : remplissez les {missingFields.length} champ
+                    {missingFields.length > 1 ? "s" : ""} manquant
+                    {missingFields.length > 1 ? "s" : ""} (
+                    {missingFields.map((f) => f.label).join(", ")}) pour débloquer l'envoi.
+                  </span>
+                </p>
+              )}
+              {/* Toggle « mode strict » : persiste la préférence dans localStorage. */}
+              <label
+                htmlFor="biz-strict-mode"
+                className="mt-4 flex items-start gap-2.5 cursor-pointer select-none rounded-lg border border-border/40 bg-background/50 px-3 py-2.5 hover:border-primary/40 transition-colors"
+              >
+                <input
+                  id="biz-strict-mode"
+                  type="checkbox"
+                  checked={strictMode}
+                  onChange={(e) => setStrictMode(e.target.checked)}
+                  className="mt-0.5 h-4 w-4 rounded border-border accent-primary cursor-pointer shrink-0"
+                  aria-describedby="biz-strict-mode-desc"
+                />
+                <span className="flex-1 text-[11px] leading-relaxed">
+                  <span className="font-semibold text-accent flex items-center gap-1.5">
+                    {strictMode ? (
+                      <Lock className="w-3 h-3 text-primary" aria-hidden="true" />
+                    ) : (
+                      <Unlock className="w-3 h-3 text-muted-foreground" aria-hidden="true" />
+                    )}
+                    Bloquer l'envoi tant que tous les champs ne sont pas remplis
+                  </span>
+                  <span id="biz-strict-mode-desc" className="block text-muted-foreground mt-0.5">
+                    Recommandé pour garantir un message complet et obtenir une réponse plus rapide.
+                  </span>
+                </span>
+              </label>
             </div>
 
             <a
               href={whatsappHref}
               target="_blank"
               rel="noopener noreferrer"
-              aria-disabled={!validation.isValid}
+              aria-disabled={!canSend}
+              title={
+                !canSend && strictMode && !allFilled
+                  ? `Remplissez d'abord : ${missingFields.map((f) => f.label).join(", ")}`
+                  : undefined
+              }
               onClick={(e) => {
-                if (!validation.isValid) e.preventDefault();
+                if (!canSend) e.preventDefault();
               }}
-              className={`group inline-flex items-center justify-center gap-3 w-full sm:w-auto bg-[#25D366] text-white px-7 py-4 rounded-full font-semibold text-sm tracking-wide shadow-lg transition-all duration-300 ${validation.isValid ? "hover:shadow-2xl hover:scale-[1.03] active:scale-[0.97]" : "opacity-50 cursor-not-allowed pointer-events-none"}`}
+              className={`group inline-flex items-center justify-center gap-3 w-full sm:w-auto bg-[#25D366] text-white px-7 py-4 rounded-full font-semibold text-sm tracking-wide shadow-lg transition-all duration-300 ${canSend ? "hover:shadow-2xl hover:scale-[1.03] active:scale-[0.97]" : "opacity-50 cursor-not-allowed pointer-events-none"}`}
               style={{ boxShadow: "0 8px 24px rgba(37, 211, 102, 0.35)" }}
             >
               <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
