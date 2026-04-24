@@ -34,7 +34,7 @@ describe("buildWhatsAppMessage", () => {
 
   it("affiche la ville même sans nom", () => {
     const out = decode(buildWhatsAppMessage("", "Abidjan", undefined, "", "", "fr"));
-    expect(out).toContain("Bonjour (Abidjan),");
+    expect(out).toContain("Bonjour (Abidjan).");
   });
 
   it.each([
