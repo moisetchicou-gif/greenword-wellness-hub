@@ -75,8 +75,8 @@ const HeroSection = () => {
           </div>
         </div>
         <div
-          className={`flex justify-center transition-all duration-[1200ms] ease-[cubic-bezier(0.16,1,0.3,1)] ${visible ? "opacity-100 scale-100 blur-0" : "opacity-0 scale-[0.85] blur-md"}`}
-          style={{ transitionDelay: "400ms" }}
+          className={`flex justify-center transition-all ease-[cubic-bezier(0.16,1,0.3,1)] ${visible ? "opacity-100 scale-100 blur-0" : "opacity-0 scale-[0.85] blur-md"}`}
+          style={{ transitionDelay: "400ms", transitionDuration: "1200ms" }}
         >
           <div className="relative">
             {/* Glow behind product */}
