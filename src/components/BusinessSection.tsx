@@ -645,6 +645,10 @@ const BusinessSection = () => {
               </div>
             )}
 
+            <PersistenceConsent
+              description="Mémoriser mes informations (nom, ville, objectif, zone, téléphone) sur cet appareil pour les retrouver à ma prochaine visite (30 jours)."
+            />
+
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-left">
               <div className="space-y-1.5">
                 <div className="flex items-center justify-between gap-2">
