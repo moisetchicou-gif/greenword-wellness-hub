@@ -334,27 +334,6 @@ const getInputBorderClass = (current: number, max: number, hasError: boolean) =>
 
 // ----- Persistance locale du brouillon de formulaire -----
 const DRAFT_STORAGE_KEY = "gw.business.contact.draft.v1";
-// Préférence UI distincte : « bloquer l'envoi tant que tous les champs ne sont pas remplis ».
-const STRICT_MODE_STORAGE_KEY = "gw.business.contact.strict.v1";
-
-const loadStrictMode = (): boolean => {
-  if (typeof window === "undefined") return false;
-  try {
-    return window.localStorage.getItem(STRICT_MODE_STORAGE_KEY) === "1";
-  } catch {
-    return false;
-  }
-};
-
-const saveStrictMode = (enabled: boolean) => {
-  if (typeof window === "undefined") return;
-  try {
-    if (enabled) window.localStorage.setItem(STRICT_MODE_STORAGE_KEY, "1");
-    else window.localStorage.removeItem(STRICT_MODE_STORAGE_KEY);
-  } catch {
-    // ignore
-  }
-};
 
 type DraftState = {
   name: string;
