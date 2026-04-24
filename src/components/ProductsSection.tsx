@@ -29,7 +29,7 @@ const ProductCard = ({ product, index }: { product: Product; index: number }) =>
   return (
     <div
       ref={ref}
-      className={`bg-card rounded-2xl border border-border/60 overflow-hidden group transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] hover:shadow-premium hover:-translate-y-1.5 flex flex-col h-full ${visible ? "opacity-100 translate-y-0 blur-0" : "opacity-0 translate-y-12 blur-[2px]"}`}
+      className={`bg-card rounded-2xl border border-border/60 overflow-hidden group transition-all duration-700 ease-premium hover:shadow-premium hover:-translate-y-1.5 flex flex-col h-full ${visible ? "opacity-100 translate-y-0 blur-0" : "opacity-0 translate-y-12 blur-[2px]"}`}
       style={{ transitionDelay: `${index * 80}ms` }}
     >
       <Link
@@ -37,7 +37,7 @@ const ProductCard = ({ product, index }: { product: Product; index: number }) =>
         aria-label={`Voir les détails de ${product.name}`}
         className="aspect-square bg-secondary/30 flex items-center justify-center p-3 sm:p-6 overflow-hidden relative focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 shrink-0"
       >
-        <img src={product.image} alt={product.name} className="w-full h-full object-contain group-hover:scale-110 transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]" loading="lazy" />
+        <img src={product.image} alt={product.name} className="w-full h-full object-contain group-hover:scale-110 transition-transform duration-700 ease-premium" loading="lazy" />
         <div className="absolute top-2 left-2 sm:top-3 sm:left-3 flex gap-1.5">
           <span className="glass text-accent text-[9px] sm:text-[10px] font-semibold px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-full">{product.bv} BV</span>
         </div>

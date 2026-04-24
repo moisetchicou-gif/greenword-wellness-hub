@@ -24,7 +24,7 @@ const OfferCard = ({ offer, index }: { offer: Offer; index: number }) => {
   return (
     <div
       ref={ref}
-      className={`group relative bg-card rounded-2xl sm:rounded-3xl border-2 border-primary/20 overflow-hidden shadow-lg hover:shadow-2xl hover:shadow-primary/10 transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-1 flex flex-col h-full ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"}`}
+      className={`group relative bg-card rounded-2xl sm:rounded-3xl border-2 border-primary/20 overflow-hidden shadow-lg hover:shadow-2xl hover:shadow-primary/10 transition-all duration-700 ease-premium hover:-translate-y-1 flex flex-col h-full ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"}`}
       style={{ transitionDelay: `${index * 120}ms` }}
     >
       {/* Badge offre spéciale */}
