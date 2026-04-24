@@ -12,6 +12,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import PersistenceConsent from "@/components/PersistenceConsent";
+import businessHero from "@/assets/business-opportunity-hero.jpg";
 
 const WHATSAPP_NUMBER = "2250707089631";
 
