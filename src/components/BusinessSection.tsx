@@ -382,8 +382,8 @@ const BusinessSection = () => {
    */
   const handleSectorChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const raw = e.target.value;
-    // Conserve uniquement les caractères autorisés par SECTOR_REGEX (mêmes classes).
-    const filtered = raw.replace(/[^\p{L}0-9\s'’\-,/.]/gu, "");
+    // Conserve uniquement les caractères autorisés (incluant tirets longs – — qui seront normalisés).
+    const filtered = raw.replace(/[^\p{L}0-9\s'’\-–—,/.]/gu, "");
     const hadInvalidChar = filtered.length !== raw.length;
     const next = filtered.slice(0, SECTOR_MAX);
     if ((hadInvalidChar || (sector.length >= SECTOR_MAX && next.length >= SECTOR_MAX))) {
