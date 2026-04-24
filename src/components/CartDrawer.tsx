@@ -2,6 +2,8 @@ import { useState } from "react";
 import { X, Minus, Plus, ShoppingCart } from "lucide-react";
 import { useCart } from "@/hooks/useCart";
 import { orderFormSchema, safeOpenExternal } from "@/lib/sanitize";
+import { usePersistentState } from "@/hooks/usePersistentState";
+import PersistenceConsent from "@/components/PersistenceConsent";
 import logoOrangeMoney from "@/assets/logo-orange-money.png";
 import logoWave from "@/assets/logo-wave.png";
 import logoMtn from "@/assets/logo-mtn.png";
