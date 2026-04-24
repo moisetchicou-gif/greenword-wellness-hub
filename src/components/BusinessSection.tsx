@@ -1,10 +1,34 @@
-import { useState } from "react";
-import { Briefcase, TrendingUp, Plane, Car, Home, Gift, Check, User, MapPin } from "lucide-react";
+import { useState, useMemo } from "react";
+import { Briefcase, TrendingUp, Plane, Car, Home, Gift, Check, User, MapPin, AlertCircle } from "lucide-react";
+import { z } from "zod";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 
 const WHATSAPP_NUMBER = "2250707089631";
+
+// Lettres (accents inclus), espaces, apostrophes, tirets et points uniquement.
+const SAFE_TEXT_REGEX = /^[\p{L}\s'’\-.]*$/u;
+const NAME_MAX = 60;
+const CITY_MAX = 40;
+
+const contactSchema = z.object({
+  name: z
+    .string()
+    .trim()
+    .max(NAME_MAX, `Nom : ${NAME_MAX} caractères max`)
+    .regex(SAFE_TEXT_REGEX, "Nom : caractères spéciaux non autorisés")
+    .optional()
+    .or(z.literal("")),
+  city: z
+    .string()
+    .trim()
+    .max(CITY_MAX, `Ville : ${CITY_MAX} caractères max`)
+    .regex(SAFE_TEXT_REGEX, "Ville : caractères spéciaux non autorisés")
+    .optional()
+    .or(z.literal("")),
+});
+
 const buildWhatsAppMessage = (name: string, city: string) => {
   const cleanName = name.trim();
   const cleanCity = city.trim();
