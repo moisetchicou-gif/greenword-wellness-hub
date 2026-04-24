@@ -134,25 +134,26 @@ const I18N = {
   },
 } as const;
 
-const buildWhatsAppMessage = (
-  name: string,
-  city: string,
+export const buildWhatsAppMessage = (
+  name: string | undefined | null,
+  city: string | undefined | null,
   goal: GoalValue | undefined,
-  sector: string,
-  phone: string,
+  sector: string | undefined | null,
+  phone: string | undefined | null,
   lang: Lang,
 ) => {
-  const t = I18N[lang];
-  const cleanName = name.trim();
-  const cleanCity = city.trim();
+  const t = I18N[lang] ?? I18N.fr;
+  const cleanName = (name ?? "").trim();
+  const cleanCity = (city ?? "").trim();
   const intro = cleanName ? t.helloNamed(cleanName, cleanCity) : t.helloAnon(cleanCity);
-  const goalOption = GOAL_OPTIONS.find((g) => g.value === goal);
+  // Whitelist : ignore tout objectif hors de la liste autorisée (défense en profondeur).
+  const goalOption = goal && GOAL_VALUES.includes(goal) ? GOAL_OPTIONS.find((g) => g.value === goal) : undefined;
   const goalSentence = goalOption
     ? `${t.goalPrefix}${goalOption.message[lang]}.`
     : t.fallbackGoal;
-  const cleanSector = sector.trim();
+  const cleanSector = (sector ?? "").trim();
   const sectorSentence = cleanSector ? `${t.sectorPrefix}${cleanSector}.` : "";
-  const cleanPhone = phone.trim();
+  const cleanPhone = (phone ?? "").trim();
   const phoneSentence = cleanPhone ? `${t.phonePrefix}${cleanPhone}.` : "";
   return encodeURIComponent(
     `${intro} ${goalSentence}${sectorSentence}${phoneSentence}${t.closing}`
