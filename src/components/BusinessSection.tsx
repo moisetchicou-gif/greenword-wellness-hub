@@ -166,6 +166,7 @@ const BusinessSection = () => {
   const [sector, setSector] = useState("");
   const [phone, setPhone] = useState("");
   const [goal, setGoal] = useState<GoalValue | undefined>(undefined);
+  const [lang, setLang] = useState<Lang>("fr");
 
   const validation = useMemo(() => {
     const result = contactSchema.safeParse({ name, city, sector, phone });
@@ -182,7 +183,7 @@ const BusinessSection = () => {
   }, [name, city, sector, phone]);
 
   const whatsappHref = validation.isValid
-    ? `https://wa.me/${WHATSAPP_NUMBER}?text=${buildWhatsAppMessage(name, city, goal, sector, phone)}`
+    ? `https://wa.me/${WHATSAPP_NUMBER}?text=${buildWhatsAppMessage(name, city, goal, sector, phone, lang)}`
     : undefined;
 
   return (
