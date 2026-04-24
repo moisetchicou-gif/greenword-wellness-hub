@@ -162,6 +162,117 @@ describe("buildWhatsAppMessage", () => {
       const out = decode(buildWhatsAppMessage("", "Abidjan", "info", "", "", "fr"));
       // Anti-régression : avant on avait "Bonjour (Abidjan), Mon objectif" → virgule + majuscule.
       expect(out).not.toMatch(/, [A-ZÀ-Ý]/);
+  });
+
+  describe("normalisation supplémentaire des inputs", () => {
+    it("supprime les sauts de ligne dans tous les champs", () => {
+      const out = decode(
+        buildWhatsAppMessage(
+          "Aïcha\nKoné",
+          "Abidjan\r\nCocody",
+          "revente",
+          "Cocody\nAngré",
+          "+225\n07 00 00 00 00",
+          "fr",
+        ),
+      );
+      expect(out).not.toMatch(/[\r\n]/);
+      expect(out).toContain("Aïcha Koné");
+      expect(out).toContain("Cocody Angré");
+    });
+
+    it("normalise les apostrophes typographiques (’ ‘ ´ ′)", () => {
+      const out = decode(buildWhatsAppMessage("D’Artagnan", "L‘Abidjan", "revente", "Quartier d´élite", "", "fr"));
+      expect(out).not.toMatch(/[’‘´′]/);
+      expect(out).toContain("D'Artagnan");
+      expect(out).toContain("L'Abidjan");
+    });
+
+    it("normalise les guillemets typographiques", () => {
+      const out = decode(buildWhatsAppMessage("Jean «Le Roi»", "", "revente", "", "", "fr"));
+      expect(out).not.toMatch(/[«»“”]/);
+      expect(out).toContain('"Le Roi"');
+    });
+
+    it("normalise les tirets longs (— – ‒ ―)", () => {
+      const out = decode(buildWhatsAppMessage("", "", "revente", "Abidjan — Cocody – Angré", "", "fr"));
+      expect(out).not.toMatch(/[—–‒―]/);
+      expect(out).toContain("Abidjan - Cocody - Angré");
+    });
+
+    it("supprime les caractères invisibles (zero-width, BOM)", () => {
+      const out = decode(
+        buildWhatsAppMessage("Aï\u200Bcha\uFEFF", "Abi\u200Cdjan", "revente", "Co\u200Dcody", "07\u200B00", "fr"),
+      );
+      expect(out).not.toMatch(/[\u200B-\u200F\uFEFF]/);
+      expect(out).toContain("Aïcha");
+      expect(out).toContain("Abidjan");
+    });
+
+    it("normalise les espaces non-cassables (NBSP) en espace standard", () => {
+      const out = decode(buildWhatsAppMessage("Aïcha\u00A0Koné", "", "revente", "", "", "fr"));
+      expect(out).not.toMatch(/\u00A0/);
+      expect(out).toContain("Aïcha Koné");
+    });
+
+    it("retire le préfixe « Bonjour » tapé par erreur dans le champ nom", () => {
+      const cases = [
+        "Bonjour Aïcha",
+        "Bonjour, je suis Aïcha",
+        "Salut Aïcha",
+        "Hello Aïcha",
+        "bonjour aïcha", // casse
+      ];
+      for (const inputName of cases) {
+        const out = decode(buildWhatsAppMessage(inputName, "", "revente", "", "", "fr"));
+        const greetings = out.match(/Bonjour|Hello|Salut/gi) ?? [];
+        expect(greetings.length, `"${inputName}" → ${out}`).toBeLessThanOrEqual(1);
+        expect(out, `"${inputName}" → ${out}`).toMatch(/aïcha/i);
+      }
+    });
+
+    it("retire le préfixe « my name is » / « I'm » en anglais", () => {
+      const out = decode(buildWhatsAppMessage("Hello, my name is John", "", "revente", "", "", "en"));
+      const greetings = out.match(/Hello|Hi/g) ?? [];
+      expect(greetings.length).toBeLessThanOrEqual(1);
+      expect(out).toMatch(/John/);
+    });
+
+    it("ne contient jamais d'espace avant une virgule ou un point", () => {
+      const out = decode(
+        buildWhatsAppMessage("Aïcha   ", "  Abidjan  ", "revente", "  Cocody  ", "  0707  ", "fr"),
+      );
+      expect(out).not.toMatch(/\s[,.;]/);
+    });
+
+    it("garantit un espace après chaque ponctuation", () => {
+      const out = decode(buildWhatsAppMessage("Aïcha", "Abidjan", "revente", "Cocody", "0707", "fr"));
+      // Pas de ponctuation collée à une lettre suivante (".Mon" interdit)
+      expect(out).not.toMatch(/[.,;][A-Za-zÀ-ÿ]/);
+    });
+
+    it("est idempotent : rappeler la fonction sur le résultat normalisé donne le même rendu", () => {
+      const a = decode(buildWhatsAppMessage("  Aïcha\n", " Abidjan ", "revente", "Cocody", "0707", "fr"));
+      const b = decode(buildWhatsAppMessage("  Aïcha\n", " Abidjan ", "revente", "Cocody", "0707", "fr"));
+      expect(a).toBe(b);
+    });
+
+    it("gère un cas pathologique : tout combiné", () => {
+      const out = decode(
+        buildWhatsAppMessage(
+          "  Bonjour,\u00A0je suis\nD’Artagnan\u200B  ",
+          "Abidjan\r\n—\u00A0Cocody",
+          "revente",
+          "  «Quartier»\u200B 220 logements  ",
+          "+225\u00A007\u200B00 00 00 00",
+          "fr",
+        ),
+      );
+      const bonjours = out.match(/Bonjour/g) ?? [];
+      expect(bonjours.length, `"Bonjour" répété dans : ${out}`).toBeLessThanOrEqual(1);
+      expect(out).not.toMatch(/[\r\n\u00A0\u200B\uFEFF’«»—]/);
+      expect(out).not.toMatch(/ {2,}/);
+      expect(out).toContain("D'Artagnan");
     });
   });
 });
