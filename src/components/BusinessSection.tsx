@@ -153,8 +153,17 @@ const BusinessSection = () => {
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   placeholder="Ex : Aïcha Koné"
-                  maxLength={80}
+                  maxLength={NAME_MAX}
+                  aria-invalid={!!validation.nameError}
+                  aria-describedby="biz-name-error"
+                  className={validation.nameError ? "border-destructive focus-visible:ring-destructive" : ""}
                 />
+                {validation.nameError && (
+                  <p id="biz-name-error" className="text-[11px] text-destructive flex items-center gap-1">
+                    <AlertCircle className="w-3 h-3" />
+                    {validation.nameError}
+                  </p>
+                )}
               </div>
               <div className="space-y-1.5">
                 <Label htmlFor="biz-city" className="text-xs">
@@ -166,8 +175,17 @@ const BusinessSection = () => {
                   value={city}
                   onChange={(e) => setCity(e.target.value)}
                   placeholder="Ex : Abidjan"
-                  maxLength={60}
+                  maxLength={CITY_MAX}
+                  aria-invalid={!!validation.cityError}
+                  aria-describedby="biz-city-error"
+                  className={validation.cityError ? "border-destructive focus-visible:ring-destructive" : ""}
                 />
+                {validation.cityError && (
+                  <p id="biz-city-error" className="text-[11px] text-destructive flex items-center gap-1">
+                    <AlertCircle className="w-3 h-3" />
+                    {validation.cityError}
+                  </p>
+                )}
               </div>
             </div>
 
@@ -175,7 +193,11 @@ const BusinessSection = () => {
               href={whatsappHref}
               target="_blank"
               rel="noopener noreferrer"
-              className="group inline-flex items-center justify-center gap-3 w-full sm:w-auto bg-[#25D366] text-white px-7 py-4 rounded-full font-semibold text-sm tracking-wide shadow-lg hover:shadow-2xl hover:scale-[1.03] active:scale-[0.97] transition-all duration-300"
+              aria-disabled={!validation.isValid}
+              onClick={(e) => {
+                if (!validation.isValid) e.preventDefault();
+              }}
+              className={`group inline-flex items-center justify-center gap-3 w-full sm:w-auto bg-[#25D366] text-white px-7 py-4 rounded-full font-semibold text-sm tracking-wide shadow-lg transition-all duration-300 ${validation.isValid ? "hover:shadow-2xl hover:scale-[1.03] active:scale-[0.97]" : "opacity-50 cursor-not-allowed pointer-events-none"}`}
               style={{ boxShadow: "0 8px 24px rgba(37, 211, 102, 0.35)" }}
             >
               <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
