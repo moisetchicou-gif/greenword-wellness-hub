@@ -715,6 +715,17 @@ const BusinessSection = () => {
               </svg>
               Rejoindre sur WhatsApp
             </a>
+            {(name || city || sector || phone || goal) && (
+              <button
+                type="button"
+                onClick={handleResetDraft}
+                className="inline-flex items-center justify-center gap-1.5 text-xs text-muted-foreground hover:text-destructive transition-colors mx-auto md:mx-0"
+                aria-label="Réinitialiser le formulaire et effacer les valeurs sauvegardées"
+              >
+                <RotateCcw className="w-3 h-3" />
+                Réinitialiser le formulaire
+              </button>
+            )}
             <p className="text-xs text-muted-foreground">
               <span className="font-semibold text-accent">+225 07 07 08 96 31</span> · Réponse rapide
             </p>
