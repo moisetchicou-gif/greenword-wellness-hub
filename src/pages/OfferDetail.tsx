@@ -3,7 +3,6 @@ import { useParams, Link, Navigate } from "react-router-dom";
 import { ArrowLeft, Check, Shield, Sparkles, Clock, Users, Star, Play, ChevronDown, CalendarCheck } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import CartDrawer from "@/components/CartDrawer";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import BookingDialog from "@/components/BookingDialog";
 import SEO from "@/components/SEO";
@@ -330,7 +329,6 @@ const OfferDetail = () => {
         </div>
       </main>
       <Footer />
-      <CartDrawer />
       <WhatsAppButton />
     </div>
   );

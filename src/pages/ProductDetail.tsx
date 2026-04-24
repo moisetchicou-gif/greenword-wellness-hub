@@ -3,7 +3,6 @@ import { ArrowLeft, ShoppingCart, Check, Shield, Leaf, Award } from "lucide-reac
 import { useState } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import CartDrawer from "@/components/CartDrawer";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import SEO from "@/components/SEO";
 import { products } from "@/data/products";
@@ -233,7 +232,6 @@ const ProductDetail = () => {
         </div>
       </main>
       <Footer />
-      <CartDrawer />
       <WhatsAppButton />
     </div>
   );

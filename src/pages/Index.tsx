@@ -2,7 +2,6 @@ import { lazy, Suspense } from "react";
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
 import TrustBar from "@/components/TrustBar";
-import CartDrawer from "@/components/CartDrawer";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import CookieBanner from "@/components/CookieBanner";
 import SEO from "@/components/SEO";
@@ -85,7 +84,6 @@ const Index = () => {
       <Suspense fallback={<SectionFallback />}>
         <Footer />
       </Suspense>
-      <CartDrawer />
       <WhatsAppButton />
       <CookieBanner />
     </div>
