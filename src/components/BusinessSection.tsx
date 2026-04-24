@@ -301,12 +301,12 @@ const BusinessSection = () => {
                 <Input
                   id="biz-name"
                   value={name}
-                  onChange={(e) => setName(e.target.value)}
+                  onChange={handleNameChange}
                   placeholder="Ex : Aïcha Koné"
                   maxLength={NAME_MAX}
                   aria-invalid={!!validation.nameError}
                   aria-describedby="biz-name-error"
-                  className={validation.nameError ? "border-destructive focus-visible:ring-destructive" : ""}
+                  className={`${getInputBorderClass(name.length, NAME_MAX, !!validation.nameError)} ${shake.name ? "animate-shake" : ""}`}
                 />
                 {validation.nameError && (
                   <p id="biz-name-error" className="text-[11px] text-destructive flex items-center gap-1">
