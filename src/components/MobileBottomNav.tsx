@@ -31,7 +31,16 @@ const MobileBottomNav = () => {
     window.dispatchEvent(new CustomEvent("gw:open-search"));
   };
 
-  const items_ = [
+  type Item = {
+    key: string;
+    label: string;
+    icon: typeof Home;
+    onClick: () => void;
+    badge?: number;
+    accent?: boolean;
+  };
+
+  const items_: Item[] = [
     { key: "home", label: "Accueil", icon: Home, onClick: goHome },
     { key: "shop", label: "Boutique", icon: Store, onClick: goShop },
     { key: "search", label: "Recherche", icon: Search, onClick: openSearch },
@@ -54,7 +63,7 @@ const MobileBottomNav = () => {
         ),
       accent: true,
     },
-  ] as const;
+  ];
 
   return (
     <nav
@@ -79,8 +88,8 @@ const MobileBottomNav = () => {
                       : ""
                   }`}
                 >
-                  <Icon className={item.accent ? "w-5 h-5" : "w-5 h-5"} />
-                  {"badge" in item && item.badge && item.badge > 0 ? (
+                  <Icon className="w-5 h-5" />
+                  {item.badge && item.badge > 0 ? (
                     <span className="absolute -top-1 -right-1.5 bg-accent text-accent-foreground text-[10px] font-bold min-w-[18px] h-[18px] px-1 rounded-full flex items-center justify-center">
                       {item.badge}
                     </span>
