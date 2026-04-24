@@ -4,18 +4,10 @@ import { useCart } from "@/hooks/useCart";
 import { orderFormSchema, safeOpenExternal } from "@/lib/sanitize";
 import { usePersistentState } from "@/hooks/usePersistentState";
 import PersistenceConsent from "@/components/PersistenceConsent";
-import logoOrangeMoney from "@/assets/logo-orange-money.png";
 import logoWave from "@/assets/logo-wave.png";
-import logoMtn from "@/assets/logo-mtn.png";
-import logoMoov from "@/assets/logo-moov.jpg";
-import logoPaypal from "@/assets/logo-paypal.png";
 
 const paymentMethods = [
-  { name: "Orange Money", logo: logoOrangeMoney },
   { name: "Wave", logo: logoWave },
-  { name: "MTN Money", logo: logoMtn },
-  { name: "Moov Money", logo: logoMoov },
-  { name: "PayPal", logo: logoPaypal },
 ];
 
 type Step = "cart" | "info" | "payment" | "wave-pending" | "done";
