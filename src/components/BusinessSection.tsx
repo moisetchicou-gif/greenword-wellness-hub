@@ -434,7 +434,6 @@ const BusinessSection = () => {
     sector: false,
   });
   const [sectorTouched, setSectorTouched] = useState(false);
-  const [strictMode, setStrictMode] = useState<boolean>(() => loadStrictMode());
   const [justRestored, setJustRestored] = useState<boolean>(
     () => initialDraft !== EMPTY_DRAFT &&
       (!!initialDraft.name || !!initialDraft.city || !!initialDraft.sector || !!initialDraft.phone || !!initialDraft.goal),
@@ -447,11 +446,6 @@ const BusinessSection = () => {
     }, 300);
     return () => window.clearTimeout(handle);
   }, [name, city, sector, phone, goal, lang]);
-
-  // Persiste la préférence « strict » immédiatement (pas besoin de debounce, événement rare).
-  useEffect(() => {
-    saveStrictMode(strictMode);
-  }, [strictMode]);
 
   // Masque la bannière « valeurs restaurées » au bout de quelques secondes.
   useEffect(() => {
