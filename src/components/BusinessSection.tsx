@@ -217,16 +217,20 @@ export const buildWhatsAppMessage = (
   lang: Lang,
 ) => {
   const t = I18N[lang] ?? I18N.fr;
-  const cleanName = (name ?? "").trim();
-  const cleanCity = (city ?? "").trim();
+  // Normalisation systématique de TOUS les inputs avant assemblage : même si l'appelant
+  // a oublié, on garantit ici un message propre (NFC, apostrophes, sauts de ligne, etc.).
+  // Puis on retire d'éventuels préfixes de salutation tapés dans le champ nom (anti-doublon "Bonjour").
+  const cleanName = stripGreetingPrefix(normalizeText(name ?? ""));
+  const cleanCity = normalizeText(city ?? "");
+  let cleanSector = normalizeText(sector ?? "");
+  const cleanPhone = normalizePhone(phone ?? "");
+
   const intro = cleanName ? t.helloNamed(cleanName, cleanCity) : t.helloAnon(cleanCity);
   // Whitelist : ignore tout objectif hors de la liste autorisée (défense en profondeur).
   const goalOption = goal && GOAL_VALUES.includes(goal) ? GOAL_OPTIONS.find((g) => g.value === goal) : undefined;
   const goalSentence = goalOption
     ? `${t.goalPrefix}${goalOption.message[lang]}.`
     : t.fallbackGoal;
-  let cleanSector = (sector ?? "").trim();
-  const cleanPhone = (phone ?? "").trim();
   const phoneSentence = cleanPhone ? `${t.phonePrefix}${cleanPhone}.` : "";
 
   // Tous les segments suivants (goalSentence, sectorSentence, phoneSentence, closing) commencent
@@ -248,8 +252,46 @@ export const buildWhatsAppMessage = (
   }
 
   let finalText = `${intro}${goalSentence}${sectorSentence}${phoneSentence}${t.closing}`;
-  // Nettoyage défensif : élimine d'éventuels doubles espaces résiduels.
-  finalText = finalText.replace(/\s{2,}/g, " ").trim();
+
+  // ----- Normalisation finale du message assemblé (filet de sécurité ultime) -----
+  finalText = finalText
+    // Re-supprime tout caractère invisible qui aurait pu survivre via un message hard-codé I18N.
+    .replace(/[\u200B-\u200F\u202A-\u202E\u2060-\u206F\uFEFF]/g, "")
+    // Tous les sauts de ligne (au cas où) → espace.
+    .replace(/[\r\n\v\f\u2028\u2029]+/g, " ")
+    // Espaces multiples → un seul.
+    .replace(/\s{2,}/g, " ")
+    // Espaces avant ponctuation française non protégés.
+    .replace(/\s+([,.;])/g, "$1")
+    // Garantit un espace après ponctuation s'il manque (ex : ".Mon" → ". Mon").
+    .replace(/([,.;])([A-Za-zÀ-ÿ])/g, "$1 $2")
+    // Doubles ponctuations de fin (".." ou ",.").
+    .replace(/([.,;])\1+/g, "$1")
+    .replace(/\.,|,\./g, ".")
+    .trim();
+
+  // Anti-doublon "Bonjour"/"Hello" : si malgré tout deux occurrences subsistent, on retire la 2e.
+  // (cas pathologique : nom contenant déjà un "Bonjour" non détecté par stripGreetingPrefix)
+  const greetingRegex = /\b(Bonjour|Bonsoir|Hello|Hi|Hey)\b/gi;
+  const greetings = finalText.match(greetingRegex);
+  if (greetings && greetings.length > 1) {
+    let kept = false;
+    finalText = finalText.replace(greetingRegex, (m) => {
+      if (!kept) {
+        kept = true;
+        return m;
+      }
+      return "";
+    });
+    // Re-nettoie les espaces / ponctuations laissés par les suppressions.
+    finalText = finalText
+      .replace(/\s{2,}/g, " ")
+      .replace(/\s+([,.;])/g, "$1")
+      .replace(/^[\s,;:!.]+/, "")
+      .trim();
+    // Re-majuscule la première lettre si on l'a entamée.
+    if (finalText) finalText = finalText.charAt(0).toUpperCase() + finalText.slice(1);
+  }
 
   // Garde-fou : si malgré tout on dépasse (cas extrême : nom/ville très longs), on tronque le tout.
   if (finalText.length > WA_MESSAGE_MAX) {
