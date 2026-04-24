@@ -86,8 +86,10 @@ const buildWhatsAppMessage = (
     : `Je suis intéressé(e) par l'opportunité Business Green World (devenir distributeur).`;
   const cleanSector = sector.trim();
   const sectorSentence = cleanSector ? ` Zone / secteur : ${cleanSector}.` : "";
+  const cleanPhone = phone.trim();
+  const phoneSentence = cleanPhone ? ` Mon numéro : ${cleanPhone}.` : "";
   return encodeURIComponent(
-    `${intro} ${goalSentence}${sectorSentence} Pouvez-vous me donner plus d'informations ?`
+    `${intro} ${goalSentence}${sectorSentence}${phoneSentence} Pouvez-vous me donner plus d'informations ?`
   );
 };
 
