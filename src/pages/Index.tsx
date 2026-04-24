@@ -9,7 +9,6 @@ import SEO from "@/components/SEO";
 
 const IntroOffers = lazy(() => import("@/components/IntroOffers"));
 const ProductsSection = lazy(() => import("@/components/ProductsSection"));
-const FeaturesSection = lazy(() => import("@/components/FeaturesSection"));
 const TestimonialsSection = lazy(() => import("@/components/TestimonialsSection"));
 const BusinessSection = lazy(() => import("@/components/BusinessSection"));
 const CtaSection = lazy(() => import("@/components/CtaSection"));
@@ -73,9 +72,6 @@ const Index = () => {
       </Suspense>
       <Suspense fallback={<SectionFallback />}>
         <ProductsSection />
-      </Suspense>
-      <Suspense fallback={<SectionFallback />}>
-        <FeaturesSection />
       </Suspense>
       <Suspense fallback={<SectionFallback />}>
         <TestimonialsSection />
