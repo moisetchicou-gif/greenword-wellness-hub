@@ -90,28 +90,49 @@ const contactSchema = z.object({
     .or(z.literal("")),
 });
 
+const I18N = {
+  fr: {
+    helloNamed: (n: string, c: string) => `Bonjour, je suis ${n}${c ? ` (${c})` : ""}.`,
+    helloAnon: (c: string) => `Bonjour${c ? ` (${c})` : ""},`,
+    goalPrefix: "Mon objectif : ",
+    fallbackGoal: "Je suis intéressé(e) par l'opportunité Business Green World (devenir distributeur).",
+    sectorPrefix: " Zone / secteur : ",
+    phonePrefix: " Mon numéro : ",
+    closing: " Pouvez-vous me donner plus d'informations ?",
+  },
+  en: {
+    helloNamed: (n: string, c: string) => `Hello, I'm ${n}${c ? ` (${c})` : ""}.`,
+    helloAnon: (c: string) => `Hello${c ? ` (${c})` : ""},`,
+    goalPrefix: "My goal: ",
+    fallbackGoal: "I'm interested in the Green World Business opportunity (becoming a distributor).",
+    sectorPrefix: " Area / sector: ",
+    phonePrefix: " My phone number: ",
+    closing: " Could you give me more information?",
+  },
+} as const;
+
 const buildWhatsAppMessage = (
   name: string,
   city: string,
   goal: GoalValue | undefined,
   sector: string,
   phone: string,
+  lang: Lang,
 ) => {
+  const t = I18N[lang];
   const cleanName = name.trim();
   const cleanCity = city.trim();
-  const intro = cleanName
-    ? `Bonjour, je suis ${cleanName}${cleanCity ? ` (${cleanCity})` : ""}.`
-    : `Bonjour${cleanCity ? ` (${cleanCity})` : ""},`;
+  const intro = cleanName ? t.helloNamed(cleanName, cleanCity) : t.helloAnon(cleanCity);
   const goalOption = GOAL_OPTIONS.find((g) => g.value === goal);
   const goalSentence = goalOption
-    ? `Mon objectif : ${goalOption.message}.`
-    : `Je suis intéressé(e) par l'opportunité Business Green World (devenir distributeur).`;
+    ? `${t.goalPrefix}${goalOption.message[lang]}.`
+    : t.fallbackGoal;
   const cleanSector = sector.trim();
-  const sectorSentence = cleanSector ? ` Zone / secteur : ${cleanSector}.` : "";
+  const sectorSentence = cleanSector ? `${t.sectorPrefix}${cleanSector}.` : "";
   const cleanPhone = phone.trim();
-  const phoneSentence = cleanPhone ? ` Mon numéro : ${cleanPhone}.` : "";
+  const phoneSentence = cleanPhone ? `${t.phonePrefix}${cleanPhone}.` : "";
   return encodeURIComponent(
-    `${intro} ${goalSentence}${sectorSentence}${phoneSentence} Pouvez-vous me donner plus d'informations ?`
+    `${intro} ${goalSentence}${sectorSentence}${phoneSentence}${t.closing}`
   );
 };
 
