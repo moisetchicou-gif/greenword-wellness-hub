@@ -1,9 +1,16 @@
 import { useState, useMemo } from "react";
-import { Briefcase, TrendingUp, Plane, Car, Home, Gift, Check, User, MapPin, AlertCircle } from "lucide-react";
+import { Briefcase, TrendingUp, Plane, Car, Home, Gift, Check, User, MapPin, AlertCircle, Target } from "lucide-react";
 import { z } from "zod";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 const WHATSAPP_NUMBER = "2250707089631";
 
@@ -11,6 +18,15 @@ const WHATSAPP_NUMBER = "2250707089631";
 const SAFE_TEXT_REGEX = /^[\p{L}\s'’\-.]*$/u;
 const NAME_MAX = 60;
 const CITY_MAX = 40;
+
+const GOAL_OPTIONS = [
+  { value: "revente", label: "Revente de produits", message: "faire de la revente de produits" },
+  { value: "distribution", label: "Distribution / réseau", message: "rejoindre le réseau de distribution" },
+  { value: "demarrage", label: "Démarrage d'activité", message: "démarrer une activité avec Green World" },
+  { value: "info", label: "Juste m'informer", message: "obtenir plus d'informations sur l'opportunité" },
+] as const;
+
+type GoalValue = (typeof GOAL_OPTIONS)[number]["value"] | "";
 
 const contactSchema = z.object({
   name: z
@@ -29,14 +45,18 @@ const contactSchema = z.object({
     .or(z.literal("")),
 });
 
-const buildWhatsAppMessage = (name: string, city: string) => {
+const buildWhatsAppMessage = (name: string, city: string, goal: GoalValue) => {
   const cleanName = name.trim();
   const cleanCity = city.trim();
   const intro = cleanName
     ? `Bonjour, je suis ${cleanName}${cleanCity ? ` (${cleanCity})` : ""}.`
     : `Bonjour${cleanCity ? ` (${cleanCity})` : ""},`;
+  const goalOption = GOAL_OPTIONS.find((g) => g.value === goal);
+  const goalSentence = goalOption
+    ? `Mon objectif : ${goalOption.message}.`
+    : `Je suis intéressé(e) par l'opportunité Business Green World (devenir distributeur).`;
   return encodeURIComponent(
-    `${intro} Je suis intéressé(e) par l'opportunité Business Green World (devenir distributeur). Pouvez-vous me donner plus d'informations ?`
+    `${intro} ${goalSentence} Pouvez-vous me donner plus d'informations ?`
   );
 };
 
@@ -60,6 +80,7 @@ const BusinessSection = () => {
   const { ref, visible } = useScrollReveal(0.1);
   const [name, setName] = useState("");
   const [city, setCity] = useState("");
+  const [goal, setGoal] = useState<GoalValue>("");
 
   const validation = useMemo(() => {
     const result = contactSchema.safeParse({ name, city });
@@ -73,7 +94,7 @@ const BusinessSection = () => {
   }, [name, city]);
 
   const whatsappHref = validation.isValid
-    ? `https://wa.me/${WHATSAPP_NUMBER}?text=${buildWhatsAppMessage(name, city)}`
+    ? `https://wa.me/${WHATSAPP_NUMBER}?text=${buildWhatsAppMessage(name, city, goal)}`
     : undefined;
 
   return (
@@ -187,6 +208,25 @@ const BusinessSection = () => {
                   </p>
                 )}
               </div>
+            </div>
+
+            <div className="space-y-1.5 text-left">
+              <Label htmlFor="biz-goal" className="text-xs">
+                <Target className="inline w-3.5 h-3.5 mr-1 text-primary" />
+                Votre objectif <span className="text-muted-foreground font-normal">(optionnel)</span>
+              </Label>
+              <Select value={goal} onValueChange={(v) => setGoal(v as GoalValue)}>
+                <SelectTrigger id="biz-goal" className="w-full">
+                  <SelectValue placeholder="Choisir un objectif…" />
+                </SelectTrigger>
+                <SelectContent>
+                  {GOAL_OPTIONS.map((opt) => (
+                    <SelectItem key={opt.value} value={opt.value}>
+                      {opt.label}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
             </div>
 
             <a
