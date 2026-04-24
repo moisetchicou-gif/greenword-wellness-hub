@@ -104,8 +104,37 @@ const BusinessSection = () => {
               </p>
             </div>
 
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-left">
+              <div className="space-y-1.5">
+                <Label htmlFor="biz-name" className="text-xs">
+                  <User className="inline w-3.5 h-3.5 mr-1 text-primary" />
+                  Votre nom <span className="text-muted-foreground font-normal">(optionnel)</span>
+                </Label>
+                <Input
+                  id="biz-name"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  placeholder="Ex : Aïcha Koné"
+                  maxLength={80}
+                />
+              </div>
+              <div className="space-y-1.5">
+                <Label htmlFor="biz-city" className="text-xs">
+                  <MapPin className="inline w-3.5 h-3.5 mr-1 text-primary" />
+                  Votre ville <span className="text-muted-foreground font-normal">(optionnel)</span>
+                </Label>
+                <Input
+                  id="biz-city"
+                  value={city}
+                  onChange={(e) => setCity(e.target.value)}
+                  placeholder="Ex : Abidjan"
+                  maxLength={60}
+                />
+              </div>
+            </div>
+
             <a
-              href={`https://wa.me/${WHATSAPP_NUMBER}?text=${WHATSAPP_MESSAGE}`}
+              href={whatsappHref}
               target="_blank"
               rel="noopener noreferrer"
               className="group inline-flex items-center justify-center gap-3 w-full sm:w-auto bg-[#25D366] text-white px-7 py-4 rounded-full font-semibold text-sm tracking-wide shadow-lg hover:shadow-2xl hover:scale-[1.03] active:scale-[0.97] transition-all duration-300"
