@@ -11,6 +11,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import PersistenceConsent from "@/components/PersistenceConsent";
 
 const WHATSAPP_NUMBER = "2250707089631";
 
