@@ -215,8 +215,19 @@ const BusinessSection = () => {
     setCity(next);
   };
 
+  // Valeurs normalisées utilisées pour la validation et la génération du message.
+  const normalized = useMemo(
+    () => ({
+      name: normalizeText(name),
+      city: normalizeText(city),
+      sector: normalizeText(sector),
+      phone: normalizePhone(phone),
+    }),
+    [name, city, sector, phone],
+  );
+
   const validation = useMemo(() => {
-    const result = contactSchema.safeParse({ name, city, sector, phone, goal });
+    const result = contactSchema.safeParse({ ...normalized, goal });
     if (result.success)
       return {
         isValid: true,
@@ -235,10 +246,17 @@ const BusinessSection = () => {
       phoneError: errors.phone?.[0] ?? "",
       goalError: errors.goal?.[0] ?? "",
     };
-  }, [name, city, sector, phone, goal]);
+  }, [normalized, goal]);
 
   const whatsappHref = validation.isValid
-    ? `https://wa.me/${WHATSAPP_NUMBER}?text=${buildWhatsAppMessage(name, city, goal, sector, phone, lang)}`
+    ? `https://wa.me/${WHATSAPP_NUMBER}?text=${buildWhatsAppMessage(
+        normalized.name,
+        normalized.city,
+        goal,
+        normalized.sector,
+        normalized.phone,
+        lang,
+      )}`
     : undefined;
 
   return (
