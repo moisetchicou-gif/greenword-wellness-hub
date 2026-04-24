@@ -26,7 +26,7 @@ const GOAL_OPTIONS = [
   { value: "info", label: "Juste m'informer", message: "obtenir plus d'informations sur l'opportunité" },
 ] as const;
 
-type GoalValue = (typeof GOAL_OPTIONS)[number]["value"] | "";
+type GoalValue = (typeof GOAL_OPTIONS)[number]["value"];
 
 const contactSchema = z.object({
   name: z
@@ -45,7 +45,7 @@ const contactSchema = z.object({
     .or(z.literal("")),
 });
 
-const buildWhatsAppMessage = (name: string, city: string, goal: GoalValue) => {
+const buildWhatsAppMessage = (name: string, city: string, goal: GoalValue | undefined) => {
   const cleanName = name.trim();
   const cleanCity = city.trim();
   const intro = cleanName
@@ -76,11 +76,18 @@ const benefits = [
   "Plan de carrière évolutif et international",
 ];
 
+const getCounterClass = (current: number, max: number) => {
+  const ratio = current / max;
+  if (current >= max) return "text-destructive font-semibold";
+  if (ratio >= 0.85) return "text-amber-600 dark:text-amber-500 font-medium";
+  return "text-muted-foreground";
+};
+
 const BusinessSection = () => {
   const { ref, visible } = useScrollReveal(0.1);
   const [name, setName] = useState("");
   const [city, setCity] = useState("");
-  const [goal, setGoal] = useState<GoalValue>("");
+  const [goal, setGoal] = useState<GoalValue | undefined>(undefined);
 
   const validation = useMemo(() => {
     const result = contactSchema.safeParse({ name, city });
@@ -165,10 +172,15 @@ const BusinessSection = () => {
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-left">
               <div className="space-y-1.5">
-                <Label htmlFor="biz-name" className="text-xs">
-                  <User className="inline w-3.5 h-3.5 mr-1 text-primary" />
-                  Votre nom <span className="text-muted-foreground font-normal">(optionnel)</span>
-                </Label>
+                <div className="flex items-center justify-between gap-2">
+                  <Label htmlFor="biz-name" className="text-xs">
+                    <User className="inline w-3.5 h-3.5 mr-1 text-primary" />
+                    Votre nom <span className="text-muted-foreground font-normal">(optionnel)</span>
+                  </Label>
+                  <span className={`text-[10px] tabular-nums ${getCounterClass(name.length, NAME_MAX)}`}>
+                    {name.length}/{NAME_MAX}
+                  </span>
+                </div>
                 <Input
                   id="biz-name"
                   value={name}
@@ -187,10 +199,15 @@ const BusinessSection = () => {
                 )}
               </div>
               <div className="space-y-1.5">
-                <Label htmlFor="biz-city" className="text-xs">
-                  <MapPin className="inline w-3.5 h-3.5 mr-1 text-primary" />
-                  Votre ville <span className="text-muted-foreground font-normal">(optionnel)</span>
-                </Label>
+                <div className="flex items-center justify-between gap-2">
+                  <Label htmlFor="biz-city" className="text-xs">
+                    <MapPin className="inline w-3.5 h-3.5 mr-1 text-primary" />
+                    Votre ville <span className="text-muted-foreground font-normal">(optionnel)</span>
+                  </Label>
+                  <span className={`text-[10px] tabular-nums ${getCounterClass(city.length, CITY_MAX)}`}>
+                    {city.length}/{CITY_MAX}
+                  </span>
+                </div>
                 <Input
                   id="biz-city"
                   value={city}
