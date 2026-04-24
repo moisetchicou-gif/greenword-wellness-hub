@@ -750,6 +750,69 @@ const BusinessSection = () => {
               )}
             </div>
 
+            {/* Checklist de complétude — aide visuelle, n'empêche pas l'envoi. */}
+            <div
+              className="rounded-xl border border-border/60 bg-card/50 p-4 text-left"
+              aria-live="polite"
+            >
+              <div className="flex items-center justify-between gap-2 mb-3">
+                <p className="text-xs font-semibold uppercase tracking-wider text-accent">
+                  Avant d'envoyer
+                </p>
+                <span
+                  className={`text-[11px] font-semibold tabular-nums ${
+                    allFilled ? "text-primary" : "text-muted-foreground"
+                  }`}
+                >
+                  {filledCount}/{totalCount} {allFilled ? "✓" : ""}
+                </span>
+              </div>
+              <div className="h-1 w-full bg-border/60 rounded-full overflow-hidden mb-3">
+                <div
+                  className="h-full bg-primary transition-all duration-500 ease-out"
+                  style={{ width: `${(filledCount / totalCount) * 100}%` }}
+                />
+              </div>
+              <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-1.5">
+                {checklist.map((item) => (
+                  <li
+                    key={item.key}
+                    className={`flex items-center gap-2 text-[12px] ${
+                      item.filled ? "text-foreground" : "text-muted-foreground"
+                    }`}
+                  >
+                    <span
+                      className={`w-4 h-4 rounded-full flex items-center justify-center shrink-0 transition-colors ${
+                        item.filled
+                          ? "bg-primary/15 text-primary"
+                          : "bg-muted text-muted-foreground/60"
+                      }`}
+                      aria-hidden="true"
+                    >
+                      {item.filled ? (
+                        <Check className="w-2.5 h-2.5" strokeWidth={3} />
+                      ) : (
+                        <span className="w-1.5 h-1.5 rounded-full bg-current" />
+                      )}
+                    </span>
+                    <span className={item.filled ? "" : "italic"}>
+                      {item.label}
+                      {!item.filled && (
+                        <span className="ml-1 text-[10px] uppercase tracking-wider text-muted-foreground/70">
+                          (manquant)
+                        </span>
+                      )}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+              {!allFilled && (
+                <p className="text-[10px] text-muted-foreground mt-3 leading-relaxed">
+                  Tous les champs sont optionnels, mais plus votre message est précis, plus notre réponse sera adaptée.
+                </p>
+              )}
+            </div>
+
             <a
               href={whatsappHref}
               target="_blank"
