@@ -46,9 +46,21 @@ const contactSchema = z.object({
     .regex(SAFE_TEXT_REGEX, "Ville : caractères spéciaux non autorisés")
     .optional()
     .or(z.literal("")),
+  sector: z
+    .string()
+    .trim()
+    .max(SECTOR_MAX, `Zone : ${SECTOR_MAX} caractères max`)
+    .regex(SECTOR_REGEX, "Zone : caractères spéciaux non autorisés")
+    .optional()
+    .or(z.literal("")),
 });
 
-const buildWhatsAppMessage = (name: string, city: string, goal: GoalValue | undefined) => {
+const buildWhatsAppMessage = (
+  name: string,
+  city: string,
+  goal: GoalValue | undefined,
+  sector: string,
+) => {
   const cleanName = name.trim();
   const cleanCity = city.trim();
   const intro = cleanName
