@@ -629,7 +629,7 @@ const BusinessSection = () => {
               <div className="flex items-center justify-between gap-2">
                 <Label htmlFor="biz-sector" className="text-xs">
                   <Building2 className="inline w-3.5 h-3.5 mr-1 text-primary" />
-                  Zone / secteur <span className="text-muted-foreground font-normal">(optionnel)</span>
+                  Votre zone d'activité <span className="text-muted-foreground font-normal">(ville – commune / quartier)</span>
                 </Label>
                 <span className={`text-[10px] tabular-nums ${getCounterClass(sector.length, SECTOR_MAX)}`}>
                   {sector.length}/{SECTOR_MAX}
@@ -646,7 +646,7 @@ const BusinessSection = () => {
                 value={sector}
                 onChange={handleSectorChange}
                 onBlur={() => setSectorTouched(true)}
-                placeholder="Ex : Cocody, Yopougon, quartier 220 logements…"
+                placeholder={SECTOR_PLACEHOLDER}
                 maxLength={SECTOR_MAX}
                 aria-invalid={sectorTouched && !!validation.sectorError}
                 aria-describedby="biz-sector-error biz-sector-hint"
@@ -663,9 +663,28 @@ const BusinessSection = () => {
                   <span>{validation.sectorError}</span>
                 </p>
               ) : (
-                <p id="biz-sector-hint" className="text-[10px] text-muted-foreground">
-                  Lettres, chiffres, espaces et , . / - ’ uniquement.
-                </p>
+                <div id="biz-sector-hint" className="space-y-1">
+                  <p className="text-[10px] text-muted-foreground">
+                    Indiquez votre <strong className="font-medium">ville</strong> puis votre <strong className="font-medium">commune ou quartier</strong>. Exemples :
+                  </p>
+                  <ul className="flex flex-wrap gap-1.5">
+                    {SECTOR_EXAMPLES.map((ex) => (
+                      <li key={ex}>
+                        <button
+                          type="button"
+                          onClick={() => {
+                            setSector(ex.slice(0, SECTOR_MAX));
+                            setSectorTouched(false);
+                          }}
+                          className="text-[10px] px-2 py-0.5 rounded-full bg-primary/10 text-primary hover:bg-primary/20 transition-colors"
+                          aria-label={`Utiliser l'exemple : ${ex}`}
+                        >
+                          {ex}
+                        </button>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               )}
             </div>
 
