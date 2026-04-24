@@ -49,6 +49,8 @@ const GOAL_OPTIONS = [
 ] as const;
 
 type GoalValue = (typeof GOAL_OPTIONS)[number]["value"];
+const GOAL_VALUES = GOAL_OPTIONS.map((g) => g.value) as [GoalValue, ...GoalValue[]];
+const goalSchema = z.enum(GOAL_VALUES, { errorMap: () => ({ message: "Objectif : option invalide" }) }).optional();
 type Lang = "fr" | "en";
 
 const LANG_OPTIONS: { value: Lang; label: string }[] = [
@@ -88,6 +90,7 @@ const contactSchema = z.object({
     })
     .optional()
     .or(z.literal("")),
+  goal: goalSchema,
 });
 
 const I18N = {
@@ -169,9 +172,16 @@ const BusinessSection = () => {
   const [lang, setLang] = useState<Lang>("fr");
 
   const validation = useMemo(() => {
-    const result = contactSchema.safeParse({ name, city, sector, phone });
+    const result = contactSchema.safeParse({ name, city, sector, phone, goal });
     if (result.success)
-      return { isValid: true, nameError: "", cityError: "", sectorError: "", phoneError: "" };
+      return {
+        isValid: true,
+        nameError: "",
+        cityError: "",
+        sectorError: "",
+        phoneError: "",
+        goalError: "",
+      };
     const errors = result.error.flatten().fieldErrors;
     return {
       isValid: false,
@@ -179,8 +189,9 @@ const BusinessSection = () => {
       cityError: errors.city?.[0] ?? "",
       sectorError: errors.sector?.[0] ?? "",
       phoneError: errors.phone?.[0] ?? "",
+      goalError: errors.goal?.[0] ?? "",
     };
-  }, [name, city, sector, phone]);
+  }, [name, city, sector, phone, goal]);
 
   const whatsappHref = validation.isValid
     ? `https://wa.me/${WHATSAPP_NUMBER}?text=${buildWhatsAppMessage(name, city, goal, sector, phone, lang)}`
@@ -333,8 +344,19 @@ const BusinessSection = () => {
                 <Target className="inline w-3.5 h-3.5 mr-1 text-primary" />
                 Votre objectif <span className="text-muted-foreground font-normal">(optionnel)</span>
               </Label>
-              <Select value={goal} onValueChange={(v) => setGoal(v as GoalValue)}>
-                <SelectTrigger id="biz-goal" className="w-full">
+              <Select
+                value={goal}
+                onValueChange={(v) => {
+                  // Whitelist : on n'accepte que les valeurs déclarées dans GOAL_OPTIONS.
+                  setGoal(GOAL_VALUES.includes(v as GoalValue) ? (v as GoalValue) : undefined);
+                }}
+              >
+                <SelectTrigger
+                  id="biz-goal"
+                  className={`w-full ${validation.goalError ? "border-destructive focus-visible:ring-destructive" : ""}`}
+                  aria-invalid={!!validation.goalError}
+                  aria-describedby="biz-goal-error"
+                >
                   <SelectValue placeholder="Choisir un objectif…" />
                 </SelectTrigger>
                 <SelectContent>
@@ -345,6 +367,12 @@ const BusinessSection = () => {
                   ))}
                 </SelectContent>
               </Select>
+              {validation.goalError && (
+                <p id="biz-goal-error" className="text-[11px] text-destructive flex items-center gap-1">
+                  <AlertCircle className="w-3 h-3" />
+                  {validation.goalError}
+                </p>
+              )}
             </div>
 
             <div className="space-y-1.5 text-left">
