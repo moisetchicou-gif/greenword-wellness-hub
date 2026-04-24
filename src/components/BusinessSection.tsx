@@ -45,7 +45,7 @@ const contactSchema = z.object({
     .or(z.literal("")),
 });
 
-const buildWhatsAppMessage = (name: string, city: string, goal: GoalValue) => {
+const buildWhatsAppMessage = (name: string, city: string, goal: GoalValue | undefined) => {
   const cleanName = name.trim();
   const cleanCity = city.trim();
   const intro = cleanName
