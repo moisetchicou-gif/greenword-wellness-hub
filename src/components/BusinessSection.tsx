@@ -76,6 +76,13 @@ const benefits = [
   "Plan de carrière évolutif et international",
 ];
 
+const getCounterClass = (current: number, max: number) => {
+  const ratio = current / max;
+  if (current >= max) return "text-destructive font-semibold";
+  if (ratio >= 0.85) return "text-amber-600 dark:text-amber-500 font-medium";
+  return "text-muted-foreground";
+};
+
 const BusinessSection = () => {
   const { ref, visible } = useScrollReveal(0.1);
   const [name, setName] = useState("");
