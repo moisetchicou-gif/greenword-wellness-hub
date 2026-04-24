@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { X, Minus, Plus, ShoppingCart } from "lucide-react";
+import { X, Minus, Plus, ShoppingCart, AlertTriangle } from "lucide-react";
+import { toast } from "sonner";
 import { useCart } from "@/hooks/useCart";
 import { orderFormSchema, safeOpenExternal } from "@/lib/sanitize";
 import { usePersistentState } from "@/hooks/usePersistentState";
@@ -128,16 +129,40 @@ Merci de confirmer la réception de ma commande 🙏`;
     setStep("done");
   };
 
+  // Message d'erreur affiché dans le drawer si l'ouverture de Wave échoue
+  // (URL invalide, domaine bloqué, exception navigateur, pop-up bloquée…).
+  // Stocké en state plutôt qu'en simple toast pour que le client le voie même
+  // si les notifications sont masquées ou s'il fait défiler la page.
+  // null = pas d'erreur active.
+  const [payError, setPayError] = useState<string | null>(null);
+
   const handlePay = () => {
+    setPayError(null);
+
     if (selectedPayment === "Wave") {
       // 1) Génère le numéro de commande
       const refId = generateOrderRef();
+
+      // 2) Tente d'ouvrir Wave dans un nouvel onglet pour le paiement.
+      //    Si l'ouverture échoue, on N'OUVRE PAS WhatsApp et on prévient le client.
+      const waveOpened = safeOpenExternal(WAVE_PAYMENT_LINK);
+      if (!waveOpened) {
+        const msg =
+          "Impossible d'ouvrir la page de paiement Wave. Vérifiez que les pop-ups ne sont pas bloquées par votre navigateur, puis réessayez.";
+        setPayError(msg);
+        toast.error("Ouverture de Wave impossible", { description: msg });
+        return;
+      }
+
+      // 3) Wave ouvert avec succès → on enregistre le n° de commande
+      //    et on redirige immédiatement le client vers WhatsApp.
       setOrderRef(refId);
-      // 2) Ouvre Wave dans un nouvel onglet pour le paiement
-      safeOpenExternal(WAVE_PAYMENT_LINK);
-      // 3) Redirige immédiatement le client vers WhatsApp (message pré-rempli avec le n° de commande).
-      //    Les deux ouvertures sont déclenchées dans le même geste utilisateur => pas de blocage navigateur.
-      safeOpenExternal(buildWhatsAppUrl(refId));
+      const waOpened = safeOpenExternal(buildWhatsAppUrl(refId));
+      if (!waOpened) {
+        toast.warning("WhatsApp n'a pas pu s'ouvrir automatiquement", {
+          description: "Votre paiement Wave est lancé. Contactez-nous sur WhatsApp pour confirmer votre commande.",
+        });
+      }
       clearCart();
       setStep("done");
       return;
