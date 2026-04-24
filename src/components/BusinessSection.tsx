@@ -360,6 +360,12 @@ const readString = (raw: unknown, max: number): string => {
 /** Charge le brouillon depuis localStorage en validant chaque champ (défensif). */
 const loadDraft = (): DraftState => {
   if (typeof window === "undefined") return EMPTY_DRAFT;
+  // Pas de chargement sans consentement explicite (RGPD).
+  try {
+    if (window.localStorage.getItem("gw.persistence.consent.v1") !== "1") return EMPTY_DRAFT;
+  } catch {
+    return EMPTY_DRAFT;
+  }
   try {
     const raw = window.localStorage.getItem(DRAFT_STORAGE_KEY);
     if (!raw) return EMPTY_DRAFT;
@@ -382,10 +388,11 @@ const loadDraft = (): DraftState => {
   }
 };
 
-/** Sauvegarde le brouillon (silencieux si quota plein / mode privé). */
+/** Sauvegarde le brouillon (silencieux si quota plein / mode privé / consentement refusé). */
 const saveDraft = (draft: DraftState) => {
   if (typeof window === "undefined") return;
   try {
+    if (window.localStorage.getItem("gw.persistence.consent.v1") !== "1") return;
     // Si tout est vide, on nettoie la clé pour ne pas polluer le storage.
     const isEmpty =
       !draft.name && !draft.city && !draft.sector && !draft.phone && !draft.goal && draft.lang === "fr";
