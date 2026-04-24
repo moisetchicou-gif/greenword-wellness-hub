@@ -1,5 +1,5 @@
 import { useState, useMemo, useEffect } from "react";
-import { Briefcase, TrendingUp, Plane, Car, Home, Gift, Check, User, MapPin, AlertCircle, Target, Building2, Phone, Languages, RotateCcw, Lock, Unlock } from "lucide-react";
+import { Briefcase, TrendingUp, Plane, Car, Home, Gift, Check, User, MapPin, AlertCircle, Target, Building2, Phone, Languages, RotateCcw, Lock } from "lucide-react";
 import { z } from "zod";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { Input } from "@/components/ui/input";
@@ -334,27 +334,6 @@ const getInputBorderClass = (current: number, max: number, hasError: boolean) =>
 
 // ----- Persistance locale du brouillon de formulaire -----
 const DRAFT_STORAGE_KEY = "gw.business.contact.draft.v1";
-// Préférence UI distincte : « bloquer l'envoi tant que tous les champs ne sont pas remplis ».
-const STRICT_MODE_STORAGE_KEY = "gw.business.contact.strict.v1";
-
-const loadStrictMode = (): boolean => {
-  if (typeof window === "undefined") return false;
-  try {
-    return window.localStorage.getItem(STRICT_MODE_STORAGE_KEY) === "1";
-  } catch {
-    return false;
-  }
-};
-
-const saveStrictMode = (enabled: boolean) => {
-  if (typeof window === "undefined") return;
-  try {
-    if (enabled) window.localStorage.setItem(STRICT_MODE_STORAGE_KEY, "1");
-    else window.localStorage.removeItem(STRICT_MODE_STORAGE_KEY);
-  } catch {
-    // ignore
-  }
-};
 
 type DraftState = {
   name: string;
@@ -455,7 +434,6 @@ const BusinessSection = () => {
     sector: false,
   });
   const [sectorTouched, setSectorTouched] = useState(false);
-  const [strictMode, setStrictMode] = useState<boolean>(() => loadStrictMode());
   const [justRestored, setJustRestored] = useState<boolean>(
     () => initialDraft !== EMPTY_DRAFT &&
       (!!initialDraft.name || !!initialDraft.city || !!initialDraft.sector || !!initialDraft.phone || !!initialDraft.goal),
@@ -468,11 +446,6 @@ const BusinessSection = () => {
     }, 300);
     return () => window.clearTimeout(handle);
   }, [name, city, sector, phone, goal, lang]);
-
-  // Persiste la préférence « strict » immédiatement (pas besoin de debounce, événement rare).
-  useEffect(() => {
-    saveStrictMode(strictMode);
-  }, [strictMode]);
 
   // Masque la bannière « valeurs restaurées » au bout de quelques secondes.
   useEffect(() => {
@@ -575,9 +548,9 @@ const BusinessSection = () => {
   const totalCount = checklist.length;
   const allFilled = filledCount === totalCount;
   const missingFields = checklist.filter((c) => !c.filled);
-  // Le bouton WhatsApp est actif uniquement si la validation passe ET — en mode strict —
-  // si tous les champs clés sont remplis. Empêche tout envoi prématuré côté client.
-  const canSend = validation.isValid && (!strictMode || allFilled);
+  // Tous les champs sont obligatoires : le bouton WhatsApp ne s'active que si la validation passe
+  // ET si l'intégralité de la checklist est remplie. Empêche tout envoi prématuré côté client.
+  const canSend = validation.isValid && allFilled;
 
   const whatsappHref = canSend
     ? `https://wa.me/${WHATSAPP_NUMBER}?text=${buildWhatsAppMessage(
@@ -740,7 +713,7 @@ const BusinessSection = () => {
                 <div className="flex items-center justify-between gap-2">
                   <Label htmlFor="biz-name" className="text-xs">
                     <User className="inline w-3.5 h-3.5 mr-1 text-primary" />
-                    Votre nom <span className="text-muted-foreground font-normal">(optionnel)</span>
+                    Votre nom <span className="text-destructive font-normal">*</span>
                   </Label>
                   <span className={`text-[10px] tabular-nums ${getCounterClass(name.length, NAME_MAX)}`}>
                     {name.length}/{NAME_MAX}
@@ -767,7 +740,7 @@ const BusinessSection = () => {
                 <div className="flex items-center justify-between gap-2">
                   <Label htmlFor="biz-city" className="text-xs">
                     <MapPin className="inline w-3.5 h-3.5 mr-1 text-primary" />
-                    Votre ville <span className="text-muted-foreground font-normal">(optionnel)</span>
+                    Votre ville <span className="text-destructive font-normal">*</span>
                   </Label>
                   <span className={`text-[10px] tabular-nums ${getCounterClass(city.length, CITY_MAX)}`}>
                     {city.length}/{CITY_MAX}
@@ -814,7 +787,7 @@ const BusinessSection = () => {
             <div className="space-y-1.5 text-left">
               <Label htmlFor="biz-goal" className="text-xs">
                 <Target className="inline w-3.5 h-3.5 mr-1 text-primary" />
-                Votre objectif <span className="text-muted-foreground font-normal">(optionnel)</span>
+                Votre objectif <span className="text-destructive font-normal">*</span>
               </Label>
               <Select
                 value={goal}
@@ -851,7 +824,7 @@ const BusinessSection = () => {
               <div className="flex items-center justify-between gap-2">
                 <Label htmlFor="biz-sector" className="text-xs">
                   <Building2 className="inline w-3.5 h-3.5 mr-1 text-primary" />
-                  Votre zone d'activité <span className="text-muted-foreground font-normal">(ville – commune / quartier)</span>
+                  Votre zone d'activité <span className="text-destructive font-normal">*</span> <span className="text-muted-foreground font-normal">(ville – commune / quartier)</span>
                 </Label>
                 <span className={`text-[10px] tabular-nums ${getCounterClass(sector.length, SECTOR_MAX)}`}>
                   {sector.length}/{SECTOR_MAX}
@@ -914,7 +887,7 @@ const BusinessSection = () => {
               <div className="flex items-center justify-between gap-2">
                 <Label htmlFor="biz-phone" className="text-xs">
                   <Phone className="inline w-3.5 h-3.5 mr-1 text-primary" />
-                  Ton numéro de téléphone <span className="text-muted-foreground font-normal">(optionnel)</span>
+                  Ton numéro de téléphone <span className="text-destructive font-normal">*</span>
                 </Label>
                 <span className={`text-[10px] tabular-nums ${getCounterClass(phone.length, PHONE_MAX)}`}>
                   {phone.length}/{PHONE_MAX}
@@ -996,52 +969,26 @@ const BusinessSection = () => {
                   </li>
                 ))}
               </ul>
-              {!allFilled && !strictMode && (
-                <p className="text-[10px] text-muted-foreground mt-3 leading-relaxed">
-                  Tous les champs sont optionnels, mais plus votre message est précis, plus notre réponse sera adaptée.
-                </p>
-              )}
-              {strictMode && !allFilled && (
+              {!allFilled && (
                 <p
                   role="alert"
                   className="text-[11px] text-destructive mt-3 leading-relaxed flex items-start gap-1.5"
                 >
                   <Lock className="w-3 h-3 mt-0.5 shrink-0" aria-hidden="true" />
                   <span>
-                    Mode strict activé : remplissez les {missingFields.length} champ
+                    Remplissez les {missingFields.length} champ
                     {missingFields.length > 1 ? "s" : ""} manquant
                     {missingFields.length > 1 ? "s" : ""} (
-                    {missingFields.map((f) => f.label).join(", ")}) pour débloquer l'envoi.
+                    {missingFields.map((f) => f.label).join(", ")}) pour pouvoir envoyer le message.
                   </span>
                 </p>
               )}
-              {/* Toggle « mode strict » : persiste la préférence dans localStorage. */}
-              <label
-                htmlFor="biz-strict-mode"
-                className="mt-4 flex items-start gap-2.5 cursor-pointer select-none rounded-lg border border-border/40 bg-background/50 px-3 py-2.5 hover:border-primary/40 transition-colors"
-              >
-                <input
-                  id="biz-strict-mode"
-                  type="checkbox"
-                  checked={strictMode}
-                  onChange={(e) => setStrictMode(e.target.checked)}
-                  className="mt-0.5 h-4 w-4 rounded border-border accent-primary cursor-pointer shrink-0"
-                  aria-describedby="biz-strict-mode-desc"
-                />
-                <span className="flex-1 text-[11px] leading-relaxed">
-                  <span className="font-semibold text-accent flex items-center gap-1.5">
-                    {strictMode ? (
-                      <Lock className="w-3 h-3 text-primary" aria-hidden="true" />
-                    ) : (
-                      <Unlock className="w-3 h-3 text-muted-foreground" aria-hidden="true" />
-                    )}
-                    Bloquer l'envoi tant que tous les champs ne sont pas remplis
-                  </span>
-                  <span id="biz-strict-mode-desc" className="block text-muted-foreground mt-0.5">
-                    Recommandé pour garantir un message complet et obtenir une réponse plus rapide.
-                  </span>
-                </span>
-              </label>
+              {allFilled && (
+                <p className="text-[11px] text-primary mt-3 leading-relaxed flex items-start gap-1.5">
+                  <Check className="w-3 h-3 mt-0.5 shrink-0" aria-hidden="true" />
+                  <span>Tous les champs sont remplis : vous pouvez envoyer votre message.</span>
+                </p>
+              )}
             </div>
 
             <a
@@ -1050,7 +997,7 @@ const BusinessSection = () => {
               rel="noopener noreferrer"
               aria-disabled={!canSend}
               title={
-                !canSend && strictMode && !allFilled
+                !canSend && !allFilled
                   ? `Remplissez d'abord : ${missingFields.map((f) => f.label).join(", ")}`
                   : undefined
               }
