@@ -29,34 +29,41 @@ const ProductCard = ({ product, index }: { product: Product; index: number }) =>
   return (
     <div
       ref={ref}
-      className={`bg-card rounded-2xl border border-border/60 overflow-hidden group transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] hover:shadow-premium hover:-translate-y-1.5 ${visible ? "opacity-100 translate-y-0 blur-0" : "opacity-0 translate-y-12 blur-[2px]"}`}
+      className={`bg-card rounded-2xl border border-border/60 overflow-hidden group transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] hover:shadow-premium hover:-translate-y-1.5 flex flex-col h-full ${visible ? "opacity-100 translate-y-0 blur-0" : "opacity-0 translate-y-12 blur-[2px]"}`}
       style={{ transitionDelay: `${index * 80}ms` }}
     >
       <Link
         to={`/produit/${getProductSlug(product)}`}
         aria-label={`Voir les détails de ${product.name}`}
-        className="aspect-square bg-secondary/30 flex items-center justify-center p-6 overflow-hidden relative focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+        className="aspect-square bg-secondary/30 flex items-center justify-center p-3 sm:p-6 overflow-hidden relative focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 shrink-0"
       >
         <img src={product.image} alt={product.name} className="w-full h-full object-contain group-hover:scale-110 transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]" loading="lazy" />
-        <div className="absolute top-3 left-3 flex gap-1.5">
-          <span className="glass text-accent text-[10px] font-semibold px-2.5 py-1 rounded-full">{product.bv} BV</span>
+        <div className="absolute top-2 left-2 sm:top-3 sm:left-3 flex gap-1.5">
+          <span className="glass text-accent text-[9px] sm:text-[10px] font-semibold px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-full">{product.bv} BV</span>
         </div>
         {/* Hover overlay */}
         <div className="absolute inset-0 bg-gradient-to-t from-primary/[0.06] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
       </Link>
-      <div className="p-5 space-y-3">
-        <Link to={`/produit/${getProductSlug(product)}`} className="text-base font-display text-accent group-hover:text-primary transition-colors duration-300 block">{product.name}</Link>
-        <ul className="space-y-1">
-          {product.benefits.map((b) => (
+      <div className="p-3 sm:p-5 flex flex-col flex-1 gap-2 sm:gap-3">
+        <Link
+          to={`/produit/${getProductSlug(product)}`}
+          className="text-sm sm:text-base font-display text-accent group-hover:text-primary transition-colors duration-300 block line-clamp-2 min-h-[2.5rem] sm:min-h-[3rem] leading-snug"
+          title={product.name}
+        >
+          {product.name}
+        </Link>
+        <ul className="space-y-1 hidden sm:block">
+          {product.benefits.slice(0, 3).map((b) => (
             <li key={b} className="text-muted-foreground text-xs flex items-start gap-2">
-              <span className="text-primary mt-0.5 text-sm">✓</span>{b}
+              <span className="text-primary mt-0.5 text-sm shrink-0">✓</span>
+              <span className="line-clamp-1">{b}</span>
             </li>
           ))}
         </ul>
-        <p className="text-accent font-semibold text-lg font-display">{product.price}</p>
+        <p className="text-accent font-semibold text-base sm:text-lg font-display mt-auto">{product.price}</p>
         <button
           onClick={handleAdd}
-          className={`w-full px-6 py-2.5 rounded-full text-sm font-medium active:scale-[0.95] transition-all duration-300 mt-1 flex items-center justify-center gap-2 tracking-wide ${
+          className={`w-full px-3 sm:px-6 py-2 sm:py-2.5 rounded-full text-xs sm:text-sm font-medium active:scale-[0.95] transition-all duration-300 flex items-center justify-center gap-1.5 sm:gap-2 tracking-wide ${
             added
               ? "bg-primary text-primary-foreground shadow-lg shadow-primary/25"
               : "bg-accent text-accent-foreground hover:shadow-lg hover:shadow-accent/20 hover:scale-[1.02]"
@@ -64,13 +71,14 @@ const ProductCard = ({ product, index }: { product: Product; index: number }) =>
         >
           {added ? (
             <>
-              <Check className="w-4 h-4" />
-              Ajouté !
+              <Check className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+              <span>Ajouté !</span>
             </>
           ) : (
             <>
-              <ShoppingCart className="w-4 h-4" />
-              Ajouter au panier
+              <ShoppingCart className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+              <span className="truncate">Ajouter</span>
+              <span className="hidden sm:inline">au panier</span>
             </>
           )}
         </button>
@@ -127,7 +135,7 @@ const ProductsSection = () => {
           ))}
         </div>
 
-        <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-3 sm:gap-5">
+        <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-3 sm:gap-5 auto-rows-fr items-stretch">
           {displayed.map((product, i) => (
             <ProductCard key={product.id} product={product} index={i} />
           ))}
