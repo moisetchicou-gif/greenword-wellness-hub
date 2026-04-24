@@ -25,6 +25,26 @@ const SECTOR_REGEX = /^[\p{L}0-9\s'’\-,/.]*$/u;
 // Téléphone : chiffres, espaces, +, parenthèses, points, tirets.
 const PHONE_REGEX = /^[+0-9\s().-]*$/;
 
+/**
+ * Normalise un texte avant validation et envoi :
+ * - normalisation Unicode NFC (compose les accents)
+ * - unifie les apostrophes typographiques (’ ‘ ` ´) → '
+ * - unifie les tirets longs (— –) → -
+ * - réduit les suites d'espaces / tabulations / sauts de ligne en un seul espace
+ * - trim final
+ */
+const normalizeText = (raw: string): string =>
+  raw
+    .normalize("NFC")
+    .replace(/[’‘`´]/g, "'")
+    .replace(/[—–]/g, "-")
+    .replace(/\s+/g, " ")
+    .trim();
+
+/** Normalise un numéro de téléphone : compacte les espaces. */
+const normalizePhone = (raw: string): string =>
+  raw.normalize("NFC").replace(/\s+/g, " ").trim();
+
 const GOAL_OPTIONS = [
   {
     value: "revente",
