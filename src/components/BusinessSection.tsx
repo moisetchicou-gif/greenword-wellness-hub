@@ -134,6 +134,18 @@ const I18N = {
   },
 } as const;
 
+// Limite de sécurité pour le texte WhatsApp décodé (wa.me accepte ~4096, on reste large).
+export const WA_MESSAGE_MAX = 1500;
+
+/** Tronque proprement à la fin du dernier mot complet et ajoute « … ». */
+const truncateAtWord = (text: string, max: number): string => {
+  if (text.length <= max) return text;
+  const slice = text.slice(0, Math.max(0, max - 1));
+  const lastSpace = slice.lastIndexOf(" ");
+  const cut = lastSpace > max * 0.5 ? slice.slice(0, lastSpace) : slice;
+  return `${cut.replace(/[.,;:\-\s]+$/, "")}…`;
+};
+
 export const buildWhatsAppMessage = (
   name: string | undefined | null,
   city: string | undefined | null,
@@ -151,13 +163,35 @@ export const buildWhatsAppMessage = (
   const goalSentence = goalOption
     ? `${t.goalPrefix}${goalOption.message[lang]}.`
     : t.fallbackGoal;
-  const cleanSector = (sector ?? "").trim();
-  const sectorSentence = cleanSector ? `${t.sectorPrefix}${cleanSector}.` : "";
+  let cleanSector = (sector ?? "").trim();
   const cleanPhone = (phone ?? "").trim();
   const phoneSentence = cleanPhone ? `${t.phonePrefix}${cleanPhone}.` : "";
-  return encodeURIComponent(
-    `${intro} ${goalSentence}${sectorSentence}${phoneSentence}${t.closing}`
-  );
+
+  // Calcule la place disponible pour le secteur après assemblage des autres parties.
+  // Tout ce qui n'est PAS le secteur est prioritaire.
+  const fixedParts = `${intro} ${goalSentence}${phoneSentence}${t.closing}`;
+  const sectorWrapperLen = `${t.sectorPrefix}.`.length;
+  const availableForSector = WA_MESSAGE_MAX - fixedParts.length - sectorWrapperLen;
+
+  let sectorSentence = "";
+  if (cleanSector) {
+    if (availableForSector <= 3) {
+      // Pas assez de place : on supprime totalement la ligne secteur plutôt que d'envoyer un fragment illisible.
+      cleanSector = "";
+    } else {
+      cleanSector = truncateAtWord(cleanSector, availableForSector);
+      sectorSentence = `${t.sectorPrefix}${cleanSector}.`;
+    }
+  }
+
+  let finalText = `${intro} ${goalSentence}${sectorSentence}${phoneSentence}${t.closing}`;
+
+  // Garde-fou : si malgré tout on dépasse (cas extrême : nom/ville très longs), on tronque le tout.
+  if (finalText.length > WA_MESSAGE_MAX) {
+    finalText = truncateAtWord(finalText, WA_MESSAGE_MAX);
+  }
+
+  return encodeURIComponent(finalText);
 };
 
 const rewards = [
