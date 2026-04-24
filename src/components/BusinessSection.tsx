@@ -70,8 +70,10 @@ const buildWhatsAppMessage = (
   const goalSentence = goalOption
     ? `Mon objectif : ${goalOption.message}.`
     : `Je suis intéressé(e) par l'opportunité Business Green World (devenir distributeur).`;
+  const cleanSector = sector.trim();
+  const sectorSentence = cleanSector ? ` Zone / secteur : ${cleanSector}.` : "";
   return encodeURIComponent(
-    `${intro} ${goalSentence} Pouvez-vous me donner plus d'informations ?`
+    `${intro} ${goalSentence}${sectorSentence} Pouvez-vous me donner plus d'informations ?`
   );
 };
 
