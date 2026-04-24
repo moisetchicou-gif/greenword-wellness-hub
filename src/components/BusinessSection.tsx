@@ -34,6 +34,9 @@ const benefits = [
 
 const BusinessSection = () => {
   const { ref, visible } = useScrollReveal(0.1);
+  const [name, setName] = useState("");
+  const [city, setCity] = useState("");
+  const whatsappHref = `https://wa.me/${WHATSAPP_NUMBER}?text=${buildWhatsAppMessage(name, city)}`;
 
   return (
     <section
