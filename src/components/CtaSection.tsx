@@ -1,5 +1,5 @@
 import { Phone, Mail, MapPin, ArrowRight, Facebook } from "lucide-react";
-import logoWave from "@/assets/logo-wave.png";
+
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 
 const CtaSection = () => {
@@ -78,22 +78,6 @@ const CtaSection = () => {
           </a>
         </div>
 
-        {/* Payment methods */}
-        <div className="pt-10">
-          <p className="text-xs opacity-60 mb-5 uppercase tracking-wider">Méthodes de paiement acceptées</p>
-          <div className="flex flex-wrap justify-center gap-5">
-            {[
-              { name: "Wave", logo: logoWave },
-            ].map((method) => (
-              <div key={method.name} className="flex flex-col items-center gap-2 group">
-                <div className="w-14 h-10 rounded-lg bg-accent-foreground/90 flex items-center justify-center shadow-md overflow-hidden p-1.5 group-hover:scale-110 transition-transform duration-300">
-                  <img src={method.logo} alt={method.name} className="w-full h-full object-contain" />
-                </div>
-                <span className="text-[10px] opacity-60 group-hover:opacity-100 transition-opacity">{method.name}</span>
-              </div>
-            ))}
-          </div>
-        </div>
       </div>
     </section>
   );
