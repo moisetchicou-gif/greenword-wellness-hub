@@ -1,4 +1,4 @@
-import heroProduct from "@/assets/hero-product.png";
+import heroProduct from "@/assets/hero-product.webp";
 import { useScrollReveal, useCountUp } from "@/hooks/useScrollReveal";
 import { Sparkles, ArrowDown } from "lucide-react";
 

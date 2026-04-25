@@ -1,6 +1,6 @@
-import scannerImg from "@/assets/scanner-qrma-cover.jpg";
+import scannerImg from "@/assets/scanner-qrma-cover.webp";
 import detoxImg from "@/assets/product-detoxin-pad.jpg";
-import detoxCoverImg from "@/assets/detox-bains-pieds-cover.jpg";
+import detoxCoverImg from "@/assets/detox-bains-pieds-cover.webp";
 
 export interface OfferTestimonial {
   name: string;
