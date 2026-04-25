@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState } from "react";
-import bioPhoto1 from "@/assets/bio-photo-1.png";
-import bioPhoto2 from "@/assets/bio-photo-2.jpeg";
-import bioPhoto3 from "@/assets/bio-photo-3.jpeg";
-import bioPhoto4 from "@/assets/bio-photo-4.jpeg";
+import bioPhoto1 from "@/assets/bio-photo-1.webp";
+import bioPhoto2 from "@/assets/bio-photo-2.webp";
+import bioPhoto3 from "@/assets/bio-photo-3.webp";
+import bioPhoto4 from "@/assets/bio-photo-4.webp";
 
 const BiographySection = () => {
   const ref = useRef<HTMLDivElement>(null);

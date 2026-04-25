@@ -1,16 +1,16 @@
 import { useState, useEffect, useCallback, memo } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
-import slider1 from "@/assets/slider-1.jpg";
-import slider2 from "@/assets/slider-2.jpg";
-import slider3 from "@/assets/slider-3.jpg";
-import slider4 from "@/assets/slider-4.jpg";
-import slider5 from "@/assets/slider-5.jpg";
-import slider6 from "@/assets/slider-6.jpg";
-import slider7 from "@/assets/slider-7.jpg";
-import slider8 from "@/assets/slider-8.jpg";
-import slider9 from "@/assets/slider-9.jpg";
-import slider10 from "@/assets/slider-10.jpg";
+import slider1 from "@/assets/slider-1.webp";
+import slider2 from "@/assets/slider-2.webp";
+import slider3 from "@/assets/slider-3.webp";
+import slider4 from "@/assets/slider-4.webp";
+import slider5 from "@/assets/slider-5.webp";
+import slider6 from "@/assets/slider-6.webp";
+import slider7 from "@/assets/slider-7.webp";
+import slider8 from "@/assets/slider-8.webp";
+import slider9 from "@/assets/slider-9.webp";
+import slider10 from "@/assets/slider-10.webp";
 
 const slides = [slider1, slider2, slider3, slider4, slider5, slider6, slider7, slider8, slider9, slider10];
 
