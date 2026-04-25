@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { X, Minus, Plus, ShoppingCart, AlertTriangle } from "lucide-react";
+import { X, Minus, Plus, ShoppingCart, AlertTriangle, MessageCircle, Camera } from "lucide-react";
 import { toast } from "sonner";
 import { useCart } from "@/hooks/useCart";
 import { orderFormSchema, safeOpenExternal } from "@/lib/sanitize";
