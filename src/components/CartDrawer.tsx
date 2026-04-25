@@ -368,6 +368,61 @@ Merci de confirmer la réception de ma commande 🙏`;
                     Payer maintenant
                   </button>
                 </div>
+
+                {/* Guide complet : du paiement à la réception de la commande */}
+                <div className="mt-5 bg-secondary/40 border border-border/60 rounded-2xl p-4 space-y-3">
+                  <p className="text-sm font-display text-foreground flex items-center gap-2">
+                    <span className="text-base">📋</span>
+                    Comment ça se passe ?
+                  </p>
+                  <ol className="space-y-3 text-xs text-foreground/85 leading-relaxed">
+                    <li className="flex gap-3">
+                      <span className="shrink-0 w-6 h-6 rounded-full bg-primary text-primary-foreground text-[11px] font-bold flex items-center justify-center">1</span>
+                      <span>
+                        <strong>Cliquez sur « Payer maintenant »</strong> : la page sécurisée <strong>Wave</strong> s'ouvre dans un nouvel onglet avec le montant déjà rempli.
+                      </span>
+                    </li>
+                    <li className="flex gap-3">
+                      <span className="shrink-0 w-6 h-6 rounded-full bg-primary text-primary-foreground text-[11px] font-bold flex items-center justify-center">2</span>
+                      <span>
+                        <strong>Validez le paiement</strong> dans l'application Wave (code secret ou empreinte digitale). Wave affiche ensuite un <strong>reçu</strong> avec un numéro de transaction.
+                      </span>
+                    </li>
+                    <li className="flex gap-3">
+                      <span className="shrink-0 w-6 h-6 rounded-full bg-primary text-primary-foreground text-[11px] font-bold flex items-center justify-center">3</span>
+                      <span className="flex items-start gap-1.5">
+                        <Camera className="w-4 h-4 text-primary shrink-0 mt-0.5" />
+                        <span>
+                          <strong>Faites une capture d'écran</strong> du reçu Wave (bouton power + volume bas sur Android, power + volume haut sur iPhone).
+                        </span>
+                      </span>
+                    </li>
+                    <li className="flex gap-3">
+                      <span className="shrink-0 w-6 h-6 rounded-full bg-primary text-primary-foreground text-[11px] font-bold flex items-center justify-center">4</span>
+                      <span className="flex items-start gap-1.5">
+                        <MessageCircle className="w-4 h-4 text-primary shrink-0 mt-0.5" />
+                        <span>
+                          Revenez ici et cliquez sur <strong>« Envoyer mon reçu sur WhatsApp »</strong>. Un message pré-rempli avec votre commande s'ouvre — il suffit de <strong>joindre la capture</strong> et d'envoyer.
+                        </span>
+                      </span>
+                    </li>
+                    <li className="flex gap-3">
+                      <span className="shrink-0 w-6 h-6 rounded-full bg-primary text-primary-foreground text-[11px] font-bold flex items-center justify-center">5</span>
+                      <span>
+                        Notre équipe <strong>vérifie le paiement</strong> et vous confirme la commande sur WhatsApp <strong>sous 24 h</strong>.
+                      </span>
+                    </li>
+                    <li className="flex gap-3">
+                      <span className="shrink-0 w-6 h-6 rounded-full bg-primary text-primary-foreground text-[11px] font-bold flex items-center justify-center">6</span>
+                      <span>
+                        <strong>Réception</strong> : livraison à l'adresse indiquée 🚚 — généralement <strong>24 à 72 h</strong> à Abidjan, <strong>3 à 7 jours</strong> en intérieur du pays.
+                      </span>
+                    </li>
+                  </ol>
+                  <div className="pt-2 border-t border-border/50 text-[11px] text-muted-foreground leading-relaxed">
+                    ⚠️ <strong>Important :</strong> sans l'envoi du reçu sur WhatsApp, la commande ne peut pas être validée ni expédiée.
+                  </div>
+                </div>
               </div>
             </div>
           )}
