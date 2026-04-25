@@ -373,23 +373,75 @@ Merci de confirmer la réception de ma commande 🙏`;
           )}
 
           {step === "done" && (
-            <div className="text-center py-12 space-y-4">
+            <div className="text-center py-8 space-y-5">
               <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto">
                 <span className="text-3xl">✅</span>
               </div>
-              <h3 className="text-xl font-display text-foreground">Commande confirmée !</h3>
+              <h3 className="text-xl font-display text-foreground">
+                {completedPaymentMethod === "Wave" ? "Paiement Wave lancé !" : "Commande confirmée !"}
+              </h3>
               {orderRef && (
                 <div className="mx-auto inline-flex flex-col items-center gap-1 px-4 py-3 rounded-2xl bg-secondary/60 border border-border/60">
                   <span className="text-[11px] uppercase tracking-widest text-muted-foreground">Numéro de commande</span>
                   <span className="font-mono font-semibold text-foreground text-base">{orderRef}</span>
                 </div>
               )}
-              <p className="text-muted-foreground text-sm max-w-xs mx-auto">
-                Wave et WhatsApp se sont ouverts dans un nouvel onglet. Finalisez votre paiement Wave puis envoyez le message WhatsApp pré-rempli pour confirmer votre commande.
-              </p>
-              <button onClick={handleClose} className="bg-primary text-primary-foreground px-6 py-2.5 rounded-full text-sm font-semibold hover:opacity-90 transition-opacity">
-                Fermer
-              </button>
+
+              {completedPaymentMethod === "Wave" ? (
+                <>
+                  {/* Étapes claires pour le client après paiement Wave */}
+                  <div className="text-left bg-secondary/40 border border-border/60 rounded-2xl p-4 space-y-3 max-w-sm mx-auto">
+                    <p className="text-sm font-semibold text-foreground flex items-center gap-2">
+                      <span className="w-6 h-6 rounded-full bg-primary text-primary-foreground text-xs flex items-center justify-center font-bold">1</span>
+                      Finalisez le paiement sur Wave
+                    </p>
+                    <p className="text-sm font-semibold text-foreground flex items-center gap-2">
+                      <Camera className="w-5 h-5 text-primary shrink-0" />
+                      <span>
+                        <span className="w-6 h-6 rounded-full bg-primary text-primary-foreground text-xs inline-flex items-center justify-center font-bold mr-2">2</span>
+                        Faites une <strong>capture d'écran du reçu Wave</strong>
+                      </span>
+                    </p>
+                    <p className="text-sm font-semibold text-foreground flex items-center gap-2">
+                      <MessageCircle className="w-5 h-5 text-primary shrink-0" />
+                      <span>
+                        <span className="w-6 h-6 rounded-full bg-primary text-primary-foreground text-xs inline-flex items-center justify-center font-bold mr-2">3</span>
+                        Envoyez-la sur <strong>WhatsApp</strong> avec le message ci-dessous
+                      </span>
+                    </p>
+                  </div>
+
+                  <div className="bg-primary/5 border border-primary/20 rounded-xl p-3 max-w-sm mx-auto">
+                    <p className="text-xs text-foreground/80 leading-relaxed">
+                      ⚠️ <strong>Sans le reçu Wave</strong>, votre commande ne pourra pas être validée ni expédiée.
+                    </p>
+                  </div>
+
+                  <button
+                    onClick={openWhatsAppFromDone}
+                    className="w-full max-w-sm mx-auto bg-[#25D366] text-white py-3.5 rounded-full font-semibold hover:opacity-90 active:scale-[0.97] transition-all flex items-center justify-center gap-2 shadow-lg"
+                  >
+                    <MessageCircle className="w-5 h-5" />
+                    Envoyer mon reçu sur WhatsApp
+                  </button>
+
+                  <button
+                    onClick={handleClose}
+                    className="text-muted-foreground text-sm underline hover:no-underline"
+                  >
+                    Fermer
+                  </button>
+                </>
+              ) : (
+                <>
+                  <p className="text-muted-foreground text-sm max-w-xs mx-auto">
+                    WhatsApp s'est ouvert dans un nouvel onglet. Envoyez le message pré-rempli pour confirmer votre commande.
+                  </p>
+                  <button onClick={handleClose} className="bg-primary text-primary-foreground px-6 py-2.5 rounded-full text-sm font-semibold hover:opacity-90 transition-opacity">
+                    Fermer
+                  </button>
+                </>
+              )}
             </div>
           )}
         </div>
