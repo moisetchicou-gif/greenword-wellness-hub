@@ -461,3 +461,37 @@
   background: hsl(var(--primary) / 0.15);
   color: hsl(var(--accent));
 }
+
+/* === Optimisations performances mobile === */
+/* Sur petits écrans : couper les animations coûteuses (blur, rotate, pulse infinis)
+   et réduire les filtres pour soulager le GPU/CPU. */
+@media (max-width: 768px) {
+  .animate-pulse-soft,
+  .animate-rotate-slow,
+  .animate-glow,
+  .animate-float {
+    animation: none !important;
+  }
+  /* Réduire fortement les blur très coûteux sur mobile */
+  .blur-\[80px\],
+  .blur-\[100px\],
+  .blur-\[120px\],
+  .blur-\[60px\] {
+    filter: blur(20px) !important;
+  }
+  /* Désactiver le custom cursor sur mobile (par sécurité) */
+  .premium-cursor {
+    display: none !important;
+  }
+}
+
+/* Respecter prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
