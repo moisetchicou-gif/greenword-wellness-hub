@@ -84,6 +84,10 @@ const HeroSection = () => {
             <img
               src={heroProduct}
               alt="Produit Green World Prestige — Complément alimentaire naturel"
+              width={384}
+              height={384}
+              fetchPriority="high"
+              decoding="async"
               className="w-48 sm:w-72 md:w-96 drop-shadow-2xl relative z-10 animate-float"
             />
           </div>
