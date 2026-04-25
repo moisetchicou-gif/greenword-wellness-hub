@@ -128,11 +128,17 @@ Merci de confirmer la réception de ma commande 🙏`;
   // Génère un identifiant de commande unique (court, lisible).
   const generateOrderRef = () => `GW-${Date.now().toString(36).toUpperCase()}`;
 
+  // Mémorise le moyen de paiement utilisé pour la commande en cours afin
+  // d'adapter le message WhatsApp affiché à l'écran "done" (notamment pour
+  // demander la capture du reçu Wave).
+  const [completedPaymentMethod, setCompletedPaymentMethod] = useState<string | null>(null);
+
   // Cas non-Wave : envoi direct du récapitulatif WhatsApp.
   const sendWhatsAppConfirmation = () => {
     const refId = generateOrderRef();
     setOrderRef(refId);
-    safeOpenExternal(buildWhatsAppUrl(refId));
+    setCompletedPaymentMethod(selectedPayment);
+    safeOpenExternal(buildWhatsAppUrl(refId, selectedPayment));
     clearCart();
     setStep("done");
   };
@@ -162,15 +168,13 @@ Merci de confirmer la réception de ma commande 🙏`;
         return;
       }
 
-      // 3) Wave ouvert avec succès → on enregistre le n° de commande
-      //    et on redirige immédiatement le client vers WhatsApp.
+      // 3) Wave ouvert avec succès → on passe à l'écran de confirmation
+      //    qui guide le client vers WhatsApp pour envoyer son reçu.
+      //    On N'OUVRE PLUS WhatsApp automatiquement : la plupart des navigateurs
+      //    mobiles bloquent l'ouverture simultanée de deux onglets externes,
+      //    et le client doit d'abord finir le paiement Wave avant d'envoyer le reçu.
       setOrderRef(refId);
-      const waOpened = safeOpenExternal(buildWhatsAppUrl(refId));
-      if (!waOpened) {
-        toast.warning("WhatsApp n'a pas pu s'ouvrir automatiquement", {
-          description: "Votre paiement Wave est lancé. Contactez-nous sur WhatsApp pour confirmer votre commande.",
-        });
-      }
+      setCompletedPaymentMethod("Wave");
       clearCart();
       setStep("done");
       return;
@@ -178,6 +182,19 @@ Merci de confirmer la réception de ma commande 🙏`;
 
     // Pour les autres moyens de paiement, envoyer directement
     sendWhatsAppConfirmation();
+  };
+
+  // Ouvre WhatsApp avec le message de confirmation pré-rempli depuis l'écran "done".
+  // Utilisé principalement pour le paiement Wave : appelé quand le client a fini
+  // de payer sur Wave et veut envoyer le reçu sur WhatsApp.
+  const openWhatsAppFromDone = () => {
+    if (!orderRef) return;
+    const opened = safeOpenExternal(buildWhatsAppUrl(orderRef, completedPaymentMethod));
+    if (!opened) {
+      toast.error("Ouverture de WhatsApp impossible", {
+        description: "Vérifiez que les pop-ups ne sont pas bloquées, puis réessayez.",
+      });
+    }
   };
 
   if (!isOpen) return null;
