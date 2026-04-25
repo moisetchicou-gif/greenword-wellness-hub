@@ -36,9 +36,9 @@ const HeroSection = () => {
             style={{ transitionDelay: "200ms" }}
           >
             La puissance de la nature,{" "}
-            <span className="italic text-primary relative">
+            <span className="italic text-gradient-warm relative">
               validée
-              <span className={`absolute -bottom-1 left-0 h-0.5 bg-gradient-to-r from-primary/50 to-gold/50 rounded-full transition-all duration-1000 ease-premium ${visible ? "w-full" : "w-0"}`} style={{ transitionDelay: "800ms" }} />
+              <span className={`absolute -bottom-1 left-0 h-0.5 bg-gradient-to-r from-coral via-gold to-primary rounded-full transition-all duration-1000 ease-premium ${visible ? "w-full" : "w-0"}`} style={{ transitionDelay: "800ms" }} />
             </span>{" "}
             par la science.
           </h1>
