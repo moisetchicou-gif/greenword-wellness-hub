@@ -34,13 +34,13 @@ const BiographySection = () => {
               🌟 Monsieur ASSOGBA OCTAVE : LE LEADER QUI FAIT REVIVRE LA SANTÉ NATURELLE EN CÔTE D'IVOIRE ! 🌟
             </p>
             <p>
-              Monsieur ASSOGBA OCTAVE, directeur visionnaire, passionné et d'une rare compétence, dirige Green World Koumassi Remblais avec une excellence qui inspire confiance et résultats concrets.
+              Monsieur ASSOGBA OCTAVE, directeur visionnaire, passionné et d'une rare compétence, dirige Green World Prestige Koumassi Remblais avec une excellence qui inspire confiance et résultats concrets.
             </p>
             <p>
               Son engagement total, son expertise pointue et son écoute exceptionnelle font de lui la référence absolue pour transformer des vies grâce à la puissance de la nature.
             </p>
             <p>
-              Fondée en 1994 par le Dr. Deming Li (génie de la science végétale formé à Cornell), Green World domine mondialement avec des produits 100 % naturels d'une efficacité redoutable :
+              Fondée en 1994 par le Dr. Deming Li (génie de la science végétale formé à Cornell), Green World Prestige domine mondialement avec des produits 100 % naturels d'une efficacité redoutable :
             </p>
             <ul className="space-y-2 pl-2">
               <li className="flex items-start gap-2"><span className="text-primary">•</span>Compléments alimentaires ultra-puissants qui explosent l'énergie, renforcent l'immunité, réparent le sommeil et boostent la vitalité en profondeur</li>
@@ -58,7 +58,7 @@ const BiographySection = () => {
             </p>
             <p>Ne laissez plus votre corps attendre.</p>
             <p className="font-semibold text-foreground">Choisissez l'excellence naturelle qui fait la différence depuis des décennies.</p>
-            <p>Rejoignez la révolution Green World portée par un leader d'exception en Côte d'Ivoire.</p>
+            <p>Rejoignez la révolution Green World Prestige portée par un leader d'exception en Côte d'Ivoire.</p>
             <p className="text-foreground font-bold">📞 Contactez-nous MAINTENANT – votre transformation commence aujourd'hui !</p>
             <p className="text-foreground font-semibold">Votre corps, votre famille, votre avenir vous diront MERCI ! 💥💚</p>
 
@@ -80,7 +80,7 @@ const BiographySection = () => {
                 className={`rounded-2xl overflow-hidden shadow-lg border border-border transition-all duration-500 ${visible ? "opacity-100 scale-100" : "opacity-0 scale-95"}`}
                 style={{ transitionDelay: `${300 + i * 150}ms` }}
               >
-                <img src={photo} alt={`Green World - Photo ${i + 1}`} className="w-full h-full object-cover aspect-square" />
+                <img src={photo} alt={`Green World Prestige - Photo ${i + 1}`} className="w-full h-full object-cover aspect-square" />
               </div>
             ))}
           </div>

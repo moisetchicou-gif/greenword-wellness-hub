@@ -30,7 +30,7 @@ const pillars = [
   {
     icon: ShieldCheck,
     title: "Marque reconnue depuis 1994",
-    desc: "Green World est une entreprise internationale de phytothérapie présente dans plus de 70 pays, reconnue pour la qualité et la traçabilité de ses produits 100% naturels.",
+    desc: "Green World Prestige est une entreprise internationale de phytothérapie présente dans plus de 70 pays, reconnue pour la qualité et la traçabilité de ses produits 100% naturels.",
   },
   {
     icon: GraduationCap,
@@ -73,7 +73,7 @@ const steps = [
   {
     n: "03",
     title: "Inscription gratuite",
-    desc: "Vous êtes inscrit(e) en tant que distributeur officiel Green World et recevez votre identifiant personnel.",
+    desc: "Vous êtes inscrit(e) en tant que distributeur officiel Green World Prestige et recevez votre identifiant personnel.",
   },
   {
     n: "04",
@@ -124,10 +124,10 @@ const Business = () => (
 
         <div className="text-center space-y-5">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 text-primary text-xs font-semibold uppercase tracking-[0.2em]">
-            Opportunité Business Green World
+            Opportunité Business Green World Prestige
           </div>
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-display text-accent leading-tight">
-            Devenez <span className="italic text-primary">distributeur</span> Green World en Côte d'Ivoire
+            Devenez <span className="italic text-primary">distributeur</span> Green World Prestige en Côte d'Ivoire
           </h1>
           <p className="text-muted-foreground text-base sm:text-lg leading-relaxed max-w-2xl mx-auto">
             Rejoignez un réseau international de phytothérapie reconnu depuis 1994. Gagnez{" "}
@@ -166,7 +166,7 @@ const Business = () => (
     <section className="py-14 sm:py-20">
       <div className="container mx-auto px-4 sm:px-6 max-w-6xl">
         <div className="text-center max-w-2xl mx-auto mb-10 space-y-3">
-          <h2 className="text-2xl sm:text-3xl font-display text-accent">Ce que Green World vous offre</h2>
+          <h2 className="text-2xl sm:text-3xl font-display text-accent">Ce que Green World Prestige vous offre</h2>
           <p className="text-muted-foreground text-sm sm:text-base">
             Au-delà de la commission directe, le plan de carrière débloque progressivement de nombreuses récompenses.
           </p>

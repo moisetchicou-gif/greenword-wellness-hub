@@ -7,7 +7,7 @@ describe("buildWhatsAppMessage", () => {
   it("génère un message FR sans nom ni ville", () => {
     const out = decode(buildWhatsAppMessage("", "", undefined, "", "", "fr"));
     expect(out).toContain("Bonjour.");
-    expect(out).toContain("Je souhaite en savoir plus sur l'opportunité Business Green World");
+    expect(out).toContain("Je souhaite en savoir plus sur l'opportunité Business Green World Prestige");
     expect(out).toContain("Merci de me recontacter dès que possible.");
   });
 
@@ -40,11 +40,11 @@ describe("buildWhatsAppMessage", () => {
   it.each([
     ["revente", "fr", "faire de la revente de produits"],
     ["distribution", "fr", "rejoindre le réseau de distribution"],
-    ["demarrage", "fr", "démarrer une activité avec Green World"],
+    ["demarrage", "fr", "démarrer une activité avec Green World Prestige"],
     ["info", "fr", "obtenir plus d'informations sur l'opportunité"],
     ["revente", "en", "resell the products"],
     ["distribution", "en", "join the distribution network"],
-    ["demarrage", "en", "start a business with Green World"],
+    ["demarrage", "en", "start a business with Green World Prestige"],
     ["info", "en", "get more information about the opportunity"],
   ] as const)("intègre l'objectif %s en %s", (goal, lang, expected) => {
     const out = decode(buildWhatsAppMessage("Aïcha", "", goal, "", "", lang));
@@ -56,7 +56,7 @@ describe("buildWhatsAppMessage", () => {
       // @ts-expect-error - valeur volontairement invalide
       buildWhatsAppMessage("Aïcha", "", "hacker", "", "", "fr"),
     );
-    expect(out).toContain("Je souhaite en savoir plus sur l'opportunité Business Green World");
+    expect(out).toContain("Je souhaite en savoir plus sur l'opportunité Business Green World Prestige");
   });
 
   it("intègre zone/secteur et téléphone quand renseignés", () => {

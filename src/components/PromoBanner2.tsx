@@ -7,7 +7,7 @@ const PromoBanner2 = () => {
             Produits naturels
           </p>
           <h3 className="text-2xl sm:text-3xl font-bold text-foreground">
-            Commandez aujourd'hui vos produits Green World !
+            Commandez aujourd'hui vos produits Green World Prestige !
           </h3>
           <p className="text-muted-foreground max-w-lg mx-auto">
             Disponible sur Abidjan et dans toutes les grandes villes de Côte d'Ivoire.

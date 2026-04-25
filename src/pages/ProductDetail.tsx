@@ -24,17 +24,17 @@ const ProductDetail = () => {
     "@context": "https://schema.org",
     "@type": "Product",
     name: product.name,
-    description: `${product.name} — complément alimentaire naturel Green World. ${product.benefits.join(". ")}.`,
+    description: `${product.name} — complément alimentaire naturel Green World Prestige. ${product.benefits.join(". ")}.`,
     image: [product.image],
     category: product.category,
-    brand: { "@type": "Brand", name: "Green World" },
+    brand: { "@type": "Brand", name: "Green World Prestige" },
     offers: {
       "@type": "Offer",
       url: canonical,
       priceCurrency: "XOF",
       price: product.priceNum,
       availability: "https://schema.org/InStock",
-      seller: { "@type": "Organization", name: "Green World" },
+      seller: { "@type": "Organization", name: "Green World Prestige" },
     },
   };
   const breadcrumbJsonLd = {
@@ -61,8 +61,8 @@ const ProductDetail = () => {
   return (
     <div className="min-h-screen">
       <SEO
-        title={`${product.name} — ${product.category} ${product.price} | Green World`}
-        description={`${product.name} : ${product.benefits.slice(0, 2).join(", ")}. Complément alimentaire naturel Green World à ${product.price}. Livraison en Côte d'Ivoire.`}
+        title={`${product.name} — ${product.category} ${product.price} | Green World Prestige`}
+        description={`${product.name} : ${product.benefits.slice(0, 2).join(", ")}. Complément alimentaire naturel Green World Prestige à ${product.price}. Livraison en Côte d'Ivoire.`}
         canonical={canonical}
         image={product.image}
         type="product"
@@ -176,7 +176,7 @@ const ProductDetail = () => {
                 <p className="text-xs text-muted-foreground leading-relaxed">
                   {product.conseils
                     ? product.conseils
-                    : `${product.name} est un complément alimentaire naturel de la gamme Green World. Formulé à partir d'ingrédients 100% naturels, il est conçu pour soutenir votre bien-être au quotidien.`}
+                    : `${product.name} est un complément alimentaire naturel de la gamme Green World Prestige. Formulé à partir d'ingrédients 100% naturels, il est conçu pour soutenir votre bien-être au quotidien.`}
                 </p>
               </div>
 

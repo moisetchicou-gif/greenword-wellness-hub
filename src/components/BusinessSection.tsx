@@ -120,7 +120,7 @@ const GOAL_OPTIONS = [
   {
     value: "demarrage",
     label: "Démarrage d'activité",
-    message: { fr: "démarrer une activité avec Green World", en: "start a business with Green World" },
+    message: { fr: "démarrer une activité avec Green World Prestige", en: "start a business with Green World Prestige" },
   },
   {
     value: "info",
@@ -181,7 +181,7 @@ const I18N = {
     helloAnon: (c: string) => `Bonjour${c ? ` (${c})` : ""}.`,
     goalPrefix: " Mon objectif : ",
     // Reformulé pour éviter la répétition « je suis » avec helloNamed.
-    fallbackGoal: " Je souhaite en savoir plus sur l'opportunité Business Green World (devenir distributeur).",
+    fallbackGoal: " Je souhaite en savoir plus sur l'opportunité Business Green World Prestige (devenir distributeur).",
     sectorPrefix: " Zone / secteur : ",
     phonePrefix: " Mon numéro : ",
     // Reformulé pour éviter la répétition du mot « informations » avec fallbackGoal.
@@ -191,7 +191,7 @@ const I18N = {
     helloNamed: (n: string, c: string) => `Hello, I'm ${n}${c ? ` (${c})` : ""}.`,
     helloAnon: (c: string) => `Hello${c ? ` (${c})` : ""}.`,
     goalPrefix: " My goal: ",
-    fallbackGoal: " I'd like to learn more about the Green World Business opportunity (becoming a distributor).",
+    fallbackGoal: " I'd like to learn more about the Green World Prestige Business opportunity (becoming a distributor).",
     sectorPrefix: " Area / sector: ",
     phonePrefix: " My phone number: ",
     closing: " Please get back to me as soon as possible.",
@@ -578,7 +578,7 @@ const BusinessSection = () => {
             Opportunité Business
           </div>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-display text-accent leading-tight">
-            Devenez <span className="italic text-primary">distributeur</span> Green World
+            Devenez <span className="italic text-primary">distributeur</span> Green World Prestige
           </h2>
           <p className="text-muted-foreground text-sm sm:text-base leading-relaxed">
             Rejoignez notre réseau et gagnez <strong className="text-accent">20% de commission</strong> sur les ventes,
@@ -594,7 +594,7 @@ const BusinessSection = () => {
         >
           <img
             src={businessHero}
-            alt="Distributrice Green World élégante entourée des récompenses du programme : voyages internationaux, voiture, maison, produits naturels"
+            alt="Distributrice Green World Prestige élégante entourée des récompenses du programme : voyages internationaux, voiture, maison, produits naturels"
             loading="lazy"
             width={1920}
             height={1080}
@@ -615,7 +615,7 @@ const BusinessSection = () => {
           <figcaption className="absolute inset-0 flex flex-col justify-end sm:justify-center p-6 sm:p-10 md:p-14 max-w-xl text-left">
             <span className="inline-flex items-center gap-2 self-start px-3 py-1 rounded-full bg-[hsl(var(--gold))]/20 backdrop-blur-sm border border-[hsl(var(--gold))]/40 text-[hsl(var(--gold))] text-[10px] font-semibold uppercase tracking-[0.2em] mb-3 sm:mb-4">
               <Briefcase className="w-3 h-3" />
-              Réseau Green World
+              Réseau Green World Prestige
             </span>
             <p className="font-display text-2xl sm:text-3xl md:text-4xl text-white leading-tight">
               Une vie qui change,<br />
@@ -623,7 +623,7 @@ const BusinessSection = () => {
             </p>
             <p className="hidden sm:block text-white/80 text-sm md:text-base mt-3 max-w-md leading-relaxed">
               Des milliers de distributeurs en Côte d'Ivoire et à travers l'Afrique
-              transforment leur quotidien grâce au plan de carrière Green World.
+              transforment leur quotidien grâce au plan de carrière Green World Prestige.
             </p>
             <div className="hidden md:flex items-center gap-4 mt-5 text-white/90 text-xs">
               <div className="flex items-center gap-1.5">

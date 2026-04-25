@@ -8,8 +8,8 @@ const Bienfaits = () => {
   return (
     <div className="min-h-screen flex flex-col">
       <SEO
-        title="Nos bienfaits — Tous les produits Green World"
-        description="Découvrez les bienfaits détaillés de chaque complément alimentaire naturel Green World : énergie, immunité, détox, beauté, vitalité et bien plus."
+        title="Nos bienfaits — Tous les produits Green World Prestige"
+        description="Découvrez les bienfaits détaillés de chaque complément alimentaire naturel Green World Prestige : énergie, immunité, détox, beauté, vitalité et bien plus."
         canonical={siteUrl + "/bienfaits"}
       />
       <Navbar />
@@ -19,7 +19,7 @@ const Bienfaits = () => {
             Nos <span className="italic text-primary">bienfaits</span>
           </h1>
           <p className="text-muted-foreground max-w-2xl mx-auto text-sm sm:text-base leading-relaxed">
-            Retrouvez tous les bienfaits, produit par produit, de la gamme Green World.
+            Retrouvez tous les bienfaits, produit par produit, de la gamme Green World Prestige.
           </p>
         </div>
         <FeaturesSection />

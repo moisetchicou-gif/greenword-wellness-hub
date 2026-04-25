@@ -73,7 +73,7 @@ const FeaturesSection = () => {
             Pourquoi <span className="italic text-primary">nous choisir</span> ?
           </h2>
           <p className="text-muted-foreground max-w-xl mx-auto text-sm leading-relaxed">
-            Chaque produit Green World est conçu pour cibler des besoins de santé spécifiques avec des ingrédients 100% naturels.
+            Chaque produit Green World Prestige est conçu pour cibler des besoins de santé spécifiques avec des ingrédients 100% naturels.
           </p>
         </div>
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
