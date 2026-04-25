@@ -8,15 +8,13 @@ const HeroSection = () => {
   return (
     <section
       ref={ref}
-      className="relative min-h-screen flex items-center overflow-hidden pt-16"
-      style={{
-        background: "linear-gradient(165deg, hsl(60 20% 98%) 0%, hsl(48 30% 95%) 40%, hsl(145 20% 92%) 100%)",
-      }}
+      className="relative min-h-screen flex items-center overflow-hidden pt-16 bg-hero-warm"
     >
       {/* Animated gradient orbs */}
-      <div className="absolute top-20 left-10 w-72 h-72 rounded-full bg-primary/8 blur-[80px] animate-pulse-soft" />
-      <div className="absolute bottom-20 right-10 w-96 h-96 rounded-full bg-gold/10 blur-[100px] animate-pulse-soft" style={{ animationDelay: "2s" }} />
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] rounded-full bg-primary/[0.03] blur-[120px]" />
+      <div className="absolute top-20 left-10 w-72 h-72 rounded-full bg-coral/15 blur-[80px] animate-pulse-soft" />
+      <div className="absolute bottom-20 right-10 w-96 h-96 rounded-full bg-gold/15 blur-[100px] animate-pulse-soft" style={{ animationDelay: "2s" }} />
+      <div className="absolute top-1/3 right-1/4 w-80 h-80 rounded-full bg-primary/10 blur-[90px] animate-pulse-soft" style={{ animationDelay: "1s" }} />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] rounded-full bg-primary/[0.04] blur-[120px]" />
 
       {/* Rotating decorative ring */}
       <div className="absolute top-1/2 right-[15%] -translate-y-1/2 w-[500px] h-[500px] rounded-full border border-primary/[0.06] animate-rotate-slow hidden lg:block" />
@@ -38,9 +36,9 @@ const HeroSection = () => {
             style={{ transitionDelay: "200ms" }}
           >
             La puissance de la nature,{" "}
-            <span className="italic text-primary relative">
+            <span className="italic text-gradient-warm relative">
               validée
-              <span className={`absolute -bottom-1 left-0 h-0.5 bg-gradient-to-r from-primary/50 to-gold/50 rounded-full transition-all duration-1000 ease-premium ${visible ? "w-full" : "w-0"}`} style={{ transitionDelay: "800ms" }} />
+              <span className={`absolute -bottom-1 left-0 h-0.5 bg-gradient-to-r from-coral via-gold to-primary rounded-full transition-all duration-1000 ease-premium ${visible ? "w-full" : "w-0"}`} style={{ transitionDelay: "800ms" }} />
             </span>{" "}
             par la science.
           </h1>
