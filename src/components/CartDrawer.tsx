@@ -82,7 +82,8 @@ const CartDrawer = () => {
   const WAVE_PAYMENT_LINK = `https://pay.wave.com/m/M_ci_tXW_B6Tybbrb/c/ci/?amount=${total}`;
 
   // Construit le message WhatsApp pré-rempli pour la commande, en incluant le numéro de commande.
-  const buildWhatsAppUrl = (refId: string) => {
+  // Pour Wave, le message demande explicitement au client de joindre la capture du reçu.
+  const buildWhatsAppUrl = (refId: string, paymentMethod?: string | null) => {
     const hour = new Date().getHours();
     const greeting = hour < 18 ? "Bonjour" : "Bonsoir";
     const civ = form.civilite;
@@ -93,6 +94,13 @@ const CartDrawer = () => {
     const itemsList = items
       .map((i) => `• ${i.name} x${i.quantity} — ${(i.priceNum * i.quantity).toLocaleString("fr-FR")} FCFA`)
       .join("\n");
+
+    const method = paymentMethod ?? selectedPayment;
+    const isWave = method === "Wave";
+
+    const receiptLine = isWave
+      ? `\n📸 *Je joins ci-dessous la capture du reçu de paiement Wave* pour validation.\n`
+      : "";
 
     const message = `${greeting}, j'ai passé une commande sur Green World Prestige 🌿 et j'ai effectué le paiement ✅
 
@@ -110,8 +118,8 @@ const CartDrawer = () => {
 ${itemsList}
 
 💰 *Total payé :* ${total.toLocaleString("fr-FR")} FCFA
-💳 *J'ai payé via :* ${selectedPayment}
-
+💳 *J'ai payé via :* ${method}
+${receiptLine}
 Merci de confirmer la réception de ma commande 🙏`;
 
     return `https://wa.me/2250715736370?text=${encodeURIComponent(message)}`;
