@@ -6,7 +6,7 @@
 
 @layer base {
   :root {
-    --background: 60 20% 98%;
+    --background: 42 40% 98%;
     --foreground: 160 30% 12%;
 
     --card: 0 0% 100%;
@@ -15,23 +15,28 @@
     --popover: 0 0% 100%;
     --popover-foreground: 160 30% 12%;
 
-    --primary: 145 45% 38%;
+    --primary: 145 50% 36%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 48 30% 95%;
+    --secondary: 38 55% 94%;
     --secondary-foreground: 160 30% 12%;
 
-    --muted: 45 15% 94%;
-    --muted-foreground: 160 12% 46%;
+    --muted: 38 30% 93%;
+    --muted-foreground: 160 12% 42%;
 
     --accent: 160 35% 14%;
-    --accent-foreground: 48 60% 95%;
+    --accent-foreground: 38 60% 96%;
 
-    --highlight: 42 50% 78%;
+    --highlight: 38 75% 80%;
     --highlight-foreground: 160 30% 12%;
 
-    --gold: 42 70% 55%;
+    --gold: 38 80% 56%;
     --gold-foreground: 0 0% 100%;
+
+    /* Couleur complémentaire chaleureuse (terracotta/corail) */
+    --coral: 14 75% 62%;
+    --coral-foreground: 0 0% 100%;
+    --coral-soft: 18 80% 92%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
