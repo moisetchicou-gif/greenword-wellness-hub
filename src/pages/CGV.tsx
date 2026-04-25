@@ -14,14 +14,14 @@ const CGV = () => (
         <section>
           <h2 className="text-foreground font-display text-xl font-semibold">1. Objet</h2>
           <p>
-            Les présentes Conditions Générales de Vente (CGV) régissent l'ensemble des ventes de produits effectuées par Green World via le site internet greenworldprestige.com. Toute commande implique l'acceptation sans réserve des présentes CGV.
+            Les présentes Conditions Générales de Vente (CGV) régissent l'ensemble des ventes de produits effectuées par Green World Prestige via le site internet greenworldprestige.com. Toute commande implique l'acceptation sans réserve des présentes CGV.
           </p>
         </section>
 
         <section>
           <h2 className="text-foreground font-display text-xl font-semibold">2. Identité du vendeur</h2>
           <p>
-            <strong>Green World</strong><br />
+            <strong>Green World Prestige</strong><br />
             Compléments alimentaires naturels<br />
             Siège : Koumassi Remblais, Rue de la Mosquée Ramata, à côté de Choco Bar, Immeuble Résidence 2000, Bureau 2 — Abidjan, Côte d'Ivoire<br />
             Téléphone : <a href="tel:+2252733747334" className="text-primary hover:underline">+225 27 33 74 73 34</a><br />
@@ -32,14 +32,14 @@ const CGV = () => (
         <section>
           <h2 className="text-foreground font-display text-xl font-semibold">3. Produits</h2>
           <p>
-            Les produits proposés sont des compléments alimentaires 100 % naturels. Les descriptions et photographies sont fournies à titre indicatif. Green World s'efforce de présenter les caractéristiques essentielles des produits avec la plus grande exactitude possible. Les compléments alimentaires ne sont pas des médicaments et ne peuvent se substituer à un traitement médical.
+            Les produits proposés sont des compléments alimentaires 100 % naturels. Les descriptions et photographies sont fournies à titre indicatif. Green World Prestige s'efforce de présenter les caractéristiques essentielles des produits avec la plus grande exactitude possible. Les compléments alimentaires ne sont pas des médicaments et ne peuvent se substituer à un traitement médical.
           </p>
         </section>
 
         <section>
           <h2 className="text-foreground font-display text-xl font-semibold">4. Prix</h2>
           <p>
-            Les prix sont indiqués en Francs CFA (FCFA), toutes taxes comprises. Green World se réserve le droit de modifier ses prix à tout moment. Les produits sont facturés au prix en vigueur au moment de la validation de la commande.
+            Les prix sont indiqués en Francs CFA (FCFA), toutes taxes comprises. Green World Prestige se réserve le droit de modifier ses prix à tout moment. Les produits sont facturés au prix en vigueur au moment de la validation de la commande.
           </p>
         </section>
 
@@ -55,7 +55,7 @@ const CGV = () => (
             <li>Confirmation de la commande via WhatsApp</li>
           </ol>
           <p>
-            La commande est considérée comme définitive après le paiement et l'envoi du message de confirmation WhatsApp. Green World se réserve le droit de refuser toute commande en cas de données manifestement erronées ou incomplètes.
+            La commande est considérée comme définitive après le paiement et l'envoi du message de confirmation WhatsApp. Green World Prestige se réserve le droit de refuser toute commande en cas de données manifestement erronées ou incomplètes.
           </p>
         </section>
 
@@ -76,7 +76,7 @@ const CGV = () => (
         <section>
           <h2 className="text-foreground font-display text-xl font-semibold">7. Livraison</h2>
           <p>
-            La livraison est effectuée à l'adresse indiquée par le client lors de la commande. Les délais de livraison sont communiqués à titre indicatif et peuvent varier selon la zone géographique. Green World s'engage à faire ses meilleurs efforts pour livrer dans les délais annoncés. En cas de retard significatif, le client sera informé par WhatsApp.
+            La livraison est effectuée à l'adresse indiquée par le client lors de la commande. Les délais de livraison sont communiqués à titre indicatif et peuvent varier selon la zone géographique. Green World Prestige s'engage à faire ses meilleurs efforts pour livrer dans les délais annoncés. En cas de retard significatif, le client sera informé par WhatsApp.
           </p>
         </section>
 
@@ -93,14 +93,14 @@ const CGV = () => (
         <section>
           <h2 className="text-foreground font-display text-xl font-semibold">9. Garanties et réclamations</h2>
           <p>
-            Tous les produits bénéficient de la garantie légale de conformité. En cas de produit défectueux ou non conforme, le client peut contacter Green World dans un délai de 30 jours suivant la réception pour obtenir un échange ou un remboursement. Une preuve d'achat (référence de commande) sera demandée.
+            Tous les produits bénéficient de la garantie légale de conformité. En cas de produit défectueux ou non conforme, le client peut contacter Green World Prestige dans un délai de 30 jours suivant la réception pour obtenir un échange ou un remboursement. Une preuve d'achat (référence de commande) sera demandée.
           </p>
         </section>
 
         <section>
           <h2 className="text-foreground font-display text-xl font-semibold">10. Responsabilité</h2>
           <p>
-            Green World ne saurait être tenu responsable des dommages résultant d'une mauvaise utilisation des produits. Les compléments alimentaires doivent être consommés dans le cadre d'un régime alimentaire varié et équilibré. Il est recommandé de consulter un professionnel de santé avant toute utilisation, notamment en cas de grossesse, d'allaitement ou de traitement médical en cours.
+            Green World Prestige ne saurait être tenu responsable des dommages résultant d'une mauvaise utilisation des produits. Les compléments alimentaires doivent être consommés dans le cadre d'un régime alimentaire varié et équilibré. Il est recommandé de consulter un professionnel de santé avant toute utilisation, notamment en cas de grossesse, d'allaitement ou de traitement médical en cours.
           </p>
         </section>
 
@@ -133,7 +133,7 @@ const CGV = () => (
           <h2 className="text-foreground font-display text-xl font-semibold">14. Contact</h2>
           <p>
             Pour toute question relative aux présentes CGV :<br />
-            <strong>Green World</strong><br />
+            <strong>Green World Prestige</strong><br />
             Email : <a href="mailto:greenworldkr25@gmail.com" className="text-primary hover:underline">greenworldkr25@gmail.com</a><br />
             Téléphone : <a href="tel:+2252733747334" className="text-primary hover:underline">+225 27 33 74 73 34</a><br />
             WhatsApp : <a href="https://wa.me/2250715736370" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">+225 07 15 73 63 70</a>

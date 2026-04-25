@@ -115,7 +115,7 @@ const ProductsSection = () => {
             Nos <span className="italic text-primary">Best-sellers</span>
           </h2>
           <p className="text-muted-foreground max-w-xl mx-auto text-sm leading-relaxed">
-            Découvrez notre gamme complète de compléments alimentaires naturels et produits Green World.
+            Découvrez notre gamme complète de compléments alimentaires naturels et produits Green World Prestige.
           </p>
         </div>
 

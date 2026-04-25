@@ -14,7 +14,7 @@ const MentionsLegales = () => (
         <section>
           <h2 className="text-foreground font-display text-xl font-semibold">1. Éditeur du site</h2>
           <p>
-            <strong>Green World</strong><br />
+            <strong>Green World Prestige</strong><br />
             Compléments alimentaires naturels<br />
             Siège : Koumassi Remblais, Rue de la Mosquée Ramata, à côté de Choco Bar, Immeuble Résidence 2000, Bureau 2 — Abidjan, Côte d'Ivoire<br />
             Téléphone : <a href="tel:+2252733747334" className="text-primary hover:underline">+225 27 33 74 73 34</a><br />
@@ -33,21 +33,21 @@ const MentionsLegales = () => (
         <section>
           <h2 className="text-foreground font-display text-xl font-semibold">3. Propriété intellectuelle</h2>
           <p>
-            L'ensemble des contenus présents sur ce site (textes, images, logos, graphismes, icônes) sont la propriété exclusive de Green World ou de leurs auteurs respectifs. Toute reproduction, représentation, modification ou adaptation, totale ou partielle, est strictement interdite sans autorisation écrite préalable.
+            L'ensemble des contenus présents sur ce site (textes, images, logos, graphismes, icônes) sont la propriété exclusive de Green World Prestige ou de leurs auteurs respectifs. Toute reproduction, représentation, modification ou adaptation, totale ou partielle, est strictement interdite sans autorisation écrite préalable.
           </p>
         </section>
 
         <section>
           <h2 className="text-foreground font-display text-xl font-semibold">4. Responsabilité</h2>
           <p>
-            Green World s'efforce de fournir des informations exactes et à jour. Toutefois, les informations diffusées sur ce site sont présentées à titre indicatif et ne sauraient engager la responsabilité de Green World en cas d'erreur ou d'omission. Les compléments alimentaires ne remplacent pas un régime alimentaire varié et équilibré ni un mode de vie sain.
+            Green World Prestige s'efforce de fournir des informations exactes et à jour. Toutefois, les informations diffusées sur ce site sont présentées à titre indicatif et ne sauraient engager la responsabilité de Green World Prestige en cas d'erreur ou d'omission. Les compléments alimentaires ne remplacent pas un régime alimentaire varié et équilibré ni un mode de vie sain.
           </p>
         </section>
 
         <section>
           <h2 className="text-foreground font-display text-xl font-semibold">5. Liens hypertextes</h2>
           <p>
-            Ce site peut contenir des liens vers des sites tiers. Green World ne saurait être tenu responsable du contenu de ces sites externes ni des éventuels dommages résultant de leur consultation.
+            Ce site peut contenir des liens vers des sites tiers. Green World Prestige ne saurait être tenu responsable du contenu de ces sites externes ni des éventuels dommages résultant de leur consultation.
           </p>
         </section>
 

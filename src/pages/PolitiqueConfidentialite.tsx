@@ -14,7 +14,7 @@ const PolitiqueConfidentialite = () => (
         <section>
           <h2 className="text-foreground font-display text-xl font-semibold">1. Introduction</h2>
           <p>
-            Green World s'engage à protéger la vie privée de ses utilisateurs. La présente politique de confidentialité décrit les types de données collectées, leur utilisation et les mesures prises pour les protéger, conformément au Règlement Général sur la Protection des Données (RGPD) et à la législation ivoirienne en vigueur.
+            Green World Prestige s'engage à protéger la vie privée de ses utilisateurs. La présente politique de confidentialité décrit les types de données collectées, leur utilisation et les mesures prises pour les protéger, conformément au Règlement Général sur la Protection des Données (RGPD) et à la législation ivoirienne en vigueur.
           </p>
         </section>
 
@@ -99,7 +99,7 @@ const PolitiqueConfidentialite = () => (
           <h2 className="text-foreground font-display text-xl font-semibold">10. Contact</h2>
           <p>
             Pour toute question relative à cette politique de confidentialité :<br />
-            <strong>Green World</strong><br />
+            <strong>Green World Prestige</strong><br />
             Email : <a href="mailto:greenworldkr25@gmail.com" className="text-primary hover:underline">greenworldkr25@gmail.com</a><br />
             Téléphone : <a href="tel:+2252733747334" className="text-primary hover:underline">+225 27 33 74 73 34</a>
           </p>

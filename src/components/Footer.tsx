@@ -9,8 +9,8 @@ const Footer = () => {
         <div className="grid md:grid-cols-3 gap-10">
           <div className="space-y-4">
             <div className="flex items-center gap-3">
-              <img src={logo} alt="Green World" className="w-10 h-10 object-contain rounded-lg" />
-              <span className="font-display text-lg text-accent-foreground">Green World</span>
+              <img src={logo} alt="Green World Prestige" className="w-10 h-10 object-contain rounded-lg" />
+              <span className="font-display text-lg text-accent-foreground">Green World Prestige</span>
             </div>
             <p className="text-xs leading-relaxed opacity-70">
               Votre partenaire santé naturel en Côte d'Ivoire. Des compléments alimentaires 100% naturels depuis 1994.
@@ -60,7 +60,7 @@ const Footer = () => {
             <Link to="/cgv" className="hover:text-accent-foreground transition-colors">CGV</Link>
             <Link to="/politique-confidentialite" className="hover:text-accent-foreground transition-colors">Confidentialité</Link>
           </div>
-          <p className="text-[10px] opacity-60">© 2026 Green World. Tous droits réservés.</p>
+          <p className="text-[10px] opacity-60">© 2026 Green World Prestige. Tous droits réservés.</p>
         </div>
       </div>
     </footer>

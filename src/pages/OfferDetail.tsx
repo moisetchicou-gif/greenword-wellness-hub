@@ -26,14 +26,14 @@ const OfferDetail = () => {
     name: offer.name,
     description: offer.shortDescription,
     image: [offer.image],
-    brand: { "@type": "Brand", name: "Green World" },
+    brand: { "@type": "Brand", name: "Green World Prestige" },
     offers: {
       "@type": "Offer",
       url: canonical,
       priceCurrency: "XOF",
       price: offer.priceNum,
       availability: "https://schema.org/InStock",
-      seller: { "@type": "Organization", name: "Green World" },
+      seller: { "@type": "Organization", name: "Green World Prestige" },
     },
     aggregateRating: {
       "@type": "AggregateRating",
@@ -70,7 +70,7 @@ const OfferDetail = () => {
   return (
     <div className="min-h-screen">
       <SEO
-        title={`${offer.name} — ${offer.tagline} à ${offer.price} | Green World`}
+        title={`${offer.name} — ${offer.tagline} à ${offer.price} | Green World Prestige`}
         description={offer.shortDescription}
         canonical={canonical}
         image={offer.image}

@@ -107,9 +107,9 @@ const Navbar = () => {
     <>
       <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled ? "bg-background/90 backdrop-blur-xl shadow-sm border-b border-border/50" : "bg-transparent"}`}>
         <div className="container mx-auto flex items-center justify-between h-14 sm:h-16 px-4 sm:px-6">
-          <a href="/" className="flex items-center gap-2.5 group" aria-label="Green World - Accueil">
-            <img src={logo} alt="Green World" className="w-9 h-9 object-contain rounded-md group-hover:scale-105 transition-transform duration-300" />
-            <span className="hidden sm:inline font-display text-lg text-accent tracking-wide">Green World</span>
+          <a href="/" className="flex items-center gap-2.5 group" aria-label="Green World Prestige - Accueil">
+            <img src={logo} alt="Green World Prestige" className="w-9 h-9 object-contain rounded-md group-hover:scale-105 transition-transform duration-300" />
+            <span className="hidden sm:inline font-display text-lg text-accent tracking-wide">Green World Prestige</span>
           </a>
 
           <div className="hidden lg:flex items-center gap-8 text-[13px] font-medium tracking-wide uppercase text-muted-foreground">

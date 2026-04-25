@@ -20,7 +20,7 @@ const CtaSection = () => {
           Prêt à transformer votre santé ?
         </h2>
         <p className={`max-w-lg mx-auto opacity-80 text-sm leading-relaxed transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`} style={{ transitionDelay: "200ms" }}>
-          Commandez dès aujourd'hui vos produits Green World. Satisfait ou remboursé pendant 30 jours.
+          Commandez dès aujourd'hui vos produits Green World Prestige. Satisfait ou remboursé pendant 30 jours.
         </p>
 
         <div className={`pt-2 transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`} style={{ transitionDelay: "300ms" }}>
@@ -73,7 +73,7 @@ const CtaSection = () => {
             <Facebook className="w-4 h-4 text-primary" />
             <div className="text-left">
               <p className="text-[10px] opacity-60 uppercase tracking-wider">Facebook</p>
-              <p className="font-medium text-sm">Green World CI</p>
+              <p className="font-medium text-sm">Green World Prestige CI</p>
             </div>
           </a>
         </div>

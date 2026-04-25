@@ -24,11 +24,11 @@ const Index = () => {
   const orgJsonLd = {
     "@context": "https://schema.org",
     "@type": "Organization",
-    name: "Green World",
+    name: "Green World Prestige",
     url: siteUrl,
     logo: `${siteUrl}/placeholder.svg`,
     description:
-      "Green World propose des compléments alimentaires naturels et efficaces pour votre bien-être quotidien en Côte d'Ivoire.",
+      "Green World Prestige propose des compléments alimentaires naturels et efficaces pour votre bien-être quotidien en Côte d'Ivoire.",
     address: {
       "@type": "PostalAddress",
       addressCountry: "CI",
@@ -45,7 +45,7 @@ const Index = () => {
   const websiteJsonLd = {
     "@context": "https://schema.org",
     "@type": "WebSite",
-    name: "Green World",
+    name: "Green World Prestige",
     url: siteUrl,
     inLanguage: "fr-FR",
   };
@@ -53,8 +53,8 @@ const Index = () => {
   return (
     <div className="min-h-screen">
       <SEO
-        title="Green World Côte d'Ivoire — Compléments alimentaires naturels"
-        description="Découvrez plus de 80 compléments alimentaires 100% naturels Green World en Côte d'Ivoire. Scanner santé QRMA & Detox Pad à 5 000 FCFA. Livraison Abidjan."
+        title="Green World Prestige Côte d'Ivoire — Compléments alimentaires naturels"
+        description="Découvrez plus de 80 compléments alimentaires 100% naturels Green World Prestige en Côte d'Ivoire. Scanner santé QRMA & Detox Pad à 5 000 FCFA. Livraison Abidjan."
         canonical={siteUrl + "/"}
         jsonLd={[orgJsonLd, websiteJsonLd]}
       />

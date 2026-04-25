@@ -76,7 +76,7 @@ const BookingDialog = ({ offerName, trigger }: BookingDialogProps) => {
 
     const d = format(parsed.data.date, "EEEE d MMMM yyyy", { locale: fr });
     const message = [
-      `Bonjour Green World, je souhaite réserver une séance.`,
+      `Bonjour Green World Prestige, je souhaite réserver une séance.`,
       ``,
       `• Prestation : ${offerName}`,
       `• Nom : ${parsed.data.fullName}`,

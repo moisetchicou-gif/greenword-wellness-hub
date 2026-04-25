@@ -94,7 +94,7 @@ const CartDrawer = () => {
       .map((i) => `• ${i.name} x${i.quantity} — ${(i.priceNum * i.quantity).toLocaleString("fr-FR")} FCFA`)
       .join("\n");
 
-    const message = `${greeting}, j'ai passé une commande sur Green World 🌿 et j'ai effectué le paiement ✅
+    const message = `${greeting}, j'ai passé une commande sur Green World Prestige 🌿 et j'ai effectué le paiement ✅
 
 🔖 *N° de commande :* ${refId}
 📅 *Date :* ${dateStr} à ${timeStr}

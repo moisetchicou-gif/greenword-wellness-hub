@@ -83,7 +83,7 @@ const HeroSection = () => {
             <div className="absolute inset-0 bg-primary/10 rounded-full blur-[60px] scale-75 animate-glow" />
             <img
               src={heroProduct}
-              alt="Produit Green World — Complément alimentaire naturel"
+              alt="Produit Green World Prestige — Complément alimentaire naturel"
               className="w-48 sm:w-72 md:w-96 drop-shadow-2xl relative z-10 animate-float"
             />
           </div>

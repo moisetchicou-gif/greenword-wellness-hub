@@ -7,26 +7,26 @@ const ivorianLastNames = ["Koné","Yao","Ouattara","Touré","Brou","Coulibaly","
 const cities = ["Abidjan","Bouaké","Yamoussoukro","San-Pédro","Korhogo","Daloa","Man","Gagnoa"];
 
 const fiveStarTexts = [
-  "Depuis que j'utilise Green World, je me sens pleine d'énergie chaque matin !",
+  "Depuis que j'utilise Green World Prestige, je me sens pleine d'énergie chaque matin !",
   "La qualité des ingrédients se ressent immédiatement. Toute ma famille l'utilise.",
   "Mon bien-être général s'est nettement amélioré en quelques semaines.",
   "Très bon produit, je le recommande vivement à tous mes proches.",
   "Excellent complément alimentaire ! Je ne peux plus m'en passer.",
   "La meilleure décision santé que j'ai prise cette année.",
-  "Je recommande Green World à 100%. Résultats visibles en 2 semaines.",
+  "Je recommande Green World Prestige à 100%. Résultats visibles en 2 semaines.",
   "Produit de qualité supérieure. Je suis client fidèle depuis 1 an.",
   "J'ai retrouvé une énergie que je n'avais plus depuis des années.",
   "Le meilleur investissement pour ma santé. Qualité irréprochable.",
-  "Green World a transformé ma routine santé.",
-  "Ma tension artérielle s'est stabilisée grâce à Green World.",
+  "Green World Prestige a transformé ma routine santé.",
+  "Ma tension artérielle s'est stabilisée grâce à Green World Prestige.",
   "Ma peau est plus belle et plus lumineuse depuis ce produit.",
-  "Je dors mieux, j'ai plus d'énergie. Green World change la vie !",
+  "Je dors mieux, j'ai plus d'énergie. Green World Prestige change la vie !",
   "Produit fiable et efficace. Je suis un ambassadeur convaincu.",
-  "Ma glycémie est mieux contrôlée. Merci Green World !",
+  "Ma glycémie est mieux contrôlée. Merci Green World Prestige !",
   "Mon cholestérol a baissé significativement.",
   "Qualité premium à un prix accessible. Rare de trouver ça.",
-  "Les compléments Green World sont les meilleurs que j'ai jamais essayés.",
-  "Ma mère de 70 ans utilise Green World et se sent rajeunie.",
+  "Les compléments Green World Prestige sont les meilleurs que j'ai jamais essayés.",
+  "Ma mère de 70 ans utilise Green World Prestige et se sent rajeunie.",
 ];
 
 const fourStarTexts = [
@@ -42,13 +42,13 @@ const fourStarTexts = [
   "Ma santé s'améliore doucement. Bon produit naturel.",
   "Bon produit pour la famille. Je l'utilise depuis 3 mois.",
   "Mon énergie au travail a nettement augmenté.",
-  "Mon père utilise Green World et ses résultats se sont améliorés.",
+  "Mon père utilise Green World Prestige et ses résultats se sont améliorés.",
   "Je recommande ce produit à mes collègues.",
   "Ma digestion s'est améliorée. Je vais continuer.",
   "Produit correct, livraison rapide. Je suis satisfait.",
-  "Ma femme et moi utilisons Green World ensemble. Bon produit.",
+  "Ma femme et moi utilisons Green World Prestige ensemble. Bon produit.",
   "Les résultats sont progressifs mais bien réels.",
-  "Je me sens mieux depuis que j'ai commencé Green World.",
+  "Je me sens mieux depuis que j'ai commencé Green World Prestige.",
   "Bon produit naturel, je fais confiance à la marque.",
 ];
 

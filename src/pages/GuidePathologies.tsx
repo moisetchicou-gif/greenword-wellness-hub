@@ -157,7 +157,7 @@ const GuidePathologies = () => {
               Produits par <span className="italic text-primary">Pathologie</span>
             </h1>
             <p className="text-muted-foreground max-w-2xl mx-auto text-sm leading-relaxed">
-              Retrouvez les compléments alimentaires Green World conseillés pour chaque problème de santé.
+              Retrouvez les compléments alimentaires Green World Prestige conseillés pour chaque problème de santé.
               Ce guide est à titre informatif et ne remplace pas un avis médical.
             </p>
           </div>

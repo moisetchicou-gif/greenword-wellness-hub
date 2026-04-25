@@ -10,7 +10,7 @@ interface SEOProps {
   noindex?: boolean;
 }
 
-const SITE_NAME = "Green World";
+const SITE_NAME = "Green World Prestige";
 const SITE_URL = "https://greenworldprestige.com";
 
 const SEO = ({
