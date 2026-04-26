@@ -39,25 +39,25 @@ export const pathologies: Pathology[] = [
   {
     name: "AVC (maladie cardiovasculaire)",
     description: "Accident cérébro-vasculaire : lésion du cerveau due à l'interruption de l'apport en sang.",
-    productIds: [18, 5, 31, 20, 34, 11],
+    productIds: [18, 5, 31, 20, 34, 11, 32, 37, 10],
     category: "Cardiovasculaire",
   },
   {
     name: "Hypertension artérielle",
     description: "Pression artérielle anormalement élevée dans les vaisseaux sanguins.",
-    productIds: [31, 18, 17, 2],
+    productIds: [31, 18, 17, 2, 32, 37, 10],
     category: "Cardiovasculaire",
   },
   {
     name: "Cholestérol",
     description: "Substances grasses présentes dans l'organisme provenant des aliments, en excès dans le sang.",
-    productIds: [43, 2, 34, 35],
+    productIds: [2, 31, 73, 43, 34, 35],
     category: "Cardiovasculaire",
   },
   {
     name: "Hémorroïdes",
     description: "Gonflement et inflammation des veines du rectum et de l'anus provoquant gêne et saignements.",
-    productIds: [16, 35, 37, 15],
+    productIds: [64, 35, 16, 15, 10, 37, 15],
     category: "Cardiovasculaire",
   },
 
@@ -65,7 +65,7 @@ export const pathologies: Pathology[] = [
   {
     name: "Acné",
     description: "Maladie de la peau se manifestant par des boutons et brûlures cutanées.",
-    productIds: [57, 86, 10],
+    productIds: [57, 86, 10, 8, 86],
     category: "Dermatologie",
   },
   {
@@ -77,7 +77,7 @@ export const pathologies: Pathology[] = [
   {
     name: "Candidose",
     description: "Apparition de champignons sur certaines zones du corps : appareil génital, peau.",
-    productIds: [1, 57, 6, 53, 55],
+    productIds: [1, 57, 6, 53, 55, 16],
     category: "Dermatologie",
   },
   {
@@ -97,7 +97,7 @@ export const pathologies: Pathology[] = [
   {
     name: "Constipation",
     description: "Difficulté à évacuer les selles, moins de trois fois par semaine.",
-    productIds: [51, 13, 35, 10],
+    productIds: [22, 34, 16, 64, 13, 35],
     category: "Digestif",
   },
   {
@@ -197,13 +197,13 @@ export const pathologies: Pathology[] = [
   {
     name: "Dépression",
     description: "Trouble mental caractérisé par un état dépressif persistant et une perte d'intérêt pour les activités.",
-    productIds: [80, 30],
+    productIds: [80, 30, 40, 37],
     category: "Neurologie & Mental",
   },
   {
     name: "Parkinson",
     description: "Trouble du système nerveux affectant les mouvements et entraînant des tremblements.",
-    productIds: [37, 80, 31],
+    productIds: [37, 80, 31, 9],
     category: "Neurologie & Mental",
   },
   {
@@ -223,7 +223,7 @@ export const pathologies: Pathology[] = [
   {
     name: "Mal de dos",
     description: "Gêne physique dans la colonne vertébrale ou le dos, de légère à intense.",
-    productIds: [29, 11, 8],
+    productIds: [29, 11, 8, 31],
     category: "Os & Articulations",
   },
   {
@@ -255,7 +255,7 @@ export const pathologies: Pathology[] = [
   {
     name: "Libido femme",
     description: "Baisse du désir sexuel féminin liée aux sécrétions hormonales des ovaires.",
-    productIds: [8, 63, 86, 25],
+    productIds: [8, 63, 86, 25, 70],
     category: "Santé féminine",
   },
   {
@@ -283,7 +283,7 @@ export const pathologies: Pathology[] = [
   {
     name: "Fatigue chronique",
     description: "Fatigue profonde, troubles du sommeil et douleurs aggravés par l'effort physique.",
-    productIds: [37, 10, 9],
+    productIds: [37, 10, 9, 17],
     category: "Métabolisme",
   },
   {
@@ -303,7 +303,7 @@ export const pathologies: Pathology[] = [
   {
     name: "Asthme",
     description: "Affection des bronches se manifestant par une gêne respiratoire et des crises de suffocation.",
-    productIds: [9, 42, 16, 39],
+    productIds: [9, 42, 16, 39, 17, 20],
     category: "Respiratoire",
   },
   {
@@ -317,7 +317,7 @@ export const pathologies: Pathology[] = [
   {
     name: "Cataracte / Glaucome / Myopie",
     description: "Perte de transparence du cristallin, souvent liée au vieillissement, affectant la vision.",
-    productIds: [31, 33, 37, 8, 53, 10],
+    productIds: [31, 33, 37, 8, 53, 10, 1],
     category: "Yeux & Vision",
   },
 ];
