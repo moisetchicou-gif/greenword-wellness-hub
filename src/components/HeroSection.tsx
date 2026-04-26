@@ -26,9 +26,9 @@ const HeroSection = () => {
       <div className="container mx-auto px-4 sm:px-6 grid md:grid-cols-2 gap-8 md:gap-16 items-center relative">
         <div className="space-y-6 sm:space-y-8 text-center md:text-left">
           <div
-            className={`inline-flex items-center gap-2 glass text-accent px-4 sm:px-5 py-2 sm:py-2.5 rounded-full text-[11px] sm:text-xs font-semibold tracking-widest uppercase transition-all duration-1000 ease-premium ${visible ? "opacity-100 translate-y-0 blur-0" : "opacity-0 translate-y-8 blur-sm"}`}
+            className={`inline-flex items-center gap-2 badge-contrast px-4 sm:px-5 py-2 sm:py-2.5 rounded-full text-[11px] sm:text-xs font-semibold tracking-widest uppercase transition-all duration-1000 ease-premium ${visible ? "opacity-100 translate-y-0 blur-0" : "opacity-0 translate-y-8 blur-sm"}`}
           >
-            <Sparkles className="w-3.5 h-3.5 text-primary animate-bounce-gentle" />
+            <Sparkles className="w-3.5 h-3.5 text-gold animate-bounce-gentle" />
             100% Naturel · Certifié Bio
           </div>
           <h1
@@ -55,18 +55,16 @@ const HeroSection = () => {
           >
             <a
               href="#produits"
-              className="group bg-accent text-accent-foreground px-8 py-3.5 rounded-full font-medium text-sm tracking-wide hover:shadow-2xl transition-all duration-500 relative overflow-hidden hover:scale-[1.03] active:scale-[0.97]"
-              style={{ boxShadow: "0 8px 32px -8px hsl(160 35% 14% / 0.35)" }}
+              className="group btn-warm shine-on-hover px-8 py-3.5 rounded-full font-medium text-sm tracking-wide relative"
             >
               <span className="relative z-10 flex items-center gap-2 text-xs sm:text-sm">
                 Découvrir la boutique
                 <ArrowDown className="w-4 h-4 group-hover:translate-y-1 transition-transform duration-300" />
               </span>
-              <span className="absolute inset-0 bg-primary/20 translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-premium" />
             </a>
             <a
               href="/bienfaits"
-              className="border border-accent/20 text-accent px-8 py-3.5 rounded-full font-medium text-sm tracking-wide hover:bg-accent hover:text-accent-foreground transition-all duration-500 hover:shadow-lg hover:scale-[1.03] active:scale-[0.97] hover:border-transparent"
+              className="border-2 border-coral/40 text-accent bg-card/70 backdrop-blur px-8 py-3.5 rounded-full font-medium text-sm tracking-wide hover:bg-gradient-to-r hover:from-coral hover:to-gold hover:text-coral-foreground hover:border-transparent transition-all duration-500 hover:shadow-lg hover:scale-[1.03] active:scale-[0.97]"
             >
               Nos bienfaits
             </a>
