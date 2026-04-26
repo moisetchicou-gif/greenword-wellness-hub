@@ -1,5 +1,6 @@
 import { Leaf, Shield, FlaskConical, Award } from "lucide-react";
 import { useScrollReveal, useCountUp } from "@/hooks/useScrollReveal";
+import LiveVisitorsBadge from "@/components/LiveVisitorsBadge";
 
 const trustItems = [
   { icon: Leaf, label: "100% Naturel", desc: "Ingrédients biologiques", count: 100, suffix: "%" },
