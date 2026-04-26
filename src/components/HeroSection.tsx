@@ -34,21 +34,25 @@ const HeroSection = () => {
             100% Naturel · Certifié Bio
           </div>
           <h1
-            className={`text-3xl sm:text-4xl lg:text-[3.75rem] leading-[1.15] text-accent transition-all duration-1000 ease-premium ${visible ? "opacity-100 translate-y-0 blur-0" : "opacity-0 translate-y-10 blur-sm"}`}
+            className={`text-3xl sm:text-4xl lg:text-[3.75rem] leading-[1.15] font-semibold text-accent drop-shadow-[0_1px_0_hsl(0_0%_100%/0.6)] transition-all duration-1000 ease-premium ${visible ? "opacity-100 translate-y-0 blur-0" : "opacity-0 translate-y-10 blur-sm"}`}
             style={{ transitionDelay: "200ms" }}
           >
-            La puissance de la nature,{" "}
-            <span className="italic text-gradient-warm relative">
+            La puissance de la{" "}
+            <span className="italic font-bold bg-clip-text text-transparent" style={{ backgroundImage: "linear-gradient(135deg, hsl(145 60% 32%) 0%, hsl(145 55% 42%) 100%)" }}>
+              nature
+            </span>
+            ,{" "}
+            <span className="italic font-bold relative bg-clip-text text-transparent" style={{ backgroundImage: "linear-gradient(135deg, hsl(14 85% 52%) 0%, hsl(28 90% 55%) 50%, hsl(38 90% 50%) 100%)" }}>
               validée
-              <span className={`absolute -bottom-1 left-0 h-0.5 bg-gradient-to-r from-coral via-gold to-primary rounded-full transition-all duration-1000 ease-premium ${visible ? "w-full" : "w-0"}`} style={{ transitionDelay: "800ms" }} />
+              <span className={`absolute -bottom-1 left-0 h-1 bg-gradient-to-r from-coral via-gold to-primary rounded-full transition-all duration-1000 ease-premium ${visible ? "w-full" : "w-0"}`} style={{ transitionDelay: "800ms" }} />
             </span>{" "}
-            par la science.
+            par la <span className="text-primary font-bold">science</span>.
           </h1>
           <p
-            className={`text-muted-foreground text-base sm:text-lg max-w-lg leading-relaxed mx-auto md:mx-0 transition-all duration-1000 ease-premium ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
+            className={`text-foreground/85 text-base sm:text-lg max-w-lg leading-relaxed mx-auto md:mx-0 font-medium transition-all duration-1000 ease-premium ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
             style={{ transitionDelay: "350ms" }}
           >
-            Découvrez nos compléments alimentaires et produits de beauté formulés à partir d'ingrédients biologiques d'exception,
+            Découvrez nos <span className="text-coral font-semibold">compléments alimentaires</span> et <span className="text-primary font-semibold">produits de beauté</span> formulés à partir d'ingrédients biologiques d'exception,
             pour un bien-être durable au quotidien.
           </p>
           <div
