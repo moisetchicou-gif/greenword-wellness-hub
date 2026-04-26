@@ -1,5 +1,6 @@
 import { Leaf, Shield, FlaskConical, Award } from "lucide-react";
 import { useScrollReveal, useCountUp } from "@/hooks/useScrollReveal";
+import LiveVisitorsBadge from "@/components/LiveVisitorsBadge";
 
 const trustItems = [
   { icon: Leaf, label: "100% Naturel", desc: "Ingrédients biologiques", count: 100, suffix: "%" },
@@ -37,6 +38,9 @@ const TrustBar = () => (
         {trustItems.map((item, i) => (
           <TrustItem key={item.label} item={item} index={i} />
         ))}
+      </div>
+      <div className="mt-10 flex justify-center">
+        <LiveVisitorsBadge />
       </div>
     </div>
   </section>
