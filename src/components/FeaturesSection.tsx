@@ -17,8 +17,8 @@ const BenefitCard = ({ product, index }: { product: Product; index: number }) =>
   return (
     <div
       ref={ref}
-      className={`bg-card/85 backdrop-blur-md border border-border/40 rounded-2xl overflow-hidden hover-warm-glow group transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"}`}
-      style={{ transitionDelay: `${index * 60}ms` }}
+      className={`bg-card/85 backdrop-blur-md border border-border/40 rounded-2xl overflow-hidden hover-warm-glow group reveal-warm ${visible ? "is-visible" : ""}`}
+      style={{ transitionDelay: `${index * 70}ms`, animationDelay: `${index * 70 + 350}ms` }}
     >
       <div className="aspect-[4/3] bg-secondary/20 flex items-center justify-center p-6 overflow-hidden relative">
         <img src={product.image} alt={product.name} className="w-full h-full object-contain group-hover:scale-110 group-hover:-rotate-1 transition-transform duration-700 ease-out" loading="lazy" />
@@ -67,7 +67,7 @@ const FeaturesSection = () => {
       <div className="absolute bottom-0 left-0 w-48 h-48 rounded-full bg-gold/15 blur-3xl animate-pulse-soft" style={{ animationDelay: "2s" }} />
 
       <div className="container mx-auto px-4 sm:px-6 relative">
-        <div ref={ref} className={`text-center mb-16 space-y-4 transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
+        <div ref={ref} className={`text-center mb-16 space-y-4 reveal-warm-section ${visible ? "is-visible" : ""}`}>
           <p className="text-coral text-xs font-semibold uppercase tracking-[0.2em]">Bienfaits</p>
           <h2 className="text-3xl sm:text-4xl text-accent">
             Pourquoi <span className="italic text-gradient-warm">nous choisir</span> ?
