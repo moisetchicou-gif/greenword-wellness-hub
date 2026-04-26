@@ -10,11 +10,13 @@ const HeroSection = () => {
       ref={ref}
       className="relative min-h-screen flex items-center overflow-hidden pt-16 bg-hero-warm"
     >
-      {/* Animated gradient orbs */}
-      <div className="absolute top-20 left-10 w-72 h-72 rounded-full bg-coral/15 blur-[80px] animate-pulse-soft" />
-      <div className="absolute bottom-20 right-10 w-96 h-96 rounded-full bg-gold/15 blur-[100px] animate-pulse-soft" style={{ animationDelay: "2s" }} />
-      <div className="absolute top-1/3 right-1/4 w-80 h-80 rounded-full bg-primary/10 blur-[90px] animate-pulse-soft" style={{ animationDelay: "1s" }} />
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] rounded-full bg-primary/[0.04] blur-[120px]" />
+      {/* Animated gradient orbs — version vibrante */}
+      <div className="absolute top-16 left-6 w-80 h-80 rounded-full bg-coral/35 blur-[90px] animate-pulse-soft" />
+      <div className="absolute bottom-16 right-6 w-[28rem] h-[28rem] rounded-full bg-gold/35 blur-[110px] animate-pulse-soft" style={{ animationDelay: "2s" }} />
+      <div className="absolute top-1/3 right-1/4 w-80 h-80 rounded-full bg-primary/25 blur-[90px] animate-pulse-soft" style={{ animationDelay: "1s" }} />
+      <div className="absolute bottom-1/3 left-1/3 w-72 h-72 rounded-full bg-coral/25 blur-[80px] animate-pulse-soft" style={{ animationDelay: "3s" }} />
+      <div className="absolute top-10 right-1/3 w-56 h-56 rounded-full bg-gold/30 blur-[70px] animate-pulse-soft" style={{ animationDelay: "1.5s" }} />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] rounded-full bg-primary/[0.08] blur-[120px]" />
 
       {/* Rotating decorative ring */}
       <div className="absolute top-1/2 right-[15%] -translate-y-1/2 w-[500px] h-[500px] rounded-full border border-primary/[0.06] animate-rotate-slow hidden lg:block" />
