@@ -183,6 +183,7 @@ export default {
         "slide-in-right": "slide-in-right 0.4s cubic-bezier(0.16, 1, 0.3, 1)",
         "scale-in": "scale-in 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards",
         "shimmer": "shimmer 4s linear infinite",
+        "shimmer-fast": "shimmer 1.6s linear infinite",
         "pulse-soft": "pulse-soft 4s ease-in-out infinite",
         "slide-up": "slide-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards",
         "slide-left": "slide-left 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards",
