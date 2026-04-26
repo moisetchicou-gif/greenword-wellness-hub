@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { products, type Product } from "@/data/products";
+import ProductImage from "@/components/ProductImage";
 
 const BenefitCard = ({ product, index }: { product: Product; index: number }) => {
   const ref = useRef<HTMLDivElement>(null);
