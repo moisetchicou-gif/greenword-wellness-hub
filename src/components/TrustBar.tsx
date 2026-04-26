@@ -39,6 +39,9 @@ const TrustBar = () => (
           <TrustItem key={item.label} item={item} index={i} />
         ))}
       </div>
+      <div className="mt-10 flex justify-center">
+        <LiveVisitorsBadge />
+      </div>
     </div>
   </section>
 );
