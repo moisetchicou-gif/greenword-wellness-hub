@@ -24,11 +24,11 @@ const OfferCard = ({ offer, index }: { offer: Offer; index: number }) => {
   return (
     <div
       ref={ref}
-      className={`group relative bg-card rounded-2xl sm:rounded-3xl border-2 border-primary/20 overflow-hidden shadow-lg hover:shadow-2xl hover:shadow-primary/10 transition-all duration-700 ease-premium hover:-translate-y-1 flex flex-col h-full ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"}`}
+      className={`group relative bg-card rounded-2xl sm:rounded-3xl border-2 border-coral/25 overflow-hidden shadow-lg hover-warm-glow flex flex-col h-full ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"}`}
       style={{ transitionDelay: `${index * 120}ms` }}
     >
       {/* Badge offre spéciale */}
-      <div className="absolute top-2 left-2 sm:top-4 sm:left-4 z-10 flex items-center gap-1 sm:gap-1.5 bg-primary text-primary-foreground px-2 py-1 sm:px-3 sm:py-1.5 rounded-full text-[9px] sm:text-xs font-bold shadow-lg">
+      <div className="absolute top-2 left-2 sm:top-4 sm:left-4 z-10 flex items-center gap-1 sm:gap-1.5 badge-warm px-2 py-1 sm:px-3 sm:py-1.5 rounded-full text-[9px] sm:text-xs font-bold animate-pulse-soft">
         <Sparkles className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
         <span className="hidden sm:inline">OFFRE SPÉCIALE</span>
         <span className="sm:hidden">OFFRE</span>
@@ -109,7 +109,7 @@ const OfferCard = ({ offer, index }: { offer: Offer; index: number }) => {
               trigger={
                 <button
                   type="button"
-                  className="w-full px-2 sm:px-5 py-2 sm:py-3 rounded-full text-xs sm:text-sm font-semibold bg-primary text-primary-foreground hover:shadow-lg hover:shadow-primary/25 hover:scale-[1.02] transition-all duration-300 flex items-center justify-center gap-1 sm:gap-2"
+                  className="w-full px-2 sm:px-5 py-2 sm:py-3 rounded-full text-xs sm:text-sm font-semibold btn-warm shine-on-hover flex items-center justify-center gap-1 sm:gap-2"
                 >
                   <CalendarCheck className="w-3.5 h-3.5 sm:w-4 sm:h-4 flex-shrink-0" />
                   <span className="truncate">Réserver</span>
@@ -126,12 +126,12 @@ const OfferCard = ({ offer, index }: { offer: Offer; index: number }) => {
 
 const IntroOffers = () => {
   return (
-    <section className="py-14 sm:py-16 bg-gradient-to-b from-secondary/40 via-background to-background relative">
+    <section className="py-14 sm:py-16 bg-section-warm-strong relative">
       <div className="container mx-auto px-4 sm:px-6">
         <div className="text-center mb-10 space-y-3">
-          <p className="text-primary text-xs font-semibold uppercase tracking-[0.2em]">À découvrir absolument</p>
+          <p className="text-coral text-xs font-semibold uppercase tracking-[0.2em]">À découvrir absolument</p>
           <h2 className="text-3xl sm:text-4xl font-display text-accent">
-            Nos offres <span className="italic text-primary">à 5 000 FCFA</span>
+            Nos offres <span className="italic text-gradient-warm">à 5 000 FCFA</span>
           </h2>
           <p className="text-muted-foreground max-w-xl mx-auto text-sm leading-relaxed">
             Découvrez nos deux solutions d'entrée pour faire le premier pas vers une meilleure santé.
