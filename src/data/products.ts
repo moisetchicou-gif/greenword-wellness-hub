@@ -111,6 +111,11 @@ export interface Product {
   benefits: string[];
   price: string;
   priceNum: number;
+  /** Ancien prix affiché barré (optionnel) — uniquement pour les produits en promo */
+  oldPrice?: string;
+  oldPriceNum?: number;
+  /** Pourcentage de réduction affiché sur le badge (ex: 20 pour -20%) */
+  discount?: number;
   category: Category;
   bv: number;
   posologie?: string;
