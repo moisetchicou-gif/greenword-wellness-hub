@@ -36,14 +36,20 @@ const ProductCard = ({ product, index }: { product: Product; index: number }) =>
       <Link
         to={`/produit/${getProductSlug(product)}`}
         aria-label={`Voir les détails de ${product.name}`}
-        className="aspect-square bg-secondary/30 flex items-center justify-center p-3 sm:p-6 overflow-hidden relative focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 shrink-0"
+        className="block bg-secondary/30 p-3 sm:p-6 relative focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 shrink-0 group/img"
       >
-        <img src={product.image} alt={product.name} className="w-full h-full object-contain group-hover:scale-110 group-hover:rotate-1 transition-transform duration-700 ease-premium" loading="lazy" />
-        <div className="absolute top-2 left-2 sm:top-3 sm:left-3 flex gap-1.5">
+        <ProductImage
+          src={product.image}
+          alt={product.name}
+          aspect="1 / 1"
+          priority={index < 4}
+          imgClassName="group-hover:scale-110 group-hover:rotate-1 transition-transform duration-700 ease-premium p-1 sm:p-2"
+        />
+        <div className="absolute top-2 left-2 sm:top-3 sm:left-3 flex gap-1.5 z-10">
           <span className="badge-contrast text-[9px] sm:text-[10px] font-semibold px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-full">{product.bv} BV</span>
         </div>
         {/* Hover overlay corail/gold */}
-        <div className="absolute inset-0 bg-gradient-to-tr from-coral/[0.08] via-transparent to-gold/[0.08] opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+        <div className="absolute inset-0 bg-gradient-to-tr from-coral/[0.08] via-transparent to-gold/[0.08] opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
       </Link>
       <div className="p-3 sm:p-5 flex flex-col flex-1 gap-2 sm:gap-3">
         <Link
