@@ -68,7 +68,7 @@ const ProductImage = ({
       {!loaded && !errored && (
         <div
           aria-hidden="true"
-          className="absolute inset-0 shimmer-bg animate-shimmer"
+          className="absolute inset-0 shimmer-bg animate-shimmer-fast"
         />
       )}
 
