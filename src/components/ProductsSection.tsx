@@ -46,8 +46,13 @@ const ProductCard = ({ product, index }: { product: Product; index: number }) =>
           priority={index < 4}
           imgClassName="group-hover:scale-110 group-hover:rotate-1 transition-transform duration-700 ease-premium p-1 sm:p-2"
         />
-        <div className="absolute top-2 left-2 sm:top-3 sm:left-3 flex gap-1.5 z-10">
+        <div className="absolute top-2 left-2 sm:top-3 sm:left-3 flex flex-col gap-1.5 z-10 items-start">
           <span className="badge-contrast text-[9px] sm:text-[10px] font-semibold px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-full">{product.bv} BV</span>
+          {product.discount && (
+            <span className="text-[9px] sm:text-[11px] font-bold px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-full text-coral-foreground shadow-md shadow-coral/30 animate-pulse-soft" style={{ backgroundImage: "linear-gradient(135deg, hsl(var(--coral)), hsl(14 85% 52%))" }}>
+              −{product.discount}%
+            </span>
+          )}
         </div>
         {/* Hover overlay corail/gold */}
         <div className="absolute inset-0 bg-gradient-to-tr from-coral/[0.08] via-transparent to-gold/[0.08] opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
