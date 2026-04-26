@@ -8,6 +8,7 @@ import CookieBanner from "@/components/CookieBanner";
 import SEO from "@/components/SEO";
 
 const IntroOffers = lazy(() => import("@/components/IntroOffers"));
+const PromotionsSection = lazy(() => import("@/components/PromotionsSection"));
 const ProductsSection = lazy(() => import("@/components/ProductsSection"));
 const TestimonialsSection = lazy(() => import("@/components/TestimonialsSection"));
 const BusinessSection = lazy(() => import("@/components/BusinessSection"));
@@ -70,6 +71,9 @@ const Index = () => {
       </div>
       <Suspense fallback={<SectionFallback />}>
         <IntroOffers />
+      </Suspense>
+      <Suspense fallback={<SectionFallback />}>
+        <PromotionsSection />
       </Suspense>
       <Suspense fallback={<SectionFallback />}>
         <ProductsSection />
