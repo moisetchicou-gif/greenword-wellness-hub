@@ -90,7 +90,7 @@ const ProductCard = ({ product, index }: { product: Product; index: number }) =>
             </>
           )}
         </button>
-        <ProductViewersBadge productId={product.id} className="pt-1" />
+        <ProductViewersBadge productId={String(product.id)} className="pt-1" />
       </div>
     </div>
   );
