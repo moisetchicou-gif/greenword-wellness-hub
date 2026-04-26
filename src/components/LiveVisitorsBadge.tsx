@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Eye, Users } from "lucide-react";
 
 /**
@@ -48,15 +48,53 @@ const computeTotal = (date: Date): number => {
 const formatNumber = (n: number) =>
   n.toLocaleString("fr-FR").replace(/\u202f/g, " ");
 
+/** Hook : interpole en douceur d'une valeur cible à l'autre sur `duration` ms. */
+const useSmoothNumber = (target: number, duration = 1500) => {
+  const [display, setDisplay] = useState(target);
+  const fromRef = useRef(target);
+  const startRef = useRef<number | null>(null);
+  const rafRef = useRef<number | null>(null);
+
+  useEffect(() => {
+    if (target === display) return;
+    fromRef.current = display;
+    startRef.current = null;
+
+    const easeOutCubic = (t: number) => 1 - Math.pow(1 - t, 3);
+
+    const step = (ts: number) => {
+      if (startRef.current === null) startRef.current = ts;
+      const elapsed = ts - startRef.current;
+      const t = Math.min(1, elapsed / duration);
+      const eased = easeOutCubic(t);
+      const value = fromRef.current + (target - fromRef.current) * eased;
+      setDisplay(t === 1 ? target : value);
+      if (t < 1) rafRef.current = requestAnimationFrame(step);
+    };
+    rafRef.current = requestAnimationFrame(step);
+    return () => {
+      if (rafRef.current !== null) cancelAnimationFrame(rafRef.current);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [target, duration]);
+
+  return display;
+};
+
 const LiveVisitorsBadge = () => {
   const [online, setOnline] = useState(() => computeOnline(new Date()));
   const [total, setTotal] = useState(() => computeTotal(new Date()));
+  const [pulseKey, setPulseKey] = useState(0);
+
+  const onlineDisplay = useSmoothNumber(online, 1200);
+  const totalDisplay = useSmoothNumber(total, 1500);
 
   useEffect(() => {
     const tick = () => {
       const now = new Date();
       setOnline(computeOnline(now));
       setTotal(computeTotal(now));
+      setPulseKey((k) => k + 1);
     };
     const id = window.setInterval(tick, 12_000);
     return () => window.clearInterval(id);
@@ -64,7 +102,7 @@ const LiveVisitorsBadge = () => {
 
   return (
     <div
-      className="inline-flex items-center gap-3 rounded-full border border-coral/20 bg-card/80 backdrop-blur px-4 py-2 shadow-sm"
+      className="inline-flex items-center gap-3 rounded-full border border-coral/20 bg-card/80 backdrop-blur px-4 py-2 shadow-sm transition-all duration-500"
       role="status"
       aria-live="polite"
       aria-label={`${online} visiteurs en ligne, ${formatNumber(total)} visites au total`}
@@ -76,7 +114,12 @@ const LiveVisitorsBadge = () => {
         </span>
         <Eye className="w-3.5 h-3.5 text-coral" aria-hidden="true" />
         <span>
-          <strong className="font-display font-bold">{online}</strong>{" "}
+          <strong
+            key={`online-${pulseKey}`}
+            className="font-display font-bold inline-block tabular-nums animate-fade-in"
+          >
+            {Math.round(onlineDisplay)}
+          </strong>{" "}
           <span className="text-muted-foreground">en ligne</span>
         </span>
       </span>
@@ -84,7 +127,9 @@ const LiveVisitorsBadge = () => {
       <span className="flex items-center gap-1.5 text-xs font-medium text-accent">
         <Users className="w-3.5 h-3.5 text-coral" aria-hidden="true" />
         <span>
-          <strong className="font-display font-bold">{formatNumber(total)}</strong>{" "}
+          <strong className="font-display font-bold inline-block tabular-nums">
+            {formatNumber(Math.round(totalDisplay))}
+          </strong>{" "}
           <span className="text-muted-foreground">visites</span>
         </span>
       </span>
