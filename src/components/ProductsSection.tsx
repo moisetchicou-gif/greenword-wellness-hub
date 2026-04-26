@@ -46,8 +46,13 @@ const ProductCard = ({ product, index }: { product: Product; index: number }) =>
           priority={index < 4}
           imgClassName="group-hover:scale-110 group-hover:rotate-1 transition-transform duration-700 ease-premium p-1 sm:p-2"
         />
-        <div className="absolute top-2 left-2 sm:top-3 sm:left-3 flex gap-1.5 z-10">
+        <div className="absolute top-2 left-2 sm:top-3 sm:left-3 flex flex-col gap-1.5 z-10 items-start">
           <span className="badge-contrast text-[9px] sm:text-[10px] font-semibold px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-full">{product.bv} BV</span>
+          {product.discount && (
+            <span className="text-[9px] sm:text-[11px] font-bold px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-full text-coral-foreground shadow-md shadow-coral/30 animate-pulse-soft" style={{ backgroundImage: "linear-gradient(135deg, hsl(var(--coral)), hsl(14 85% 52%))" }}>
+              −{product.discount}%
+            </span>
+          )}
         </div>
         {/* Hover overlay corail/gold */}
         <div className="absolute inset-0 bg-gradient-to-tr from-coral/[0.08] via-transparent to-gold/[0.08] opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
@@ -68,7 +73,14 @@ const ProductCard = ({ product, index }: { product: Product; index: number }) =>
             </li>
           ))}
         </ul>
-        <p className="text-accent font-semibold text-base sm:text-lg font-display mt-auto">{product.price}</p>
+        <div className="mt-auto flex items-baseline gap-2 flex-wrap">
+          <p className="text-accent font-semibold text-base sm:text-lg font-display">{product.price}</p>
+          {product.oldPrice && (
+            <span className="text-muted-foreground text-xs sm:text-sm line-through decoration-coral/70 decoration-[1.5px]">
+              {product.oldPrice}
+            </span>
+          )}
+        </div>
         <button
           onClick={handleAdd}
           className={`w-full px-3 sm:px-6 py-2 sm:py-2.5 rounded-full text-xs sm:text-sm font-medium active:scale-[0.95] transition-all duration-300 flex items-center justify-center gap-1.5 sm:gap-2 tracking-wide shine-on-hover ${

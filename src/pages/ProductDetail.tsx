@@ -101,9 +101,21 @@ const ProductDetail = () => {
                 </h1>
               </div>
 
-              <p className="text-2xl font-display text-accent font-semibold">
-                {product.price}
-              </p>
+              <div className="flex items-baseline gap-3 flex-wrap">
+                <p className="text-2xl font-display text-accent font-semibold">
+                  {product.price}
+                </p>
+                {product.oldPrice && (
+                  <>
+                    <span className="text-base text-muted-foreground line-through decoration-coral/70 decoration-2">
+                      {product.oldPrice}
+                    </span>
+                    <span className="text-xs font-bold px-2.5 py-1 rounded-full text-coral-foreground shadow-md shadow-coral/30" style={{ backgroundImage: "linear-gradient(135deg, hsl(var(--coral)), hsl(14 85% 52%))" }}>
+                      −{product.discount}% Promo
+                    </span>
+                  </>
+                )}
+              </div>
 
               <div className="flex items-center gap-2 text-xs text-muted-foreground">
                 <span className="bg-primary/10 text-primary px-2.5 py-1 rounded-full font-semibold">
