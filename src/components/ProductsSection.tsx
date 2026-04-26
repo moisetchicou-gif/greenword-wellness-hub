@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { useCart } from "@/hooks/useCart";
 import { products, categories, type Product, type Category } from "@/data/products";
 import { getProductSlug } from "@/lib/productUtils";
+import ProductImage from "@/components/ProductImage";
 
 const ProductCard = ({ product, index }: { product: Product; index: number }) => {
   const ref = useRef<HTMLDivElement>(null);
