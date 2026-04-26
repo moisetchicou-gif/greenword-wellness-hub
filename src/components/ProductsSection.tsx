@@ -73,7 +73,14 @@ const ProductCard = ({ product, index }: { product: Product; index: number }) =>
             </li>
           ))}
         </ul>
-        <p className="text-accent font-semibold text-base sm:text-lg font-display mt-auto">{product.price}</p>
+        <div className="mt-auto flex items-baseline gap-2 flex-wrap">
+          <p className="text-accent font-semibold text-base sm:text-lg font-display">{product.price}</p>
+          {product.oldPrice && (
+            <span className="text-muted-foreground text-xs sm:text-sm line-through decoration-coral/70 decoration-[1.5px]">
+              {product.oldPrice}
+            </span>
+          )}
+        </div>
         <button
           onClick={handleAdd}
           className={`w-full px-3 sm:px-6 py-2 sm:py-2.5 rounded-full text-xs sm:text-sm font-medium active:scale-[0.95] transition-all duration-300 flex items-center justify-center gap-1.5 sm:gap-2 tracking-wide shine-on-hover ${
