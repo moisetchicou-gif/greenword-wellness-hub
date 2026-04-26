@@ -5,6 +5,7 @@ import { useCart } from "@/hooks/useCart";
 import { products, categories, type Product, type Category } from "@/data/products";
 import { getProductSlug } from "@/lib/productUtils";
 import ProductImage from "@/components/ProductImage";
+import ProductViewersBadge from "@/components/ProductViewersBadge";
 
 const ProductCard = ({ product, index }: { product: Product; index: number }) => {
   const ref = useRef<HTMLDivElement>(null);
@@ -89,6 +90,7 @@ const ProductCard = ({ product, index }: { product: Product; index: number }) =>
             </>
           )}
         </button>
+        <ProductViewersBadge productId={String(product.id)} className="pt-1" />
       </div>
     </div>
   );
