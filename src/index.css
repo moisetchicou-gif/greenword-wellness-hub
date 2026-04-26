@@ -156,12 +156,14 @@
     background-image: linear-gradient(135deg, hsl(var(--coral)), hsl(var(--gold)));
   }
 
-  /* Hero background — joyeux & premium */
+  /* Hero background — joyeux, vif & premium */
   .bg-hero-warm {
     background:
-      radial-gradient(ellipse at top left, hsl(var(--coral-soft)) 0%, transparent 55%),
-      radial-gradient(ellipse at bottom right, hsl(145 40% 90%) 0%, transparent 55%),
-      linear-gradient(165deg, hsl(42 60% 97%) 0%, hsl(38 55% 94%) 45%, hsl(145 25% 92%) 100%);
+      radial-gradient(ellipse at 15% 10%, hsl(14 85% 78% / 0.65) 0%, transparent 50%),
+      radial-gradient(ellipse at 85% 15%, hsl(38 90% 72% / 0.55) 0%, transparent 50%),
+      radial-gradient(ellipse at 90% 90%, hsl(145 55% 75% / 0.55) 0%, transparent 55%),
+      radial-gradient(ellipse at 10% 95%, hsl(28 90% 80% / 0.5) 0%, transparent 50%),
+      linear-gradient(160deg, hsl(38 75% 95%) 0%, hsl(18 80% 93%) 40%, hsl(42 70% 94%) 70%, hsl(145 40% 92%) 100%);
   }
 
   /* Section warm — variante atténuée pour les sections internes */
