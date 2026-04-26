@@ -21,12 +21,17 @@ const BenefitCard = ({ product, index }: { product: Product; index: number }) =>
       className={`bg-card/85 backdrop-blur-md border border-border/40 rounded-2xl overflow-hidden hover-warm-glow group reveal-warm ${visible ? "is-visible" : ""}`}
       style={{ transitionDelay: `${index * 70}ms`, animationDelay: `${index * 70 + 350}ms` }}
     >
-      <div className="aspect-[4/3] bg-secondary/20 flex items-center justify-center p-6 overflow-hidden relative">
-        <img src={product.image} alt={product.name} className="w-full h-full object-contain group-hover:scale-110 group-hover:-rotate-1 transition-transform duration-700 ease-out" loading="lazy" />
-        <div className="absolute top-3 left-3">
+      <div className="bg-secondary/20 p-6 relative overflow-hidden">
+        <ProductImage
+          src={product.image}
+          alt={product.name}
+          aspect="4 / 3"
+          imgClassName="group-hover:scale-110 group-hover:-rotate-1 transition-transform duration-700 ease-out"
+        />
+        <div className="absolute top-3 left-3 z-10">
           <span className="badge-contrast text-[10px] font-semibold px-2.5 py-1 rounded-full">{product.bv} BV</span>
         </div>
-        <div className="absolute inset-0 bg-gradient-to-tr from-coral/0 via-transparent to-gold/0 group-hover:from-coral/[0.08] group-hover:to-gold/[0.08] transition-all duration-500" />
+        <div className="absolute inset-0 bg-gradient-to-tr from-coral/0 via-transparent to-gold/0 group-hover:from-coral/[0.08] group-hover:to-gold/[0.08] transition-all duration-500 pointer-events-none" />
       </div>
       <div className="p-5 space-y-3">
         <h3 className="text-base font-display text-accent group-hover:text-coral transition-colors duration-300">{product.name}</h3>
