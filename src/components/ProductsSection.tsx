@@ -31,7 +31,7 @@ const ProductCard = ({ product, index }: { product: Product; index: number }) =>
   return (
     <div
       ref={ref}
-      className={`bg-card rounded-2xl border border-border/60 overflow-hidden group hover-warm-glow flex flex-col h-full reveal-warm ${visible ? "is-visible" : ""}`}
+      className={`bg-card rounded-2xl border border-border/60 overflow-hidden group card-gradient-border flex flex-col h-full reveal-warm ${visible ? "is-visible" : ""}`}
       style={{ transitionDelay: `${index * 80}ms`, animationDelay: `${index * 80 + 400}ms` }}
     >
       <Link
