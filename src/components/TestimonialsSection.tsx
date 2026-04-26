@@ -103,8 +103,8 @@ const TestimonialCard = ({ t, index }: { t: { name: string; city: string; text: 
   return (
     <div
       ref={ref}
-      className={`bg-card/85 backdrop-blur-md border border-border/40 rounded-2xl p-6 hover-warm-glow hover-tilt relative transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
-      style={{ transitionDelay: `${index * 80}ms` }}
+      className={`bg-card/85 backdrop-blur-md border border-border/40 rounded-2xl p-6 hover-warm-glow hover-tilt relative reveal-warm ${visible ? "is-visible" : ""}`}
+      style={{ transitionDelay: `${index * 100}ms`, animationDelay: `${index * 100 + 400}ms` }}
     >
       <Quote className="absolute top-4 right-4 w-6 h-6 text-coral/30" />
       <StarRating rating={t.rating} />
@@ -134,7 +134,7 @@ const TestimonialsSection = () => {
       <div className="absolute bottom-20 left-0 w-48 h-48 rounded-full bg-gold/15 blur-3xl animate-pulse-soft" style={{ animationDelay: "1.5s" }} />
 
       <div className="container mx-auto px-4 sm:px-6 relative">
-        <div ref={headerRef} className={`text-center mb-12 space-y-4 transition-all duration-700 ${headerVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
+        <div ref={headerRef} className={`text-center mb-12 space-y-4 reveal-warm-section ${headerVisible ? "is-visible" : ""}`}>
           <p className="text-coral text-xs font-semibold uppercase tracking-[0.2em]">Témoignages</p>
           <h2 className="text-3xl sm:text-4xl text-accent">
             Ce que disent nos <span className="italic text-gradient-warm">clients</span>

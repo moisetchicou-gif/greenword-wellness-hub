@@ -24,8 +24,8 @@ const OfferCard = ({ offer, index }: { offer: Offer; index: number }) => {
   return (
     <div
       ref={ref}
-      className={`group relative bg-card rounded-2xl sm:rounded-3xl border-2 border-coral/25 overflow-hidden shadow-lg hover-warm-glow flex flex-col h-full ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"}`}
-      style={{ transitionDelay: `${index * 120}ms` }}
+      className={`group relative bg-card rounded-2xl sm:rounded-3xl border-2 border-coral/25 overflow-hidden shadow-lg hover-warm-glow flex flex-col h-full reveal-warm ${visible ? "is-visible" : ""}`}
+      style={{ transitionDelay: `${index * 140}ms`, animationDelay: `${index * 140 + 450}ms` }}
     >
       {/* Badge offre spéciale */}
       <div className="absolute top-2 left-2 sm:top-4 sm:left-4 z-10 flex items-center gap-1 sm:gap-1.5 badge-warm px-2 py-1 sm:px-3 sm:py-1.5 rounded-full text-[9px] sm:text-xs font-bold animate-pulse-soft">

@@ -29,8 +29,8 @@ const ProductCard = ({ product, index }: { product: Product; index: number }) =>
   return (
     <div
       ref={ref}
-      className={`bg-card rounded-2xl border border-border/60 overflow-hidden group hover-warm-glow flex flex-col h-full ${visible ? "opacity-100 translate-y-0 blur-0" : "opacity-0 translate-y-12 blur-[2px]"}`}
-      style={{ transitionDelay: `${index * 80}ms` }}
+      className={`bg-card rounded-2xl border border-border/60 overflow-hidden group hover-warm-glow flex flex-col h-full reveal-warm ${visible ? "is-visible" : ""}`}
+      style={{ transitionDelay: `${index * 80}ms`, animationDelay: `${index * 80 + 400}ms` }}
     >
       <Link
         to={`/produit/${getProductSlug(product)}`}
@@ -109,7 +109,7 @@ const ProductsSection = () => {
       <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-coral-soft/40 to-transparent pointer-events-none" />
       
       <div className="container mx-auto px-4 sm:px-6 relative">
-        <div ref={ref} className={`text-center mb-12 space-y-4 transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
+        <div ref={ref} className={`text-center mb-12 space-y-4 reveal-warm-section ${visible ? "is-visible" : ""}`}>
           <p className="text-coral text-xs font-semibold uppercase tracking-[0.2em]">Notre gamme</p>
           <h2 className="text-3xl sm:text-4xl text-accent">
             Nos <span className="italic text-gradient-warm">Best-sellers</span>
