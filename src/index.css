@@ -259,6 +259,60 @@
     transform: translateY(0);
   }
 
+  /* === Reveal premium : fade + léger tilt + glow corail discret ===
+     Etat initial (caché) : translaté, légèrement incliné/scale-down, sans ombre.
+     Etat visible : retour à la position normale + petite pulsation lumineuse corail/gold. */
+  .reveal-warm {
+    opacity: 0;
+    transform: translateY(28px) rotate(-1.2deg) scale(0.97);
+    box-shadow: 0 0 0 0 hsl(var(--coral) / 0);
+    transition:
+      opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+      transform 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+      box-shadow 1.2s ease-out;
+    will-change: transform, opacity, box-shadow;
+  }
+  .reveal-warm.is-visible {
+    opacity: 1;
+    transform: translateY(0) rotate(0deg) scale(1);
+    animation: reveal-glow-pulse 2.2s cubic-bezier(0.16, 1, 0.3, 1) 0.4s 1 both;
+  }
+
+  /* Variante section (titres / blocs) : tilt encore plus subtil */
+  .reveal-warm-section {
+    opacity: 0;
+    transform: translateY(36px) rotate(-0.4deg);
+    transition:
+      opacity 1s cubic-bezier(0.16, 1, 0.3, 1),
+      transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: transform, opacity;
+  }
+  .reveal-warm-section.is-visible {
+    opacity: 1;
+    transform: translateY(0) rotate(0deg);
+  }
+
+  @keyframes reveal-glow-pulse {
+    0%   { box-shadow: 0 0 0 0 hsl(var(--coral) / 0); }
+    35%  { box-shadow: 0 12px 38px -12px hsl(var(--coral) / 0.32), 0 0 22px hsl(var(--gold) / 0.18); }
+    100% { box-shadow: 0 6px 18px -10px hsl(var(--coral) / 0.10); }
+  }
+
+  /* Mobile : on coupe le glow pulsé (coûteux) mais on garde fade + tilt */
+  @media (max-width: 768px) {
+    .reveal-warm.is-visible { animation: none; }
+  }
+
+  /* Respect reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    .reveal-warm,
+    .reveal-warm-section {
+      transition: opacity 0.2s ease !important;
+      transform: none !important;
+    }
+    .reveal-warm.is-visible { animation: none !important; }
+  }
+
   /* Premium hover lift */
   .hover-lift {
     @apply transition-all duration-500;
