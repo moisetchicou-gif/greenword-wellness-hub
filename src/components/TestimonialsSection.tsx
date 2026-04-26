@@ -103,13 +103,13 @@ const TestimonialCard = ({ t, index }: { t: { name: string; city: string; text: 
   return (
     <div
       ref={ref}
-      className={`glass rounded-2xl p-6 hover-lift relative transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
+      className={`bg-card/85 backdrop-blur-md border border-border/40 rounded-2xl p-6 hover-warm-glow hover-tilt relative transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
       style={{ transitionDelay: `${index * 80}ms` }}
     >
-      <Quote className="absolute top-4 right-4 w-6 h-6 text-primary/15" />
+      <Quote className="absolute top-4 right-4 w-6 h-6 text-coral/30" />
       <StarRating rating={t.rating} />
       <p className="text-foreground text-sm leading-relaxed mt-3 italic">"{t.text}"</p>
-      <div className="mt-4 pt-3 border-t border-border/50">
+      <div className="mt-4 pt-3 border-t border-coral/15">
         <p className="font-semibold text-xs text-accent">{t.name}</p>
         <p className="text-[11px] text-muted-foreground">{t.city}, Côte d'Ivoire</p>
       </div>
@@ -128,16 +128,16 @@ const TestimonialsSection = () => {
   const avgRating = (testimonials.reduce((s, t) => s + t.rating, 0) / testimonials.length).toFixed(1);
 
   return (
-    <section id="avis" className="py-24 bg-background relative overflow-hidden">
+    <section id="avis" className="py-24 bg-section-warm-strong relative overflow-hidden">
       {/* Decorative elements */}
-      <div className="absolute top-20 right-0 w-64 h-64 rounded-full bg-primary/5 blur-3xl" />
-      <div className="absolute bottom-20 left-0 w-48 h-48 rounded-full bg-highlight/10 blur-3xl" />
+      <div className="absolute top-20 right-0 w-64 h-64 rounded-full bg-coral/15 blur-3xl animate-pulse-soft" />
+      <div className="absolute bottom-20 left-0 w-48 h-48 rounded-full bg-gold/15 blur-3xl animate-pulse-soft" style={{ animationDelay: "1.5s" }} />
 
       <div className="container mx-auto px-4 sm:px-6 relative">
         <div ref={headerRef} className={`text-center mb-12 space-y-4 transition-all duration-700 ${headerVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
-          <p className="text-primary text-xs font-semibold uppercase tracking-[0.2em]">Témoignages</p>
+          <p className="text-coral text-xs font-semibold uppercase tracking-[0.2em]">Témoignages</p>
           <h2 className="text-3xl sm:text-4xl text-accent">
-            Ce que disent nos <span className="italic text-primary">clients</span>
+            Ce que disent nos <span className="italic text-gradient-warm">clients</span>
           </h2>
           <p className="text-muted-foreground text-sm">
             {testimonials.length} avis · Note moyenne : <span className="font-semibold text-accent">{avgRating}/5</span>
@@ -146,12 +146,12 @@ const TestimonialsSection = () => {
 
         <div className="flex flex-wrap justify-center gap-2 mb-10">
           <button onClick={() => { setFilter(null); setPage(0); }}
-            className={`px-4 py-2 rounded-full text-xs font-medium transition-all duration-300 ${filter === null ? "bg-accent text-accent-foreground shadow-lg shadow-accent/20" : "glass text-foreground hover:bg-secondary"}`}>
+            className={`px-4 py-2 rounded-full text-xs font-medium transition-all duration-300 ${filter === null ? "btn-warm shine-on-hover" : "bg-card/80 backdrop-blur border border-border/50 text-foreground hover:border-coral/40 hover:text-coral"}`}>
             Tous ({testimonials.length})
           </button>
           {[5, 4, 3].map((r) => (
             <button key={r} onClick={() => { setFilter(r); setPage(0); }}
-              className={`px-4 py-2 rounded-full text-xs font-medium transition-all duration-300 flex items-center gap-1 ${filter === r ? "bg-accent text-accent-foreground shadow-lg shadow-accent/20" : "glass text-foreground hover:bg-secondary"}`}>
+              className={`px-4 py-2 rounded-full text-xs font-medium transition-all duration-300 flex items-center gap-1 ${filter === r ? "btn-warm shine-on-hover" : "bg-card/80 backdrop-blur border border-border/50 text-foreground hover:border-coral/40 hover:text-coral"}`}>
               {r} <Star className="w-3 h-3 fill-current" /> ({testimonials.filter((t) => t.rating === r).length})
             </button>
           ))}

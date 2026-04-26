@@ -7,24 +7,24 @@ const CtaSection = () => {
 
   return (
     <section id="commander" className="py-24 bg-accent text-accent-foreground relative overflow-hidden">
-      {/* Animated decorative elements */}
-      <div className="absolute -top-20 -right-20 w-80 h-80 rounded-full bg-primary/10 blur-3xl animate-pulse-soft" />
-      <div className="absolute -bottom-10 -left-10 w-60 h-60 rounded-full bg-primary/5 blur-2xl animate-pulse-soft" style={{ animationDelay: "1s" }} />
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full bg-primary/5 blur-3xl" />
+      {/* Animated decorative elements — touche corail/gold */}
+      <div className="absolute -top-20 -right-20 w-80 h-80 rounded-full bg-coral/20 blur-3xl animate-pulse-soft" />
+      <div className="absolute -bottom-10 -left-10 w-60 h-60 rounded-full bg-gold/15 blur-2xl animate-pulse-soft" style={{ animationDelay: "1s" }} />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full bg-primary/10 blur-3xl" />
 
       <div ref={ref} className="container mx-auto px-4 sm:px-6 text-center space-y-6 sm:space-y-8 relative">
-        <p className={`text-primary/70 text-xs font-semibold uppercase tracking-[0.2em] transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}>
+        <p className={`text-coral text-xs font-semibold uppercase tracking-[0.2em] transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}>
           Commander
         </p>
         <h2 className={`text-3xl sm:text-4xl font-display transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`} style={{ transitionDelay: "100ms" }}>
-          Prêt à transformer votre santé ?
+          Prêt à transformer <span className="text-gradient-warm italic">votre santé</span> ?
         </h2>
         <p className={`max-w-lg mx-auto opacity-80 text-sm leading-relaxed transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`} style={{ transitionDelay: "200ms" }}>
           Commandez dès aujourd'hui vos produits Green World Prestige. Satisfait ou remboursé pendant 30 jours.
         </p>
 
         <div className={`pt-2 transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`} style={{ transitionDelay: "300ms" }}>
-          <a href="#produits" className="group inline-flex items-center gap-2 bg-secondary text-accent px-8 py-3.5 rounded-full font-medium text-sm tracking-wide hover:shadow-2xl active:scale-[0.97] transition-all duration-500">
+          <a href="#produits" className="group inline-flex items-center gap-2 btn-warm shine-on-hover px-8 py-3.5 rounded-full font-medium text-sm tracking-wide">
             Commander maintenant
             <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
           </a>

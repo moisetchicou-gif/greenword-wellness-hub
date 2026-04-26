@@ -161,6 +161,18 @@ export default {
           "20%, 60%": { transform: "translateX(-4px)" },
           "40%, 80%": { transform: "translateX(4px)" },
         },
+        "tilt": {
+          "0%, 100%": { transform: "rotate(-0.6deg)" },
+          "50%": { transform: "rotate(0.6deg)" },
+        },
+        "glow-coral": {
+          "0%, 100%": { boxShadow: "0 0 0 0 hsl(var(--coral) / 0)" },
+          "50%": { boxShadow: "0 0 28px 6px hsl(var(--coral) / 0.25)" },
+        },
+        "shine": {
+          "0%": { transform: "translateX(-120%) skewX(-20deg)" },
+          "100%": { transform: "translateX(220%) skewX(-20deg)" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -181,6 +193,9 @@ export default {
         "blur-in": "blur-in 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards",
         "slide-up-fade": "slide-up-fade 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards",
         "shake": "shake 0.4s ease-in-out",
+        "tilt": "tilt 6s ease-in-out infinite",
+        "glow-coral": "glow-coral 3.5s ease-in-out infinite",
+        "shine": "shine 1.2s ease-in-out",
       },
     },
   },
