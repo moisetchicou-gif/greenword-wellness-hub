@@ -10,15 +10,10 @@ const HeroSection = () => {
       ref={ref}
       className="relative min-h-screen flex items-center overflow-hidden pt-16 bg-hero-warm"
     >
-      {/* Halos décoratifs — verts & dorés très doux, ambiance zen */}
-      <div className="absolute top-20 left-10 w-80 h-80 rounded-full bg-primary/15 blur-[100px] animate-pulse-soft" />
-      <div className="absolute bottom-20 right-10 w-[28rem] h-[28rem] rounded-full bg-gold/15 blur-[120px] animate-pulse-soft" style={{ animationDelay: "2s" }} />
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] rounded-full bg-primary/[0.05] blur-[120px]" />
-
-      {/* Anneaux décoratifs subtils */}
-      <div className="absolute top-1/2 right-[10%] -translate-y-1/2 w-[500px] h-[500px] rounded-full border border-primary/[0.07] animate-rotate-slow hidden lg:block" />
-      <div className="absolute top-1/2 right-[10%] -translate-y-1/2 w-[400px] h-[400px] rounded-full border border-gold/[0.08] animate-rotate-slow hidden lg:block" style={{ animationDirection: "reverse", animationDuration: "30s" }} />
-
+      {/* Halos décoratifs très subtils — cohérents avec le fond crème-sauge uniforme */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] rounded-full bg-primary/[0.04] blur-[140px] pointer-events-none" />
+      <div className="absolute top-32 left-16 w-72 h-72 rounded-full bg-primary/[0.06] blur-[120px] pointer-events-none" />
+      <div className="absolute bottom-32 right-16 w-80 h-80 rounded-full bg-gold/[0.05] blur-[120px] pointer-events-none" />
       <div className="container mx-auto px-4 sm:px-6 grid md:grid-cols-2 gap-8 md:gap-12 items-center relative">
         <div className="space-y-6 sm:space-y-7 text-center md:text-left">
           {/* Badge sauge avec étoile dorée */}
@@ -76,19 +71,25 @@ const HeroSection = () => {
           </div>
         </div>
 
-        {/* Visuel produit — pot + plantes (PNG transparent, se fond dans le hero) */}
+        {/* Visuel produit — pot Green World, fond crème-sauge identique au hero */}
         <div
           className={`flex justify-center transition-all ease-premium ${visible ? "opacity-100 scale-100 blur-0" : "opacity-0 scale-95 blur-md"}`}
           style={{ transitionDelay: "400ms", transitionDuration: "1200ms" }}
         >
           <img
             src={heroProduct}
-            alt="Green World Prestige — pot de gélules naturelles entouré de plantes fraîches"
+            alt="Green World Prestige — pot de gélules naturelles aux herbes fraîches"
             width={520}
             height={520}
             fetchPriority="high"
             decoding="async"
-            className="w-64 sm:w-80 md:w-[440px] lg:w-[480px] drop-shadow-[0_22px_28px_hsl(155_38%_16%/0.22)]"
+            className="w-72 sm:w-96 md:w-[460px] lg:w-[500px] rounded-[2rem] mix-blend-multiply"
+            style={{
+              maskImage:
+                "radial-gradient(ellipse 75% 80% at center, black 55%, transparent 100%)",
+              WebkitMaskImage:
+                "radial-gradient(ellipse 75% 80% at center, black 55%, transparent 100%)",
+            }}
           />
         </div>
       </div>
