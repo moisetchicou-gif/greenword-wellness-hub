@@ -55,9 +55,9 @@ function sampleSurroundingBackground(
   box: { x: number; y: number; width: number; height: number },
 ): Rgb[] {
   const samples: Rgb[] = [];
-  // Marge généreuse pour éviter les ombres portées (drop-shadow ~30-40px) qui
+  // Marge généreuse pour éviter les ombres portées (drop-shadow ~40px) qui
   // débordent hors des bounding-box et fausseraient l'échantillon.
-  const margin = 50;
+  const margin = 80;
   const stripWidth = 12;
   const stepsAlong = 12;
   const inside = (x: number, y: number) =>
