@@ -134,12 +134,12 @@ const TestimonialsSection = () => {
       <div className="absolute bottom-20 left-0 w-48 h-48 rounded-full bg-gold/15 blur-3xl animate-pulse-soft" style={{ animationDelay: "1.5s" }} />
 
       <div className="container mx-auto px-4 sm:px-6 relative">
-        <div ref={headerRef} className={`text-center mb-12 space-y-4 reveal-warm-section ${headerVisible ? "is-visible" : ""}`}>
-          <p className="text-coral text-xs font-semibold uppercase tracking-[0.2em]">Témoignages</p>
-          <h2 className="text-3xl sm:text-4xl text-accent">
+        <div ref={headerRef} className={`text-center mb-12 space-y-3 reveal-warm-section ${headerVisible ? "is-visible" : ""}`}>
+          <p className="text-coral text-xs font-semibold uppercase tracking-[0.22em]">Témoignages</p>
+          <h2 className="text-3xl sm:text-4xl font-display text-accent leading-tight">
             Ce que disent nos <span className="italic text-gradient-warm">clients</span>
           </h2>
-          <p className="text-muted-foreground text-sm">
+          <p className="text-muted-foreground max-w-xl mx-auto text-sm sm:text-base leading-relaxed">
             {testimonials.length} avis · Note moyenne : <span className="font-semibold text-accent">{avgRating}/5</span>
           </p>
         </div>
