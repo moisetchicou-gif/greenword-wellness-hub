@@ -8,14 +8,11 @@ const HeroSection = () => {
   return (
     <section
       ref={ref}
-      className="relative min-h-screen flex items-center overflow-hidden pt-16 bg-hero-warm"
+      className="relative min-h-screen flex items-center overflow-hidden pt-16"
+      style={{ backgroundColor: "hsl(80 28% 92%)" }}
     >
-      {/* Halos décoratifs très subtils — cohérents avec le fond crème-sauge uniforme */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] rounded-full bg-primary/[0.04] blur-[140px] pointer-events-none" />
-      <div className="absolute top-32 left-16 w-72 h-72 rounded-full bg-primary/[0.06] blur-[120px] pointer-events-none" />
-      <div className="absolute bottom-32 right-16 w-80 h-80 rounded-full bg-gold/[0.05] blur-[120px] pointer-events-none" />
       <div className="container mx-auto px-4 sm:px-6 grid md:grid-cols-2 gap-8 md:gap-12 items-center relative">
-        <div className="space-y-6 sm:space-y-7 text-center md:text-left">
+        <div data-testid="hero-slogan" className="space-y-6 sm:space-y-7 text-center md:text-left">
           {/* Badge sauge avec étoile dorée */}
           <div
             className={`inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-[11px] sm:text-xs font-semibold tracking-[0.18em] uppercase border border-primary/15 bg-secondary/80 text-accent backdrop-blur-sm shadow-sm transition-all duration-1000 ease-premium ${visible ? "opacity-100 translate-y-0 blur-0" : "opacity-0 translate-y-8 blur-sm"}`}
@@ -73,6 +70,7 @@ const HeroSection = () => {
 
         {/* Visuel produit — bocal Green World qui flotte sur le même fond crème-sauge que le texte */}
         <div
+          data-testid="hero-product"
           className={`flex justify-center transition-all ease-premium ${visible ? "opacity-100 scale-100 blur-0" : "opacity-0 scale-95 blur-md"}`}
           style={{ transitionDelay: "400ms", transitionDuration: "1200ms" }}
         >
