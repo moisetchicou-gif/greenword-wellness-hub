@@ -190,14 +190,18 @@ async function main() {
   let exitCode = 0;
   try {
     // Le binaire Chromium fourni par Playwright n'est pas compatible avec
-    // l'environnement Nix du sandbox (libglib introuvable). On utilise donc
-    // le Chromium natif disponible sur la machine si présent, sinon on
-    // retombe sur le binaire Playwright par défaut.
-    const systemChromium = process.env.CHROMIUM_PATH
-      || (await import("node:fs/promises").then(({ access }) =>
-            access("/bin/chromium").then(() => "/bin/chromium").catch(() => null)));
+    // l'environnement Nix du sandbox (libglib introuvable). On préfère donc
+    // un Chromium natif si présent (var d'env CHROMIUM_PATH ou /bin/chromium).
+    const fs = await import("node:fs");
+    let executablePath: string | undefined = process.env.CHROMIUM_PATH;
+    if (!executablePath && fs.existsSync("/bin/chromium")) {
+      executablePath = "/bin/chromium";
+    }
+    if (executablePath) {
+      console.log(`▸ Chromium : ${executablePath}`);
+    }
     browser = await chromium.launch(
-      systemChromium ? { executablePath: systemChromium, args: ["--no-sandbox"] } : {},
+      executablePath ? { executablePath, args: ["--no-sandbox"] } : {},
     );
     const ctx = await browser.newContext({ deviceScaleFactor: 1 });
     const page = await ctx.newPage();
