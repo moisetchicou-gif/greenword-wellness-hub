@@ -1,6 +1,5 @@
 import { Leaf, ShieldCheck, Truck } from "lucide-react";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
-import benefitsIllustration from "@/assets/benefits-illustration.png";
 
 type Highlight = {
   icon: typeof Leaf;
