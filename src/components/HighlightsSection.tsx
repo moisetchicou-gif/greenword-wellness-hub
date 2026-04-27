@@ -75,7 +75,7 @@ const HighlightsSection = () => {
           {/* Texte + cartes */}
           <div className="space-y-8">
             <header
-              className={`space-y-3 text-center lg:text-left transition-all duration-1000 ease-premium ${
+              className={`space-y-3 text-center transition-all duration-1000 ease-premium ${
                 visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
               }`}
             >
@@ -91,7 +91,7 @@ const HighlightsSection = () => {
                 <br className="hidden sm:block" />
                 pour votre bien-être
               </h2>
-              <p className="text-muted-foreground max-w-xl mx-auto lg:mx-0 text-sm sm:text-base leading-relaxed">
+              <p className="text-muted-foreground max-w-xl mx-auto text-sm sm:text-base leading-relaxed">
                 Trois promesses simples qui guident chacun de nos produits, de
                 la sélection des plantes à la livraison chez vous.
               </p>
