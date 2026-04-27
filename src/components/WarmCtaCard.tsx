@@ -50,7 +50,10 @@ const WarmCtaCard = ({
   const buttonInner = (
     <>
       {action.icon ? (
-        <action.icon className="w-4 h-4" strokeWidth={2.2} />
+        <action.icon
+          className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5"
+          strokeWidth={2.2}
+        />
       ) : action.emoji ? (
         <span className="text-base leading-none">{action.emoji}</span>
       ) : null}
@@ -58,8 +61,10 @@ const WarmCtaCard = ({
     </>
   );
 
+  // Style canonique aligné sur CtaSection / IntroOffers :
+  // gap-2, px-8 py-3.5, font-medium, tracking-wide, focus ring conforme.
   const buttonClass =
-    "inline-flex items-center gap-2.5 px-8 py-3.5 rounded-full btn-warm shine-on-hover text-sm font-semibold mt-5";
+    "group inline-flex items-center gap-2 mt-5 px-8 py-3.5 rounded-full btn-warm shine-on-hover text-sm font-medium tracking-wide focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background";
 
   return (
     <div className={`relative ${className}`}>
