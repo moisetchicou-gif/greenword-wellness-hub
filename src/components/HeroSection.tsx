@@ -1,4 +1,4 @@
-import heroProduct from "@/assets/hero-product.webp";
+import heroProduct from "@/assets/hero-product.png";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { Sparkles, ArrowDown } from "lucide-react";
 
@@ -76,27 +76,20 @@ const HeroSection = () => {
           </div>
         </div>
 
-        {/* Visuel produit — pot + plantes, ancré au sol, sans lévitation */}
+        {/* Visuel produit — pot + plantes (PNG transparent, se fond dans le hero) */}
         <div
           className={`flex justify-center transition-all ease-premium ${visible ? "opacity-100 scale-100 blur-0" : "opacity-0 scale-95 blur-md"}`}
           style={{ transitionDelay: "400ms", transitionDuration: "1200ms" }}
         >
-          <div className="relative">
-            {/* Ombre au sol douce et plate (ancrage réaliste, pas de halo flottant) */}
-            <div
-              aria-hidden
-              className="absolute left-1/2 -translate-x-1/2 bottom-2 w-[70%] h-6 rounded-[50%] bg-accent/20 blur-2xl"
-            />
-            <img
-              src={heroProduct}
-              alt="Green World Prestige — pot de gélules naturelles entouré de plantes fraîches"
-              width={520}
-              height={520}
-              fetchPriority="high"
-              decoding="async"
-              className="w-64 sm:w-80 md:w-[440px] lg:w-[480px] relative z-10 drop-shadow-[0_18px_30px_hsl(155_38%_16%/0.18)]"
-            />
-          </div>
+          <img
+            src={heroProduct}
+            alt="Green World Prestige — pot de gélules naturelles entouré de plantes fraîches"
+            width={520}
+            height={520}
+            fetchPriority="high"
+            decoding="async"
+            className="w-64 sm:w-80 md:w-[440px] lg:w-[480px] drop-shadow-[0_22px_28px_hsl(155_38%_16%/0.22)]"
+          />
         </div>
       </div>
 
