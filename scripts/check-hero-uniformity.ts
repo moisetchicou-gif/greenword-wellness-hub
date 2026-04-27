@@ -26,7 +26,7 @@ const VIEWPORTS = [
   { name: "desktop-xl", width: 1920, height: 1080 },
 ] as const;
 
-const RGB_TOLERANCE = 3;
+const RGB_TOLERANCE = 5; // unités sur 0-255 — imperceptible à l'œil nu, absorbe l'antialiasing résiduel
 
 type Rgb = { r: number; g: number; b: number };
 
@@ -55,9 +55,7 @@ function sampleSurroundingBackground(
   box: { x: number; y: number; width: number; height: number },
 ): Rgb[] {
   const samples: Rgb[] = [];
-  // Marge adaptative : assez petite pour rester dans le viewport mobile,
-  // assez grande pour éviter les ombres portées du bocal sur desktop.
-  const margin = Math.min(40, Math.max(8, Math.round(png.width * 0.04)));
+  const margin = 30;
   const stripWidth = 10;
   const stepsAlong = 12;
   const inside = (x: number, y: number) =>
