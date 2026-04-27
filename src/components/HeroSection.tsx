@@ -71,25 +71,19 @@ const HeroSection = () => {
           </div>
         </div>
 
-        {/* Visuel produit — pot Green World, fond crème-sauge identique au hero */}
+        {/* Visuel produit — bocal Green World qui flotte sur le même fond crème-sauge que le texte */}
         <div
           className={`flex justify-center transition-all ease-premium ${visible ? "opacity-100 scale-100 blur-0" : "opacity-0 scale-95 blur-md"}`}
           style={{ transitionDelay: "400ms", transitionDuration: "1200ms" }}
         >
           <img
             src={heroProduct}
-            alt="Green World Prestige — pot de gélules naturelles aux herbes fraîches"
+            alt="Green World Prestige — bocal de gélules naturelles aux herbes fraîches"
             width={520}
             height={520}
             fetchPriority="high"
             decoding="async"
-            className="w-72 sm:w-96 md:w-[460px] lg:w-[500px] rounded-[2rem] mix-blend-multiply"
-            style={{
-              maskImage:
-                "radial-gradient(ellipse 75% 80% at center, black 55%, transparent 100%)",
-              WebkitMaskImage:
-                "radial-gradient(ellipse 75% 80% at center, black 55%, transparent 100%)",
-            }}
+            className="w-72 sm:w-96 md:w-[460px] lg:w-[500px] animate-float drop-shadow-[0_30px_40px_hsl(155_38%_16%/0.18)]"
           />
         </div>
       </div>
