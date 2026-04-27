@@ -76,14 +76,17 @@ const HeroSection = () => {
           </div>
         </div>
 
-        {/* Visuel produit — pot + plantes (image générée) */}
+        {/* Visuel produit — pot + plantes, ancré au sol, sans lévitation */}
         <div
-          className={`flex justify-center transition-all ease-premium ${visible ? "opacity-100 scale-100 blur-0" : "opacity-0 scale-[0.85] blur-md"}`}
+          className={`flex justify-center transition-all ease-premium ${visible ? "opacity-100 scale-100 blur-0" : "opacity-0 scale-95 blur-md"}`}
           style={{ transitionDelay: "400ms", transitionDuration: "1200ms" }}
         >
           <div className="relative">
-            <div className="absolute inset-0 bg-primary/8 rounded-full blur-[80px] scale-90 animate-glow" />
-            <div className="absolute inset-0 bg-gold/10 rounded-full blur-[60px] scale-75" style={{ animationDelay: "1.5s" }} />
+            {/* Ombre au sol douce et plate (ancrage réaliste, pas de halo flottant) */}
+            <div
+              aria-hidden
+              className="absolute left-1/2 -translate-x-1/2 bottom-2 w-[70%] h-6 rounded-[50%] bg-accent/20 blur-2xl"
+            />
             <img
               src={heroProduct}
               alt="Green World Prestige — pot de gélules naturelles entouré de plantes fraîches"
@@ -91,7 +94,7 @@ const HeroSection = () => {
               height={520}
               fetchPriority="high"
               decoding="async"
-              className="w-64 sm:w-80 md:w-[440px] lg:w-[480px] relative z-10 drop-shadow-[0_25px_45px_hsl(155_38%_16%/0.18)] animate-float"
+              className="w-64 sm:w-80 md:w-[440px] lg:w-[480px] relative z-10 drop-shadow-[0_18px_30px_hsl(155_38%_16%/0.18)]"
             />
           </div>
         </div>
