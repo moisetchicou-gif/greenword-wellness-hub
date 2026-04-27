@@ -44,35 +44,61 @@ function avgColor(samples: Rgb[]): Rgb {
   };
 }
 
-function sampleBorderPixels(
+/**
+ * Échantillonne UNIQUEMENT les pixels de fond AUTOUR (en dehors) d'une zone,
+ * dans des bandes adjacentes : à gauche, à droite, au-dessus et en-dessous.
+ * Ne capte JAMAIS de contenu (texte, bocal, badge), seulement la couleur du
+ * fond du hero immédiatement adjacente à la zone.
+ */
+function sampleSurroundingBackground(
   png: PNG,
   box: { x: number; y: number; width: number; height: number },
 ): Rgb[] {
   const samples: Rgb[] = [];
-  const margin = 4;
-  const stepsPerSide = 8;
+  const margin = 8;
+  const stripWidth = 12;
+  const stepsAlong = 12;
   const inside = (x: number, y: number) =>
     x >= 0 && x < png.width && y >= 0 && y < png.height;
 
-  for (let i = 1; i <= stepsPerSide; i++) {
-    const x = Math.round(box.x + (box.width * i) / (stepsPerSide + 1));
-    const yTop = Math.round(box.y + margin);
-    const yBot = Math.round(box.y + box.height - margin);
-    if (inside(x, yTop)) samples.push(pixelAt(png, x, yTop));
-    if (inside(x, yBot)) samples.push(pixelAt(png, x, yBot));
+  // Bande à gauche
+  if (box.x - margin * 2 >= stripWidth) {
+    const xStart = Math.max(margin, box.x - margin - stripWidth);
+    for (let i = 1; i <= stepsAlong; i++) {
+      const y = Math.round(box.y + (box.height * i) / (stepsAlong + 1));
+      for (let dx = 0; dx < stripWidth; dx += 3) {
+        if (inside(xStart + dx, y)) samples.push(pixelAt(png, xStart + dx, y));
+      }
+    }
   }
-  for (let i = 1; i <= 4; i++) {
-    const yTop = Math.round(box.y + (box.height * i) / 10);
-    const yBot = Math.round(box.y + box.height - (box.height * i) / 10);
-    const xL = Math.round(box.x + margin);
-    const xR = Math.round(box.x + box.width - margin);
-    for (const [x, y] of [
-      [xL, yTop],
-      [xR, yTop],
-      [xL, yBot],
-      [xR, yBot],
-    ] as const) {
-      if (inside(x, y)) samples.push(pixelAt(png, x, y));
+  // Bande à droite
+  if (png.width - (box.x + box.width) - margin * 2 >= stripWidth) {
+    const xStart = box.x + box.width + margin;
+    for (let i = 1; i <= stepsAlong; i++) {
+      const y = Math.round(box.y + (box.height * i) / (stepsAlong + 1));
+      for (let dx = 0; dx < stripWidth; dx += 3) {
+        if (inside(xStart + dx, y)) samples.push(pixelAt(png, xStart + dx, y));
+      }
+    }
+  }
+  // Bande au-dessus
+  if (box.y - margin * 2 >= stripWidth) {
+    const yStart = Math.max(margin, box.y - margin - stripWidth);
+    for (let i = 1; i <= stepsAlong; i++) {
+      const x = Math.round(box.x + (box.width * i) / (stepsAlong + 1));
+      for (let dy = 0; dy < stripWidth; dy += 3) {
+        if (inside(x, yStart + dy)) samples.push(pixelAt(png, x, yStart + dy));
+      }
+    }
+  }
+  // Bande en-dessous
+  if (png.height - (box.y + box.height) - margin * 2 >= stripWidth) {
+    const yStart = box.y + box.height + margin;
+    for (let i = 1; i <= stepsAlong; i++) {
+      const x = Math.round(box.x + (box.width * i) / (stepsAlong + 1));
+      for (let dy = 0; dy < stripWidth; dy += 3) {
+        if (inside(x, yStart + dy)) samples.push(pixelAt(png, x, yStart + dy));
+      }
     }
   }
   return samples;
