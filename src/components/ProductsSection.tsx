@@ -129,12 +129,12 @@ const ProductsSection = () => {
       
       <div className="container mx-auto px-4 sm:px-6 relative">
         <div ref={ref} className={`text-center mb-12 space-y-4 reveal-warm-section ${visible ? "is-visible" : ""}`}>
-          <p className="text-coral text-xs font-semibold uppercase tracking-[0.2em]">Notre gamme</p>
+          <p className="text-coral text-xs font-semibold uppercase tracking-[0.2em]">Nos Promotions du moment</p>
           <h2 className="text-3xl sm:text-4xl text-accent">
-            Nos <span className="italic text-gradient-warm">Best-sellers</span>
+            Nos <span className="italic text-gradient-warm">Promotions du moment</span>
           </h2>
           <p className="text-muted-foreground max-w-xl mx-auto text-sm leading-relaxed">
-            Découvrez notre gamme complète de compléments alimentaires naturels et produits Green World Prestige.
+            Découvrez notre gamme complète de compléments alimentaires naturels Green World Prestige, avec nos meilleures offres du moment.
           </p>
         </div>
 
