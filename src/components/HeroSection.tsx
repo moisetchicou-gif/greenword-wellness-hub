@@ -8,12 +8,9 @@ const HeroSection = () => {
   return (
     <section
       ref={ref}
-      className="relative min-h-screen flex items-center overflow-hidden pt-16 bg-hero-warm"
+      className="relative min-h-screen flex items-center overflow-hidden pt-16"
+      style={{ backgroundColor: "hsl(80 28% 92%)" }}
     >
-      {/* Halos décoratifs très subtils — cohérents avec le fond crème-sauge uniforme */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] rounded-full bg-primary/[0.04] blur-[140px] pointer-events-none" />
-      <div className="absolute top-32 left-16 w-72 h-72 rounded-full bg-primary/[0.06] blur-[120px] pointer-events-none" />
-      <div className="absolute bottom-32 right-16 w-80 h-80 rounded-full bg-gold/[0.05] blur-[120px] pointer-events-none" />
       <div className="container mx-auto px-4 sm:px-6 grid md:grid-cols-2 gap-8 md:gap-12 items-center relative">
         <div data-testid="hero-slogan" className="space-y-6 sm:space-y-7 text-center md:text-left">
           {/* Badge sauge avec étoile dorée */}
