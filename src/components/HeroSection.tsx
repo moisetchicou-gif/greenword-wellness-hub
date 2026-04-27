@@ -75,15 +75,19 @@ const HeroSection = () => {
           className={`flex justify-center transition-all ease-premium ${visible ? "opacity-100 scale-100 blur-0" : "opacity-0 scale-95 blur-md"}`}
           style={{ transitionDelay: "400ms", transitionDuration: "1200ms" }}
         >
-          <img
-            src={heroProduct}
-            alt="Green World Prestige — bocal de gélules naturelles aux herbes fraîches"
-            width={520}
-            height={520}
-            fetchPriority="high"
-            decoding="async"
-            className="w-72 sm:w-96 md:w-[460px] lg:w-[500px] animate-float drop-shadow-[0_30px_40px_hsl(155_38%_16%/0.18)]"
-          />
+          <picture>
+            <source srcSet={heroProductWebp} type="image/webp" />
+            <img
+              src={heroProductPng}
+              alt="Green World Prestige — bocal de gélules naturelles aux herbes fraîches"
+              width={965}
+              height={1000}
+              fetchPriority="high"
+              decoding="async"
+              loading="eager"
+              className="w-72 sm:w-96 md:w-[460px] lg:w-[500px] animate-float drop-shadow-[0_30px_40px_hsl(155_38%_16%/0.18)]"
+            />
+          </picture>
         </div>
       </div>
 
