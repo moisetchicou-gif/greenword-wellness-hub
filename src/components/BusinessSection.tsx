@@ -566,21 +566,22 @@ const BusinessSection = () => {
   return (
     <section
       id="business"
-      className="py-20 sm:py-24 bg-gradient-to-b from-background via-secondary/30 to-background relative overflow-hidden"
+      className="py-20 sm:py-24 bg-section-warm relative overflow-hidden"
     >
-      <div className="absolute -top-32 -right-32 w-96 h-96 rounded-full bg-primary/10 blur-3xl" />
-      <div className="absolute -bottom-20 -left-20 w-80 h-80 rounded-full bg-accent/10 blur-3xl" />
+      {/* Halos décoratifs alignés avec Highlights / Témoignages */}
+      <div className="absolute -top-16 -left-16 w-72 h-72 rounded-full bg-coral/15 blur-[90px] pointer-events-none" />
+      <div className="absolute -bottom-16 -right-16 w-80 h-80 rounded-full bg-gold/15 blur-[100px] pointer-events-none" />
 
       <div ref={ref} className="container mx-auto px-4 sm:px-6 relative">
-        <div className={`text-center max-w-2xl mx-auto mb-12 space-y-4 transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 text-primary text-xs font-semibold uppercase tracking-[0.2em]">
+        <div className={`text-center max-w-2xl mx-auto mb-12 space-y-3 transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
+          <p className="text-coral text-xs font-semibold uppercase tracking-[0.22em] inline-flex items-center gap-2 justify-center">
             <Briefcase className="w-3.5 h-3.5" />
             Opportunité Business
-          </div>
+          </p>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-display text-accent leading-tight">
-            Devenez <span className="italic text-primary">distributeur</span> Green World Prestige
+            Devenez <span className="italic text-gradient-warm">distributeur</span> Green World Prestige
           </h2>
-          <p className="text-muted-foreground text-sm sm:text-base leading-relaxed">
+          <p className="text-muted-foreground max-w-xl mx-auto text-sm sm:text-base leading-relaxed">
             Rejoignez notre réseau et gagnez <strong className="text-accent">20% de commission</strong> sur les ventes,
             des voyages internationaux, des voitures, une maison et de nombreux lots.
           </p>
