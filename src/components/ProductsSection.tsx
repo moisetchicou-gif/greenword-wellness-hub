@@ -1,10 +1,11 @@
 import { useEffect, useRef, useState } from "react";
-import { ShoppingCart, Check } from "lucide-react";
+import { ShoppingCart, Check, Stethoscope } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useCart } from "@/hooks/useCart";
 import { products, categories, type Product, type Category } from "@/data/products";
 import { getProductSlug } from "@/lib/productUtils";
 import ProductImage from "@/components/ProductImage";
+import WarmCtaCard from "@/components/WarmCtaCard";
 
 const ProductCard = ({ product, index }: { product: Product; index: number }) => {
   const ref = useRef<HTMLDivElement>(null);
@@ -176,34 +177,23 @@ const ProductsSection = () => {
           </div>
         )}
 
-        {/* CTA Guide Santé — uniformisée avec la palette warm (coral / gold) */}
-        <div className="mt-16 relative">
-          <div className="relative overflow-hidden bg-gradient-to-br from-coral/10 via-card to-gold/10 rounded-2xl border border-coral/30 p-8 sm:p-10 text-center space-y-4 hover-warm-glow">
-            <div className="absolute -top-16 -left-16 w-56 h-56 rounded-full bg-coral/15 blur-[80px] pointer-events-none" />
-            <div className="absolute -bottom-16 -right-16 w-60 h-60 rounded-full bg-gold/15 blur-[90px] pointer-events-none" />
-            <div className="relative">
-              <p className="text-coral text-xs font-semibold uppercase tracking-[0.22em] mb-3">
-                Guide Santé
-              </p>
-              <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-coral/25 to-gold/20 flex items-center justify-center mx-auto mb-4 animate-pulse-soft ring-1 ring-coral/30">
-                <span className="text-2xl">🩺</span>
-              </div>
-              <h3 className="text-2xl sm:text-3xl font-display text-accent leading-tight">
-                Vous avez un <span className="italic text-gradient-warm">problème de santé</span> ?
-              </h3>
-              <p className="text-muted-foreground text-sm max-w-lg mx-auto leading-relaxed mt-3">
-                Consultez notre guide complet pour trouver les compléments alimentaires adaptés à votre pathologie.
-              </p>
-              <Link
-                to="/guide-pathologies"
-                className="inline-flex items-center gap-2.5 px-8 py-3.5 rounded-full btn-warm shine-on-hover text-sm font-semibold mt-5"
-              >
-                <span className="text-base">📋</span>
-                Guide Santé par Pathologie
-              </Link>
-            </div>
-          </div>
-        </div>
+        {/* CTA Guide Santé — composant warm partagé */}
+        <WarmCtaCard
+          className="mt-16"
+          eyebrow="Guide Santé"
+          icon={Stethoscope}
+          title={
+            <>
+              Vous avez un <span className="italic text-gradient-warm">problème de santé</span> ?
+            </>
+          }
+          description="Consultez notre guide complet pour trouver les compléments alimentaires adaptés à votre pathologie."
+          action={{
+            to: "/guide-pathologies",
+            label: "Guide Santé par Pathologie",
+            emoji: "📋",
+          }}
+        />
       </div>
     </section>
   );
