@@ -55,10 +55,10 @@ function sampleSurroundingBackground(
   box: { x: number; y: number; width: number; height: number },
 ): Rgb[] {
   const samples: Rgb[] = [];
-  // Marge généreuse pour éviter les ombres portées (drop-shadow ~40px) qui
-  // débordent hors des bounding-box et fausseraient l'échantillon.
-  const margin = 80;
-  const stripWidth = 12;
+  // Marge adaptative : assez petite pour rester dans le viewport mobile,
+  // assez grande pour éviter les ombres portées du bocal sur desktop.
+  const margin = Math.min(40, Math.max(8, Math.round(png.width * 0.04)));
+  const stripWidth = 10;
   const stepsAlong = 12;
   const inside = (x: number, y: number) =>
     x >= 0 && x < png.width && y >= 0 && y < png.height;
