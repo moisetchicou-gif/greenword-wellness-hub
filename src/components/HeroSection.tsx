@@ -85,7 +85,7 @@ const HeroSection = () => {
               fetchPriority="high"
               decoding="async"
               loading="eager"
-              className="w-72 sm:w-96 md:w-[460px] lg:w-[500px] animate-float drop-shadow-[0_30px_40px_hsl(155_38%_16%/0.18)]"
+              className="w-72 sm:w-96 md:w-[460px] lg:w-[500px] animate-float [filter:drop-shadow(0_2px_3px_hsl(80_25%_35%/0.18))_drop-shadow(0_18px_22px_hsl(80_28%_30%/0.16))_drop-shadow(0_45px_55px_hsl(80_30%_25%/0.12))]"
             />
           </picture>
         </div>
