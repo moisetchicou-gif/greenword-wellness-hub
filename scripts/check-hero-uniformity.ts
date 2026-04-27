@@ -155,10 +155,13 @@ async function runCheck(page: Page, baseUrl: string, vp: typeof VIEWPORTS[number
   const buf = await page.screenshot({ fullPage: false, type: "png" });
   const png = PNG.sync.read(buf);
 
-  const sloganSamples = sampleBorderPixels(png, sloganBox);
-  const productSamples = sampleBorderPixels(png, productBox);
+  const sloganSamples = sampleSurroundingBackground(png, sloganBox);
+  const productSamples = sampleSurroundingBackground(png, productBox);
   if (sloganSamples.length < 10 || productSamples.length < 10) {
-    throw new Error(`Échantillons insuffisants @ ${vp.name}`);
+    throw new Error(
+      `Échantillons insuffisants @ ${vp.name} ` +
+      `(slogan=${sloganSamples.length}, produit=${productSamples.length})`,
+    );
   }
 
   const slogan = avgColor(sloganSamples);
