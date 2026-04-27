@@ -252,4 +252,6 @@ const BookingDialog = ({ offerName, trigger }: BookingDialogProps) => {
   );
 };
 
+BookingDialog.displayName = "BookingDialog";
+
 export default BookingDialog;
