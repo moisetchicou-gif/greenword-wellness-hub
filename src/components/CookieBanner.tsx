@@ -34,7 +34,7 @@ const CookieBanner = () => {
       role="dialog"
       aria-label="Consentement cookies"
     >
-      <div className="bg-card/98 backdrop-blur-md border border-border/70 rounded-2xl shadow-xl p-3.5 sm:p-4 flex items-start gap-3">
+      <div className="relative bg-card/98 backdrop-blur-md border border-border/70 rounded-2xl shadow-xl p-3.5 sm:p-4 flex items-start gap-3">
         <p className="text-xs sm:text-sm text-muted-foreground flex-1 leading-relaxed">
           Nous utilisons uniquement des cookies techniques essentiels au fonctionnement du site.{" "}
           <Link to="/politique-confidentialite" className="text-primary hover:underline font-medium whitespace-nowrap">
