@@ -10,6 +10,7 @@ import ErrorBoundary from "@/components/ErrorBoundary";
 import Index from "./pages/Index.tsx";
 import GuideButton from "@/components/GuideButton";
 import CartDrawer from "@/components/CartDrawer";
+import FloatingNavHelpers from "@/components/FloatingNavHelpers";
 import PremiumCursor from "@/components/PremiumCursor";
 
 const MentionsLegales = lazy(() => import("./pages/MentionsLegales.tsx"));
