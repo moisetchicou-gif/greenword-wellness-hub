@@ -1,7 +1,7 @@
 import heroProductPng from "@/assets/hero-product.png";
 import heroProductWebp from "@/assets/hero-product.webp";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
-import { Sparkles, ShoppingBag, Briefcase, ArrowRight } from "lucide-react";
+import { Sparkles, ShoppingBag, Briefcase, ArrowRight, Truck, ShieldCheck, Star, Users } from "lucide-react";
 
 const HeroSection = () => {
   const { ref, visible } = useScrollReveal(0.05);
@@ -86,6 +86,47 @@ const HeroSection = () => {
               <span className="relative z-10">Lancer mon business</span>
               <ArrowRight className="w-4 h-4 relative z-10 group-hover:translate-x-1 transition-transform duration-300" />
             </a>
+          </div>
+
+          {/* Micro-relances : bénéfices clés + preuve sociale (boost CTR) */}
+          <div
+            className="pt-3 sm:pt-4 space-y-2.5 animate-fade-in"
+            style={{ animationDelay: "350ms", animationFillMode: "both" }}
+          >
+            {/* Bénéfices */}
+            <ul className="flex flex-wrap items-center justify-center md:justify-start gap-x-4 gap-y-1.5 text-[11px] sm:text-xs text-foreground/75 font-medium">
+              <li className="inline-flex items-center gap-1.5">
+                <Truck className="w-3.5 h-3.5 text-primary" strokeWidth={2.5} />
+                Livraison Abidjan 24 h
+              </li>
+              <li className="inline-flex items-center gap-1.5">
+                <ShieldCheck className="w-3.5 h-3.5 text-primary" strokeWidth={2.5} />
+                Paiement Wave sécurisé
+              </li>
+              <li className="inline-flex items-center gap-1.5">
+                <Sparkles className="w-3.5 h-3.5 text-gold" strokeWidth={2.5} />
+                100 % naturel · Bio
+              </li>
+            </ul>
+
+            {/* Preuve sociale */}
+            <div className="flex flex-wrap items-center justify-center md:justify-start gap-x-3 gap-y-1 text-[11px] sm:text-xs">
+              <span className="inline-flex items-center gap-1" aria-label="Note moyenne 4,9 sur 5">
+                <span className="flex" aria-hidden>
+                  {Array.from({ length: 5 }).map((_, i) => (
+                    <Star key={i} className="w-3.5 h-3.5 fill-gold text-gold" strokeWidth={1.5} />
+                  ))}
+                </span>
+                <strong className="text-accent font-semibold">4,9/5</strong>
+              </span>
+              <span className="text-muted-foreground hidden sm:inline">·</span>
+              <span className="inline-flex items-center gap-1.5 text-muted-foreground">
+                <Users className="w-3.5 h-3.5 text-primary" strokeWidth={2.5} />
+                <span>
+                  <strong className="text-accent font-semibold">+ 500 clients</strong> satisfaits en Côte d'Ivoire
+                </span>
+              </span>
+            </div>
           </div>
         </div>
 
