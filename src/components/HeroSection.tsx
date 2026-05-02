@@ -48,31 +48,40 @@ const HeroSection = () => {
             Découvrez nos compléments alimentaires et produits de beauté formulés à partir d'ingrédients biologiques d'exception, pour un bien-être durable au quotidien.
           </p>
 
-          {/* CTA — 2 parcours mis en avant : Achat / Business (animés pour attirer l'œil) */}
+          {/* CTA — 2 parcours mis en avant : Achat / Business
+              Visibles dès le 1er paint (pas de gating sur le scroll-reveal),
+              animations GPU-only (transform/opacity), désactivées en motion-reduce. */}
           <div
-            className={`flex flex-col sm:flex-row gap-3 sm:gap-4 pt-2 justify-center md:justify-start transition-all duration-1000 ease-premium ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
-            style={{ transitionDelay: "500ms" }}
+            className="flex flex-col sm:flex-row gap-3 sm:gap-4 pt-2 w-full sm:w-auto justify-center md:justify-start animate-fade-in"
+            style={{ animationDelay: "150ms", animationFillMode: "both" }}
           >
-            {/* ACHAT — corail/gold animé en pulse */}
+            {/* ACHAT — corail/gold, micro-bounce permanent */}
             <a
               href="#produits"
-              className="group relative inline-flex items-center justify-center gap-2 overflow-hidden rounded-full px-6 sm:px-7 py-3.5 text-sm font-semibold tracking-wide text-white shadow-[0_12px_32px_-10px_hsl(var(--coral)/0.65)] hover:shadow-[0_18px_44px_-10px_hsl(var(--coral)/0.85)] hover:-translate-y-1 active:scale-[0.97] transition-all duration-300 animate-pulse-soft"
-              style={{ background: "linear-gradient(135deg, hsl(var(--coral)) 0%, hsl(var(--gold)) 100%)" }}
+              className="group relative inline-flex w-full sm:w-auto items-center justify-center gap-2 overflow-hidden rounded-full px-6 sm:px-7 py-3.5 text-sm font-semibold tracking-wide text-white shadow-[0_12px_28px_-10px_hsl(var(--coral)/0.65)] hover:shadow-[0_18px_40px_-10px_hsl(var(--coral)/0.85)] active:scale-[0.97] transition-shadow duration-300 will-change-transform animate-cta-bob motion-reduce:animate-none"
+              style={{
+                background: "linear-gradient(135deg, hsl(var(--coral)) 0%, hsl(var(--gold)) 100%)",
+                transform: "translateZ(0)",
+              }}
             >
-              {/* Shine sweep */}
-              <span className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out bg-gradient-to-r from-transparent via-white/40 to-transparent" />
+              {/* Shine sweep — au hover uniquement (économe mobile) */}
+              <span className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out bg-gradient-to-r from-transparent via-white/35 to-transparent pointer-events-none" />
               <ShoppingBag className="w-4 h-4 relative z-10 group-hover:scale-110 transition-transform duration-300" strokeWidth={2.5} />
               <span className="relative z-10">Faire un achat</span>
               <ArrowRight className="w-4 h-4 relative z-10 group-hover:translate-x-1 transition-transform duration-300" />
             </a>
 
-            {/* BUSINESS — vert plein avec halo doré pulsant */}
+            {/* BUSINESS — vert, halo doré pulsant + micro-bounce décalé */}
             <a
               href="#business"
-              className="group relative inline-flex items-center justify-center gap-2 rounded-full bg-primary text-primary-foreground px-6 sm:px-7 py-3.5 text-sm font-semibold tracking-wide shadow-[0_12px_32px_-10px_hsl(var(--primary)/0.6)] hover:shadow-[0_18px_44px_-10px_hsl(var(--primary)/0.8)] hover:-translate-y-1 active:scale-[0.97] transition-all duration-300"
+              className="group relative inline-flex w-full sm:w-auto items-center justify-center gap-2 rounded-full bg-primary text-primary-foreground px-6 sm:px-7 py-3.5 text-sm font-semibold tracking-wide shadow-[0_12px_28px_-10px_hsl(var(--primary)/0.6)] hover:shadow-[0_18px_40px_-10px_hsl(var(--primary)/0.8)] active:scale-[0.97] transition-shadow duration-300 will-change-transform animate-cta-bob-delay motion-reduce:animate-none"
+              style={{ transform: "translateZ(0)" }}
             >
-              {/* Halo doré pulsant */}
-              <span className="absolute inset-0 rounded-full ring-2 ring-gold/60 animate-ping-slow opacity-70 pointer-events-none" />
+              {/* Halo doré (transform-only, pas de box-shadow animé) */}
+              <span
+                aria-hidden
+                className="absolute -inset-0.5 rounded-full ring-2 ring-gold/70 animate-cta-halo motion-reduce:hidden pointer-events-none"
+              />
               <Briefcase className="w-4 h-4 relative z-10 group-hover:rotate-[-8deg] group-hover:scale-110 transition-transform duration-300" strokeWidth={2.5} />
               <span className="relative z-10">Lancer mon business</span>
               <ArrowRight className="w-4 h-4 relative z-10 group-hover:translate-x-1 transition-transform duration-300" />
