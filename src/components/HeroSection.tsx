@@ -1,7 +1,7 @@
 import heroProductPng from "@/assets/hero-product.png";
 import heroProductWebp from "@/assets/hero-product.webp";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
-import { Sparkles } from "lucide-react";
+import { Sparkles, ShoppingBag, Briefcase, ArrowRight } from "lucide-react";
 
 const HeroSection = () => {
   const { ref, visible } = useScrollReveal(0.05);
@@ -48,6 +48,36 @@ const HeroSection = () => {
             Découvrez nos compléments alimentaires et produits de beauté formulés à partir d'ingrédients biologiques d'exception, pour un bien-être durable au quotidien.
           </p>
 
+          {/* CTA — 2 parcours mis en avant : Achat / Business (animés pour attirer l'œil) */}
+          <div
+            className={`flex flex-col sm:flex-row gap-3 sm:gap-4 pt-2 justify-center md:justify-start transition-all duration-1000 ease-premium ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
+            style={{ transitionDelay: "500ms" }}
+          >
+            {/* ACHAT — corail/gold animé en pulse */}
+            <a
+              href="#produits"
+              className="group relative inline-flex items-center justify-center gap-2 overflow-hidden rounded-full px-6 sm:px-7 py-3.5 text-sm font-semibold tracking-wide text-white shadow-[0_12px_32px_-10px_hsl(var(--coral)/0.65)] hover:shadow-[0_18px_44px_-10px_hsl(var(--coral)/0.85)] hover:-translate-y-1 active:scale-[0.97] transition-all duration-300 animate-pulse-soft"
+              style={{ background: "linear-gradient(135deg, hsl(var(--coral)) 0%, hsl(var(--gold)) 100%)" }}
+            >
+              {/* Shine sweep */}
+              <span className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out bg-gradient-to-r from-transparent via-white/40 to-transparent" />
+              <ShoppingBag className="w-4 h-4 relative z-10 group-hover:scale-110 transition-transform duration-300" strokeWidth={2.5} />
+              <span className="relative z-10">Faire un achat</span>
+              <ArrowRight className="w-4 h-4 relative z-10 group-hover:translate-x-1 transition-transform duration-300" />
+            </a>
+
+            {/* BUSINESS — vert plein avec halo doré pulsant */}
+            <a
+              href="#business"
+              className="group relative inline-flex items-center justify-center gap-2 rounded-full bg-primary text-primary-foreground px-6 sm:px-7 py-3.5 text-sm font-semibold tracking-wide shadow-[0_12px_32px_-10px_hsl(var(--primary)/0.6)] hover:shadow-[0_18px_44px_-10px_hsl(var(--primary)/0.8)] hover:-translate-y-1 active:scale-[0.97] transition-all duration-300"
+            >
+              {/* Halo doré pulsant */}
+              <span className="absolute inset-0 rounded-full ring-2 ring-gold/60 animate-ping-slow opacity-70 pointer-events-none" />
+              <Briefcase className="w-4 h-4 relative z-10 group-hover:rotate-[-8deg] group-hover:scale-110 transition-transform duration-300" strokeWidth={2.5} />
+              <span className="relative z-10">Lancer mon business</span>
+              <ArrowRight className="w-4 h-4 relative z-10 group-hover:translate-x-1 transition-transform duration-300" />
+            </a>
+          </div>
         </div>
 
         {/* Visuel produit — bocal Green World qui flotte sur le même fond crème-sauge que le texte */}
