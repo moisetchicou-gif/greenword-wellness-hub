@@ -197,6 +197,7 @@ export default {
         "tilt": "tilt 6s ease-in-out infinite",
         "glow-coral": "glow-coral 3.5s ease-in-out infinite",
         "shine": "shine 1.2s ease-in-out",
+        "ping-slow": "ping 2.5s cubic-bezier(0, 0, 0.2, 1) infinite",
       },
     },
   },
