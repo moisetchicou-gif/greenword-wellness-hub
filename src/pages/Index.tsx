@@ -62,7 +62,6 @@ const Index = () => {
       />
       <Navbar />
       <HeroSection />
-      <PathSelector />
       <TrustBar />
       <div className="bg-accent border-y border-border/50 py-2.5">
         <p className="text-center text-xs sm:text-sm text-muted-foreground italic px-4">
@@ -90,6 +89,7 @@ const Index = () => {
       </Suspense>
       <WhatsAppButton />
       <CookieBanner />
+      <PathSelector />
     </div>
   );
 };
