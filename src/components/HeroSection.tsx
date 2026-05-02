@@ -48,23 +48,17 @@ const HeroSection = () => {
             Découvrez nos compléments alimentaires et produits de beauté formulés à partir d'ingrédients biologiques d'exception, pour un bien-être durable au quotidien.
           </p>
 
-          {/* CTA — vert plein + outline or */}
+          {/* CTA — choix Achat ou Business */}
           <div
             className={`flex flex-wrap gap-3 sm:gap-4 pt-2 justify-center md:justify-start transition-all duration-1000 ease-premium ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
             style={{ transitionDelay: "500ms" }}
           >
             <a
-              href="#produits"
+              href="#choisir-mon-parcours"
               className="group inline-flex items-center gap-2 bg-primary text-primary-foreground px-7 sm:px-8 py-3.5 rounded-full font-medium text-sm tracking-wide shadow-[0_10px_28px_-10px_hsl(var(--primary)/0.55)] hover:shadow-[0_14px_36px_-10px_hsl(var(--primary)/0.65)] hover:bg-primary/95 hover:-translate-y-0.5 transition-all duration-300 active:scale-[0.97]"
             >
-              Découvrir la boutique
+              Commencer maintenant
               <ArrowDown className="w-4 h-4 group-hover:translate-y-1 transition-transform duration-300" />
-            </a>
-            <a
-              href="/bienfaits"
-              className="inline-flex items-center justify-center border-2 border-gold/60 text-accent bg-card/60 backdrop-blur px-7 sm:px-8 py-3.5 rounded-full font-medium text-sm tracking-wide hover:bg-gold hover:text-gold-foreground hover:border-gold transition-all duration-400 hover:shadow-lg hover:shadow-gold/25 active:scale-[0.97]"
-            >
-              Nos bienfaits
             </a>
           </div>
         </div>
@@ -91,13 +85,6 @@ const HeroSection = () => {
         </div>
       </div>
 
-      {/* Indicateur de scroll */}
-      <div className={`absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 transition-all duration-1000 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`} style={{ transitionDelay: "1200ms" }}>
-        <span className="text-muted-foreground text-[10px] uppercase tracking-[0.25em] font-medium">Scroll</span>
-        <div className="w-5 h-8 rounded-full border-2 border-muted-foreground/40 flex justify-center pt-1.5">
-          <div className="w-1 h-2 rounded-full bg-primary animate-bounce-gentle" />
-        </div>
-      </div>
     </section>
   );
 };
