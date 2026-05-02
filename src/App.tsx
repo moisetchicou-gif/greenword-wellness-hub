@@ -57,6 +57,7 @@ const App = () => (
                 <GuideButton />
               </Suspense>
               <CartDrawer />
+              <FloatingNavHelpers />
             </BrowserRouter>
           </CartProvider>
         </TooltipProvider>
