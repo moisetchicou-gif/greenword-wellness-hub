@@ -173,6 +173,14 @@ export default {
           "0%": { transform: "translateX(-120%) skewX(-20deg)" },
           "100%": { transform: "translateX(220%) skewX(-20deg)" },
         },
+        "cta-bob": {
+          "0%, 100%": { transform: "translate3d(0,0,0) scale(1)" },
+          "50%": { transform: "translate3d(0,-3px,0) scale(1.025)" },
+        },
+        "cta-halo": {
+          "0%, 100%": { transform: "scale(1)", opacity: "0.55" },
+          "50%": { transform: "scale(1.18)", opacity: "0" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -198,6 +206,9 @@ export default {
         "glow-coral": "glow-coral 3.5s ease-in-out infinite",
         "shine": "shine 1.2s ease-in-out",
         "ping-slow": "ping 2.5s cubic-bezier(0, 0, 0.2, 1) infinite",
+        "cta-bob": "cta-bob 2.4s ease-in-out infinite",
+        "cta-bob-delay": "cta-bob 2.4s ease-in-out infinite 1.2s",
+        "cta-halo": "cta-halo 2.2s cubic-bezier(0, 0, 0.2, 1) infinite",
       },
     },
   },
