@@ -89,7 +89,6 @@ const Index = () => {
       </Suspense>
       <WhatsAppButton />
       <CookieBanner />
-      <PathSelector />
     </div>
   );
 };
