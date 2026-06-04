@@ -40,9 +40,11 @@ export default defineConfig(({ mode }) => ({
     cssCodeSplit: true,
     rollupOptions: {
       output: {
-        manualChunks: {
-          "react-vendor": ["react", "react-dom", "react-router-dom"],
-          "query-vendor": ["@tanstack/react-query"],
+        manualChunks(id) {
+          if (id.includes("node_modules")) {
+            if (/react-dom|react-router|\/react\//.test(id)) return "react-vendor";
+            if (id.includes("@tanstack")) return "query-vendor";
+          }
         },
       },
     },
