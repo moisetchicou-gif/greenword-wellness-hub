@@ -143,7 +143,7 @@ const HeroSection = () => {
               alt="Green World Prestige — bocal de gélules naturelles aux herbes fraîches"
               width={965}
               height={1000}
-              fetchPriority="high"
+              {...{ fetchpriority: "high" }}
               decoding="async"
               loading="eager"
               className="w-[200px] animate-float [filter:drop-shadow(0_1px_1.5px_hsl(80_25%_35%/0.16))_drop-shadow(0_7px_9px_hsl(80_28%_30%/0.13))_drop-shadow(0_18px_22px_hsl(80_30%_25%/0.10))]"
