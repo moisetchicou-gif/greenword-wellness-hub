@@ -187,9 +187,9 @@ const PremiumCursor = () => {
   return (
     <>
       <div
+        ref={containerRef}
         aria-hidden="true"
         className={`premium-cursor is-${state.theme} ${state.visible ? "is-visible" : ""} ${state.active ? "is-active" : ""} ${state.pressed ? "is-pressed" : ""} ${state.scrolling ? "is-scrolling" : ""} ${state.keyboard ? "is-keyboard" : ""} ${state.reducedMotion ? "is-reduced-motion" : ""}`}
-        style={{ "--cursor-x": `${state.x}px`, "--cursor-y": `${state.y}px` } as CSSProperties}
       >
         <div ref={auraRef} className="premium-cursor__aura" />
         <div ref={ringRef} className="premium-cursor__ring" />
