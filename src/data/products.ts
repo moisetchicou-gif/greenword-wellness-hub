@@ -82,6 +82,7 @@ import productAnxietyStress from "@/assets/product-anxiety-stress.jpg";
 import productProbiotics from "@/assets/product-probiotics.jpg";
 import productAntiAddiction from "@/assets/product-anti-addiction.jpg";
 import productBlueberryConcentrate from "@/assets/product-blueberry-concentrate.jpg";
+import productAshwagandhaCoffee from "@/assets/product-ashwagandha-coffee.jpg";
 
 export type Category =
   | "Tous les produits"
@@ -186,6 +187,7 @@ export const products: Product[] = [
   { id: 39, name: "Clear Lung Tea", image: productClearLungTea, benefits: ["Nettoie les poumons", "Soulage les voies respiratoires"], price: "10 010 FCFA", priceNum: 10010, category: "Thés & Boissons", bv: 14, posologie: "1-2 sachet(s) par jour.", conseils: "Les gens qui fument. Les personnes qui travaillent ou vivent dans des endroits pollués par la fumée ou la poussière. Les personnes atteintes de maladies respiratoires chroniques telles que la toux chronique, la bronchite, l'asthme, l'emphysème." },
   { id: 78, name: "Jinpure Tea", image: productJinpureTea, benefits: ["Détoxifie le foie et les reins", "Purifie le sang"], price: "9 295 FCFA", priceNum: 9295, category: "Thés & Boissons", bv: 13, posologie: "1-2 sachet(s) par jour.", conseils: "Bon pour les adultes qui veulent prévenir le rhume, la grippe ou le COVID-19. Pour toutes personnes qui souhaitent développer une immunité saine." },
   { id: 79, name: "Jinpure Capsule", image: productJinpureCapsule, benefits: ["Détoxification profonde", "Protège le foie"], price: "15 730 FCFA", priceNum: 15730, category: "Thés & Boissons", bv: 22, posologie: "2 capsules à chaque fois, deux fois par jour.", conseils: "Adultes qui veulent prévenir le rhume, la grippe ou le COVID-19. Personnes qui souhaitent développer une immunité saine." },
+  { id: 88, name: "Café Ashwagandha Pratence", image: productAshwagandhaCoffee, benefits: ["Améliore la santé sexuelle masculine", "Booste l'énergie et la vitalité", "Réduit le stress et l'anxiété"], price: "16 500 FCFA", priceNum: 16500, category: "Thés & Boissons", bv: 23, posologie: "1 sachet par jour. Versez 1 sachet (15 g) dans 150 ml d'eau chaude, mélangez et dégustez. Format : 15 g × 15 sachets.", conseils: "Recommandé pour les hommes ayant une immunité faible, souffrant de stress chronique ou ayant un mode de vie exigeant et fatigant. Ingrédients : Ashwagandha (ginseng indien) qui stimule la testostérone, améliore la qualité du sperme et réduit le stress ; Peptides d'huître riches en zinc pour les performances sexuelles ; Framboise rouge qui améliore la circulation sanguine dans les organes reproducteurs ; Eucommia Ulmoides qui renforce le foie, les reins, les muscles et les os. Bienfaits : augmente la testostérone et le désir sexuel, réduit le stress et l'anxiété, soutient le foie et les reins, renforce l'immunité et améliore la circulation sanguine." },
 
   // ===== SOINS FÉMININS =====
   { id: 19, name: "Soy Power Capsule", image: productSoyPower, benefits: ["Équilibre hormonal féminin", "Soulage les symptômes de la ménopause"], price: "12 870 FCFA", priceNum: 12870, category: "Soins féminins", bv: 18 },
