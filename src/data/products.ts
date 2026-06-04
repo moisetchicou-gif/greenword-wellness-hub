@@ -82,6 +82,7 @@ import productAnxietyStress from "@/assets/product-anxiety-stress.jpg";
 import productProbiotics from "@/assets/product-probiotics.jpg";
 import productAntiAddiction from "@/assets/product-anti-addiction.jpg";
 import productBlueberryConcentrate from "@/assets/product-blueberry-concentrate.jpg";
+import productAshwagandhaCoffee from "@/assets/product-ashwagandha-coffee.jpg";
 
 export type Category =
   | "Tous les produits"
