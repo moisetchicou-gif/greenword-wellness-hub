@@ -30,6 +30,7 @@ const interactiveSelector = [
 
 const PremiumCursor = () => {
   const location = useLocation();
+  const containerRef = useRef<HTMLDivElement>(null);
   const dotRef = useRef<HTMLDivElement>(null);
   const ringRef = useRef<HTMLDivElement>(null);
   const auraRef = useRef<HTMLDivElement>(null);
