@@ -1,4 +1,4 @@
-import { type CSSProperties, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { CURSOR_PREFERENCE_EVENT, isCustomCursorDisabled } from "@/config/cursorPreferences";
 import { getCursorThemeForPath, type CursorThemeName } from "@/config/cursorThemes";
