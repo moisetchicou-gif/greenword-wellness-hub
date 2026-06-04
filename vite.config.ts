@@ -36,4 +36,17 @@ export default defineConfig(({ mode }) => ({
       "@": path.resolve(__dirname, "./src"),
     },
   },
+  build: {
+    cssCodeSplit: true,
+    rollupOptions: {
+      output: {
+        manualChunks(id) {
+          if (id.includes("node_modules")) {
+            if (/react-dom|react-router|\/react\//.test(id)) return "react-vendor";
+            if (id.includes("@tanstack")) return "query-vendor";
+          }
+        },
+      },
+    },
+  },
 }));

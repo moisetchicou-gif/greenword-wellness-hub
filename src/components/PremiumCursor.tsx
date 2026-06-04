@@ -1,4 +1,4 @@
-import { type CSSProperties, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { CURSOR_PREFERENCE_EVENT, isCustomCursorDisabled } from "@/config/cursorPreferences";
 import { getCursorThemeForPath, type CursorThemeName } from "@/config/cursorThemes";
@@ -30,6 +30,7 @@ const interactiveSelector = [
 
 const PremiumCursor = () => {
   const location = useLocation();
+  const containerRef = useRef<HTMLDivElement>(null);
   const dotRef = useRef<HTMLDivElement>(null);
   const ringRef = useRef<HTMLDivElement>(null);
   const auraRef = useRef<HTMLDivElement>(null);
@@ -74,6 +75,11 @@ const PremiumCursor = () => {
       cursor.current.auraY += (cursor.current.y - cursor.current.auraY) * auraEase;
       cursor.current.scrollVelocity *= Math.pow(0.86, delta);
 
+      if (containerRef.current) {
+        containerRef.current.style.setProperty("--cursor-x", `${cursor.current.x}px`);
+        containerRef.current.style.setProperty("--cursor-y", `${cursor.current.y}px`);
+      }
+
       if (dotRef.current) {
         dotRef.current.style.transform = `translate3d(${cursor.current.x}px, ${cursor.current.y}px, 0) translate(-50%, -50%)`;
       }
@@ -92,12 +98,13 @@ const PremiumCursor = () => {
     const updatePosition = (event: PointerEvent) => {
       cursor.current.x = event.clientX;
       cursor.current.y = event.clientY;
-      setState((prev) => ({ ...prev, x: event.clientX, y: event.clientY, visible: true }));
+      setState((prev) => (prev.visible ? prev : { ...prev, visible: true }));
     };
 
     const updateTarget = (event: PointerEvent) => {
       const target = event.target as Element | null;
-      setState((prev) => ({ ...prev, active: Boolean(target?.closest(interactiveSelector)), keyboard: false }));
+      const active = Boolean(target?.closest(interactiveSelector));
+      setState((prev) => (prev.active === active && !prev.keyboard ? prev : { ...prev, active, keyboard: false }));
     };
 
     const handlePointerMove = (event: PointerEvent) => {
@@ -180,9 +187,9 @@ const PremiumCursor = () => {
   return (
     <>
       <div
+        ref={containerRef}
         aria-hidden="true"
         className={`premium-cursor is-${state.theme} ${state.visible ? "is-visible" : ""} ${state.active ? "is-active" : ""} ${state.pressed ? "is-pressed" : ""} ${state.scrolling ? "is-scrolling" : ""} ${state.keyboard ? "is-keyboard" : ""} ${state.reducedMotion ? "is-reduced-motion" : ""}`}
-        style={{ "--cursor-x": `${state.x}px`, "--cursor-y": `${state.y}px` } as CSSProperties}
       >
         <div ref={auraRef} className="premium-cursor__aura" />
         <div ref={ringRef} className="premium-cursor__ring" />
