@@ -83,6 +83,8 @@ import productProbiotics from "@/assets/product-probiotics.jpg";
 import productAntiAddiction from "@/assets/product-anti-addiction.jpg";
 import productBlueberryConcentrate from "@/assets/product-blueberry-concentrate.jpg";
 import productAshwagandhaCoffee from "@/assets/product-ashwagandha-coffee.jpg";
+import productBlueberryConcentrate from "@/assets/product-blueberry-concentrate.jpg";
+import productCafeCordyceps from "@/assets/product-cafe-cordyceps.jpg";
 
 export type Category =
   | "Tous les produits"
