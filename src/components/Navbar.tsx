@@ -120,6 +120,13 @@ const Navbar = () => {
           </div>
 
           <div className="flex items-center gap-1 sm:gap-2">
+            <a
+              href="/#membre"
+              className={warmCx(warm.button("primary", "sm"), "hidden md:inline-flex shadow-[0_8px_22px_-8px_hsl(var(--coral)/0.6)]")}
+            >
+              <Crown className="w-4 h-4" />
+              Devenir membre
+            </a>
             <button
               onClick={() => setSearchOpen(true)}
               className="p-2.5 text-muted-foreground hover:text-accent transition-colors hover:bg-secondary/50 rounded-full min-w-[44px] min-h-[44px] flex items-center justify-center"
