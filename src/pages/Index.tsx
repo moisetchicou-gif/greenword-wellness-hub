@@ -80,6 +80,9 @@ const Index = () => {
         <TestimonialsSection />
       </Suspense>
       <Suspense fallback={<SectionFallback />}>
+        <MembershipBanner />
+      </Suspense>
+      <Suspense fallback={<SectionFallback />}>
         <BusinessSection />
       </Suspense>
       <Suspense fallback={<SectionFallback />}>
