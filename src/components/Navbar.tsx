@@ -173,6 +173,14 @@ const Navbar = () => {
                   <span className="text-muted-foreground text-xl" aria-hidden>›</span>
                 </a>
               ))}
+              <a
+                href="/#membre"
+                onClick={() => setOpen(false)}
+                className={warmCx(warm.button("primary", "lg"), "mt-4 w-full")}
+              >
+                <Crown className="w-5 h-5" />
+                Devenir membre
+              </a>
               <div className="pt-4 px-2">
                 <SettingsPanel variant="nav" />
               </div>
