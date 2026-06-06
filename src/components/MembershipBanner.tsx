@@ -75,7 +75,7 @@ const MembershipBanner = () => {
   const [open, setOpen] = useState(false);
 
   return (
-    <section className={warmCx(warm.section("strong"), "py-14 sm:py-20")}>
+    <section id="membre" className={warmCx(warm.section("strong"), "scroll-mt-20 py-14 sm:py-20")}>
       <div className={warm.blob.gold + " -top-24 -right-24 w-72 h-72"} aria-hidden />
       <div className={warm.blob.coral + " -bottom-24 -left-24 w-72 h-72"} aria-hidden />
 
