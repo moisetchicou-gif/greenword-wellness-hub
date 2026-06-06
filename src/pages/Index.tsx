@@ -13,6 +13,7 @@ const ProductsSection = lazy(() => import("@/components/ProductsSection"));
 const TestimonialsSection = lazy(() => import("@/components/TestimonialsSection"));
 const BusinessSection = lazy(() => import("@/components/BusinessSection"));
 const CtaSection = lazy(() => import("@/components/CtaSection"));
+const MembershipBanner = lazy(() => import("@/components/MembershipBanner"));
 const Footer = lazy(() => import("@/components/Footer"));
 
 const SectionFallback = () => (
