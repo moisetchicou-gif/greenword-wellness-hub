@@ -1,12 +1,13 @@
 import { useState, useEffect, useRef } from "react";
 import { usePersistentState } from "@/hooks/usePersistentState";
 import { useNavigate } from "react-router-dom";
-import { Menu, X, ShoppingCart, Search } from "lucide-react";
+import { Menu, X, ShoppingCart, Search, Crown } from "lucide-react";
 import logo from "@/assets/logo-greenworld.jpg";
 import { useCart } from "@/hooks/useCart";
 import { products } from "@/data/products";
 import { getProductSlug } from "@/lib/productUtils";
 import SettingsPanel from "@/components/SettingsPanel";
+import { warm, warmCx } from "@/lib/warmTheme";
 
 const Navbar = () => {
   const navigate = useNavigate();
@@ -119,6 +120,13 @@ const Navbar = () => {
           </div>
 
           <div className="flex items-center gap-1 sm:gap-2">
+            <a
+              href="/#membre"
+              className={warmCx(warm.button("primary", "sm"), "hidden md:inline-flex shadow-[0_8px_22px_-8px_hsl(var(--coral)/0.6)]")}
+            >
+              <Crown className="w-4 h-4" />
+              Devenir membre
+            </a>
             <button
               onClick={() => setSearchOpen(true)}
               className="p-2.5 text-muted-foreground hover:text-accent transition-colors hover:bg-secondary/50 rounded-full min-w-[44px] min-h-[44px] flex items-center justify-center"
@@ -165,6 +173,14 @@ const Navbar = () => {
                   <span className="text-muted-foreground text-xl" aria-hidden>›</span>
                 </a>
               ))}
+              <a
+                href="/#membre"
+                onClick={() => setOpen(false)}
+                className={warmCx(warm.button("primary", "lg"), "mt-4 w-full")}
+              >
+                <Crown className="w-5 h-5" />
+                Devenir membre
+              </a>
               <div className="pt-4 px-2">
                 <SettingsPanel variant="nav" />
               </div>
