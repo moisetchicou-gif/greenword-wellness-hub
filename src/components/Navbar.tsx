@@ -6,7 +6,6 @@ import logo from "@/assets/logo-greenworld.jpg";
 import { useCart } from "@/hooks/useCart";
 import { products } from "@/data/products";
 import { getProductSlug } from "@/lib/productUtils";
-import SettingsPanel from "@/components/SettingsPanel";
 import { warm, warmCx } from "@/lib/warmTheme";
 
 const Navbar = () => {
@@ -116,16 +115,16 @@ const Navbar = () => {
                 {l.label}
               </a>
             ))}
-            <SettingsPanel variant="nav" />
           </div>
 
           <div className="flex items-center gap-1 sm:gap-2">
             <a
               href="/#membre"
-              className={warmCx(warm.button("primary", "sm"), "hidden md:inline-flex shadow-[0_8px_22px_-8px_hsl(var(--coral)/0.6)]")}
+              className={warmCx(warm.button("primary", "sm"), "inline-flex shadow-[0_8px_22px_-8px_hsl(var(--coral)/0.6)] px-2.5 sm:px-4")}
             >
               <Crown className="w-4 h-4" />
-              Devenir membre
+              <span className="hidden xs:inline sm:inline">Devenir membre</span>
+              <span className="xs:hidden sm:hidden">Membre</span>
             </a>
             <button
               onClick={() => setSearchOpen(true)}
@@ -181,9 +180,6 @@ const Navbar = () => {
                 <Crown className="w-5 h-5" />
                 Devenir membre
               </a>
-              <div className="pt-4 px-2">
-                <SettingsPanel variant="nav" />
-              </div>
             </div>
           </div>
         )}
