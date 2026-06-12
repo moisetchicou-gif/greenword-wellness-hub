@@ -58,6 +58,7 @@ const App = () => (
               </Suspense>
               <CartDrawer />
               <FloatingNavHelpers />
+              <SimpleCursor />
             </BrowserRouter>
           </CartProvider>
         </TooltipProvider>
