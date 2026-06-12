@@ -11,7 +11,7 @@ import Index from "./pages/Index.tsx";
 import GuideButton from "@/components/GuideButton";
 import CartDrawer from "@/components/CartDrawer";
 import FloatingNavHelpers from "@/components/FloatingNavHelpers";
-import PremiumCursor from "@/components/PremiumCursor";
+
 
 const MentionsLegales = lazy(() => import("./pages/MentionsLegales.tsx"));
 const PolitiqueConfidentialite = lazy(() => import("./pages/PolitiqueConfidentialite.tsx"));
@@ -40,7 +40,6 @@ const App = () => (
             <Toaster />
             <Sonner />
             <BrowserRouter>
-              <PremiumCursor />
               <Suspense fallback={<Loading />}>
                 <Routes>
                   <Route path="/" element={<Index />} />
