@@ -9,6 +9,7 @@ import CookieBanner from "@/components/CookieBanner";
 import SEO from "@/components/SEO";
 
 const IntroOffers = lazy(() => import("@/components/IntroOffers"));
+const AboutSection = lazy(() => import("@/components/AboutSection"));
 const ProductsSection = lazy(() => import("@/components/ProductsSection"));
 const TestimonialsSection = lazy(() => import("@/components/TestimonialsSection"));
 const BusinessSection = lazy(() => import("@/components/BusinessSection"));
