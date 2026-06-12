@@ -123,8 +123,8 @@ const Navbar = () => {
               className={warmCx(warm.button("primary", "sm"), "inline-flex shadow-[0_8px_22px_-8px_hsl(var(--coral)/0.6)] px-2.5 sm:px-4")}
             >
               <Crown className="w-4 h-4" />
-              <span className="hidden xs:inline sm:inline">Devenir membre</span>
-              <span className="xs:hidden sm:hidden">Membre</span>
+              <span className="hidden sm:inline">Devenir membre</span>
+              <span className="sm:hidden">Membre</span>
             </a>
             <button
               onClick={() => setSearchOpen(true)}
