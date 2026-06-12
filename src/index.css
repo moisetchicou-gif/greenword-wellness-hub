@@ -399,181 +399,71 @@
     );
   }
 
-  .premium-cursor {
+  /* Curseur simple et leger, coherent avec la palette du site */
+  .simple-cursor {
     display: none;
   }
 
   @media (hover: hover) and (pointer: fine) {
-    .premium-cursor {
-      --cursor-x: 0px;
-      --cursor-y: 0px;
-      --cursor-primary: var(--primary);
-      --cursor-accent: var(--gold);
-      --cursor-deep: var(--accent);
+    .simple-cursor {
       display: block;
       position: fixed;
-      inset: 0;
+      top: 0;
+      left: 0;
       pointer-events: none;
       z-index: 2147483647;
       opacity: 0;
-      transition: opacity 180ms ease;
-      mix-blend-mode: multiply;
+      transition: opacity 160ms ease;
     }
 
-    .premium-cursor.is-gold {
-      --cursor-primary: var(--gold);
-      --cursor-accent: var(--primary);
-      --cursor-deep: var(--accent);
-    }
-
-    .premium-cursor.is-deep {
-      --cursor-primary: var(--accent);
-      --cursor-accent: var(--highlight);
-      --cursor-deep: var(--primary);
-    }
-
-    .premium-cursor.is-clinical {
-      --cursor-primary: 168 38% 36%;
-      --cursor-accent: 42 50% 78%;
-      --cursor-deep: 160 30% 12%;
-    }
-
-    .premium-cursor.is-focus {
-      --cursor-primary: var(--gold);
-      --cursor-accent: var(--accent);
-      --cursor-deep: var(--primary);
-      mix-blend-mode: normal;
-    }
-
-    .premium-cursor.is-visible {
+    .simple-cursor.is-visible {
       opacity: 1;
     }
 
-    .premium-cursor__aura,
-    .premium-cursor__ring,
-    .premium-cursor__dot {
+    .simple-cursor__dot,
+    .simple-cursor__ring {
       position: fixed;
       top: 0;
       left: 0;
       border-radius: 9999px;
-      will-change: transform, width, height, opacity, background-color, border-color;
+      will-change: transform;
     }
 
-    .premium-cursor__aura {
-      width: 58px;
-      height: 58px;
-      opacity: 0.42;
-      background:
-        radial-gradient(circle at 35% 32%, hsl(var(--cursor-accent) / 0.26), transparent 34%),
-        radial-gradient(circle, hsl(var(--cursor-primary) / 0.13), transparent 66%);
-      filter: blur(8px) saturate(1.15);
-      transition:
-        width 260ms cubic-bezier(0.16, 1, 0.3, 1),
-        height 260ms cubic-bezier(0.16, 1, 0.3, 1),
-        opacity 180ms ease;
+    .simple-cursor__dot {
+      width: 8px;
+      height: 8px;
+      margin: -4px 0 0 -4px;
+      background: hsl(var(--primary));
     }
 
-    .premium-cursor__ring {
-      width: 34px;
-      height: 34px;
-      border: 1px solid hsl(var(--cursor-primary) / 0.5);
-      background:
-        linear-gradient(135deg, hsl(var(--cursor-primary) / 0.12), hsl(var(--cursor-accent) / 0.08)),
-        radial-gradient(circle at 32% 28%, hsl(var(--card) / 0.36), transparent 34%),
-        radial-gradient(circle, hsl(var(--cursor-primary) / 0.08) 0%, transparent 58%),
-        hsl(var(--card) / 0.14);
-      box-shadow:
-        0 0 0 1px hsl(var(--cursor-primary) / 0.08),
-        inset 0 0 16px hsl(var(--cursor-accent) / 0.1),
-        0 12px 32px hsl(var(--cursor-deep) / 0.14);
-      backdrop-filter: blur(6px);
-      transition:
-        width 220ms cubic-bezier(0.16, 1, 0.3, 1),
-        height 220ms cubic-bezier(0.16, 1, 0.3, 1),
-        border-color 220ms ease,
-        background-color 220ms ease,
-        opacity 180ms ease;
-    }
-
-    .premium-cursor__dot {
-      width: 7px;
-      height: 7px;
-      background: hsl(var(--cursor-primary));
-      box-shadow: 0 0 18px hsl(var(--cursor-primary) / 0.45);
-      transition:
-        width 180ms ease,
-        height 180ms ease,
-        background-color 180ms ease,
-        opacity 180ms ease;
-    }
-
-    .premium-cursor.is-active .premium-cursor__ring {
-      width: 52px;
-      height: 52px;
-      border-color: hsl(var(--cursor-accent) / 0.74);
-      background:
-        linear-gradient(135deg, hsl(var(--cursor-primary) / 0.1), hsl(var(--cursor-accent) / 0.16)),
-        radial-gradient(circle, hsl(var(--cursor-accent) / 0.18) 0%, transparent 62%),
-        hsl(var(--card) / 0.22);
-    }
-
-    .premium-cursor.is-active .premium-cursor__aura {
-      width: 76px;
-      height: 76px;
-      opacity: 0.56;
-    }
-
-    .premium-cursor.is-active .premium-cursor__dot {
-      width: 10px;
-      height: 10px;
-      background: hsl(var(--cursor-accent));
-    }
-
-    .premium-cursor.is-scrolling .premium-cursor__ring {
-      width: 42px;
+    .simple-cursor__ring {
+      width: 30px;
       height: 30px;
-      opacity: 0.88;
+      margin: -15px 0 0 -15px;
+      border: 1.5px solid hsl(var(--primary) / 0.45);
+      transition: width 180ms ease, height 180ms ease, border-color 180ms ease, background-color 180ms ease;
     }
 
-    .premium-cursor.is-scrolling .premium-cursor__aura {
-      width: 88px;
+    .simple-cursor.is-active .simple-cursor__ring {
+      width: 44px;
       height: 44px;
-      opacity: 0.34;
+      margin: -22px 0 0 -22px;
+      border-color: hsl(var(--gold) / 0.7);
+      background: hsl(var(--gold) / 0.08);
     }
 
-    .premium-cursor.is-keyboard .premium-cursor__ring {
-      width: 58px;
-      height: 58px;
-      border-width: 2px;
-      border-color: hsl(var(--cursor-primary) / 0.82);
-      box-shadow:
-        0 0 0 4px hsl(var(--cursor-primary) / 0.12),
-        0 0 30px hsl(var(--cursor-accent) / 0.22);
+    .simple-cursor.is-pressed .simple-cursor__ring {
+      width: 24px;
+      height: 24px;
+      margin: -12px 0 0 -12px;
     }
+  }
 
-    .premium-cursor.is-keyboard .premium-cursor__dot {
-      width: 5px;
-      height: 5px;
-      background: hsl(var(--cursor-accent));
+  @media (prefers-reduced-motion: reduce) {
+    .simple-cursor__ring {
+      transition: none;
     }
-
-    .premium-cursor.is-reduced-motion .premium-cursor__aura,
-    .premium-cursor.is-reduced-motion .premium-cursor__ring,
-    .premium-cursor.is-reduced-motion .premium-cursor__dot {
-      transition-duration: 80ms;
-      filter: none;
-    }
-
-    .premium-cursor.is-pressed .premium-cursor__ring {
-      width: 28px;
-      height: 28px;
-      opacity: 0.82;
-    }
-
-    .premium-cursor.is-pressed .premium-cursor__dot {
-      width: 12px;
-      height: 12px;
-    }
+  }
 
     .settings-panel-trigger {
       position: relative;
