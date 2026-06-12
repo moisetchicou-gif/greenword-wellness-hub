@@ -11,6 +11,7 @@ import Index from "./pages/Index.tsx";
 import GuideButton from "@/components/GuideButton";
 import CartDrawer from "@/components/CartDrawer";
 import FloatingNavHelpers from "@/components/FloatingNavHelpers";
+import SimpleCursor from "@/components/SimpleCursor";
 
 
 const MentionsLegales = lazy(() => import("./pages/MentionsLegales.tsx"));
