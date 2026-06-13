@@ -102,21 +102,6 @@
     -webkit-tap-highlight-color: transparent;
   }
 
-  @media (hover: hover) and (pointer: fine) {
-    html:not(.custom-cursor-disabled) body,
-    html:not(.custom-cursor-disabled) a,
-    html:not(.custom-cursor-disabled) button,
-    html:not(.custom-cursor-disabled) input,
-    html:not(.custom-cursor-disabled) textarea,
-    html:not(.custom-cursor-disabled) select,
-    html:not(.custom-cursor-disabled) summary,
-    html:not(.custom-cursor-disabled) [role="button"],
-    html:not(.custom-cursor-disabled) [role="link"],
-    html:not(.custom-cursor-disabled) [tabindex]:not([tabindex="-1"]),
-    html:not(.custom-cursor-disabled) video {
-      cursor: none;
-    }
-  }
 
   img {
     content-visibility: auto;
@@ -398,128 +383,6 @@
       hsl(var(--accent)) 100%
     );
   }
-
-  /* Curseur simple et leger, coherent avec la palette du site */
-  .simple-cursor {
-    display: none;
-  }
-
-  @media (hover: hover) and (pointer: fine) {
-    .simple-cursor {
-      display: block;
-      position: fixed;
-      top: 0;
-      left: 0;
-      pointer-events: none;
-      z-index: 2147483647;
-      opacity: 0;
-      transition: opacity 160ms ease;
-    }
-
-    .simple-cursor.is-visible {
-      opacity: 1;
-    }
-
-    .simple-cursor__dot,
-    .simple-cursor__ring {
-      position: fixed;
-      top: 0;
-      left: 0;
-      border-radius: 9999px;
-      will-change: transform;
-    }
-
-    .simple-cursor__dot {
-      width: 8px;
-      height: 8px;
-      margin: -4px 0 0 -4px;
-      background: hsl(var(--primary));
-    }
-
-    .simple-cursor__ring {
-      width: 30px;
-      height: 30px;
-      margin: -15px 0 0 -15px;
-      border: 1.5px solid hsl(var(--primary) / 0.45);
-      transition: width 180ms ease, height 180ms ease, border-color 180ms ease, background-color 180ms ease;
-    }
-
-    .simple-cursor.is-active .simple-cursor__ring {
-      width: 44px;
-      height: 44px;
-      margin: -22px 0 0 -22px;
-      border-color: hsl(var(--gold) / 0.7);
-      background: hsl(var(--gold) / 0.08);
-    }
-
-    .simple-cursor.is-pressed .simple-cursor__ring {
-      width: 24px;
-      height: 24px;
-      margin: -12px 0 0 -12px;
-    }
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .simple-cursor__ring {
-      transition: none;
-    }
-  }
-
-    .settings-panel-trigger {
-      position: relative;
-      display: inline-flex;
-      height: 2.15rem;
-      width: 2.15rem;
-      align-items: center;
-      justify-content: center;
-      border: 1px solid hsl(var(--border));
-      border-radius: 9999px;
-      background: hsl(var(--card) / 0.9);
-      color: hsl(var(--muted-foreground));
-      box-shadow: 0 10px 24px hsl(var(--accent) / 0.1);
-      backdrop-filter: blur(10px);
-      transition: color 180ms ease, border-color 180ms ease, transform 180ms ease;
-    }
-
-    .settings-panel-trigger:hover,
-    .settings-panel-trigger:focus-visible {
-      color: hsl(var(--accent));
-      border-color: hsl(var(--primary) / 0.38);
-      transform: translateY(-1px);
-    }
-
-    .settings-panel-trigger--nav {
-      width: auto;
-      height: 2.3rem;
-      gap: 0.4rem;
-      padding: 0 0.75rem;
-      border-color: hsl(var(--gold) / 0.34);
-      border-radius: 9999px;
-      background: linear-gradient(135deg, hsl(var(--highlight) / 0.42), hsl(var(--card) / 0.88));
-      color: hsl(var(--accent));
-      font-size: 0.72rem;
-      font-weight: 600;
-      letter-spacing: 0;
-      text-transform: uppercase;
-      box-shadow: 0 10px 24px hsl(var(--gold) / 0.12);
-    }
-
-    .settings-panel-trigger--nav:hover,
-    .settings-panel-trigger--nav:focus-visible {
-      border-color: hsl(var(--gold) / 0.62);
-      color: hsl(var(--primary));
-      transform: translateY(-1px);
-    }
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .premium-cursor__aura,
-  .premium-cursor__ring,
-  .premium-cursor__dot {
-    transition-duration: 80ms !important;
-    animation: none !important;
-  }
 }
 
 /* Premium scrollbar */
@@ -555,17 +418,6 @@
   .animate-glow,
   .animate-float {
     animation: none !important;
-  }
-  /* Réduire fortement les blur très coûteux sur mobile */
-  .blur-\[80px\],
-  .blur-\[100px\],
-  .blur-\[120px\],
-  .blur-\[60px\] {
-    filter: blur(20px) !important;
-  }
-  /* Désactiver le custom cursor sur mobile (par sécurité) */
-  .premium-cursor {
-    display: none !important;
   }
 }
 
