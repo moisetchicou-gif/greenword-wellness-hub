@@ -383,7 +383,7 @@
       hsl(var(--accent)) 100%
     );
   }
-
+}
 
 /* Premium scrollbar */
 ::-webkit-scrollbar {
