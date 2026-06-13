@@ -91,7 +91,7 @@ const Navbar = () => {
   const links = [
     { label: "Accueil", href: "/" },
     { label: "Boutique", href: "/#produits" },
-    { label: "Qui sommes-nous", href: "/#qui-sommes-nous" },
+    { label: "Qui sommes-nous", href: "/qui-sommes-nous" },
   ];
 
   const handleResultClick = (product: typeof products[0]) => {
