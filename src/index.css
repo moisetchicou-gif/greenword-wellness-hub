@@ -419,6 +419,7 @@
   .animate-float {
     animation: none !important;
   }
+}
 
 /* Respecter prefers-reduced-motion */
 @media (prefers-reduced-motion: reduce) {
