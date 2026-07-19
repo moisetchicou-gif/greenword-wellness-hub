@@ -61,15 +61,12 @@ const CGV = () => (
 
         <section>
           <h2 className="text-foreground font-display text-xl font-semibold">6. Moyens de paiement</h2>
-          <p>Les moyens de paiement acceptés sont :</p>
+          <p>Le seul moyen de paiement accepté est :</p>
           <ul className="list-disc pl-5 space-y-1">
             <li><strong>Wave</strong></li>
-            <li><strong>Orange Money</strong></li>
-            <li><strong>MTN Money</strong></li>
-            <li><strong>Moov Money</strong></li>
           </ul>
           <p>
-            Le paiement est exigible à la commande. Aucune donnée bancaire n'est stockée sur le site. Les transactions sont traitées directement par les plateformes de paiement mobile.
+            Le paiement est exigible à la commande. Aucune donnée bancaire n'est stockée sur le site. Les transactions sont traitées directement par Wave.
           </p>
         </section>
 

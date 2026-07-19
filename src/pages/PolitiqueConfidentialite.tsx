@@ -27,7 +27,7 @@ const PolitiqueConfidentialite = () => (
             <li><strong>Adresse de livraison</strong></li>
             <li><strong>Numéro de téléphone</strong></li>
           </ul>
-          <p>Aucune donnée bancaire n'est stockée sur notre site. Les paiements sont traités directement par les plateformes de paiement mobile (Wave, Orange Money, MTN Money, Moov Money).</p>
+          <p>Aucune donnée bancaire n'est stockée sur notre site. Les paiements sont traités directement par la plateforme Wave.</p>
         </section>
 
         <section>
