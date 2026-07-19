@@ -55,11 +55,11 @@ const CtaSection = () => {
               <p className="font-medium text-sm">+225 0715736370</p>
             </div>
           </a>
-          <a href="mailto:greenworldkr25@gmail.com" className="flex items-center gap-3 glass-dark rounded-xl p-4 hover:bg-accent-foreground/10 transition-all duration-300 hover-lift">
+          <a href="mailto:greenworldprestige@gmail.com" className="flex items-center gap-3 glass-dark rounded-xl p-4 hover:bg-accent-foreground/10 transition-all duration-300 hover-lift">
             <Mail className="w-4 h-4 text-primary" />
             <div className="text-left">
               <p className="text-[10px] opacity-60 uppercase tracking-wider">Email</p>
-              <p className="font-medium text-sm">greenworldkr25@gmail.com</p>
+              <p className="font-medium text-sm">greenworldprestige@gmail.com</p>
             </div>
           </a>
           <a href="https://share.google/tqV7vorkQ4N4yP3jb" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 glass-dark rounded-xl p-4 hover:bg-accent-foreground/10 transition-all duration-300 hover-lift">

@@ -25,7 +25,7 @@ const CGV = () => (
             Compléments alimentaires naturels<br />
             Siège : Koumassi Remblais, Rue de la Mosquée Ramata, à côté de Choco Bar, Immeuble Résidence 2000, Bureau 2 — Abidjan, Côte d'Ivoire<br />
             Téléphone : <a href="tel:+2252733747334" className="text-primary hover:underline">+225 27 33 74 73 34</a><br />
-            Email : <a href="mailto:greenworldkr25@gmail.com" className="text-primary hover:underline">greenworldkr25@gmail.com</a>
+            Email : <a href="mailto:greenworldprestige@gmail.com" className="text-primary hover:underline">greenworldprestige@gmail.com</a>
           </p>
         </section>
 
@@ -61,15 +61,12 @@ const CGV = () => (
 
         <section>
           <h2 className="text-foreground font-display text-xl font-semibold">6. Moyens de paiement</h2>
-          <p>Les moyens de paiement acceptés sont :</p>
+          <p>Le seul moyen de paiement accepté est :</p>
           <ul className="list-disc pl-5 space-y-1">
             <li><strong>Wave</strong></li>
-            <li><strong>Orange Money</strong></li>
-            <li><strong>MTN Money</strong></li>
-            <li><strong>Moov Money</strong></li>
           </ul>
           <p>
-            Le paiement est exigible à la commande. Aucune donnée bancaire n'est stockée sur le site. Les transactions sont traitées directement par les plateformes de paiement mobile.
+            Le paiement est exigible à la commande. Aucune donnée bancaire n'est stockée sur le site. Les transactions sont traitées directement par Wave.
           </p>
         </section>
 
@@ -86,7 +83,7 @@ const CGV = () => (
             Conformément à la réglementation en vigueur, le client dispose d'un délai de <strong>14 jours</strong> à compter de la réception des produits pour exercer son droit de rétractation, sans avoir à justifier de motif. Les produits doivent être retournés dans leur emballage d'origine, non ouverts et en parfait état. Les frais de retour sont à la charge du client. Le remboursement sera effectué dans un délai de 14 jours suivant la réception des produits retournés.
           </p>
           <p>
-            Pour exercer ce droit, contactez-nous à : <a href="mailto:greenworldkr25@gmail.com" className="text-primary hover:underline">greenworldkr25@gmail.com</a>
+            Pour exercer ce droit, contactez-nous à : <a href="mailto:greenworldprestige@gmail.com" className="text-primary hover:underline">greenworldprestige@gmail.com</a>
           </p>
         </section>
 
@@ -134,7 +131,7 @@ const CGV = () => (
           <p>
             Pour toute question relative aux présentes CGV :<br />
             <strong>Green World Prestige</strong><br />
-            Email : <a href="mailto:greenworldkr25@gmail.com" className="text-primary hover:underline">greenworldkr25@gmail.com</a><br />
+            Email : <a href="mailto:greenworldprestige@gmail.com" className="text-primary hover:underline">greenworldprestige@gmail.com</a><br />
             Téléphone : <a href="tel:+2252733747334" className="text-primary hover:underline">+225 27 33 74 73 34</a><br />
             WhatsApp : <a href="https://wa.me/2250715736370" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">+225 07 15 73 63 70</a>
           </p>
