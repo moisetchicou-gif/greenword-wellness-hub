@@ -119,9 +119,9 @@ const AboutSection = () => {
               ivoiriennes.
             </p>
             <div className="flex flex-wrap gap-3 pt-2">
-              <span className={warm.badge?.("coral") ?? "px-3 py-1 rounded-full bg-coral/10 text-coral text-xs font-semibold"}>Conférencier</span>
-              <span className={warm.badge?.("gold") ?? "px-3 py-1 rounded-full bg-gold/10 text-gold text-xs font-semibold"}>Distributeur agréé</span>
-              <span className={warm.badge?.("primary") ?? "px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-semibold"}>Entrepreneur bien-être</span>
+              <span className="px-3 py-1 rounded-full bg-coral/10 text-coral text-xs font-semibold">Conférencier</span>
+              <span className="px-3 py-1 rounded-full bg-gold/10 text-gold text-xs font-semibold">Distributeur agréé</span>
+              <span className="px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-semibold">Entrepreneur bien-être</span>
             </div>
           </div>
           <div className="lg:col-span-2 order-1 lg:order-2 grid grid-cols-2 gap-3">
