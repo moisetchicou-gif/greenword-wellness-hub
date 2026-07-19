@@ -130,21 +130,21 @@ const AboutSection = () => {
               alt="Fondateur Green World Prestige en conférence"
               loading="eager"
               decoding="async"
-              className="col-span-2 w-full h-64 sm:h-80 object-cover rounded-2xl shadow-xl"
+              className="col-span-2 w-full h-64 sm:h-80 object-cover object-top rounded-2xl shadow-xl"
             />
             <img
               src={managerSummit.url}
               alt="Fondateur Green World Prestige lors d'un sommet international"
               loading="lazy"
               decoding="async"
-              className="w-full h-40 sm:h-48 object-cover rounded-2xl shadow-md"
+              className="w-full h-40 sm:h-48 object-cover object-top rounded-2xl shadow-md"
             />
             <img
               src={foundersAward.url}
               alt="Rencontre avec les dirigeants Green World International"
               loading="lazy"
               decoding="async"
-              className="w-full h-40 sm:h-48 object-cover rounded-2xl shadow-md"
+              className="w-full h-40 sm:h-48 object-cover object-top rounded-2xl shadow-md"
             />
           </div>
         </div>
@@ -175,9 +175,9 @@ const AboutSection = () => {
             </p>
           </div>
           <div className="grid grid-cols-2 gap-3 sm:gap-4">
-            <img src={speech} alt="Présentation Green World Côte d'Ivoire" loading="lazy" className="w-full h-56 sm:h-72 object-cover rounded-2xl shadow-lg col-span-2" />
-            <img src={certificate} alt="Remise de certificat Green World" loading="lazy" className="w-full h-40 sm:h-48 object-cover rounded-2xl shadow-md" />
-            <img src={giftCeremony} alt="Cérémonie Green World" loading="lazy" className="w-full h-40 sm:h-48 object-cover rounded-2xl shadow-md" />
+            <img src={speech} alt="Présentation Green World Côte d'Ivoire" loading="lazy" className="w-full h-56 sm:h-72 object-cover object-top rounded-2xl shadow-lg col-span-2" />
+            <img src={certificate} alt="Remise de certificat Green World" loading="lazy" className="w-full h-40 sm:h-48 object-cover object-top rounded-2xl shadow-md" />
+            <img src={giftCeremony} alt="Cérémonie Green World" loading="lazy" className="w-full h-40 sm:h-48 object-cover object-top rounded-2xl shadow-md" />
           </div>
         </div>
 
@@ -258,7 +258,7 @@ const AboutSection = () => {
         {/* 5. Engagement qualité */}
         <div className="grid lg:grid-cols-2 gap-10 items-center">
           <img src={certificate} alt="Certificat officiel Green World" loading="lazy"
-               className="w-full h-72 sm:h-96 object-cover rounded-2xl shadow-xl order-2 lg:order-1" />
+               className="w-full h-72 sm:h-96 object-cover object-top rounded-2xl shadow-xl order-2 lg:order-1" />
           <div className="space-y-5 order-1 lg:order-2">
             <span className={warm.eyebrow}>Engagement qualité</span>
             <h2 className={warm.heading(2)}>
@@ -344,11 +344,11 @@ const AboutSection = () => {
           </div>
           <div className="grid grid-cols-2 gap-3 sm:gap-4">
             <img src={awardCheque} alt="Chèque de récompense Green World 67 500 000 FCFA" loading="lazy"
-                 className="col-span-2 w-full h-56 sm:h-64 object-cover rounded-2xl shadow-lg" />
+                 className="col-span-2 w-full h-56 sm:h-64 object-cover object-top rounded-2xl shadow-lg" />
             <img src={winnersAward} alt="Distributeurs primés" loading="lazy"
-                 className="w-full h-40 object-cover rounded-2xl shadow-md" />
+                 className="w-full h-40 object-cover object-top rounded-2xl shadow-md" />
             <img src={winnersTrio} alt="Winners Green World Côte d'Ivoire" loading="lazy"
-                 className="w-full h-40 object-cover rounded-2xl shadow-md" />
+                 className="w-full h-40 object-cover object-top rounded-2xl shadow-md" />
           </div>
         </div>
 
