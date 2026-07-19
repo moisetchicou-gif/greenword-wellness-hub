@@ -104,6 +104,52 @@ const AboutSection = () => {
           </p>
         </header>
 
+        {/* Le fondateur — mis en avant */}
+        <div className="grid lg:grid-cols-5 gap-6 sm:gap-8 items-center">
+          <div className="lg:col-span-3 space-y-5 order-2 lg:order-1">
+            <span className={warm.eyebrow}>Le fondateur</span>
+            <h2 className={warm.heading(2)}>
+              Une vision portée par <span className={warm.textGradient}>un homme de conviction</span>
+            </h2>
+            <p className="text-muted-foreground leading-relaxed">
+              À la tête de Green World Prestige, un entrepreneur passionné, formé aux enjeux du
+              bien-être et actif dans l'écosystème international des nouvelles technologies et
+              de la santé naturelle. Présent sur les grands sommets professionnels, il porte
+              une ambition claire : rendre la santé naturelle accessible à toutes les familles
+              ivoiriennes.
+            </p>
+            <div className="flex flex-wrap gap-3 pt-2">
+              <span className={warm.badge?.("coral") ?? "px-3 py-1 rounded-full bg-coral/10 text-coral text-xs font-semibold"}>Conférencier</span>
+              <span className={warm.badge?.("gold") ?? "px-3 py-1 rounded-full bg-gold/10 text-gold text-xs font-semibold"}>Distributeur agréé</span>
+              <span className={warm.badge?.("primary") ?? "px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-semibold"}>Entrepreneur bien-être</span>
+            </div>
+          </div>
+          <div className="lg:col-span-2 order-1 lg:order-2 grid grid-cols-2 gap-3">
+            <img
+              src={managerSpeaking.url}
+              alt="Fondateur Green World Prestige en conférence"
+              loading="eager"
+              decoding="async"
+              className="col-span-2 w-full h-64 sm:h-80 object-cover rounded-2xl shadow-xl"
+            />
+            <img
+              src={managerSummit.url}
+              alt="Fondateur Green World Prestige lors d'un sommet international"
+              loading="lazy"
+              decoding="async"
+              className="w-full h-40 sm:h-48 object-cover rounded-2xl shadow-md"
+            />
+            <img
+              src={foundersAward.url}
+              alt="Rencontre avec les dirigeants Green World International"
+              loading="lazy"
+              decoding="async"
+              className="w-full h-40 sm:h-48 object-cover rounded-2xl shadow-md"
+            />
+          </div>
+        </div>
+
+
         {/* 2. Notre histoire */}
         <div className="grid lg:grid-cols-2 gap-10 items-center">
           <div className="space-y-5">
