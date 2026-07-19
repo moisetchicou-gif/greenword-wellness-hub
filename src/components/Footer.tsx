@@ -30,9 +30,9 @@ const Footer = () => {
                 </svg>
                 +225 0715736370
               </a>
-              <a href="mailto:greenworldkr25@gmail.com" className="flex items-center gap-3 hover:text-accent-foreground transition-colors">
+              <a href="mailto:greenworldprestige@gmail.com" className="flex items-center gap-3 hover:text-accent-foreground transition-colors">
                 <Mail className="w-3.5 h-3.5 text-primary shrink-0" />
-                greenworldkr25@gmail.com
+                greenworldprestige@gmail.com
               </a>
             </div>
           </div>

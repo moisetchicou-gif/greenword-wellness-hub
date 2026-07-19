@@ -18,7 +18,7 @@ const MentionsLegales = () => (
             Compléments alimentaires naturels<br />
             Siège : Koumassi Remblais, Rue de la Mosquée Ramata, à côté de Choco Bar, Immeuble Résidence 2000, Bureau 2 — Abidjan, Côte d'Ivoire<br />
             Téléphone : <a href="tel:+2252733747334" className="text-primary hover:underline">+225 27 33 74 73 34</a><br />
-            Email : <a href="mailto:greenworldkr25@gmail.com" className="text-primary hover:underline">greenworldkr25@gmail.com</a>
+            Email : <a href="mailto:greenworldprestige@gmail.com" className="text-primary hover:underline">greenworldprestige@gmail.com</a>
           </p>
         </section>
 

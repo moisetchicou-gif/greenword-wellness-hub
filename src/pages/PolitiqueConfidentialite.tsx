@@ -91,7 +91,7 @@ const PolitiqueConfidentialite = () => (
             <li><strong>Droit d'opposition</strong> : vous opposer au traitement de vos données</li>
           </ul>
           <p>
-            Pour exercer ces droits, contactez-nous à : <a href="mailto:greenworldkr25@gmail.com" className="text-primary hover:underline">greenworldkr25@gmail.com</a>
+            Pour exercer ces droits, contactez-nous à : <a href="mailto:greenworldprestige@gmail.com" className="text-primary hover:underline">greenworldprestige@gmail.com</a>
           </p>
         </section>
 
@@ -100,7 +100,7 @@ const PolitiqueConfidentialite = () => (
           <p>
             Pour toute question relative à cette politique de confidentialité :<br />
             <strong>Green World Prestige</strong><br />
-            Email : <a href="mailto:greenworldkr25@gmail.com" className="text-primary hover:underline">greenworldkr25@gmail.com</a><br />
+            Email : <a href="mailto:greenworldprestige@gmail.com" className="text-primary hover:underline">greenworldprestige@gmail.com</a><br />
             Téléphone : <a href="tel:+2252733747334" className="text-primary hover:underline">+225 27 33 74 73 34</a>
           </p>
         </section>
