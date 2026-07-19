@@ -28,6 +28,9 @@ import teamGroup from "@/assets/about/team-group.jpeg";
 import winnersAward from "@/assets/about/winners-award.jpeg";
 import managerPortrait from "@/assets/about/manager-portrait.jpeg";
 import giftCeremony from "@/assets/about/gift-ceremony.jpeg";
+import managerSpeaking from "@/assets/about/manager-speaking.jpg.asset.json";
+import managerSummit from "@/assets/about/manager-summit.jpg.asset.json";
+import foundersAward from "@/assets/about/founders-award.jpg.asset.json";
 
 const WHATSAPP_NUMBER = "2250707089631";
 const waLink = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
